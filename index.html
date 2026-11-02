@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" id="app-icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arete Model School</title>
+    <meta name="theme-color" content="#C8202E" />
+    <script>
+      (function () { try { var p = localStorage.getItem('ARETE_THEME'); var d = p === 'dark' || (p === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches); if (d) { document.documentElement.classList.add('dark'); document.documentElement.style.colorScheme = 'dark'; } } catch (e) {} })();
+    </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    // Use the school logo as the tab icon (public/arete-logo.png or public/arete_logo.png); keep the default if neither exists
+    (function () {
+      var link = document.getElementById('app-icon'), names = ['/arete-logo.png', '/arete_logo.png'];
+      (function tryNext(i) {
+        if (i >= names.length) return;
+        var img = new Image();
+        img.onload = function () { link.type = 'image/png'; link.href = names[i]; };
+        img.onerror = function () { tryNext(i + 1); };
+        img.src = names[i];
+      })(0);
+    })();
+  </script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
