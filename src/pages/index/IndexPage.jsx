@@ -27,7 +27,7 @@ export default function IndexPage() {
         <div className="ml-auto"><ThemeToggle /></div>
       </header>
       <main className="max-w-[1240px] mx-auto px-8 pt-6 pb-16">
-        <h1 className="text-[36px] font-extrabold tracking-tight">{greeting()}, Muhd</h1>
+        <h1 className="text-[36px] font-extrabold tracking-tight">{greeting()}, Zahal</h1>
         <p className="text-[15px] text-[#777] mt-1 mb-9">Pick an app to work in.</p>
         {GROUPS.map(g => (
           <section key={g} className="mb-9">

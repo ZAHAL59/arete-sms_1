@@ -11,7 +11,7 @@ import { ThemeToggle, AppearancePicker } from './ThemeToggle';
 const GridIcon = ({ s = 16 }) => <svg width={s} height={s} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="1.5" y="1.5" width="5.5" height="5.5" rx="1.4" /><rect x="9" y="1.5" width="5.5" height="5.5" rx="1.4" /><rect x="1.5" y="9" width="5.5" height="5.5" rx="1.4" /><rect x="9" y="9" width="5.5" height="5.5" rx="1.4" /></svg>;
 const BellIcon = () => <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3.5 11.5h9l-1.2-1.7V6.7a3.3 3.3 0 0 0-6.6 0v3.1L3.5 11.5Z" /><path d="M6.6 13.4a1.5 1.5 0 0 0 2.8 0" /></svg>;
 const iconBtn = 'relative w-9 h-9 rounded-full border border-[#E4E4E4] bg-white flex items-center justify-center text-[#555] cursor-pointer hover:border-[#C8202E]/50 hover:text-[#C8202E]';
-const USER = { name: 'Muhd Zahal', first: 'Muhd', initials: 'MZ' };
+const USER = { name: 'Muhd Zahal', first: 'Zahal', initials: 'MZ' };
 
 // The frame every portal shares:  Home (pulse + areas + today + attention)  →  an area (short sidebar, Overview, pages).
 //   apps       [{ id, name, icon, desc, pages:[[id,label,icon]], links?:[[to,name,icon]] }]
