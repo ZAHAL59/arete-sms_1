@@ -40,7 +40,7 @@ export default function IndexPage() {
               </Link>))}</div>
           </section>))}
       </main>
-      <footer className="px-8 py-6 text-center text-[12px] text-[#AAA]">Arete Model School · Built by Shaheen Digital Academy · Mohammed Zahal · R&D Team</footer>
+      <footer className="px-8 py-6 text-center text-[12px] text-[#AAA]">Arete Model School · Mohammed Zahal · R&D Team</footer>
       <CommandPalette open={palette} onClose={() => setPalette(false)} items={items} />
     </div>
   );
