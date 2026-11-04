@@ -15,13 +15,18 @@ html,body,#root{height:100%;font-family:'DM Sans',sans-serif;-webkit-font-smooth
   body, #root { background: #fff !important; }
 }
 
-/* ── The "hero" cards (home banner, Overview, Careers): flat dark charcoal with a geometric mark, light text.
-      Colours from the 21st.dev "Respec" theme (mint #72E3AD, periwinkle #BEC7FE). No red. ── */
-.arete-hero { position:relative; overflow:hidden; isolation:isolate; color:#FFFFFF; background:#1F1F22; border:1px solid rgba(255,255,255,.06); }
-.arete-stat { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.10); color:#fff; }
-.arete-stat:hover { background:rgba(255,255,255,.13); }
-.arete-btn { background:rgba(255,255,255,.08); color:#fff; border:1px solid rgba(255,255,255,.26); }
-.arete-btn:hover { background:rgba(255,255,255,.16); }
+/* ── The "hero" cards (home banner, Overview, Careers): flat charcoal (#1F1F22, the same dark as the logo artwork) with
+      flat, solid colour blocks — no gradients, no glow. Palette from the 21st.dev "Respec" theme. No red. ── */
+.arete-hero { position:relative; overflow:hidden; color:#FFFFFF; background:#1F1F22; border:1px solid rgba(255,255,255,.06); }
+.arete-stat { color:#111827; border:0; }
+.arete-stat:hover { filter:brightness(1.07); }
+.arete-stat-0 { background:#BEC7FE; }   /* periwinkle */
+.arete-stat-1 { background:#72E3AD; }   /* mint */
+.arete-stat-2 { background:#C4B5FD; }   /* lavender */
+.arete-stat-3 { background:#93C5FD; }   /* sky */
+.arete-pill { display:inline-block; padding:3px 10px; border-radius:7px; background:#BEC7FE; color:#111827; font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; }
+.arete-btn { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.3); }
+.arete-btn:hover { background:rgba(255,255,255,.12); }
 .arete-btn-primary { background:#72E3AD; color:#10261B; border:1px solid #72E3AD; }
 .arete-btn-primary:hover { background:#8CEBBE; }
 .arete-track { background:rgba(255,255,255,.14); }

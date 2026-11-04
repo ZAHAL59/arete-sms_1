@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { CPanel, Row, DateChip, Empty, AttentionRow } from './widgets';
 import Badge from '../ui/Badge';
 import { loadPrincipal } from '../../pages/principal/constants';
-import HeroMark from './HeroMark';
 
 const greeting = () => { const h = new Date().getHours(); return h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening'; };
 
@@ -17,12 +16,11 @@ export default function HubHome({ portal, firstName, prompt, pulse, apps, badges
     <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-14">
       {/* Arete banner */}
       <div className="arete-hero rounded-[22px] sm:rounded-[26px] p-5 sm:p-7 mb-6 sm:mb-8 shadow-[0_10px_30px_rgba(0,0,0,.16)]">
-        <HeroMark size={92} className="hidden sm:block absolute right-6 top-5 pointer-events-none" />
-        <div className="text-[11px] font-bold uppercase tracking-[1.8px] opacity-70 sm:pr-28">{st.school || 'Arete Model School'} · {portal.name} · AY {st.year || '2026–27'}</div>
+        <div className="text-[11px] font-bold uppercase tracking-[1.8px] opacity-70">{st.school || 'Arete Model School'} · {portal.name} · AY {st.year || '2026–27'}</div>
         <h1 className="text-[26px] sm:text-[32px] font-extrabold tracking-tight leading-tight mt-1.5">{greeting()}, {firstName}</h1>
-        <div className="text-[14px] opacity-75 mt-1 sm:pr-28">{prompt} · {dateStr}</div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 mt-5">{pulse.map(t => (
-          <button key={t.label} onClick={t.run} className="arete-stat text-left rounded-[14px] px-3.5 sm:px-4 py-3 cursor-pointer transition-colors">
+        <div className="text-[14px] opacity-75 mt-1">{prompt} · {dateStr}</div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 mt-5">{pulse.map((t, i) => (
+          <button key={t.label} onClick={t.run} className={`arete-stat arete-stat-${i % 4} text-left rounded-[14px] px-3.5 sm:px-4 py-3 cursor-pointer transition-all`}>
             <div className="text-[24px] sm:text-[26px] font-extrabold leading-none">{t.value}</div>
             <div className="text-[12px] mt-1.5 font-semibold">{t.label}</div>
             <div className="text-[11px] opacity-75">{t.note}</div>
