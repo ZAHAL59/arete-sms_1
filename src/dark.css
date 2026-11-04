@@ -14,17 +14,17 @@ html.dark ::-webkit-scrollbar-thumb:hover { background:#48484F; }
 html.dark input, html.dark select, html.dark textarea { color-scheme: dark; }
 html.dark input::placeholder, html.dark textarea::placeholder { color:#6C6C74; }
 html.dark kbd { color:#A0A0A8; }
-/* hero cards in dark mode: the theme's deep greens, light text */
-html.dark .arete-hero { color:#F2F7EE; background:linear-gradient(135deg,#17331F 0%,#274D2B 52%,#3A6A2C 100%); border-color:rgba(255,255,255,.08); box-shadow:0 14px 40px rgba(0,0,0,.45) !important; }
-html.dark .arete-stat { color:#F2F7EE; background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.14); }
+/* hero cards in dark mode: deep mint-teal, light text */
+html.dark .arete-hero { color:#EEF9F3; background:linear-gradient(135deg,#10302A 0%,#14463A 52%,#1C5F4B 100%); border-color:rgba(255,255,255,.08); box-shadow:0 14px 40px rgba(0,0,0,.45) !important; }
+html.dark .arete-stat { color:#EEF9F3; background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.14); }
 html.dark .arete-stat:hover { background:rgba(255,255,255,.17); }
-html.dark .arete-pill { background:rgba(255,255,255,.14); color:#DDEBD2; border-color:rgba(255,255,255,.2); }
-html.dark .arete-btn { background:rgba(255,255,255,.10); color:#F2F7EE; border-color:rgba(255,255,255,.26); }
+html.dark .arete-pill { background:rgba(255,255,255,.14); color:#CFF6E3; border-color:rgba(255,255,255,.2); }
+html.dark .arete-btn { background:rgba(255,255,255,.10); color:#EEF9F3; border-color:rgba(255,255,255,.26); }
 html.dark .arete-btn:hover { background:rgba(255,255,255,.18); }
-html.dark .arete-btn-primary { background:#AFBEA5; color:#10200F; border-color:#AFBEA5; }
-html.dark .arete-btn-primary:hover { background:#C4D2BA; }
+html.dark .arete-btn-primary { background:#72E3AD; color:#0D2A1F; border-color:#72E3AD; }
+html.dark .arete-btn-primary:hover { background:#8CEBBE; }
 html.dark .arete-track { background:rgba(255,255,255,.2); }
-html.dark .arete-fill { background:#A9E382; }
+html.dark .arete-fill { background:#72E3AD; }
 html.dark .arete-fill { background:#F2F2F4; }
 
 html.dark .text-accent { color:#FF7A82; }
