@@ -236,7 +236,7 @@ function StructureModal({ heads, monthly, onClose, onSave }) {
   return (
     <Modal open onClose={onClose} size="lg" title="Hostel fee structure" subtitle="Charges collected from each student at hostel admission"
       footer={<><Button variant="outline" onClick={() => setList(DEFAULT_FEE_HEADS.map(x => ({ ...x })))}>Reset to defaults</Button><span className="flex-1" /><Button variant="outline" onClick={onClose}>Cancel</Button><Button onClick={() => onSave(list.filter(x => x.name.trim()).map(x => ({ ...x, name: x.name.trim(), amount: Math.max(0, Math.round(+x.amount) || 0) })))}>Save</Button></>}>
-      <div className="bg-[#FEF4F4] border border-[#FECACA] rounded-[8px] px-3 py-2.5 mb-4 text-[12.5px] text-[#555]"><b>Monthly hostel fee: {fmt(monthly)}</b> per student — set in Finance → Fee structure (hostel fee ÷ 12), billed every month.</div>
+      <div className="bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] px-3 py-2.5 mb-4 text-[12.5px] text-[#555]"><b>Monthly hostel fee: {fmt(monthly)}</b> per student — set in Finance → Fee structure (hostel fee ÷ 12), billed every month.</div>
       <div className="grid grid-cols-[1fr_120px_170px_28px] gap-2 text-[10.5px] font-bold text-[#AAA] uppercase tracking-wider mb-1.5"><span>Item</span><span>Amount (₹)</span><span>Type</span><span /></div>
       <div className="space-y-2">{list.map((x, i) => (
         <div key={x.id} className="grid grid-cols-[1fr_120px_170px_28px] gap-2 items-center">

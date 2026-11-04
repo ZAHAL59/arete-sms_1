@@ -64,7 +64,7 @@ export default function Budget({ fin, allPayments, addBudgetLine, updateBudgetLi
         }
       />
 
-      <div className="bg-[#FEF4F4] border border-[#FECACA] rounded-[8px] p-3 mb-5 text-[12.5px] text-[#555] leading-relaxed">
+      <div className="bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] p-3 mb-5 text-[12.5px] text-[#555] leading-relaxed">
         ℹ️ <strong className="text-[#111]">Budget</strong> — your planned annual spend. <strong className="text-[#111]">Actual</strong> — auto-calculated from payments. Change period above to filter by term. <strong className="text-[#111]">Reset Actuals</strong> starts a fresh count from today; budgets and payment records are untouched.{fin.actualsFrom && <> Counting from <b>{fin.actualsFrom}</b> <button onClick={()=>setActualsFrom(null)} className="underline text-[#C8202E] cursor-pointer bg-none border-none">(clear)</button>.</>}
       </div>
 

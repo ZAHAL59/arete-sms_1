@@ -19,10 +19,10 @@ export default function CareersPage() {
     <div className="min-h-screen bg-white text-[#111]">
       <header className="sticky top-0 z-40 bg-white border-b border-[#E4E4E4] px-6 h-14 flex items-center gap-5">
         <div className="flex items-center gap-2.5"><Logo /><span className="text-[15px] font-extrabold tracking-tight">Arete</span></div>
-        <nav className="hidden md:flex gap-1 ml-4">{[['openings-section', 'Current Openings'], ['why-section', 'Why Join Us'], ['process-section', 'Selection Process']].map(([id, l]) => <button key={id} onClick={() => go(id)} className="px-3 py-1.5 text-[13px] font-medium text-[#555] hover:text-[#C8202E] rounded-[6px] hover:bg-[#FEF4F4] cursor-pointer bg-none border-none">{l}</button>)}</nav>
+        <nav className="hidden md:flex gap-1 ml-4">{[['openings-section', 'Current Openings'], ['why-section', 'Why Join Us'], ['process-section', 'Selection Process']].map(([id, l]) => <button key={id} onClick={() => go(id)} className="px-3 py-1.5 text-[13px] font-medium text-[#555] hover:text-[#C8202E] rounded-[6px] hover:bg-[#F6F6F7] cursor-pointer bg-none border-none">{l}</button>)}</nav>
         <div className="ml-auto flex items-center gap-4">
           <div className="relative"><button onClick={() => setMenu(m => !m)} className="px-3 py-1.5 text-[12.5px] font-semibold border border-[#E4E4E4] rounded-[6px] cursor-pointer bg-white hover:bg-[#F8F8F8]">All Portals ▾</button>
-            {menu && <div className="absolute right-0 mt-1 w-60 bg-white border border-[#E4E4E4] rounded-[8px] shadow-[0_8px_30px_rgba(0,0,0,.12)] py-1" onMouseLeave={() => setMenu(false)}>{PORTALS.map(([to, l]) => <Link key={to} to={to} className="block px-3.5 py-2 text-[12.5px] text-[#333] no-underline hover:bg-[#FEF4F4] hover:text-[#C8202E]">{l}</Link>)}</div>}</div>
+            {menu && <div className="absolute right-0 mt-1 w-60 bg-white border border-[#E4E4E4] rounded-[8px] shadow-[0_8px_30px_rgba(0,0,0,.12)] py-1" onMouseLeave={() => setMenu(false)}>{PORTALS.map(([to, l]) => <Link key={to} to={to} className="block px-3.5 py-2 text-[12.5px] text-[#333] no-underline hover:bg-[#F6F6F7] hover:text-[#C8202E]">{l}</Link>)}</div>}</div>
           <a href="mailto:hr@aretemodel.edu" className="hidden sm:inline text-[12.5px] text-[#555] no-underline hover:text-[#C8202E]">✉ hr@aretemodel.edu</a>
         </div>
       </header>

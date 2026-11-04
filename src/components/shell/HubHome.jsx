@@ -15,7 +15,7 @@ export default function HubHome({ portal, firstName, prompt, pulse, apps, badges
   return (
     <div className="max-w-[1240px] mx-auto px-8 pt-6 pb-14">
       {/* Arete banner */}
-      <div className="arete-hero rounded-[26px] p-8 mb-8 text-white shadow-[0_10px_34px_rgba(154,24,34,.22)]" style={{ background: 'linear-gradient(135deg,#C8202E 0%,#9A1822 100%)' }}>
+      <div className="arete-hero rounded-[26px] p-8 mb-8 text-white shadow-[0_14px_40px_rgba(0,0,0,.18)]">
         <div className="text-[11px] font-bold uppercase tracking-[1.8px] text-white/70">{st.school || 'Arete Model School'} · {portal.name} · AY {st.year || '2026–27'}</div>
         <h1 className="text-[36px] font-extrabold tracking-tight leading-tight mt-1.5">{greeting()}, {firstName}</h1>
         <div className="text-[14px] text-white/75 mt-1">{prompt} · {dateStr}</div>
@@ -32,9 +32,9 @@ export default function HubHome({ portal, firstName, prompt, pulse, apps, badges
       <div className="grid grid-cols-4 gap-6 mb-9">{apps.map(a => {
         const n = a.pages.reduce((s, p) => s + (badges[p[0]] || 0), 0);
         return (
-          <div key={a.id} onClick={() => onOpen(a.id)} role="link" aria-label={`Open ${a.name}`} className="relative bg-white rounded-[26px] p-7 pb-8 cursor-pointer shadow-[0_2px_16px_rgba(0,0,0,.045)] hover:shadow-[0_12px_34px_rgba(200,32,46,.14)] hover:-translate-y-0.5 transition-all">
+          <div key={a.id} onClick={() => onOpen(a.id)} role="link" aria-label={`Open ${a.name}`} className="relative bg-white rounded-[26px] p-7 pb-8 cursor-pointer shadow-[0_2px_16px_rgba(0,0,0,.045)] hover:shadow-[0_12px_34px_rgba(0,0,0,.10)] hover:-translate-y-0.5 transition-all">
             {n > 0 && <span className="absolute top-5 right-5 text-[10.5px] font-bold bg-[#C8202E] text-white px-2 py-0.5 rounded-full">{n}</span>}
-            <div className="w-16 h-16 rounded-[18px] bg-[#FEF4F4] flex items-center justify-center text-[28px] mb-10">{a.icon}</div>
+            <div className="w-16 h-16 rounded-[18px] bg-[#F6F6F7] flex items-center justify-center text-[28px] mb-10">{a.icon}</div>
             <div className="text-[17px] font-bold text-[#111]">{a.name}</div>
             <div className="text-[13px] text-[#777] mt-1 leading-snug">{a.desc}</div>
           </div>);

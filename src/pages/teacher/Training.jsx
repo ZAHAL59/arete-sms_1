@@ -14,7 +14,7 @@ export default function Training() {
         return (
           <Collapsible key={t.id} header={
             <div className="flex items-center gap-3 flex-1">
-              <div className={`w-9 h-9 rounded-[8px] flex items-center justify-center text-[16px] flex-shrink-0 ${isPast ? 'bg-[#F0FDF4]' : 'bg-[#FEF4F4]'}`}>{isPast ? '✅' : '📅'}</div>
+              <div className={`w-9 h-9 rounded-[8px] flex items-center justify-center text-[16px] flex-shrink-0 ${isPast ? 'bg-[#F0FDF4]' : 'bg-[#F6F6F7]'}`}>{isPast ? '✅' : '📅'}</div>
               <div className="flex-1"><div className="text-[13.5px] font-bold text-[#111]">{t.title}</div><div className="text-[11.5px] text-[#AAA] mt-0.5">{t.date}{t.time ? ' · ' + t.time : ''} · {t.duration} · {t.trainer || '—'}</div></div>
               <Badge variant={status[1]}>{status[0]}</Badge>
             </div>}>

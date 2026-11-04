@@ -1,4 +1,4 @@
-export const inputCls = 'w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E] focus:shadow-[0_0_0_3px_#FEF4F4] bg-white font-[inherit]';
+export const inputCls = 'w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E] focus:shadow-[0_0_0_3px_#F6F6F7] bg-white font-[inherit]';
 
 export function Field({ label, children, className = '' }) {
   return (

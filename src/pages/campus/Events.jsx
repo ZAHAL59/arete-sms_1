@@ -41,7 +41,7 @@ export default function Events({ c, addEvent, allocateSeats }) {
       <Collapsible key={e.id} className={`mb-1.5 ${isPast ? 'opacity-75' : ''}`} open={ex.isOpen(e.id)} onToggle={() => ex.toggle(e.id)}
         header={
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-11 flex-shrink-0 text-center rounded-[7px] py-1" style={{ background: isPast ? '#F2F2F2' : '#FEF4F4' }}>
+            <div className="w-11 flex-shrink-0 text-center rounded-[7px] py-1" style={{ background: isPast ? '#F2F2F2' : '#F6F6F7' }}>
               <div className="text-[16px] font-extrabold leading-none" style={{ color: isPast ? '#777' : '#C8202E' }}>{d.getDate()}</div>
               <div className="text-[9px] font-bold uppercase tracking-wider text-[#AAA] mt-0.5">{d.toLocaleString('en-IN', { month: 'short' })}</div></div>
             <div className="flex-1 min-w-0"><div className="text-[13.5px] font-bold text-[#111] truncate">{e.title}</div><div className="text-[11.5px] text-[#777]">{e.time} · {e.venue}</div></div>

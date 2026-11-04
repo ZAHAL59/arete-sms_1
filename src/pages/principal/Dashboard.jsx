@@ -109,7 +109,7 @@ export default function Dashboard({ p, go, openRoute }) {
               <div className="grid grid-cols-7 text-center text-[10px] font-bold text-[#AAA] mb-1">{['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(d => <div key={d}>{d}</div>)}</div>
               <div className="grid grid-cols-7 gap-0.5 text-center">{Array.from({ length: first }).map((_, i) => <div key={'b' + i} />)}{Array.from({ length: days }, (_, i) => i + 1).map(d => {
                 const k = iso(d), has = evOn(k).length > 0, today = k === TODAY, on = k === calDay;
-                return <div key={d} onClick={() => setCalDay(k)} className="relative py-1.5 rounded-[5px] text-[12px] cursor-pointer" style={{ background: today ? '#C8202E' : on ? '#FEF4F4' : '', color: today ? '#fff' : '#333', fontWeight: today || has ? 700 : 500 }}>{d}{has && !today && <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#C8202E]" />}</div>;
+                return <div key={d} onClick={() => setCalDay(k)} className="relative py-1.5 rounded-[5px] text-[12px] cursor-pointer" style={{ background: today ? '#C8202E' : on ? '#F6F6F7' : '', color: today ? '#fff' : '#333', fontWeight: today || has ? 700 : 500 }}>{d}{has && !today && <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#C8202E]" />}</div>;
               })}</div>
               <div className="mt-2 pt-2 border-t border-[#E4E4E4] text-[12px]">{evOn(calDay).length ? evOn(calDay).map(e => <div key={e.id} className="py-0.5"><b>{e.time}</b> · {e.title}</div>) : <span className="text-[#AAA]">{prettyDate(calDay)}: no events</span>}</div>
             </div>

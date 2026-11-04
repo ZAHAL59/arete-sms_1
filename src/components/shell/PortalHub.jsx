@@ -11,7 +11,7 @@ import { ThemeToggle, AppearancePicker } from './ThemeToggle';
 const GridIcon = ({ s = 16 }) => <svg width={s} height={s} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="1.5" y="1.5" width="5.5" height="5.5" rx="1.4" /><rect x="9" y="1.5" width="5.5" height="5.5" rx="1.4" /><rect x="1.5" y="9" width="5.5" height="5.5" rx="1.4" /><rect x="9" y="9" width="5.5" height="5.5" rx="1.4" /></svg>;
 const BellIcon = () => <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3.5 11.5h9l-1.2-1.7V6.7a3.3 3.3 0 0 0-6.6 0v3.1L3.5 11.5Z" /><path d="M6.6 13.4a1.5 1.5 0 0 0 2.8 0" /></svg>;
 const iconBtn = 'relative w-9 h-9 rounded-full border border-[#E4E4E4] bg-white flex items-center justify-center text-[#555] cursor-pointer hover:border-[#C8202E]/50 hover:text-[#C8202E]';
-const USER = { name: 'Muhd Zahal', first: 'Zahal', initials: 'MZ' };
+const USER = { name: 'Muhd Zahal', first: 'Muhd', initials: 'MZ' };
 
 // The frame every portal shares:  Home (pulse + areas + today + attention)  →  an area (short sidebar, Overview, pages).
 //   apps       [{ id, name, icon, desc, pages:[[id,label,icon]], links?:[[to,name,icon]] }]
@@ -54,9 +54,9 @@ export default function PortalHub({ portalId, apps, nav, overviews, badges = {},
           {close => (
             <div className="p-3">
               <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#AAA] px-1 pb-1.5">{portal.name}</div>
-              <div className="grid grid-cols-2 gap-1.5 mb-3">{apps.map(a => <button key={a.id} onClick={() => { goApp(a.id); close(); }} className={`flex items-center gap-2 px-2.5 py-2 rounded-[10px] text-left cursor-pointer border ${app?.id === a.id ? 'border-[#C8202E]/40 bg-[#FEF4F4]' : 'border-transparent bg-[#FAFAFA] hover:border-[#C8202E]/40 hover:bg-[#FEF4F4]'}`}><span className="text-[16px]">{a.icon}</span><span className="text-[12.5px] font-semibold text-[#111] truncate">{a.name}</span></button>)}</div>
+              <div className="grid grid-cols-2 gap-1.5 mb-3">{apps.map(a => <button key={a.id} onClick={() => { goApp(a.id); close(); }} className={`flex items-center gap-2 px-2.5 py-2 rounded-[10px] text-left cursor-pointer border ${app?.id === a.id ? 'border-[#C8202E]/40 bg-[#F6F6F7]' : 'border-transparent bg-[#FAFAFA] hover:border-[#C8202E]/40 hover:bg-[#F6F6F7]'}`}><span className="text-[16px]">{a.icon}</span><span className="text-[12.5px] font-semibold text-[#111] truncate">{a.name}</span></button>)}</div>
               <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#AAA] px-1 pb-1.5">Other portals</div>
-              <div className="grid grid-cols-2 gap-1">{PORTAL_LIST.filter(p => p.id !== portalId).map(p => <button key={p.id} onClick={() => { navigate(p.to); close(); }} className="flex items-center gap-2 px-2 py-1.5 rounded-[8px] text-left cursor-pointer bg-white border-none hover:bg-[#FEF4F4]"><span className="text-[13px]">{p.icon}</span><span className="text-[12px] text-[#444] truncate">{p.name}</span></button>)}</div>
+              <div className="grid grid-cols-2 gap-1">{PORTAL_LIST.filter(p => p.id !== portalId).map(p => <button key={p.id} onClick={() => { navigate(p.to); close(); }} className="flex items-center gap-2 px-2 py-1.5 rounded-[8px] text-left cursor-pointer bg-white border-none hover:bg-[#F6F6F7]"><span className="text-[13px]">{p.icon}</span><span className="text-[12px] text-[#444] truncate">{p.name}</span></button>)}</div>
               <button onClick={() => { goHome(); close(); }} className="w-full mt-3 pt-2.5 border-t border-[#EEE] text-[12px] font-semibold text-[#C8202E] cursor-pointer bg-white">Back to {portal.name} home</button>
             </div>)}
         </Dropdown>
@@ -67,7 +67,7 @@ export default function PortalHub({ portalId, apps, nav, overviews, badges = {},
             <div>
               <div className="px-4 py-3 border-b border-[#EEE]"><div className="text-[13px] font-bold text-[#111]">{USER.name}</div><div className="text-[11.5px] text-[#999]">{portal.role}</div></div>
               <AppearancePicker />
-              {[...accountExtras, ['🧩', 'All portals', () => navigate('/')], ['⎋', 'Sign out', () => navigate('/')]].map(([i, l, run]) => <button key={l} onClick={() => { close(); run(); }} className="w-full flex items-center gap-2.5 px-4 py-2.5 text-left text-[12.5px] text-[#333] cursor-pointer bg-white border-none hover:bg-[#FEF4F4]"><span className="w-5 text-center">{i}</span>{l}</button>)}
+              {[...accountExtras, ['🧩', 'All portals', () => navigate('/')], ['⎋', 'Sign out', () => navigate('/')]].map(([i, l, run]) => <button key={l} onClick={() => { close(); run(); }} className="w-full flex items-center gap-2.5 px-4 py-2.5 text-left text-[12.5px] text-[#333] cursor-pointer bg-white border-none hover:bg-[#F6F6F7]"><span className="w-5 text-center">{i}</span>{l}</button>)}
             </div>)}
         </Dropdown>
       </div>
@@ -85,7 +85,8 @@ export default function PortalHub({ portalId, apps, nav, overviews, badges = {},
   /* ── inside an area ── */
   const NavBtn = ({ id, label, icon, badge }) => (
     <button onClick={() => (id ? go(id) : goApp(app.id))} aria-current={(id || null) === page ? 'page' : undefined}
-      className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-[12px] text-[13.5px] text-left cursor-pointer border-none transition-colors ${(id || null) === page ? 'bg-[#FEF4F4] text-[#C8202E] font-bold' : 'bg-transparent text-[#444] font-medium hover:bg-[#FAFAFA]'}`}>
+      className={`relative w-full flex items-center gap-3 px-3.5 py-2.5 rounded-[12px] text-[13.5px] text-left cursor-pointer border-none transition-colors ${(id || null) === page ? 'bg-[#F4F4F5] text-[#111] font-bold' : 'bg-transparent text-[#444] font-medium hover:bg-[#FAFAFA]'}`}>
+      {(id || null) === page && <span className="absolute left-0 top-2.5 bottom-2.5 w-[3px] rounded-r-full bg-[#C8202E]" />}
       <span className="w-5 text-center text-[15px]">{icon}</span><span className="flex-1">{label}</span>{badge > 0 && <span className="text-[10px] font-bold bg-[#C8202E] text-white px-1.5 py-0.5 rounded-full">{badge}</span>}
     </button>
   );
@@ -106,8 +107,8 @@ export default function PortalHub({ portalId, apps, nav, overviews, badges = {},
             <button onClick={toggle} aria-label="All apps" aria-expanded={o} className={`w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-[12px] border bg-white text-[13px] font-semibold cursor-pointer ${o ? 'border-[#C8202E]/60 text-[#C8202E]' : 'border-[#E4E4E4] text-[#333] hover:border-[#C8202E]/50 hover:text-[#C8202E]'}`}><GridIcon s={15} />All apps</button>)}>
             {close => (
               <div className="p-2">{apps.map(a => (
-                <button key={a.id} onClick={() => { goApp(a.id); close(); }} aria-current={a.id === app.id ? 'true' : undefined} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-[12px] text-left cursor-pointer border-none ${a.id === app.id ? 'bg-[#FEF4F4]' : 'bg-white hover:bg-[#FAFAFA]'}`}>
-                  <span className="w-10 h-10 rounded-[11px] bg-[#FEF4F4] flex items-center justify-center text-[18px] flex-shrink-0">{a.icon}</span>
+                <button key={a.id} onClick={() => { goApp(a.id); close(); }} aria-current={a.id === app.id ? 'true' : undefined} className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-[12px] text-left cursor-pointer border-none ${a.id === app.id ? 'bg-[#F6F6F7]' : 'bg-white hover:bg-[#FAFAFA]'}`}>
+                  <span className="w-10 h-10 rounded-[11px] bg-[#F6F6F7] flex items-center justify-center text-[18px] flex-shrink-0">{a.icon}</span>
                   <span className="flex-1 min-w-0"><span className={`block text-[13.5px] font-bold ${a.id === app.id ? 'text-[#C8202E]' : 'text-[#111]'}`}>{a.name}</span><span className="block text-[11.5px] text-[#999] leading-snug">{a.desc}</span></span>
                   {a.id === app.id && <span className="text-[#C8202E] text-[13px]">✓</span>}
                 </button>))}

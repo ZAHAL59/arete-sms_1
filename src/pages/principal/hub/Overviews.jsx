@@ -107,8 +107,8 @@ export function PortalsOverview({ S, route }) {
       <div className="grid grid-cols-4 gap-5 mb-7">{S.indicators.map(([l, v, n, to]) => <Tile key={l} label={l} value={v} note={n} color={v ? '#C8202E' : '#166534'} onClick={() => route(to)} />)}</div>
       <Panel title="Open a portal">
         <div className="grid grid-cols-4 gap-4">{PORTALS.map(([to, name, icon, desc]) => (
-          <div key={to} onClick={() => route(to)} className="border border-[#F0F0F0] rounded-[18px] p-5 cursor-pointer hover:border-[#C8202E]/60 hover:bg-[#FEF4F4] transition-colors">
-            <div className="w-10 h-10 rounded-[11px] bg-[#FEF4F4] flex items-center justify-center text-[18px] mb-2.5">{icon}</div><div className="text-[13.5px] font-bold text-[#111]">{name}</div><div className="text-[11.5px] text-[#999]">{desc}</div></div>))}</div>
+          <div key={to} onClick={() => route(to)} className="border border-[#F0F0F0] rounded-[18px] p-5 cursor-pointer hover:border-[#C8202E]/60 hover:bg-[#F6F6F7] transition-colors">
+            <div className="w-10 h-10 rounded-[11px] bg-[#F6F6F7] flex items-center justify-center text-[18px] mb-2.5">{icon}</div><div className="text-[13.5px] font-bold text-[#111]">{name}</div><div className="text-[11.5px] text-[#999]">{desc}</div></div>))}</div>
       </Panel>
     </div>
   );

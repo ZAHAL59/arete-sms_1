@@ -23,7 +23,7 @@ export default function Payroll({ allPayments, processPayroll, payStaff, updateS
     <div className="p-6">
       <PageHeader title="Staff Payroll" subtitle={`Salaries live from HR · ${monthLabel}`}
         actions={<><Button variant="outline" onClick={() => setSlips({ staff: db.staff, title: 'Salary Slips — all staff' })}>📋 Salary Slips</Button><Button onClick={processPayroll}>✓ Process All Payroll</Button></>} />
-      <div className="bg-[#FEF4F4] border border-[#FECACA] rounded-[8px] p-3 mb-5 text-[12.5px] text-[#555]">🔗 <strong className="text-[#111]">Source: HR Portal.</strong> Staff and salaries come from the HR module — hire someone there and they appear here automatically.</div>
+      <div className="bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] p-3 mb-5 text-[12.5px] text-[#555]">🔗 <strong className="text-[#111]">Source: HR Portal.</strong> Staff and salaries come from the HR module — hire someone there and they appear here automatically.</div>
       <div className="grid grid-cols-4 gap-3 mb-5">
         {[{ l: 'Monthly Payroll', v: fmtL(totalPayroll), c: '#C8202E' }, { l: 'Paid This Month', v: fmtL(paidTotal), c: '#166534' }, { l: 'Pending', v: fmtL(Math.max(0, totalPayroll - paidTotal)), c: '#DC2626' }, { l: 'Staff Processed', v: `${db.staff.filter(isPaid).length}/${db.staff.length}`, c: '#1A5FB4' }].map(k => (
           <div key={k.l} className="bg-white border border-[#E4E4E4] rounded-[10px] p-3.5 shadow-[0_1px_4px_rgba(0,0,0,.07)]" style={{ borderLeft: `3px solid ${k.c}` }}><div className="text-[10.5px] font-semibold text-[#AAA] uppercase tracking-wider mb-1">{k.l}</div><div className="text-[20px] font-extrabold font-mono" style={{ color: k.c }}>{k.v}</div></div>))}

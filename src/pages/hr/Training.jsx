@@ -35,7 +35,7 @@ export default function Training({ hr, addTraining, markTrainingAtt }) {
         return (
           <Collapsible key={t.id} header={
             <div className="flex items-center gap-3 flex-1">
-              <div className={`w-9 h-9 rounded-[8px] flex items-center justify-center text-[16px] flex-shrink-0 ${isPast ? 'bg-[#F0FDF4]' : 'bg-[#FEF4F4]'}`}>{isPast ? '✅' : '📅'}</div>
+              <div className={`w-9 h-9 rounded-[8px] flex items-center justify-center text-[16px] flex-shrink-0 ${isPast ? 'bg-[#F0FDF4]' : 'bg-[#F6F6F7]'}`}>{isPast ? '✅' : '📅'}</div>
               <div className="flex-1 min-w-0"><div className="text-[13.5px] font-bold text-[#111]">{t.title}</div><div className="text-[11.5px] text-[#777] mt-0.5">{t.date}{t.time ? ' · ' + t.time : ''} · {t.duration} · {t.trainer || '—'} · {t.mode && t.mode !== 'In-person' ? t.platform || t.mode : t.venue || 'In-person'}</div></div>
               <div className="flex gap-2 items-center flex-shrink-0">{isPast && <span className="text-[11.5px] text-[#555]">{att}/{inv.length} attended</span>}<Badge variant="grey">{inv.length} invited</Badge><Badge variant={isPast ? 'green' : 'blue'}>{isPast ? 'Completed' : 'Upcoming'}</Badge>
                 <Button size="sm" variant="outline" onClick={e => { e.stopPropagation(); setAttOpen(t.id); }}>{isPast ? 'View Attendance' : 'Mark Attendance'}</Button></div>

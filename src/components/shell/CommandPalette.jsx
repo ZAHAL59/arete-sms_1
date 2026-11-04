@@ -38,7 +38,7 @@ export default function CommandPalette({ open, onClose, items }) {
             <div key={g.name}>
               <div className="px-5 pt-2.5 pb-1 text-[10px] font-bold uppercase tracking-[1.4px] text-[#AAA]">{g.name}</div>
               {g.rows.map(([r, i]) => (
-                <div key={r.id} onMouseEnter={() => setIdx(i)} onClick={() => pick(r)} className={`flex items-center gap-3 mx-2 px-3 py-2 rounded-[9px] cursor-pointer ${i === idx ? 'bg-[#FEF4F4]' : ''}`}>
+                <div key={r.id} onMouseEnter={() => setIdx(i)} onClick={() => pick(r)} className={`flex items-center gap-3 mx-2 px-3 py-2 rounded-[9px] cursor-pointer ${i === idx ? 'bg-[#F6F6F7]' : ''}`}>
                   <span className="w-7 h-7 rounded-[8px] bg-[#F4F4F5] flex items-center justify-center text-[13px] flex-shrink-0">{r.icon}</span>
                   <span className="flex-1 text-[13px] font-semibold text-[#111] truncate">{r.label}</span>
                   {r.hint && <span className="text-[11.5px] text-[#999] truncate max-w-[200px]">{r.hint}</span>}

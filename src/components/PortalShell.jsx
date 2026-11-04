@@ -23,8 +23,8 @@ export default function PortalShell({ title, user, views, defaultView, children 
                 <div key={v.id} onClick={() => setView(v.id)}
                   className={`flex items-center gap-2.5 py-2 mx-2 rounded-[7px] text-[12.5px] cursor-pointer transition-all select-none
                     ${view === v.id
-                      ? 'bg-[#FEF4F4] text-[#C8202E] font-semibold border-l-[3px] border-[#C8202E] rounded-l-none ml-0 pl-[11px] pr-3'
-                      : 'text-[#555] hover:bg-[#FEF4F4] hover:text-[#C8202E] px-3'}`}
+                      ? 'bg-[#F6F6F7] text-[#C8202E] font-semibold border-l-[3px] border-[#C8202E] rounded-l-none ml-0 pl-[11px] pr-3'
+                      : 'text-[#555] hover:bg-[#F6F6F7] hover:text-[#C8202E] px-3'}`}
                 >
                   <span className="text-[14px] w-5 text-center flex-shrink-0">{v.icon}</span>
                   <span className="flex-1">{v.label}</span>

@@ -130,7 +130,7 @@ export default function Reports({ allPayments }) {
       <div className="bg-white border border-[#E4E4E4] rounded-[12px] p-5 mb-5 shadow-[0_1px_4px_rgba(0,0,0,.07)]">
         <Label>Report</Label>
         <div className="grid grid-cols-4 gap-2 mb-5">{REPORTS.map(r => (
-          <div key={r.id} onClick={() => setType(r.id)} title={r.desc} className={`px-3 py-2.5 rounded-[8px] border-[1.5px] cursor-pointer transition-all ${type === r.id ? 'border-[#C8202E] bg-[#FEF4F4]' : 'border-[#E4E4E4] hover:border-[#C8202E]'}`}>
+          <div key={r.id} onClick={() => setType(r.id)} title={r.desc} className={`px-3 py-2.5 rounded-[8px] border-[1.5px] cursor-pointer transition-all ${type === r.id ? 'border-[#C8202E] bg-[#F6F6F7]' : 'border-[#E4E4E4] hover:border-[#C8202E]'}`}>
             <div className="flex items-center gap-2"><span className="text-[15px]">{r.icon}</span><span className={`text-[12.5px] font-bold ${type === r.id ? 'text-[#C8202E]' : 'text-[#111]'}`}>{r.label}</span></div></div>))}</div>
         <div className="text-[12px] text-[#777] -mt-3 mb-5">{rep.desc}</div>
 

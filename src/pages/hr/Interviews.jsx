@@ -67,7 +67,7 @@ export default function Interviews({ hr, scheduleInterview, setChecklist, saveIn
       {!upcoming.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-8 text-center text-[#AAA] mb-4">No upcoming interviews. Shortlist an applicant and send the interview invite from <b>Applications</b> — they will appear here.</div>}
       {upcoming.map(({ c, iv, app }) => (
         <div key={c.id} className="bg-white border border-[#C8202E] rounded-[10px] p-4 mb-2 flex items-center gap-3 shadow-[0_1px_4px_rgba(0,0,0,.07)]">
-          <div className="w-10 h-10 rounded-[8px] bg-[#FEF4F4] flex items-center justify-center text-[18px] flex-shrink-0">🗓</div>
+          <div className="w-10 h-10 rounded-[8px] bg-[#F6F6F7] flex items-center justify-center text-[18px] flex-shrink-0">🗓</div>
           <div className="flex-1 min-w-0">
             <div className="text-[13.5px] font-bold text-[#111]">{c.name} <span className="font-normal text-[#AAA] text-[12px]">· CV score {c.score}</span></div>
             <div className="text-[11.5px] text-[#777]">{vac(c.vacId)?.subj} Teacher · {iv ? <b className="text-[#111]">📅 {iv.date}{iv.time ? ' ' + iv.time : ''}{iv.venue ? ' · ' + iv.venue : ''} ({iv.mode})</b> : <span className="text-[#B45309] font-semibold">interview date not set yet</span>}</div>
@@ -133,7 +133,7 @@ function ScoreModal({ hr, iv, cand, onClose, onSave }) {
       <div className="border border-[#E4E4E4] rounded-[8px] divide-y divide-[#E4E4E4] mb-3">{hr.checklist.map(c => (
         <div key={c.id} className="flex items-center gap-3 px-3 py-2.5"><span className="flex-1 text-[13px] font-semibold text-[#111]">{c.crit}</span><span className="text-[12px] text-[#AAA]">/ {c.max}</span>
           <input type="number" min={0} max={c.max} value={scores[c.id] ?? 0} onChange={e => setScores(s => ({ ...s, [c.id]: Math.min(c.max, Math.max(0, +e.target.value || 0)) }))} className="w-16 px-2 py-1.5 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-center font-mono font-bold outline-none focus:border-[#C8202E]" /></div>))}</div>
-      <div className="bg-[#FEF4F4] border border-[#FECACA] rounded-[8px] px-3 py-2 mb-4 flex justify-between"><span className="font-bold">Total</span><span className="text-[18px] font-extrabold text-[#C8202E]">{total}/{max}</span></div>
+      <div className="bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] px-3 py-2 mb-4 flex justify-between"><span className="font-bold">Total</span><span className="text-[18px] font-extrabold text-[#C8202E]">{total}/{max}</span></div>
       <div className="grid grid-cols-3 gap-3"><Field label="Decision"><select value={decision} onChange={e => setDecision(e.target.value)} className={inputCls}>{DECISIONS.map(d => <option key={d}>{d}</option>)}</select></Field>
         <Field label="Observations / remarks *" className="col-span-3"><textarea rows={3} value={remarks} onChange={e => setRemarks(e.target.value)} className={inputCls + ' resize-y'} /></Field></div>
     </Modal>

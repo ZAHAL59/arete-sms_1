@@ -25,8 +25,8 @@ function NavSection({ title, items }) {
           className={({ isActive }) =>
             `flex items-center gap-2.5 px-3 py-2 mx-2 rounded-[7px] text-[13px] font-medium cursor-pointer transition-all duration-150 no-underline ` +
             (isActive
-              ? 'bg-[#FEF4F4] text-[#C8202E] font-semibold border-l-[3px] border-[#C8202E] rounded-l-none ml-0 pl-[11px]'
-              : 'text-[#555] hover:bg-[#FEF4F4] hover:text-[#C8202E]')
+              ? 'bg-[#F6F6F7] text-[#C8202E] font-semibold border-l-[3px] border-[#C8202E] rounded-l-none ml-0 pl-[11px]'
+              : 'text-[#555] hover:bg-[#F6F6F7] hover:text-[#C8202E]')
           }
         >
           <span className="text-[14px] w-5 text-center flex-shrink-0">{item.icon}</span>

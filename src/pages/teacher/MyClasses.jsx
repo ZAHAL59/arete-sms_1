@@ -31,7 +31,7 @@ export default function MyClasses() {
           const n = db.students.filter(s => `${s.cls} ${s.section}`.trim() === c).length;
           return (
             <div key={c} onClick={() => setSelCls(c)}
-              className={`p-3 rounded-[8px] border cursor-pointer transition-all text-center ${selCls===c?'bg-[#FEF4F4] border-[#C8202E]':'bg-white border-[#E4E4E4] hover:border-[#C8202E]'}`}>
+              className={`p-3 rounded-[8px] border cursor-pointer transition-all text-center ${selCls===c?'bg-[#F6F6F7] border-[#C8202E]':'bg-white border-[#E4E4E4] hover:border-[#C8202E]'}`}>
               <div className={`text-[20px] font-extrabold ${selCls===c?'text-[#C8202E]':'text-[#111]'}`}>{n}</div>
               <div className="text-[10px] text-[#AAA] font-medium mt-0.5">{c}</div>
             </div>

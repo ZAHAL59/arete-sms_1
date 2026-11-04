@@ -15,3 +15,12 @@ html,body,#root{height:100%;font-family:'DM Sans',sans-serif;-webkit-font-smooth
   .h-screen, main { height: auto !important; overflow: visible !important; }
   body, #root { background: #fff !important; }
 }
+
+/* ── The big "hero" cards: dark ink with a soft crimson light streak and hairline edges.
+      (Idea: 21st.dev "Glowing Card".) Red stays an accent — about a tenth of the card, not the whole of it. ── */
+.arete-hero { position:relative; overflow:hidden; isolation:isolate; background:linear-gradient(135deg,#1D1D21 0%,#2B2B31 100%); }
+.arete-hero::before { content:""; position:absolute; z-index:-1; right:-10%; top:-70%; width:62%; height:240%; transform:rotate(18deg); pointer-events:none;
+  background:radial-gradient(closest-side, rgba(214,48,62,.50), rgba(200,32,46,.16) 55%, transparent 78%); }
+.arete-hero::after { content:""; position:absolute; inset:0; border-radius:inherit; padding:1px; pointer-events:none;
+  background:linear-gradient(135deg, rgba(255,255,255,.26), rgba(255,255,255,.03) 42%, rgba(214,48,62,.55));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); }

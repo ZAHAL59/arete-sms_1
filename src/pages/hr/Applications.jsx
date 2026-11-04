@@ -29,7 +29,7 @@ export default function Applications({ hr, shortlist, reject, restore, markInvit
         actions={<>
           <select value={vac} onChange={e => setVac(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]"><option value="">All Vacancies</option>{hr.vacancies.map(v => <option key={v.id} value={v.id}>{v.subj}</option>)}</select>
           <select value={st} onChange={e => setSt(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]"><option value="">All Status</option>{['Pending Review', 'Shortlisted', 'Rejected'].map(s => <option key={s}>{s}</option>)}</select></>} />
-      <div className="flex items-center gap-4 bg-[#FEF4F4] border border-[#FECACA] rounded-[10px] px-4 py-3 mb-5">
+      <div className="flex items-center gap-4 bg-[#F6F6F7] border border-[#FECACA] rounded-[10px] px-4 py-3 mb-5">
         <div className="text-[26px]">📥</div>
         <div className="flex-1 text-[12.5px] text-[#555] leading-relaxed"><b className="text-[#9A1822] text-[14px]">Applications arrive here from the public Careers Page</b><br />Candidates visit the careers page, see your posted vacancies, fill in their details and upload their CV. Each submission lands here with an auto-score. HR reviews, shortlists or rejects, then proceeds to interview.</div>
         <a href="/careers" target="_blank" rel="noreferrer" className="px-4 py-2 bg-[#C8202E] text-white text-[12.5px] font-bold rounded-[6px] no-underline whitespace-nowrap">Open Careers Page →</a>

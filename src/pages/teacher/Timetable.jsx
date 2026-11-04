@@ -55,7 +55,7 @@ export default function Timetable() {
               <div key={pi} style={{display:'contents'}}>
                 {/* Time label */}
                 <div className="flex items-center justify-center p-2 text-center text-[9.5px] font-bold border-b border-r border-[#EBEBEB]"
-                  style={{background:'#FEF4F4',color:'#C8202E'}}>
+                  style={{background:'#F6F6F7',color:'#C8202E'}}>
                   {per}
                 </div>
                 {/* Day cells */}

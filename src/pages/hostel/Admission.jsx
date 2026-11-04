@@ -139,7 +139,7 @@ export default function Admission({ h, admitStudent, go }) {
 
             <Card title="Room" note={roomType ? `Showing ${roomType.toLowerCase()} rooms with a free bed` : 'Select gender to filter rooms'}>
               <div className="grid grid-cols-4 gap-2.5">{rooms.map(r => { const ok = roomOk(r), sel = roomId === r.id, free = r.capacity - r.inmates.length;
-                return <button key={r.id} disabled={!ok} onClick={() => setRoomId(r.id)} className={`text-left rounded-[10px] border-[1.5px] p-3 transition-all ${sel ? 'border-[#C8202E] bg-[#FEF4F4]' : ok ? 'border-[#E4E4E4] bg-white hover:border-[#C8202E] cursor-pointer' : 'border-[#EEE] bg-[#FAFAFA] opacity-50 cursor-not-allowed'}`}>
+                return <button key={r.id} disabled={!ok} onClick={() => setRoomId(r.id)} className={`text-left rounded-[10px] border-[1.5px] p-3 transition-all ${sel ? 'border-[#C8202E] bg-[#F6F6F7]' : ok ? 'border-[#E4E4E4] bg-white hover:border-[#C8202E] cursor-pointer' : 'border-[#EEE] bg-[#FAFAFA] opacity-50 cursor-not-allowed'}`}>
                   <div className="flex items-center justify-between"><span className="text-[14px] font-extrabold text-[#111]">{r.id}</span><Badge variant={r.type === 'Girls' ? 'purple' : 'blue'}>{r.type}</Badge></div>
                   <div className="text-[11.5px] mt-1" style={{ color: free ? '#166534' : '#DC2626' }}>{free ? `${free} of ${r.capacity} beds free` : 'Full'}</div></button>; })}</div>
             </Card>

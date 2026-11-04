@@ -1,7 +1,7 @@
 const VARIANTS = {
   primary: 'bg-[#C8202E] text-white hover:bg-[#9A1822]',
   outline: 'bg-white text-[#555] border border-[#E4E4E4] hover:bg-[#F8F8F8]',
-  ghost:   'bg-transparent text-[#C8202E] hover:bg-[#FEF4F4]',
+  ghost:   'bg-transparent text-[#C8202E] hover:bg-[#F6F6F7]',
   danger:  'bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA] hover:bg-[#FEE2E2]',
 };
 const SIZES = {

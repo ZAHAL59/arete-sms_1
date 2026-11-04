@@ -81,7 +81,7 @@ function Register({ hr, markStaffAtt }) {
                     const status = getStatus(s.id, d);
                     return (
                       <td key={d} onClick={()=>!isWeekend&&toggle(s.id,d)}
-                        className={`text-center border-r border-[#E4E4E4] text-[10.5px] font-bold transition-colors ${isWeekend?'bg-[#F8F8F8]':'cursor-pointer hover:bg-[#FEF4F4]'}`}
+                        className={`text-center border-r border-[#E4E4E4] text-[10.5px] font-bold transition-colors ${isWeekend?'bg-[#F8F8F8]':'cursor-pointer hover:bg-[#F6F6F7]'}`}
                         style={{width:28,height:32,
                           background:isWeekend?'#F8F8F8':status==='P'?'#F0FDF4':status==='A'?'#FEF2F2':status==='L'?'#FFFBEB':'',
                           color:status==='P'?'#166534':status==='A'?'#DC2626':status==='L'?'#B45309':'#CCC'}}>

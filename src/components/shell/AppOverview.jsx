@@ -12,7 +12,7 @@ export default function AppOverview({ cfg, app, go }) {
       <TwoCol>
         <Hero kicker={cfg.kicker || `${app.name.toUpperCase()} · ${todayLabel()}`} title={cfg.title} sub={cfg.sub} progress={cfg.progress}
           actions={(cfg.actions || []).map(a => ({ label: a.label, primary: a.primary, run: a.run || (() => go(a.page)) }))} />
-        <TileGrid>{cfg.tiles.map(t => <Tile key={t.label} label={t.label} value={t.value} note={t.note} color={t.color} onClick={t.page ? () => go(t.page) : undefined} />)}</TileGrid>
+        <TileGrid>{cfg.tiles.map(t => <Tile key={t.label} label={t.label} value={t.value} note={t.note} color={t.color} bar={t.bar} onClick={t.page ? () => go(t.page) : undefined} />)}</TileGrid>
       </TwoCol>
       <TwoColTop className="mt-6">
         <div className="space-y-6">{(cfg.panels || []).map(p => (

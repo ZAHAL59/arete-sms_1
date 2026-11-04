@@ -27,7 +27,7 @@ export default function NewApplicationModal({ onSave, onClose }) {
         <div>
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Student Name *</label>
           <input value={form.name} onChange={e=>set('name',e.target.value)} placeholder="Full name"
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E] focus:shadow-[0_0_0_3px_#FEF4F4]"/>
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E] focus:shadow-[0_0_0_3px_#F6F6F7]"/>
         </div>
         <Select label="Applying for Grade *" value={form.grade} onChange={e=>set('grade',e.target.value)}>
           <option value="">— Select Grade —</option>

@@ -51,7 +51,7 @@ export default function Menu({ h, saveMenu }) {
           </table>
         </div>
       </div>
-      <div className="mt-3 bg-[#FEF4F4] border border-[#FECACA] rounded-[8px] px-4 py-3 text-[12.5px] text-[#555] leading-relaxed"><b className="text-[#9A1822]">ⓘ Menu Planning Guidelines:</b> Ensure balanced nutrition — protein at every meal, green vegetable daily, fruit twice weekly. Special dietary needs are managed per student profile.</div>
+      <div className="mt-3 bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] px-4 py-3 text-[12.5px] text-[#555] leading-relaxed"><b className="text-[#9A1822]">ⓘ Menu Planning Guidelines:</b> Ensure balanced nutrition — protein at every meal, green vegetable daily, fruit twice weekly. Special dietary needs are managed per student profile.</div>
     </div>
   );
 }

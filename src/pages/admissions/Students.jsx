@@ -22,7 +22,7 @@ export function StudentDetail({ student, onClose, onEdit }) {
   const [copied, setCopied] = useState(false);
   const rows = [['Learning style', s.learningStyle || '—'], ['Diet', s.diet || '—'], ['Travel', s.boarding ? 'Boarding' : route ? 'Bus' : 'Own transport'], ['Health', s.health || 'None'], ['Special needs', s.needs || 'None'], ['Parent', `${s.parentName || '—'} ${s.parentPhone || ''}`]];
   const summary = `${s.name} · ${s.cls} ${s.section} · Parent: ${s.parentName} ${s.parentPhone} · Learning style: ${s.learningStyle || '—'} · Diet: ${s.diet || '—'} · Health: ${s.health || 'None'} · Needs: ${s.needs || 'None'}`;
-  const svc = (ic, title, on, lines) => <div className={`border-[1.5px] rounded-[8px] p-3 ${on ? 'border-[#C8202E]/40 bg-[#FEF4F4]' : 'border-[#E4E4E4]'}`}><div className="text-[11px] font-bold text-[#777] uppercase tracking-wider mb-1">{ic} {title}</div>{lines}</div>;
+  const svc = (ic, title, on, lines) => <div className={`border-[1.5px] rounded-[8px] p-3 ${on ? 'border-[#C8202E]/40 bg-[#F6F6F7]' : 'border-[#E4E4E4]'}`}><div className="text-[11px] font-bold text-[#777] uppercase tracking-wider mb-1">{ic} {title}</div>{lines}</div>;
   return (
     <Modal open onClose={onClose} size="lg" title={s.name} subtitle={`${s.cls} ${s.section} · Roll ${s.roll || '—'} · Admitted ${s.adm}`}
       footer={<><Button variant="outline" onClick={() => { navigator.clipboard?.writeText(summary); setCopied(true); }}>{copied ? '✓ Copied' : '📋 Copy profile summary'}</Button><Button variant="outline" onClick={onClose}>Close</Button><Button onClick={() => onEdit(s)}>✎ Edit</Button></>}>

@@ -44,7 +44,7 @@ export default function SubstituteModal({ absent, date: startDate, p, api, onClo
       {!periods.length ? <div className="text-center py-8 text-[#AAA] text-[13px]">{colOf(date) < 0 ? 'No classes on weekends.' : `${absent} has no scheduled periods on ${prettyDate(date)}, so no cover is needed.`}</div> :
         <div className="border border-[#E4E4E4] rounded-[8px] divide-y divide-[#E4E4E4]">{periods.map(per => { const opts = optionsFor(per), v = val(per); return (
           <div key={key(per)} className="flex items-center gap-3 px-3 py-2.5">
-            <span className="font-mono text-[11.5px] bg-[#FEF4F4] text-[#C8202E] font-bold rounded px-2 py-1 w-14 text-center">{per.time}</span>
+            <span className="font-mono text-[11.5px] bg-[#F6F6F7] text-[#C8202E] font-bold rounded px-2 py-1 w-14 text-center">{per.time}</span>
             <div className="flex-1"><div className="text-[13px] font-semibold text-[#111]">{per.cls}</div><div className="text-[11.5px] text-[#777]">{per.subject}</div></div>
             {!opts.length && !v && <Badge variant="red">No teacher free</Badge>}
             <select value={v} onChange={e => setDraft(d => ({ ...d, [key(per)]: e.target.value }))} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E] min-w-[190px]">

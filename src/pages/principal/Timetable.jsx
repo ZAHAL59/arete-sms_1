@@ -12,7 +12,7 @@ import SubstituteModal from './SubstituteModal';
 import { colOf } from './cover';
 import { classLabel, DAYS, TT_SUBJECTS, blankTimetable, TODAY } from './constants';
 
-const PALETTE = ['#FEF4F4', '#EFF6FF', '#F0FDF4', '#FFFBEB', '#F5F3FF', '#ECFEFF', '#FDF2F8', '#F7FEE7'];
+const PALETTE = ['#F6F6F7', '#EFF6FF', '#F0FDF4', '#FFFBEB', '#F5F3FF', '#ECFEFF', '#FDF2F8', '#F7FEE7'];
 const colourOf = subj => PALETTE[[...subj].reduce((a, c) => a + c.charCodeAt(0), 0) % PALETTE.length];
 
 export default function Timetable({ api, p }) {
