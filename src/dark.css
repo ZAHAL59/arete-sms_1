@@ -14,6 +14,20 @@ html.dark ::-webkit-scrollbar-thumb:hover { background:#48484F; }
 html.dark input, html.dark select, html.dark textarea { color-scheme: dark; }
 html.dark input::placeholder, html.dark textarea::placeholder { color:#6C6C74; }
 html.dark kbd { color:#A0A0A8; }
+/* hero cards in dark mode: the theme's deeper periwinkle → blue → green, light text */
+html.dark .arete-hero { color:#F2F2F4; background:linear-gradient(135deg,#2C3372 0%,#244B73 50%,#0F5A42 100%); box-shadow:0 14px 40px rgba(0,0,0,.45) !important; }
+html.dark .arete-hero::before { background:radial-gradient(60% 90% at 90% 0%, rgba(255,255,255,.16), transparent 64%); }
+html.dark .arete-stat { background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.16); color:#F2F2F4; }
+html.dark .arete-stat:hover { background:rgba(255,255,255,.17); }
+html.dark .arete-btn { background:rgba(255,255,255,.12); color:#F2F2F4; border-color:rgba(255,255,255,.26); }
+html.dark .arete-btn:hover { background:rgba(255,255,255,.2); }
+html.dark .arete-btn-primary { background:#F2F2F4; color:#111114; border-color:#F2F2F4; }
+html.dark .arete-btn-primary:hover { background:#fff; }
+/* secondary lines on the card are slightly stronger in dark mode (keeps them above the contrast minimum) */
+html.dark .arete-hero [class*="opacity-7"], html.dark .arete-hero [class*="opacity-8"] { opacity:.93; }
+html.dark .arete-track { background:rgba(255,255,255,.2); }
+html.dark .arete-fill { background:#F2F2F4; }
+
 html.dark .text-accent { color:#FF7A82; }
 /* native fields without their own colour classes (e.g. filter dropdowns) */
 html.dark :where(select, textarea, input:not([type=checkbox]):not([type=radio]):not([type=range])) { background-color:#1B1B1F; color:#E8E8EC; }
@@ -22,9 +36,6 @@ html.dark .bg-\[\#18181B\] { background-color:#E7E7EB !important; color:#111114 
 /* …but a banner that carries white text inside it stays a raised charcoal */
 html.dark .bg-\[\#18181B\]:has([class*="text-white"]) { background-color:#2C2C33 !important; color:#fff !important; }
 html.dark .hover\:bg-\[\#2B2B31\]:hover { background-color:#FFFFFF !important; }
-html.dark .arete-hero .bg-white.text-\[\#18181B\] { background-color:#fff !important; color:#18181B !important; }
-/* the ink hero cards: a touch lighter than the page so they read as raised */
-html.dark .arete-hero { background:linear-gradient(135deg,#29292F 0%,#1D1D22 100%); box-shadow:0 14px 40px rgba(0,0,0,.45) !important; }
 html.dark img[src*="logo"] { background:#fff; border-radius:8px; }
 
 /* class colours */
@@ -72,7 +83,6 @@ html.dark .hover\:bg-\[\#FFF5F5\]:hover{background-color:rgba(223,58,58,0.117)}
 html.dark .hover\:text-\[\#111\]:hover{color:#f2f2f3}
 html.dark .text-\[\#111\]{color:#f2f2f3}
 html.dark .text-\[\#166534\]{color:#99ecb8}
-html.dark .text-\[\#18181B\]{color:#ebebec}
 html.dark .text-\[\#1A5FB4\]{color:#84b4f0}
 html.dark .text-\[\#333\]{color:#d6d6d9}
 html.dark .text-\[\#444\]{color:#c9c9cd}
@@ -276,8 +286,6 @@ html.dark [style*="background: rgb(239, 246, 255)"],
 html.dark [style*="background-color: rgb(239, 246, 255)"]{background-color:rgba(58,130,223,0.14) !important}
 html.dark [style*="solid rgb(239, 246, 255)"],
 html.dark [style*="border-color: rgb(239, 246, 255)"]{border-color:rgba(60,130,221,0.247) !important}
-html.dark [style*="solid rgb(240, 82, 93)"],
-html.dark [style*="border-color: rgb(240, 82, 93)"]{border-color:rgba(221,60,71,0.5) !important}
 html.dark [style^="color: rgb(240, 192, 64)"],
 html.dark [style*="; color: rgb(240, 192, 64)"]{color:#f7d373 !important}
 html.dark [style*="background: rgb(240, 240, 240)"],

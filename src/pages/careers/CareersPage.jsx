@@ -30,12 +30,12 @@ export default function CareersPage() {
       </header>
 
       <main id="main" tabIndex={-1}>
-      <section className="arete-hero px-6 py-16 text-white">
+      <section className="arete-hero px-6 py-16">
         <div className="max-w-4xl mx-auto">
-          <div className="text-[12px] font-bold uppercase tracking-widest text-white/60 mb-3">Arete Model School · Kozhikode, Kerala · CBSE Affiliated · Estd. 2015</div>
+          <div className="text-[12px] font-bold uppercase tracking-widest opacity-75 mb-3">Arete Model School · Kozhikode, Kerala · CBSE Affiliated · Estd. 2015</div>
           <h1 className="text-[40px] font-extrabold tracking-tight leading-tight mb-3">Build Your Career at Arete</h1>
-          <p className="text-[15.5px] text-white/80 leading-relaxed max-w-xl mb-8">Join a school that believes in excellence, innovation, and the holistic development of every child — and every educator.</p>
-          <div className="flex gap-8 flex-wrap">{[[active.length, 'Open Positions'], ['842', 'Students'], ['40+', 'Staff Members'], ['2015', 'Established']].map(([v, l]) => <div key={l}><div className="text-[28px] font-extrabold leading-none">{v}</div><div className="text-[11.5px] text-white/65 mt-1">{l}</div></div>)}</div>
+          <p className="text-[15.5px] opacity-80 leading-relaxed max-w-xl mb-8">Join a school that believes in excellence, innovation, and the holistic development of every child — and every educator.</p>
+          <div className="flex gap-8 flex-wrap">{[[active.length, 'Open Positions'], ['842', 'Students'], ['40+', 'Staff Members'], ['2015', 'Established']].map(([v, l]) => <div key={l}><div className="text-[28px] font-extrabold leading-none">{v}</div><div className="text-[11.5px]/65 mt-1">{l}</div></div>)}</div>
         </div>
       </section>
 

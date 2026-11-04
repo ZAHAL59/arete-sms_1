@@ -10,6 +10,6 @@ export default function Page({ title, subtitle, children }) {
 }
 export const TwoCol = ({ children, className = '' }) => <div className={`grid grid-cols-1 xl:grid-cols-[1.45fr_1fr] gap-4 sm:gap-6 ${className}`}>{children}</div>;
 export const TwoColTop = ({ children, className = '' }) => <div className={`grid grid-cols-1 xl:grid-cols-[1.45fr_1fr] gap-4 sm:gap-6 items-start ${className}`}>{children}</div>;
-export const TileGrid = ({ children }) => <div className="grid grid-cols-2 gap-3 sm:gap-5">{children}</div>;
+export const TileGrid = ({ children }) => <div className="grid grid-cols-2 gap-3 sm:gap-4">{children}</div>;
 export const todayLabel = () => new Date().toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' }).toUpperCase().replace(',', ' ·');
 export const plural = (n, one, many) => `${n} ${n === 1 ? one : (many || one + 's')}`;

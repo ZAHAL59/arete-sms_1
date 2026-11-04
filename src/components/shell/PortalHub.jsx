@@ -54,7 +54,8 @@ export default function PortalHub({ portalId, apps, nav, overviews, badges = {},
     return () => { document.body.style.overflow = prev; document.removeEventListener('keydown', key); };
   }, [drawer, closeDrawer]);
   // after moving to another page, don't leave focus on an element that no longer exists
-  useEffect(() => { if (!document.activeElement || document.activeElement === document.body) mainRef.current?.focus({ preventScroll: true }); }, [app?.id, page]);
+  const firstRun = useRef(true);
+  useEffect(() => { if (firstRun.current) { firstRun.current = false; return; } if (!document.activeElement || document.activeElement === document.body) mainRef.current?.focus({ preventScroll: true }); }, [app?.id, page]);
 
   const items = useMemo(() => [
     { id: 'home', group: 'Pages', icon: '⌂', label: `${portal.name} home`, hint: 'All areas', run: goHome },

@@ -15,15 +15,15 @@ export default function HubHome({ portal, firstName, prompt, pulse, apps, badges
   return (
     <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-14">
       {/* Arete banner */}
-      <div className="arete-hero rounded-[22px] sm:rounded-[26px] p-5 sm:p-8 mb-6 sm:mb-8 text-white shadow-[0_14px_40px_rgba(0,0,0,.18)]">
-        <div className="text-[11px] font-bold uppercase tracking-[1.8px] text-white/70">{st.school || 'Arete Model School'} · {portal.name} · AY {st.year || '2026–27'}</div>
-        <h1 className="text-[26px] sm:text-[36px] font-extrabold tracking-tight leading-tight mt-1.5">{greeting()}, {firstName}</h1>
-        <div className="text-[14px] text-white/75 mt-1">{prompt} · {dateStr}</div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 mt-5 sm:mt-6">{pulse.map(t => (
-          <button key={t.label} onClick={t.run} className="arete-stat text-left bg-white/15 border border-white/10 rounded-[14px] px-3.5 sm:px-4 py-3 sm:py-3.5 text-white cursor-pointer hover:bg-white/25 transition-colors">
-            <div className="text-[24px] sm:text-[28px] font-extrabold leading-none">{t.value}</div>
-            <div className="text-[12px] text-white/85 mt-1.5 font-semibold">{t.label}</div>
-            <div className="text-[11px] text-white/75">{t.note}</div>
+      <div className="arete-hero rounded-[22px] sm:rounded-[26px] p-5 sm:p-7 mb-6 sm:mb-8 shadow-[0_10px_30px_rgba(30,40,90,.12)]">
+        <div className="text-[11px] font-bold uppercase tracking-[1.8px] opacity-75">{st.school || 'Arete Model School'} · {portal.name} · AY {st.year || '2026–27'}</div>
+        <h1 className="text-[26px] sm:text-[32px] font-extrabold tracking-tight leading-tight mt-1.5">{greeting()}, {firstName}</h1>
+        <div className="text-[14px] opacity-80 mt-1">{prompt} · {dateStr}</div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 mt-5">{pulse.map(t => (
+          <button key={t.label} onClick={t.run} className="arete-stat text-left rounded-[14px] px-3.5 sm:px-4 py-3 cursor-pointer transition-colors">
+            <div className="text-[24px] sm:text-[26px] font-extrabold leading-none">{t.value}</div>
+            <div className="text-[12px] mt-1.5 font-semibold">{t.label}</div>
+            <div className="text-[11px] opacity-75">{t.note}</div>
           </button>))}
         </div>
       </div>

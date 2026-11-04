@@ -15,19 +15,26 @@ html,body,#root{height:100%;font-family:'DM Sans',sans-serif;-webkit-font-smooth
   body, #root { background: #fff !important; }
 }
 
-/* ── The big "hero" cards: dark ink with a soft crimson light streak and hairline edges.
-      (Idea: 21st.dev "Glowing Card".) Red stays an accent — about a tenth of the card, not the whole of it. ── */
-.arete-hero { position:relative; overflow:hidden; isolation:isolate; background:linear-gradient(135deg,#1D1D21 0%,#2B2B31 100%); }
-.arete-hero::before { content:""; position:absolute; z-index:-1; right:-6%; top:-60%; width:44%; height:200%; transform:rotate(18deg); pointer-events:none;
-  background:radial-gradient(closest-side, rgba(214,48,62,.34), rgba(200,32,46,.10) 55%, transparent 76%); }
-.arete-hero::after { content:""; position:absolute; inset:0; border-radius:inherit; padding:1px; pointer-events:none;
-  background:linear-gradient(135deg, rgba(255,255,255,.26), rgba(255,255,255,.03) 55%, rgba(214,48,62,.30));
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); }
+/* ── The "hero" cards (home banner, Overview, Careers): soft periwinkle → mint with ink text.
+      Palette from the 21st.dev "Respec" theme (secondary #BEC7FE, chart mint #72E3AD, foreground #171717). No red. ── */
+.arete-hero { position:relative; overflow:hidden; isolation:isolate; color:#171717; background:linear-gradient(135deg,#DDE3FF 0%,#BEC7FE 46%,#A5ECCB 100%); }
+.arete-hero::before { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; background:radial-gradient(60% 90% at 90% 0%, rgba(255,255,255,.62), transparent 64%); }
+.arete-stat { background:rgba(255,255,255,.62); border:1px solid rgba(23,23,23,.08); color:#171717; }
+.arete-stat:hover { background:rgba(255,255,255,.85); }
+.arete-btn { background:rgba(255,255,255,.62); color:#171717; border:1px solid rgba(23,23,23,.16); }
+.arete-btn:hover { background:rgba(255,255,255,.9); }
+.arete-btn-primary { background:#171717; color:#fff; border:1px solid #171717; }
+.arete-btn-primary:hover { background:#2B2B31; }
+.arete-track { background:rgba(23,23,23,.12); }
+.arete-fill { background:#171717; }
 
 /* ── Accessibility ── */
 :focus-visible { outline: 2px solid #18181B; outline-offset: 2px; border-radius: 4px; }
 html.dark :focus-visible { outline-color: #F2F2F4; }
 [tabindex="-1"]:focus { outline: none; }
+/* the scrollable page area: only a faint inset ring, and only for keyboard users */
+main[tabindex="0"]:focus:not(:focus-visible) { outline: none; }
+main[tabindex="0"]:focus-visible { outline: 2px solid rgba(113,113,122,.55); outline-offset: -3px; border-radius: 16px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
