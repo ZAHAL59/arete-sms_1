@@ -15,18 +15,17 @@ html,body,#root{height:100%;font-family:'DM Sans',sans-serif;-webkit-font-smooth
   body, #root { background: #fff !important; }
 }
 
-/* ── The "hero" cards (home banner, Overview, Careers): soft periwinkle → mint with ink text.
-      Palette from the 21st.dev "Respec" theme (secondary #BEC7FE, chart mint #72E3AD, foreground #171717). No red. ── */
-.arete-hero { position:relative; overflow:hidden; isolation:isolate; color:#171717; background:linear-gradient(135deg,#DDE3FF 0%,#BEC7FE 46%,#A5ECCB 100%); }
-.arete-hero::before { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; background:radial-gradient(60% 90% at 90% 0%, rgba(255,255,255,.62), transparent 64%); }
-.arete-stat { background:rgba(255,255,255,.62); border:1px solid rgba(23,23,23,.08); color:#171717; }
-.arete-stat:hover { background:rgba(255,255,255,.85); }
-.arete-btn { background:rgba(255,255,255,.62); color:#171717; border:1px solid rgba(23,23,23,.16); }
-.arete-btn:hover { background:rgba(255,255,255,.9); }
-.arete-btn-primary { background:#171717; color:#fff; border:1px solid #171717; }
-.arete-btn-primary:hover { background:#2B2B31; }
-.arete-track { background:rgba(23,23,23,.12); }
-.arete-fill { background:#171717; }
+/* ── The "hero" cards (home banner, Overview, Careers): flat dark charcoal with a geometric mark, light text.
+      Colours from the 21st.dev "Respec" theme (mint #72E3AD, periwinkle #BEC7FE). No red. ── */
+.arete-hero { position:relative; overflow:hidden; isolation:isolate; color:#FFFFFF; background:#1F1F22; border:1px solid rgba(255,255,255,.06); }
+.arete-stat { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.10); color:#fff; }
+.arete-stat:hover { background:rgba(255,255,255,.13); }
+.arete-btn { background:rgba(255,255,255,.08); color:#fff; border:1px solid rgba(255,255,255,.26); }
+.arete-btn:hover { background:rgba(255,255,255,.16); }
+.arete-btn-primary { background:#72E3AD; color:#10261B; border:1px solid #72E3AD; }
+.arete-btn-primary:hover { background:#8CEBBE; }
+.arete-track { background:rgba(255,255,255,.14); }
+.arete-fill { background:#72E3AD; }
 
 /* ── Accessibility ── */
 :focus-visible { outline: 2px solid #18181B; outline-offset: 2px; border-radius: 4px; }

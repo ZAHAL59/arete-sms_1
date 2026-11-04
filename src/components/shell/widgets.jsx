@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Button from '../ui/Button';
+import HeroMark from './HeroMark';
 
 // Shared building blocks for the home screen and overview pages.
 export const Panel = ({ title, action, children, className = '' }) => (
@@ -34,10 +35,13 @@ export const Tile = ({ label, value, note, color = '#111', onClick, bar }) => (
 );
 
 export const Hero = ({ kicker, title, sub, actions = [], progress }) => (
-  <div className="arete-hero rounded-[20px] sm:rounded-[22px] p-5 sm:p-6 flex flex-col shadow-[0_10px_30px_rgba(30,40,90,.12)]">
-    <div className="text-[11px] font-bold uppercase tracking-[1.6px] opacity-75">{kicker}</div>
-    <div className="text-[22px] sm:text-[28px] font-extrabold tracking-tight leading-tight mt-1.5">{title}</div>
-    <div className="text-[13.5px] opacity-80 mt-1">{sub}</div>
+  <div className="arete-hero rounded-[20px] sm:rounded-[22px] p-5 sm:p-6 flex flex-col shadow-[0_10px_30px_rgba(0,0,0,.16)]">
+    <HeroMark size={128} className="hidden sm:block absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none" />
+    <div className="sm:pr-36">
+      <div className="text-[11px] font-bold uppercase tracking-[1.6px] opacity-70">{kicker}</div>
+      <div className="text-[22px] sm:text-[28px] font-extrabold tracking-tight leading-tight mt-1.5">{title}</div>
+      <div className="text-[13.5px] opacity-75 mt-1">{sub}</div>
+    </div>
     {progress != null && <div className="arete-track h-1.5 rounded-full mt-3 overflow-hidden max-w-[420px]"><div className="arete-fill h-full rounded-full" style={{ width: `${Math.min(100, progress)}%` }} /></div>}
     <div className="flex flex-wrap gap-2 mt-auto pt-4">{actions.map(a => <button key={a.label} onClick={a.run} className={`${a.primary ? 'arete-btn-primary' : 'arete-btn'} px-4 py-2 rounded-full text-[12.5px] font-semibold cursor-pointer transition-colors`}>{a.label}</button>)}</div>
   </div>

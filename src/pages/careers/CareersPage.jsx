@@ -5,6 +5,7 @@ import { loadHR } from '../hr/constants';
 import ApplyModal from './ApplyModal';
 import { WHY, PROCESS } from './constants';
 import usePageMeta from '../../hooks/usePageMeta';
+import HeroMark from '../../components/shell/HeroMark';
 
 const PORTALS = [['/', '🏠 All Portals'], ['/principal', '🏛 Principal Dashboard'], ['/admissions', '📋 Admissions'], ['/hr', '👥 HR — Staff & Recruitment'], ['/finance', '₹ Finance'], ['/transport', '🚌 Transport'], ['/hostel', '🏠 Hostel'], ['/campus', '🏫 Campus'], ['/teacher', '🍎 Teacher']];
 
@@ -31,6 +32,7 @@ export default function CareersPage() {
 
       <main id="main" tabIndex={-1}>
       <section className="arete-hero px-6 py-16">
+        <HeroMark size={190} className="hidden md:block absolute right-[9%] top-1/2 -translate-y-1/2 pointer-events-none" />
         <div className="max-w-4xl mx-auto">
           <div className="text-[12px] font-bold uppercase tracking-widest opacity-75 mb-3">Arete Model School · Kozhikode, Kerala · CBSE Affiliated · Estd. 2015</div>
           <h1 className="text-[40px] font-extrabold tracking-tight leading-tight mb-3">Build Your Career at Arete</h1>

@@ -14,18 +14,8 @@ html.dark ::-webkit-scrollbar-thumb:hover { background:#48484F; }
 html.dark input, html.dark select, html.dark textarea { color-scheme: dark; }
 html.dark input::placeholder, html.dark textarea::placeholder { color:#6C6C74; }
 html.dark kbd { color:#A0A0A8; }
-/* hero cards in dark mode: the theme's deeper periwinkle → blue → green, light text */
-html.dark .arete-hero { color:#F2F2F4; background:linear-gradient(135deg,#2C3372 0%,#244B73 50%,#0F5A42 100%); box-shadow:0 14px 40px rgba(0,0,0,.45) !important; }
-html.dark .arete-hero::before { background:radial-gradient(60% 90% at 90% 0%, rgba(255,255,255,.16), transparent 64%); }
-html.dark .arete-stat { background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.16); color:#F2F2F4; }
-html.dark .arete-stat:hover { background:rgba(255,255,255,.17); }
-html.dark .arete-btn { background:rgba(255,255,255,.12); color:#F2F2F4; border-color:rgba(255,255,255,.26); }
-html.dark .arete-btn:hover { background:rgba(255,255,255,.2); }
-html.dark .arete-btn-primary { background:#F2F2F4; color:#111114; border-color:#F2F2F4; }
-html.dark .arete-btn-primary:hover { background:#fff; }
-/* secondary lines on the card are slightly stronger in dark mode (keeps them above the contrast minimum) */
-html.dark .arete-hero [class*="opacity-7"], html.dark .arete-hero [class*="opacity-8"] { opacity:.93; }
-html.dark .arete-track { background:rgba(255,255,255,.2); }
+/* hero cards are already dark in both modes — a touch lighter than the page in dark mode so they read as raised */
+html.dark .arete-hero { background:#232328; border-color:rgba(255,255,255,.08); box-shadow:0 14px 40px rgba(0,0,0,.45) !important; }
 html.dark .arete-fill { background:#F2F2F4; }
 
 html.dark .text-accent { color:#FF7A82; }
@@ -128,6 +118,8 @@ html.dark [style^="color: rgb(46, 92, 230)"],
 html.dark [style*="; color: rgb(46, 92, 230)"]{color:#7896f2 !important}
 html.dark [style^="color: rgb(51, 51, 51)"],
 html.dark [style*="; color: rgb(51, 51, 51)"]{color:#d6d6d9 !important}
+html.dark [style^="color: rgb(59, 130, 246)"],
+html.dark [style*="; color: rgb(59, 130, 246)"]{color:#72a5f8 !important}
 html.dark [style^="color: rgb(63, 63, 70)"],
 html.dark [style*="; color: rgb(63, 63, 70)"]{color:#cacace !important}
 html.dark [style^="color: rgb(68, 68, 68)"],
@@ -146,6 +138,8 @@ html.dark [style^="color: rgb(109, 40, 217)"],
 html.dark [style*="; color: rgb(109, 40, 217)"]{color:#a97eec !important}
 html.dark [style^="color: rgb(113, 113, 122)"],
 html.dark [style*="; color: rgb(113, 113, 122)"]{color:#a1a1a8 !important}
+html.dark [style*="solid rgb(114, 227, 173)"],
+html.dark [style*="border-color: rgb(114, 227, 173)"]{border-color:rgba(60,221,144,0.5) !important}
 html.dark [style^="color: rgb(119, 119, 119)"],
 html.dark [style*="; color: rgb(119, 119, 119)"]{color:#9f9fa7 !important}
 html.dark [style^="color: rgb(124, 58, 237)"],
@@ -160,6 +154,8 @@ html.dark [style*="solid rgb(130, 201, 154)"],
 html.dark [style*="border-color: rgb(130, 201, 154)"]{border-color:rgba(60,221,114,0.5) !important}
 html.dark [style^="color: rgb(137, 107, 0)"],
 html.dark [style*="; color: rgb(137, 107, 0)"]{color:#f9e089 !important}
+html.dark [style*="solid rgb(139, 92, 246)"],
+html.dark [style*="border-color: rgb(139, 92, 246)"]{border-color:rgba(109,60,221,0.5) !important}
 html.dark [style^="color: rgb(146, 64, 14)"],
 html.dark [style*="; color: rgb(146, 64, 14)"]{color:#f6b187 !important}
 html.dark [style^="color: rgb(153, 153, 153)"],
@@ -202,6 +198,10 @@ html.dark [style*="background: rgb(187, 247, 208)"],
 html.dark [style*="background-color: rgb(187, 247, 208)"]{background-color:rgba(58,223,115,0.36) !important}
 html.dark [style*="solid rgb(187, 247, 208)"],
 html.dark [style*="border-color: rgb(187, 247, 208)"]{border-color:rgba(60,221,116,0.424) !important}
+html.dark [style*="background: rgb(190, 199, 254)"],
+html.dark [style*="background-color: rgb(190, 199, 254)"]{background-color:rgba(58,81,223,0.326) !important}
+html.dark [style*="solid rgb(190, 199, 254)"],
+html.dark [style*="border-color: rgb(190, 199, 254)"]{border-color:rgba(60,83,221,0.394) !important}
 html.dark [style^="color: rgb(200, 32, 46)"],
 html.dark [style*="; color: rgb(200, 32, 46)"]{color:#ee818a !important}
 html.dark [style^="color: rgb(204, 204, 204)"],
