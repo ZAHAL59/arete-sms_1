@@ -15,22 +15,19 @@ html,body,#root{height:100%;font-family:'DM Sans',sans-serif;-webkit-font-smooth
   body, #root { background: #fff !important; }
 }
 
-/* ── The "hero" cards (home banner, Overview, Careers): flat charcoal (#1F1F22, the same dark as the logo artwork) with
-      flat, solid colour blocks — no gradients, no glow. Palette from the 21st.dev "Respec" theme. No red. ── */
-.arete-hero { position:relative; overflow:hidden; color:#FFFFFF; background:#1F1F22; border:1px solid rgba(255,255,255,.06); }
-.arete-stat { color:#111827; border:0; }
-.arete-stat:hover { filter:brightness(1.07); }
-.arete-stat-0 { background:#BEC7FE; }   /* periwinkle */
-.arete-stat-1 { background:#72E3AD; }   /* mint */
-.arete-stat-2 { background:#C4B5FD; }   /* lavender */
-.arete-stat-3 { background:#93C5FD; }   /* sky */
-.arete-pill { display:inline-block; padding:3px 10px; border-radius:7px; background:#BEC7FE; color:#111827; font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; }
-.arete-btn { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.3); }
-.arete-btn:hover { background:rgba(255,255,255,.12); }
-.arete-btn-primary { background:#72E3AD; color:#10261B; border:1px solid #72E3AD; }
-.arete-btn-primary:hover { background:#8CEBBE; }
-.arete-track { background:rgba(255,255,255,.14); }
-.arete-fill { background:#72E3AD; }
+/* ── The "hero" cards (home banner, Overview, Careers): a soft light gradient — lavender → orchid → peach — with ink text.
+      Tints derived from the 21st.dev "Quick theme" tokens (primary indigo hsl(248 69% 51%), secondary orchid, chart peach/amber).
+      One solid accent (indigo) for the main button and progress. No red. ── */
+.arete-hero { position:relative; overflow:hidden; color:#0F172A; background:linear-gradient(135deg,#E4E3FF 0%,#F2DBFF 52%,#FFE5D3 100%); border:1px solid rgba(15,23,42,.06); }
+.arete-stat { color:#0F172A; background:rgba(255,255,255,.68); border:1px solid rgba(15,23,42,.06); }
+.arete-stat:hover { background:rgba(255,255,255,.9); }
+.arete-pill { display:inline-block; padding:3px 10px; border-radius:999px; background:rgba(255,255,255,.75); color:#3730A3; border:1px solid rgba(79,70,229,.18); font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; }
+.arete-btn { background:rgba(255,255,255,.6); color:#0F172A; border:1px solid rgba(15,23,42,.16); }
+.arete-btn:hover { background:rgba(255,255,255,.92); }
+.arete-btn-primary { background:#4F46E5; color:#FFFFFF; border:1px solid #4F46E5; }
+.arete-btn-primary:hover { background:#4338CA; }
+.arete-track { background:rgba(79,70,229,.14); }
+.arete-fill { background:#4F46E5; }
 
 /* ── Accessibility ── */
 :focus-visible { outline: 2px solid #18181B; outline-offset: 2px; border-radius: 4px; }

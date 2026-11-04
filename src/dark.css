@@ -14,8 +14,17 @@ html.dark ::-webkit-scrollbar-thumb:hover { background:#48484F; }
 html.dark input, html.dark select, html.dark textarea { color-scheme: dark; }
 html.dark input::placeholder, html.dark textarea::placeholder { color:#6C6C74; }
 html.dark kbd { color:#A0A0A8; }
-/* hero cards are already dark in both modes — a touch lighter than the page in dark mode so they read as raised */
-html.dark .arete-hero { background:#232328; border-color:rgba(255,255,255,.08); box-shadow:0 14px 40px rgba(0,0,0,.45) !important; }
+/* hero cards in dark mode: the theme's deeper indigo → violet → plum, light text */
+html.dark .arete-hero { color:#F2F2F4; background:linear-gradient(135deg,#25225A 0%,#41266F 55%,#5A2D55 100%); border-color:rgba(255,255,255,.08); box-shadow:0 14px 40px rgba(0,0,0,.45) !important; }
+html.dark .arete-stat { color:#F2F2F4; background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.14); }
+html.dark .arete-stat:hover { background:rgba(255,255,255,.17); }
+html.dark .arete-pill { background:rgba(255,255,255,.14); color:#E0E0FF; border-color:rgba(255,255,255,.2); }
+html.dark .arete-btn { background:rgba(255,255,255,.10); color:#F2F2F4; border-color:rgba(255,255,255,.26); }
+html.dark .arete-btn:hover { background:rgba(255,255,255,.18); }
+html.dark .arete-btn-primary { background:#A5B4FC; color:#1E1B4B; border-color:#A5B4FC; }
+html.dark .arete-btn-primary:hover { background:#C7D2FE; }
+html.dark .arete-track { background:rgba(255,255,255,.2); }
+html.dark .arete-fill { background:#C7D2FE; }
 html.dark .arete-fill { background:#F2F2F4; }
 
 html.dark .text-accent { color:#FF7A82; }
