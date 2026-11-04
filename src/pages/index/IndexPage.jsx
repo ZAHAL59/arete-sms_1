@@ -21,7 +21,7 @@ export default function IndexPage() {
     <div className="min-h-screen bg-[#F4F4F5] text-[#111]">
       <header className="flex items-center gap-3 px-8 py-4">
         <div className="flex items-center gap-2.5 mr-3"><Logo size={34} /><span className="text-[22px] font-extrabold tracking-tight">Arete</span><span className="text-[11px] text-[#999] ml-1 mt-1">Model School · AY 2026–27</span></div>
-        <button onClick={() => setPalette(true)} aria-label="Search anything" className="flex items-center gap-2.5 w-[420px] max-w-[40vw] px-4 py-2.5 rounded-full bg-white border border-[#E4E4E4] text-left cursor-pointer hover:border-[#C8202E]/50">
+        <button onClick={() => setPalette(true)} aria-label="Search anything" className="flex items-center gap-2.5 w-[420px] max-w-[40vw] px-4 py-2.5 rounded-full bg-white border border-[#E4E4E4] text-left cursor-pointer hover:border-[#71717A]/50">
           <span className="text-[#999]">⌕</span><span className="flex-1 text-[13px] text-[#999]">Search anything</span><kbd className="text-[10.5px] text-[#888] bg-[#F4F4F5] rounded-md px-1.5 py-0.5 font-sans">⌘K</kbd>
         </button>
         <div className="ml-auto"><ThemeToggle /></div>

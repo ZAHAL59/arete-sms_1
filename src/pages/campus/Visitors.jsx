@@ -42,8 +42,8 @@ export default function Visitors({ c, addVisitor, checkOut }) {
       <PageHeader title="Visitor Log" subtitle="Gate entries and check-outs — grouped by day"
         actions={<>
           <ExpandControls ex={ex} ids={allIds} />
-          <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search visitor..." className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E] w-40" />
-          <select value={range} onChange={e => setRange(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">
+          <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search visitor..." className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A] w-40" />
+          <select value={range} onChange={e => setRange(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">
             <option value="today">Today</option><option value="week">Last 7 days</option><option value="all">All time</option>
           </select>
           <Button onClick={() => { setF(blank()); setOpen(true); }}>+ Log Visitor</Button>

@@ -37,8 +37,8 @@ export default function Timetable({ api, p }) {
   return (
     <div className="p-6">
       <PageHeader title="Timetable & Scheduling" subtitle="Click any cell to edit · changes save automatically"
-        actions={<select value={cls} onChange={e => setCls(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">{classes.map(c => <option key={c}>{c}</option>)}</select>} />
-      <div className="flex gap-3 mb-3 items-center text-[12.5px] text-[#555]"><Badge variant="grey">{students} students</Badge><label className="flex items-center gap-1.5">Room <input value={tt.room || ''} onChange={e => api.setTTMeta(cls, { room: e.target.value })} placeholder="e.g. Room 204" className="px-2 py-1 border border-[#E4E4E4] rounded-[6px] text-[12px] outline-none focus:border-[#C8202E] w-28" /></label></div>
+        actions={<select value={cls} onChange={e => setCls(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">{classes.map(c => <option key={c}>{c}</option>)}</select>} />
+      <div className="flex gap-3 mb-3 items-center text-[12.5px] text-[#555]"><Badge variant="grey">{students} students</Badge><label className="flex items-center gap-1.5">Room <input value={tt.room || ''} onChange={e => api.setTTMeta(cls, { room: e.target.value })} placeholder="e.g. Room 204" className="px-2 py-1 border border-[#E4E4E4] rounded-[6px] text-[12px] outline-none focus:border-[#71717A] w-28" /></label></div>
 
       <div className="bg-white border border-[#E4E4E4] rounded-[12px] overflow-x-auto shadow-[0_1px_4px_rgba(0,0,0,.07)] mb-4">
         <table className="w-full border-collapse text-[12px]">

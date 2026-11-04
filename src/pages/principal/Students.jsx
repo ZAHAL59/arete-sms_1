@@ -82,10 +82,10 @@ export default function Students({ settings }) {
         actions={<><Button variant="outline" onClick={exportCsv}>⬇ Export CSV</Button><Button onClick={() => setAddOpen(true)}>+ Enrol Student</Button></>} />
       <div className="flex gap-2 flex-wrap mb-3 items-center">
         {[['all', 'All Students'], ['active', 'Active'], ['fee', 'Fee Pending'], ['risk', 'Attendance Risk']].map(([id, l]) => (
-          <button key={id} onClick={() => setPill(id)} className={`px-3 py-1.5 rounded-full text-[12px] font-semibold cursor-pointer border ${pill === id ? 'bg-[#C8202E] text-white border-[#C8202E]' : 'bg-white text-[#555] border-[#E4E4E4] hover:border-[#C8202E]'}`}>{l} <span className="opacity-70">{count(id)}</span></button>))}
+          <button key={id} onClick={() => setPill(id)} className={`px-3 py-1.5 rounded-full text-[12px] font-semibold cursor-pointer border ${pill === id ? 'bg-[#18181B] text-white border-[#71717A]' : 'bg-white text-[#555] border-[#E4E4E4] hover:border-[#71717A]'}`}>{l} <span className="opacity-70">{count(id)}</span></button>))}
         <div className="ml-auto flex gap-2">
-          <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search name or ID..." className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E] w-44" />
-          <select value={grade} onChange={e => setGrade(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]"><option value="">All grades</option>{GRADES.map(g => <option key={g}>{g}</option>)}</select>
+          <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search name or ID..." className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A] w-44" />
+          <select value={grade} onChange={e => setGrade(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]"><option value="">All grades</option>{GRADES.map(g => <option key={g}>{g}</option>)}</select>
         </div>
       </div>
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]">
@@ -94,13 +94,13 @@ export default function Students({ settings }) {
           <tbody>
             {!rows.length ? <tr><td colSpan={7} className="text-center py-10 text-[#AAA]">No students match</td></tr> : rows.map(({ s, fee, att }, i) => (
               <tr key={s.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]">
-                <td className="px-4 py-2.5"><div className="flex items-center gap-2 cursor-pointer" onClick={() => setSel(s)}><div style={{ background: COLORS[i % COLORS.length] }} className="w-7 h-7 rounded-full text-white text-[10px] font-bold flex items-center justify-center">{s.name.split(' ').map(w => w[0]).join('').slice(0, 2)}</div><span className="font-semibold text-[#C8202E] underline">{s.name}</span></div></td>
+                <td className="px-4 py-2.5"><div className="flex items-center gap-2 cursor-pointer" onClick={() => setSel(s)}><div style={{ background: COLORS[i % COLORS.length] }} className="w-7 h-7 rounded-full text-white text-[10px] font-bold flex items-center justify-center">{s.name.split(' ').map(w => w[0]).join('').slice(0, 2)}</div><span className="font-semibold text-[#111] underline">{s.name}</span></div></td>
                 <td className="px-4 py-2.5 font-mono text-[11.5px] text-[#AAA]">{s.id}</td>
                 <td className="px-4 py-2.5 text-[#555]">{classLabel(s)}</td>
                 <td className="px-4 py-2.5 text-[#555]">{s.parentName}</td>
                 <td className="px-4 py-2.5">{att ? <span className="font-bold" style={{ color: att.pct < settings.lowAtt ? '#DC2626' : '#166534' }}>{att.pct}%</span> : <span className="text-[#CCC]">—</span>}</td>
                 <td className="px-4 py-2.5"><Badge variant={fee.bal > 0 ? (fee.paid ? 'amber' : 'red') : 'green'}>{fee.bal > 0 ? (fee.paid ? 'Partial' : 'Pending') : 'Paid'}</Badge></td>
-                <td className="px-4 py-2.5 whitespace-nowrap"><button onClick={() => setSel(s)} className="text-[11px] font-semibold text-[#C8202E] underline cursor-pointer bg-none border-none mr-3">View</button><button onClick={() => setEdit(s)} className="text-[11px] font-semibold text-[#555] underline cursor-pointer bg-none border-none">Edit</button></td>
+                <td className="px-4 py-2.5 whitespace-nowrap"><button onClick={() => setSel(s)} className="text-[11px] font-semibold text-[#111] underline cursor-pointer bg-none border-none mr-3">View</button><button onClick={() => setEdit(s)} className="text-[11px] font-semibold text-[#555] underline cursor-pointer bg-none border-none">Edit</button></td>
               </tr>))}
           </tbody>
         </table>
@@ -116,7 +116,7 @@ export default function Students({ settings }) {
           <Field label="Section"><select value={nf.section} onChange={e => setNf(x => ({ ...x, section: e.target.value }))} className={inputCls}>{['A', 'B', 'C'].map(g => <option key={g}>{g}</option>)}</select></Field>
           <Field label="Guardian *"><input value={nf.parentName} onChange={e => setNf(x => ({ ...x, parentName: e.target.value }))} className={inputCls} /></Field>
           <Field label="Guardian Phone"><input value={nf.parentPhone} onChange={e => setNf(x => ({ ...x, parentPhone: e.target.value }))} className={inputCls} /></Field>
-          <label className="col-span-2 flex items-center gap-2 text-[13px] cursor-pointer"><input type="checkbox" checked={nf.boarding} onChange={e => setNf(x => ({ ...x, boarding: e.target.checked }))} className="accent-[#C8202E]" /> Boarding</label>
+          <label className="col-span-2 flex items-center gap-2 text-[13px] cursor-pointer"><input type="checkbox" checked={nf.boarding} onChange={e => setNf(x => ({ ...x, boarding: e.target.checked }))} className="accent-[#18181B]" /> Boarding</label>
         </div>
       </Modal>
     </div>

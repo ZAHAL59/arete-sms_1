@@ -20,7 +20,7 @@ export default function AbsenceNoteModal({ studentName, status, onSave, onSkip }
       <div>
         <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Additional note</label>
         <input value={extra} onChange={e=>setExtra(e.target.value)} placeholder="Optional details..."
-          className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+          className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
       </div>
     </Modal>
   );

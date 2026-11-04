@@ -27,7 +27,7 @@ export default function Communication({ p, api }) {
       <PageHeader title="Communication" subtitle="Announcements to families and staff — staff announcements also appear in the Teacher portal's Alerts" actions={<Button onClick={() => setAnnOpen(true)}>+ New Announcement</Button>} />
       <Collapsible defaultOpen className="mb-3" header={<div className="flex items-center gap-2"><span className="text-[13.5px] font-bold text-[#111]">Announcements</span><Badge variant="red2">{p.announcements.length}</Badge></div>}>
         <div className="border-t border-[#E4E4E4] divide-y divide-[#E4E4E4]">{!p.announcements.length && <div className="p-4 text-[13px] text-[#AAA]">No announcements</div>}{p.announcements.map(x => (
-          <div key={x.id} className="flex gap-3 px-4 py-3"><span className="w-2 h-2 rounded-full bg-[#C8202E] mt-1.5" /><div className="flex-1"><div className="text-[13.5px] font-bold text-[#111]">{x.title}</div><div className="text-[13px] text-[#555] mt-0.5">{x.msg}</div>
+          <div key={x.id} className="flex gap-3 px-4 py-3"><span className="w-2 h-2 rounded-full bg-[#18181B] mt-1.5" /><div className="flex-1"><div className="text-[13.5px] font-bold text-[#111]">{x.title}</div><div className="text-[13px] text-[#555] mt-0.5">{x.msg}</div>
             <div className="text-[11px] text-[#AAA] mt-1 flex items-center gap-2">Sent {prettyDate(x.sent)} · {x.to} · {x.channel || 'App + SMS'} {staffAud.has(x.to) && <Badge variant="blue">Shown in Teacher alerts</Badge>}</div></div>
             <button onClick={() => api.deleteAnnouncement(x.id)} className="text-[11px] text-[#DC2626] font-semibold cursor-pointer bg-none border-none underline self-start">Delete</button></div>))}</div>
       </Collapsible>

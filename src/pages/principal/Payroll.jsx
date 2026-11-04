@@ -21,7 +21,7 @@ export default function Payroll({ p, api }) {
     <div>
       <FinancePayroll allPayments={allPayments} processPayroll={processPayroll} payStaff={payStaff} updateSalary={updateSalary} />
       <div className="px-6 pb-6 -mt-2 space-y-3">
-        <Collapsible defaultOpen header={<div className="flex items-center gap-3 flex-1"><span className="text-[13.5px] font-bold text-[#111]">Expense Tracking</span><span className="ml-auto text-[12px] text-[#777]">Total <b className="text-[#C8202E]">{fmt(total)}</b></span></div>}>
+        <Collapsible defaultOpen header={<div className="flex items-center gap-3 flex-1"><span className="text-[13.5px] font-bold text-[#111]">Expense Tracking</span><span className="ml-auto text-[12px] text-[#777]">Total <b className="text-[#111]">{fmt(total)}</b></span></div>}>
           <table className="w-full border-collapse text-[13px] border-t border-[#E4E4E4]"><thead><tr><Th>Category</Th><Th>Description</Th><Th>Amount</Th><Th>Date</Th><Th /></tr></thead>
             <tbody>{p.expenses.map(x => <tr key={x.id} className="border-b border-[#E4E4E4] hover:bg-[#F8F8F8]"><td className="px-4 py-2.5 text-[#555]">{x.cat}</td><td className="px-4 py-2.5 text-[#111]">{x.desc}</td><td className="px-4 py-2.5 font-mono font-bold">{fmt(x.amount)}</td><td className="px-4 py-2.5 text-[#777]">{prettyDate(x.date)}</td><td className="px-4 py-2.5"><button onClick={() => api.deleteExpense(x.id)} className="text-[11px] text-[#DC2626] font-semibold cursor-pointer bg-none border-none underline">Remove</button></td></tr>)}</tbody></table>
           <div className="flex gap-2 p-3 items-end border-t border-[#E4E4E4]">

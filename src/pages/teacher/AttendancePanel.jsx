@@ -42,7 +42,7 @@ export default function AttendancePanel({ cls, date, onClose, onSaved }) {
     <>
       <div className="mt-5 bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_4px_18px_rgba(0,0,0,.11)]">
         {/* Header */}
-        <div className="bg-[#C8202E] px-5 py-3 flex items-center justify-between flex-wrap gap-2">
+        <div className="bg-[#18181B] px-5 py-3 flex items-center justify-between flex-wrap gap-2">
           <div>
             <div className="text-[14px] font-bold text-white">Attendance — {cls}</div>
             <div className="text-[12px] text-white/70">{dateLabel} · {students.length} students</div>

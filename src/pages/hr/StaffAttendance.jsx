@@ -139,7 +139,7 @@ export default function StaffAttendance(props) {
   const [tab, setTab] = useState('register');
   return (
     <div>
-      <div className="px-6 pt-5 flex gap-1 border-b border-[#E4E4E4] mx-6">{[['register', '📅 Register'], ['analytics', '📊 Analytics']].map(([id, l]) => <button key={id} onClick={() => setTab(id)} className={`px-4 py-2 text-[13px] font-semibold border-b-2 -mb-px cursor-pointer bg-none ${tab === id ? 'border-[#C8202E] text-[#C8202E]' : 'border-transparent text-[#777]'}`}>{l}</button>)}</div>
+      <div className="px-6 pt-5 flex gap-1 border-b border-[#E4E4E4] mx-6">{[['register', '📅 Register'], ['analytics', '📊 Analytics']].map(([id, l]) => <button key={id} onClick={() => setTab(id)} className={`px-4 py-2 text-[13px] font-semibold border-b-2 -mb-px cursor-pointer bg-none ${tab === id ? 'border-[#71717A] text-[#111]' : 'border-transparent text-[#777]'}`}>{l}</button>)}</div>
       {tab === 'register' ? <Register {...props} /> : <Analytics hr={props.hr} />}
     </div>
   );

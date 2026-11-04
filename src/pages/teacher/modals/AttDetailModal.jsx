@@ -56,7 +56,7 @@ export default function AttDetailModal({ attKey, onClose }) {
       <div className="mb-3">
         <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Reason *</label>
         <select value={reason} onChange={e=>setReason(e.target.value)}
-          className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]">
+          className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]">
           <option value="">— Select reason —</option>
           {REASONS.map(r => <option key={r}>{r}</option>)}
         </select>
@@ -64,7 +64,7 @@ export default function AttDetailModal({ attKey, onClose }) {
       <div>
         <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Note</label>
         <input value={extra} onChange={e=>setExtra(e.target.value)} placeholder="Optional details..."
-          className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+          className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
       </div>
     </Modal>
   );
@@ -101,7 +101,7 @@ export default function AttDetailModal({ attKey, onClose }) {
                 {status==='P'?'Present':status==='A'?'Absent':status==='L'?'Late':'Unmarked'}
               </Badge>
               <button onClick={() => { setEditStu(s); setNewStatus(status==='x'?'P':status); }}
-                className="text-[11px] font-semibold text-[#C8202E] underline cursor-pointer bg-none border-none ml-1">✎ Edit</button>
+                className="text-[11px] font-semibold text-[#111] underline cursor-pointer bg-none border-none ml-1">✎ Edit</button>
             </div>
           );
         })}

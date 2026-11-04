@@ -41,7 +41,7 @@ export default function Inmates({ h }) {
         {rec?.notes && <div className="text-[12.5px] text-[#555] bg-[#FFFBEB] rounded-[6px] p-2.5 mb-3">📝 {rec.notes}</div>}
         {(() => { const heads = h.feeHeads || DEFAULT_FEE_HEADS; return <div className="grid grid-cols-3 gap-2 mb-3">{heads.map(x => { const st = headStatus(db.payments, s.id, x); return <div key={x.id} className="bg-[#F8F8F8] rounded-[6px] p-2.5"><div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-0.5">{x.name}{x.kind !== 'One-time fee' ? ' · held' : ''}</div><div className="text-[12.5px] font-semibold" style={{ color: st.balance ? '#DC2626' : '#166534' }}>{st.balance ? (st.paid ? `${fmt(st.paid)} of ${fmt(x.amount)}` : `Due ${fmt(x.amount)}`) : `✓ ${fmt(st.paid)}`}</div></div>; })}</div>; })()}
         <div className="text-[10.5px] font-bold text-[#AAA] uppercase tracking-wider mb-1.5">Hostel fee payments · {fmt(fee(s))} / month</div>
-        {!pays.length ? <div className="text-[12.5px] text-[#AAA]">No payments yet — collect from Hostel Fees.</div> : <div className="border border-[#E4E4E4] rounded-[8px] divide-y divide-[#E4E4E4]">{pays.map(p => <div key={p.id} className="flex items-center gap-3 px-3 py-2 text-[12.5px]"><span className="font-mono text-[11.5px] text-[#C8202E]">{p.id}</span><span className="flex-1 text-[#555]">{p.period ? monthName(p.period) : p.category}</span><span className="text-[#AAA]">{p.mode}</span><b className="font-mono text-[#166534]">{fmt(p.amount)}</b></div>)}</div>}
+        {!pays.length ? <div className="text-[12.5px] text-[#AAA]">No payments yet — collect from Hostel Fees.</div> : <div className="border border-[#E4E4E4] rounded-[8px] divide-y divide-[#E4E4E4]">{pays.map(p => <div key={p.id} className="flex items-center gap-3 px-3 py-2 text-[12.5px]"><span className="font-mono text-[11.5px] text-[#111]">{p.id}</span><span className="flex-1 text-[#555]">{p.period ? monthName(p.period) : p.category}</span><span className="text-[#AAA]">{p.mode}</span><b className="font-mono text-[#166534]">{fmt(p.amount)}</b></div>)}</div>}
       </Modal>);
   })();
 
@@ -67,7 +67,7 @@ export default function Inmates({ h }) {
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2 cursor-pointer" onClick={() => setSel(s)}>
                       <div style={{ background: COLORS[i % COLORS.length] }} className="w-7 h-7 rounded-full text-white text-[10px] font-bold flex items-center justify-center">{s.name.split(' ').map(w => w[0]).join('').slice(0, 2)}</div>
-                      <span className="font-semibold text-[#C8202E] underline">{s.name}</span>
+                      <span className="font-semibold text-[#111] underline">{s.name}</span>
                     </div>
                   </td>
                   <td className="px-4 py-2.5 text-[#555]">{s.cls} {s.section}</td>

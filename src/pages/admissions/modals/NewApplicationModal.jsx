@@ -27,7 +27,7 @@ export default function NewApplicationModal({ onSave, onClose }) {
         <div>
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Student Name *</label>
           <input value={form.name} onChange={e=>set('name',e.target.value)} placeholder="Full name"
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E] focus:shadow-[0_0_0_3px_#F6F6F7]"/>
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A] focus:shadow-[0_0_0_3px_#F6F6F7]"/>
         </div>
         <Select label="Applying for Grade *" value={form.grade} onChange={e=>set('grade',e.target.value)}>
           <option value="">— Select Grade —</option>
@@ -36,27 +36,27 @@ export default function NewApplicationModal({ onSave, onClose }) {
         <div>
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Date of Birth</label>
           <input type="date" value={form.dob} onChange={e=>set('dob',e.target.value)}
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
         </div>
         <div>
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Parent / Guardian *</label>
           <input value={form.parent} onChange={e=>set('parent',e.target.value)} placeholder="Parent name"
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
         </div>
         <div>
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Phone *</label>
           <input type="tel" value={form.phone} onChange={e=>set('phone',e.target.value)} placeholder="10-digit number"
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
         </div>
         <div>
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Email</label>
           <input type="email" value={form.email} onChange={e=>set('email',e.target.value)} placeholder="parent@email.com"
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
         </div>
         <div className="col-span-2">
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Address</label>
           <input value={form.address} onChange={e=>set('address',e.target.value)} placeholder="Home address"
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
         </div>
         <Select label="Gender" value={form.gender} onChange={e=>set('gender',e.target.value)}><option value="">—</option><option>Male</option><option>Female</option><option>Other</option></Select>
         <Select label="Source" value={form.source} onChange={e=>set('source',e.target.value)}>{SOURCES.map(s => <option key={s}>{s}</option>)}</Select>
@@ -75,7 +75,7 @@ export default function NewApplicationModal({ onSave, onClose }) {
         <div className="col-span-2">
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Notes</label>
           <textarea value={form.notes} onChange={e=>set('notes',e.target.value)} rows={2}
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E] resize-none font-[inherit]"
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A] resize-none font-[inherit]"
             placeholder="Any initial notes..."/>
         </div>
       </div>

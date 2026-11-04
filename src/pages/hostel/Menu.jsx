@@ -36,7 +36,7 @@ export default function Menu({ h, saveMenu }) {
           <div className="ml-auto flex gap-4 text-[12px] text-[#777]">{MEALS.map(([k, l]) => <span key={k} className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-[3px] border" style={{ background: COLORS[k], borderColor: BORDER[k] }} />{l.replace(/^\S+\s/, '')}</span>)}</div></div>
         <div className="p-3 overflow-x-auto">
           <table className="w-full min-w-[980px]" style={{ borderCollapse: 'separate', borderSpacing: 4 }}>
-            <thead><tr><th className="w-[90px]" />{DAYS.map(d => <th key={d} className={`text-left px-2 py-1.5 text-[11px] font-bold ${d === today ? 'text-[#C8202E]' : 'text-[#777]'}`}>{d}{d === today && <span className="ml-1.5 text-[9px] bg-[#C8202E] text-white px-1.5 py-0.5 rounded-full align-middle">Today</span>}</th>)}</tr></thead>
+            <thead><tr><th className="w-[90px]" />{DAYS.map(d => <th key={d} className={`text-left px-2 py-1.5 text-[11px] font-bold ${d === today ? 'text-[#111]' : 'text-[#777]'}`}>{d}{d === today && <span className="ml-1.5 text-[9px] bg-[#18181B] text-white px-1.5 py-0.5 rounded-full align-middle">Today</span>}</th>)}</tr></thead>
             <tbody>{MEALS.map(([k, label]) => (
               <tr key={k}>
                 <td className="p-1 align-top"><div className="text-[11px] font-bold text-[#999] whitespace-nowrap py-1">{label}</div></td>
@@ -51,7 +51,7 @@ export default function Menu({ h, saveMenu }) {
           </table>
         </div>
       </div>
-      <div className="mt-3 bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] px-4 py-3 text-[12.5px] text-[#555] leading-relaxed"><b className="text-[#9A1822]">ⓘ Menu Planning Guidelines:</b> Ensure balanced nutrition — protein at every meal, green vegetable daily, fruit twice weekly. Special dietary needs are managed per student profile.</div>
+      <div className="mt-3 bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] px-4 py-3 text-[12.5px] text-[#555] leading-relaxed"><b className="text-[#111]">ⓘ Menu Planning Guidelines:</b> Ensure balanced nutrition — protein at every meal, green vegetable daily, fruit twice weekly. Special dietary needs are managed per student profile.</div>
     </div>
   );
 }

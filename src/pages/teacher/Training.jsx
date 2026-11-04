@@ -20,7 +20,7 @@ export default function Training() {
             </div>}>
             <div className="px-4 py-3 border-t border-[#E4E4E4] space-y-2">
               {(t.topics || []).length > 0 && <><div className="text-[10.5px] font-bold text-[#AAA] uppercase tracking-wider">Topics</div><div className="flex gap-2 flex-wrap">{t.topics.map(tp => <Badge key={tp} variant="purple">{tp}</Badge>)}</div></>}
-              <div className="text-[12.5px] text-[#555]">{t.mode && t.mode !== 'In-person' ? <>Online via <b>{t.platform}</b>{t.link && <> · <a href={t.link} target="_blank" rel="noreferrer" className="text-[#C8202E] underline">Join link</a></>}{t.meetingId && <> · ID {t.meetingId}</>}{t.passcode && <> · Passcode {t.passcode}</>}</> : <>Venue: <b>{t.venue || 'To be confirmed'}</b></>}</div>
+              <div className="text-[12.5px] text-[#555]">{t.mode && t.mode !== 'In-person' ? <>Online via <b>{t.platform}</b>{t.link && <> · <a href={t.link} target="_blank" rel="noreferrer" className="text-[#111] underline">Join link</a></>}{t.meetingId && <> · ID {t.meetingId}</>}{t.passcode && <> · Passcode {t.passcode}</>}</> : <>Venue: <b>{t.venue || 'To be confirmed'}</b></>}</div>
               {t.resources && <div className="text-[12.5px] text-[#555]"><b>Pre-reading:</b> {t.resources}</div>}
             </div>
           </Collapsible>);

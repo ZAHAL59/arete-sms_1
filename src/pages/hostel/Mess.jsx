@@ -61,12 +61,12 @@ export default function Mess({ h, saveStock, addStock, addOrder, receiveOrder })
                   <td className="px-4 py-2.5 font-bold">{s.qty} <span className="text-[#AAA] font-normal">/ {s.max} {s.unit}</span></td>
                   <td className="px-4 py-2.5">
                     <div className="h-1.5 bg-[#E4E4E4] rounded-full w-20 overflow-hidden">
-                      <div className="h-full rounded-full" style={{ width:`${Math.min(100,pct)}%`, background: isLow ? '#DC2626' : '#C8202E' }} />
+                      <div className="h-full rounded-full" style={{ width:`${Math.min(100,pct)}%`, background: isLow ? '#DC2626' : '#18181B' }} />
                     </div>
                   </td>
                   <td className="px-4 py-2.5 font-mono text-[12px]">{fmt(s.cost)}</td>
                   <td className="px-4 py-2.5"><Badge variant={isLow ? 'red' : 'green'}>{isLow ? 'Low Stock' : 'OK'}</Badge></td>
-                  <td className="px-4 py-2.5"><button onClick={() => openEdit(s)} className="text-[11px] font-semibold text-[#C8202E] underline cursor-pointer bg-none border-none">Edit</button></td>
+                  <td className="px-4 py-2.5"><button onClick={() => openEdit(s)} className="text-[11px] font-semibold text-[#111] underline cursor-pointer bg-none border-none">Edit</button></td>
                 </tr>
               );
             })}

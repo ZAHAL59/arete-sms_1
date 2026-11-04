@@ -50,7 +50,7 @@ export default function Rooms({ h, removeInmate, go }) {
                 </div>
                 {!isStaff && (
                   <div className="h-1.5 bg-[#E4E4E4] rounded-full w-16 overflow-hidden">
-                    <div className="h-full bg-[#C8202E] rounded-full" style={{ width: `${pct}%` }} />
+                    <div className="h-full bg-[#18181B] rounded-full" style={{ width: `${pct}%` }} />
                   </div>
                 )}
                 <Badge variant={isStaff ? 'grey' : inmates.length >= r.capacity ? 'red' : inmates.length === 0 ? 'grey' : 'green'}>

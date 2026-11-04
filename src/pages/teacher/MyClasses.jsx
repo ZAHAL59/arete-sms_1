@@ -19,7 +19,7 @@ export default function MyClasses() {
       <PageHeader title="My Classes" subtitle="Student roster for each class you teach"
         actions={
           <select value={selCls} onChange={e=>setSelCls(e.target.value)}
-            className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">
+            className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">
             {TEACHER.classes.map(c => <option key={c}>{c}</option>)}
           </select>
         }
@@ -31,8 +31,8 @@ export default function MyClasses() {
           const n = db.students.filter(s => `${s.cls} ${s.section}`.trim() === c).length;
           return (
             <div key={c} onClick={() => setSelCls(c)}
-              className={`p-3 rounded-[8px] border cursor-pointer transition-all text-center ${selCls===c?'bg-[#F6F6F7] border-[#C8202E]':'bg-white border-[#E4E4E4] hover:border-[#C8202E]'}`}>
-              <div className={`text-[20px] font-extrabold ${selCls===c?'text-[#C8202E]':'text-[#111]'}`}>{n}</div>
+              className={`p-3 rounded-[8px] border cursor-pointer transition-all text-center ${selCls===c?'bg-[#F6F6F7] border-[#71717A]':'bg-white border-[#E4E4E4] hover:border-[#71717A]'}`}>
+              <div className={`text-[20px] font-extrabold ${selCls===c?'text-[#111]':'text-[#111]'}`}>{n}</div>
               <div className="text-[10px] text-[#AAA] font-medium mt-0.5">{c}</div>
             </div>
           );
@@ -59,7 +59,7 @@ export default function MyClasses() {
                       <div style={{background:COLORS[i%COLORS.length]}} className="w-7 h-7 rounded-full text-white text-[10px] font-bold flex items-center justify-center flex-shrink-0">
                         {s.name.split(' ').map(w=>w[0]).join('').slice(0,2)}
                       </div>
-                      <span className="font-semibold text-[#C8202E] underline">{s.name}</span>
+                      <span className="font-semibold text-[#111] underline">{s.name}</span>
                     </div>
                   </td>
                   <td className="px-3.5 py-2.5 text-[#555]">{s.roll}</td>

@@ -12,7 +12,7 @@ import { COLORS } from '../teacher/constants';
 import { BOOK_CATS, TODAY, loanStatus, prettyDate } from './constants';
 
 const STATUS_VARIANT = { Available:'grey', Issued:'green', 'Due soon':'amber', Overdue:'red' };
-const BAR = ['#C8202E', '#9A1822', '#166534', '#1A5FB4', '#B45309', '#6D28D9', '#0B5A6B', '#777'];
+const BAR = ['#18181B', '#3F3F46', '#166534', '#1A5FB4', '#B45309', '#6D28D9', '#0B5A6B', '#777'];
 const RECS = {
   Fiction:['The Giver','A Wrinkle in Time','Chronicles of Narnia'], Science:['The Gene: An Intimate History','Astrophysics for People in a Hurry','The Hidden Life of Trees'],
   Biography:['Long Walk to Freedom','Steve Jobs by Isaacson','Shoe Dog'], Textbook:['Conceptual Physics','Mathematics: Its Content','The Art of Problem Solving'],
@@ -35,7 +35,7 @@ export default function Library({ c, addBook, issueBook, returnBook }) {
       <PageHeader title="Library Management" subtitle={`${c.books.length} books · ${c.books.filter(b => b.issuedTo).length} on loan`} />
       <div className="flex gap-1 mb-5 border-b border-[#E4E4E4]">
         {[['catalogue', '📚 Catalogue'], ['analytics', '📊 Reading Analytics']].map(([id, label]) => (
-          <button key={id} onClick={() => setTab(id)} className={`px-4 py-2 text-[13px] font-semibold border-b-2 -mb-px cursor-pointer bg-none ${tab === id ? 'border-[#C8202E] text-[#C8202E]' : 'border-transparent text-[#777] hover:text-[#111]'}`}>{label}</button>
+          <button key={id} onClick={() => setTab(id)} className={`px-4 py-2 text-[13px] font-semibold border-b-2 -mb-px cursor-pointer bg-none ${tab === id ? 'border-[#71717A] text-[#111]' : 'border-transparent text-[#777] hover:text-[#111]'}`}>{label}</button>
         ))}
       </div>
       {tab === 'catalogue' ? <Catalogue c={c} stu={stu} addBook={addBook} issueBook={issueBook} returnBook={returnBook} db={db} /> : <Analytics c={c} loans={loans} stu={stu} db={db} />}
@@ -70,9 +70,9 @@ function Catalogue({ c, stu, addBook, issueBook, returnBook, db }) {
         <Kpi label="Overdue" value={overdue} note="Past due date" color={overdue ? '#DC2626' : '#166534'} />
       </div>
       <div className="flex gap-2 flex-wrap mb-3">
-        <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search title or category..." className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E] w-56" />
-        <select value={cat} onChange={e => setCat(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]"><option value="">All categories</option>{cats.map(x => <option key={x}>{x}</option>)}</select>
-        <select value={st} onChange={e => setSt(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]"><option value="">All statuses</option>{Object.keys(STATUS_VARIANT).map(x => <option key={x}>{x}</option>)}</select>
+        <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search title or category..." className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A] w-56" />
+        <select value={cat} onChange={e => setCat(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]"><option value="">All categories</option>{cats.map(x => <option key={x}>{x}</option>)}</select>
+        <select value={st} onChange={e => setSt(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]"><option value="">All statuses</option>{Object.keys(STATUS_VARIANT).map(x => <option key={x}>{x}</option>)}</select>
         <div className="ml-auto flex gap-2"><ExpandControls ex={ex} ids={shownCats.map(x => 'b:' + x)} /><Button variant="outline" onClick={() => setBookOpen(true)}>+ Add Book</Button><Button onClick={() => { setInf({ bookId:available[0]?.id || '', studentId:'', due:due14() }); setIssueOpen(true); }}>Issue Book</Button></div>
       </div>
       {!rows.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-10 text-center text-[#AAA]">No books match</div>}
@@ -161,7 +161,7 @@ function Analytics({ c, loans, stu, db }) {
       <Collapsible header={<span className="text-[13.5px] font-bold text-[#111]">🏆 Top Readers</span>}>
         <div className="border-t border-[#E4E4E4] divide-y divide-[#E4E4E4]">
           {readers.map((r, i) => <div key={r.id} className="flex items-center gap-3 px-4 py-2.5">
-            <div className="w-6 h-6 rounded-full text-white text-[11px] font-extrabold flex items-center justify-center" style={{ background:['#D4A017', '#9CA3AF', '#B87333', '#166534', '#9A1822'][i] }}>{i + 1}</div>
+            <div className="w-6 h-6 rounded-full text-white text-[11px] font-extrabold flex items-center justify-center" style={{ background:['#D4A017', '#9CA3AF', '#B87333', '#166534', '#3F3F46'][i] }}>{i + 1}</div>
             <div className="flex-1"><div className="text-[13px] font-semibold text-[#111]">{stu(r.id)?.name || r.id}</div><div className="text-[11.5px] text-[#777]">{[...r.cats].slice(0, 3).join(', ')}</div></div><span className="text-[15px] font-extrabold text-[#166534]">{r.n}</span></div>)}
         </div>
       </Collapsible>
@@ -175,7 +175,7 @@ function Analytics({ c, loans, stu, db }) {
                 <div className="flex items-center gap-3 mb-4"><div className="w-11 h-11 rounded-full text-white font-extrabold flex items-center justify-center" style={{ background:COLORS[db.students.indexOf(s) % COLORS.length] }}>{s.name.split(' ').map(w => w[0]).join('').slice(0, 2)}</div><div><div className="text-[14px] font-extrabold text-[#111]">{s.name}</div><div className="text-[12px] text-[#777]">{s.cls} {s.section}</div></div></div>
                 <div className="bg-white rounded-[8px] p-3 text-center mb-3"><div className="text-[24px] font-extrabold" style={{ color:level[1] }}>{mine.length}</div><div className="text-[11px] text-[#777]">Books read / in progress</div><div className="text-[12px] font-semibold mt-1" style={{ color:level[1] }}>{level[0]}</div></div>
                 <div className="text-[10.5px] font-bold text-[#777] uppercase tracking-wider mb-1.5">Interests</div>
-                <div className="flex flex-wrap gap-1.5 mb-3">{tags.map(t => <span key={t} className="px-2.5 py-0.5 bg-[#F6F6F7] text-[#C8202E] border border-[#FECACA] rounded-full text-[11.5px] font-semibold">{t}</span>)}{!tags.length && <span className="text-[12px] text-[#AAA]">—</span>}</div>
+                <div className="flex flex-wrap gap-1.5 mb-3">{tags.map(t => <span key={t} className="px-2.5 py-0.5 bg-[#F6F6F7] text-[#111] border border-[#FECACA] rounded-full text-[11.5px] font-semibold">{t}</span>)}{!tags.length && <span className="text-[12px] text-[#AAA]">—</span>}</div>
                 <div className="text-[10.5px] font-bold text-[#777] uppercase tracking-wider mb-1.5">Recommended next</div>
                 {(RECS[top] || RECS.Fiction).map(r => <div key={r} className="text-[12.5px] text-[#333] py-1 border-b border-[#E4E4E4] last:border-b-0">📖 {r}</div>)}
               </div>

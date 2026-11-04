@@ -14,6 +14,12 @@ html.dark ::-webkit-scrollbar-thumb:hover { background:#48484F; }
 html.dark input, html.dark select, html.dark textarea { color-scheme: dark; }
 html.dark input::placeholder, html.dark textarea::placeholder { color:#6C6C74; }
 html.dark kbd { color:#A0A0A8; }
+/* ink buttons & fills flip to light in dark mode (text flips with them) */
+html.dark .bg-\[\#18181B\] { background-color:#E7E7EB !important; color:#111114 !important; }
+/* …but a banner that carries white text inside it stays a raised charcoal */
+html.dark .bg-\[\#18181B\]:has([class*="text-white"]) { background-color:#2C2C33 !important; color:#fff !important; }
+html.dark .hover\:bg-\[\#2B2B31\]:hover { background-color:#FFFFFF !important; }
+html.dark .arete-hero .bg-white.text-\[\#18181B\] { background-color:#fff !important; color:#18181B !important; }
 /* the ink hero cards: a touch lighter than the page so they read as raised */
 html.dark .arete-hero { background:linear-gradient(135deg,#29292F 0%,#1D1D22 100%); box-shadow:0 14px 40px rgba(0,0,0,.45) !important; }
 html.dark img[src*="logo"] { background:#fff; border-radius:8px; }
@@ -32,7 +38,6 @@ html.dark .bg-\[\#F6FEF9\]{background-color:rgba(58,223,120,0.117)}
 html.dark .bg-\[\#F8F8F8\]{background-color:#222227}
 html.dark .bg-\[\#FAFAFA\]{background-color:#202025}
 html.dark .bg-\[\#FEF2F2\]{background-color:rgba(223,58,58,0.132)}
-html.dark .bg-\[\#FEF4F4\]{background-color:rgba(223,58,58,0.125)}
 html.dark .bg-\[\#FEF9F9\]{background-color:rgba(223,58,58,0.106)}
 html.dark .bg-\[\#FFF1E0\]{background-color:rgba(223,148,58,0.195)}
 html.dark .bg-\[\#FFF5F5\]{background-color:rgba(223,58,58,0.117)}
@@ -60,9 +65,9 @@ html.dark .hover\:bg-\[\#FAFAFA\]:hover{background-color:#202025}
 html.dark .hover\:bg-\[\#FEE2E2\]:hover{background-color:rgba(223,58,58,0.192)}
 html.dark .hover\:bg-\[\#FFF5F5\]:hover{background-color:rgba(223,58,58,0.117)}
 html.dark .hover\:text-\[\#111\]:hover{color:#f2f2f3}
-html.dark .hover\:text-\[\#C8202E\]:hover{color:#e95864}
 html.dark .text-\[\#111\]{color:#f2f2f3}
 html.dark .text-\[\#166534\]{color:#72e49e}
+html.dark .text-\[\#18181B\]{color:#ebebec}
 html.dark .text-\[\#1A5FB4\]{color:#5b9beb}
 html.dark .text-\[\#333\]{color:#d6d6d9}
 html.dark .text-\[\#444\]{color:#c9c9cd}
@@ -70,14 +75,11 @@ html.dark .text-\[\#555\]{color:#bbbbc0}
 html.dark .text-\[\#666\]{color:#adadb3}
 html.dark .text-\[\#6D28D9\]{color:#8e56e6}
 html.dark .text-\[\#777\]{color:#9f9fa7}
-html.dark .text-\[\#777777\]{color:#9f9fa7}
 html.dark .text-\[\#888\]{color:#92929a}
 html.dark .text-\[\#999\]{color:#84848d}
-html.dark .text-\[\#9A1822\]{color:#eb616c}
 html.dark .text-\[\#AAA\]{color:#767680}
 html.dark .text-\[\#B45309\]{color:#f69a53}
 html.dark .text-\[\#BBB\]{color:#73737d}
-html.dark .text-\[\#C8202E\]{color:#e95864}
 html.dark .text-\[\#CCC\]{color:#73737d}
 html.dark .text-\[\#DC2626\]{color:#e85454}
 html.dark .text-\[\#F59E0B\]{color:#f5b447}
@@ -99,14 +101,24 @@ html.dark [style^="color: rgb(17, 17, 17)"],
 html.dark [style*="; color: rgb(17, 17, 17)"]{color:#f2f2f3 !important}
 html.dark [style^="color: rgb(22, 101, 52)"],
 html.dark [style*="; color: rgb(22, 101, 52)"]{color:#72e49e !important}
+html.dark [style^="color: rgb(22, 163, 74)"],
+html.dark [style*="; color: rgb(22, 163, 74)"]{color:#5ded92 !important}
+html.dark [style^="color: rgb(24, 24, 27)"],
+html.dark [style*="; color: rgb(24, 24, 27)"]{color:#ebebec !important}
 html.dark [style^="color: rgb(26, 95, 180)"],
 html.dark [style*="; color: rgb(26, 95, 180)"]{color:#5b9beb !important}
+html.dark [style^="color: rgb(37, 99, 235)"],
+html.dark [style*="; color: rgb(37, 99, 235)"]{color:#4a7ff3 !important}
+html.dark [style^="color: rgb(43, 43, 49)"],
+html.dark [style*="; color: rgb(43, 43, 49)"]{color:#dadadd !important}
 html.dark [style^="color: rgb(43, 59, 166)"],
 html.dark [style*="; color: rgb(43, 59, 166)"]{color:#6978dd !important}
 html.dark [style^="color: rgb(46, 92, 230)"],
 html.dark [style*="; color: rgb(46, 92, 230)"]{color:#4e76ee !important}
 html.dark [style^="color: rgb(51, 51, 51)"],
 html.dark [style*="; color: rgb(51, 51, 51)"]{color:#d6d6d9 !important}
+html.dark [style^="color: rgb(63, 63, 70)"],
+html.dark [style*="; color: rgb(63, 63, 70)"]{color:#cacace !important}
 html.dark [style^="color: rgb(68, 68, 68)"],
 html.dark [style*="; color: rgb(68, 68, 68)"]{color:#c9c9cd !important}
 html.dark [style^="color: rgb(85, 85, 85)"],
@@ -121,6 +133,8 @@ html.dark [style^="color: rgb(107, 59, 11)"],
 html.dark [style*="; color: rgb(107, 59, 11)"]{color:#f3ac65 !important}
 html.dark [style^="color: rgb(109, 40, 217)"],
 html.dark [style*="; color: rgb(109, 40, 217)"]{color:#8e56e6 !important}
+html.dark [style^="color: rgb(113, 113, 122)"],
+html.dark [style*="; color: rgb(113, 113, 122)"]{color:#a1a1a8 !important}
 html.dark [style^="color: rgb(119, 119, 119)"],
 html.dark [style*="; color: rgb(119, 119, 119)"]{color:#9f9fa7 !important}
 html.dark [style^="color: rgb(124, 58, 237)"],
@@ -147,6 +161,10 @@ html.dark [style^="color: rgb(156, 163, 175)"],
 html.dark [style*="; color: rgb(156, 163, 175)"]{color:#7a7a84 !important}
 html.dark [style*="solid rgb(156, 163, 175)"],
 html.dark [style*="border-color: rgb(156, 163, 175)"]{border-color:#61616b !important}
+html.dark [style^="color: rgb(161, 161, 170)"],
+html.dark [style*="; color: rgb(161, 161, 170)"]{color:#7a7a84 !important}
+html.dark [style*="solid rgb(161, 161, 170)"],
+html.dark [style*="border-color: rgb(161, 161, 170)"]{border-color:#61616b !important}
 html.dark [style^="color: rgb(163, 16, 96)"],
 html.dark [style*="; color: rgb(163, 16, 96)"]{color:#f359ad !important}
 html.dark [style*="background: rgb(167, 243, 208)"],
@@ -189,8 +207,6 @@ html.dark [style*="background: rgb(212, 237, 218)"],
 html.dark [style*="background-color: rgb(212, 237, 218)"]{background-color:rgba(58,223,97,0.307) !important}
 html.dark [style*="solid rgb(212, 237, 218)"],
 html.dark [style*="border-color: rgb(212, 237, 218)"]{border-color:rgba(60,221,98,0.379) !important}
-html.dark [style^="color: rgb(214, 48, 62)"],
-html.dark [style*="; color: rgb(214, 48, 62)"]{color:#e35965 !important}
 html.dark [style^="color: rgb(217, 119, 6)"],
 html.dark [style*="; color: rgb(217, 119, 6)"]{color:#f6a74d !important}
 html.dark [style^="color: rgb(220, 38, 38)"],
@@ -329,10 +345,6 @@ html.dark [style*="background: rgb(254, 242, 242)"],
 html.dark [style*="background-color: rgb(254, 242, 242)"]{background-color:rgba(223,58,58,0.132) !important}
 html.dark [style*="solid rgb(254, 242, 242)"],
 html.dark [style*="border-color: rgb(254, 242, 242)"]{border-color:rgba(221,60,60,0.241) !important}
-html.dark [style*="background: rgb(254, 244, 244)"],
-html.dark [style*="background-color: rgb(254, 244, 244)"]{background-color:rgba(223,58,58,0.125) !important}
-html.dark [style*="solid rgb(254, 244, 244)"],
-html.dark [style*="border-color: rgb(254, 244, 244)"]{border-color:rgba(221,60,60,0.235) !important}
 html.dark [style*="background: rgb(254, 249, 249)"],
 html.dark [style*="background-color: rgb(254, 249, 249)"]{background-color:rgba(223,58,58,0.106) !important}
 html.dark [style*="solid rgb(254, 249, 249)"],

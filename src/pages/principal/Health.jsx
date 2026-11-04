@@ -71,7 +71,7 @@ export default function Health({ p, api }) {
       </Collapsible>
 
       <Collapsible header={<span className="text-[13.5px] font-bold text-[#111]">Medical Summary <span className="text-[11px] font-normal text-[#AAA]">from student records</span></span>}>
-        <div className="border-t border-[#E4E4E4] divide-y divide-[#E4E4E4]">{medical.map(([l, list]) => <div key={l} className="px-4 py-2.5"><div className="flex items-center"><span className="flex-1 text-[13px] font-semibold">{l}</span><span className="text-[13px] font-bold text-[#C8202E]">{list.length} student{list.length === 1 ? '' : 's'}</span></div>{list.length > 0 && <div className="text-[12px] text-[#777] mt-0.5">{list.map(s => s.name).join(', ')}</div>}</div>)}</div>
+        <div className="border-t border-[#E4E4E4] divide-y divide-[#E4E4E4]">{medical.map(([l, list]) => <div key={l} className="px-4 py-2.5"><div className="flex items-center"><span className="flex-1 text-[13px] font-semibold">{l}</span><span className="text-[13px] font-bold text-[#111]">{list.length} student{list.length === 1 ? '' : 's'}</span></div>{list.length > 0 && <div className="text-[12px] text-[#777] mt-0.5">{list.map(s => s.name).join(', ')}</div>}</div>)}</div>
       </Collapsible>
 
       <Modal open={open} onClose={() => setOpen(false)} title="Log Incident" footer={<><Button variant="outline" onClick={() => setOpen(false)}>Cancel</Button><Button onClick={saveInc}>Save Incident</Button></>}>

@@ -42,7 +42,7 @@ export default function CommandPalette({ open, onClose, items }) {
                   <span className="w-7 h-7 rounded-[8px] bg-[#F4F4F5] flex items-center justify-center text-[13px] flex-shrink-0">{r.icon}</span>
                   <span className="flex-1 text-[13px] font-semibold text-[#111] truncate">{r.label}</span>
                   {r.hint && <span className="text-[11.5px] text-[#999] truncate max-w-[200px]">{r.hint}</span>}
-                  {i === idx && <span className="text-[10.5px] text-[#C8202E] font-semibold">↵</span>}
+                  {i === idx && <span className="text-[10.5px] text-[#111] font-semibold">↵</span>}
                 </div>))}
             </div>))}
         </div>

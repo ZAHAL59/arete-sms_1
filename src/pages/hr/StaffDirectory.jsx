@@ -30,7 +30,7 @@ export default function StaffDirectory() {
       <PageHeader title="Staff Directory" subtitle={`${db.staff.length} active staff`} />
       <div className="grid grid-cols-4 gap-3 mb-5">
         {[
-          {label:'Total Staff',    value:db.staff.length,  color:'#C8202E'},
+          {label:'Total Staff',    value:db.staff.length,  color:'#18181B'},
           {label:'Teaching',       value:db.staff.length,  color:'#1A5FB4'},
           {label:'Monthly Payroll',value:'₹'+total.toLocaleString('en-IN'), color:'#166534'},
           {label:'Avg Salary',     value:'₹'+Math.round(total/db.staff.length).toLocaleString('en-IN'), color:'#6D28D9'},
@@ -55,7 +55,7 @@ export default function StaffDirectory() {
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
                       <div style={{background:COLORS[i%COLORS.length]}} className="w-8 h-8 rounded-full text-white text-[10px] font-bold flex items-center justify-center flex-shrink-0">{init}</div>
-                      <button onClick={()=>{setSel(s);setEditing(false);}} className="font-semibold text-[#C8202E] underline cursor-pointer bg-none border-none text-[13px]">{s.name}</button>
+                      <button onClick={()=>{setSel(s);setEditing(false);}} className="font-semibold text-[#111] underline cursor-pointer bg-none border-none text-[13px]">{s.name}</button>
                     </div>
                   </td>
                   <td className="px-4 py-2.5 text-[#555]">{s.subj}</td>
@@ -63,7 +63,7 @@ export default function StaffDirectory() {
                   <td className="px-4 py-2.5 text-[#555]">{s.joined}</td>
                   <td className="px-4 py-2.5 font-semibold text-[#111]">₹{s.salary.toLocaleString('en-IN')}</td>
                   <td className="px-4 py-2.5"><Badge variant="green">{s.status}</Badge></td>
-                  <td className="px-4 py-2.5"><button onClick={()=>{setSel(s);setEditing(false);}} className="text-[11px] font-semibold text-[#C8202E] underline cursor-pointer bg-none border-none">View</button></td>
+                  <td className="px-4 py-2.5"><button onClick={()=>{setSel(s);setEditing(false);}} className="text-[11px] font-semibold text-[#111] underline cursor-pointer bg-none border-none">View</button></td>
                 </tr>
               );
             })}
@@ -89,13 +89,13 @@ export default function StaffDirectory() {
                 <div key={k}>
                   <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">{l}</label>
                   <input value={form[k]||''} onChange={e=>setForm(f=>({...f,[k]:e.target.value}))}
-                    className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+                    className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
                 </div>
               ))}
               <div>
                 <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Monthly Salary (₹)</label>
                 <input type="number" value={form.salary||''} onChange={e=>setForm(f=>({...f,salary:e.target.value}))}
-                  className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+                  className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
               </div>
             </div>
           ) : (

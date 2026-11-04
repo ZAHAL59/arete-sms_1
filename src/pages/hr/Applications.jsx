@@ -27,12 +27,12 @@ export default function Applications({ hr, shortlist, reject, restore, markInvit
     <div className="p-6">
       <PageHeader title="Applications Inbox" subtitle="Candidates apply via the public careers page · applications arrive here automatically"
         actions={<>
-          <select value={vac} onChange={e => setVac(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]"><option value="">All Vacancies</option>{hr.vacancies.map(v => <option key={v.id} value={v.id}>{v.subj}</option>)}</select>
-          <select value={st} onChange={e => setSt(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]"><option value="">All Status</option>{['Pending Review', 'Shortlisted', 'Rejected'].map(s => <option key={s}>{s}</option>)}</select></>} />
+          <select value={vac} onChange={e => setVac(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]"><option value="">All Vacancies</option>{hr.vacancies.map(v => <option key={v.id} value={v.id}>{v.subj}</option>)}</select>
+          <select value={st} onChange={e => setSt(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]"><option value="">All Status</option>{['Pending Review', 'Shortlisted', 'Rejected'].map(s => <option key={s}>{s}</option>)}</select></>} />
       <div className="flex items-center gap-4 bg-[#F6F6F7] border border-[#FECACA] rounded-[10px] px-4 py-3 mb-5">
         <div className="text-[26px]">📥</div>
-        <div className="flex-1 text-[12.5px] text-[#555] leading-relaxed"><b className="text-[#9A1822] text-[14px]">Applications arrive here from the public Careers Page</b><br />Candidates visit the careers page, see your posted vacancies, fill in their details and upload their CV. Each submission lands here with an auto-score. HR reviews, shortlists or rejects, then proceeds to interview.</div>
-        <a href="/careers" target="_blank" rel="noreferrer" className="px-4 py-2 bg-[#C8202E] text-white text-[12.5px] font-bold rounded-[6px] no-underline whitespace-nowrap">Open Careers Page →</a>
+        <div className="flex-1 text-[12.5px] text-[#555] leading-relaxed"><b className="text-[#111] text-[14px]">Applications arrive here from the public Careers Page</b><br />Candidates visit the careers page, see your posted vacancies, fill in their details and upload their CV. Each submission lands here with an auto-score. HR reviews, shortlists or rejects, then proceeds to interview.</div>
+        <a href="/careers" target="_blank" rel="noreferrer" className="px-4 py-2 bg-[#18181B] text-white text-[12.5px] font-bold rounded-[6px] no-underline whitespace-nowrap">Open Careers Page →</a>
       </div>
 
       {!list.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] text-center py-16 px-6">
@@ -62,7 +62,7 @@ export default function Applications({ hr, shortlist, reject, restore, markInvit
                   <div className="flex items-center gap-2 mt-3 pt-3 border-t border-[#E4E4E4]">
                     {pending && <><Button size="sm" onClick={() => shortlist(a.id)}>✓ Shortlist</Button><Button size="sm" variant="outline" onClick={() => reject(a.id)}>✗ Reject</Button></>}
                     {a.hrStatus === 'Shortlisted' && !a.inviteSent && <Button size="sm" variant="outline" onClick={() => openInvite(a)}>📧 Send Interview Invite</Button>}
-                    {a.hrStatus === 'Shortlisted' && a.inviteSent && <span className="text-[11.5px] text-[#C8202E] font-semibold">✓ Invite sent · {dateFmt(a.inviteSentAt)}</span>}
+                    {a.hrStatus === 'Shortlisted' && a.inviteSent && <span className="text-[11.5px] text-[#111] font-semibold">✓ Invite sent · {dateFmt(a.inviteSentAt)}</span>}
                     {a.hrStatus === 'Rejected' && <Button size="sm" variant="outline" onClick={() => restore(a.id)}>↩ Undo Reject</Button>}
                     <span className="ml-auto text-[11px] text-[#AAA] font-mono">Ref: {a.id}</span>
                   </div>

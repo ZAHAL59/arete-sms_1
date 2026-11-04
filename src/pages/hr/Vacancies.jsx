@@ -36,7 +36,7 @@ export default function Vacancies({ hr, addVacancy, updateVacancy, go }) {
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] px-4 py-4 mb-5 flex items-center justify-around overflow-x-auto shadow-[0_1px_4px_rgba(0,0,0,.07)]">
         {strip.map(([l, n], i) => (
           <div key={l} className="flex items-center gap-4 flex-shrink-0">
-            <div className="text-center px-3"><div className="text-[26px] font-extrabold text-[#C8202E] font-mono leading-none">{n}</div><div className="text-[11.5px] text-[#777] mt-1 whitespace-nowrap">{l}</div></div>
+            <div className="text-center px-3"><div className="text-[26px] font-extrabold text-[#111] font-mono leading-none">{n}</div><div className="text-[11.5px] text-[#777] mt-1 whitespace-nowrap">{l}</div></div>
             {i < strip.length - 1 && <span className="text-[20px] text-[#CCC]">›</span>}
           </div>))}
       </div>
@@ -59,7 +59,7 @@ export default function Vacancies({ hr, addVacancy, updateVacancy, go }) {
             <div className="border-t border-[#E4E4E4] grid grid-cols-3 gap-5 p-4">
               <div><div className="text-[10.5px] text-[#AAA] mb-1">Requirements</div><div className="text-[13px] leading-relaxed text-[#333]">{v.qual} · {v.exp}<div className="text-[12px] text-[#777]">{v.skills || '—'}</div></div></div>
               <div className="col-span-2 flex items-center gap-6">
-                {[['CVs Filed', cands.length, '#111'], ['Shortlisted', shortlisted, '#C8202E'], ['Interviewed', interviewed, '#9A1822']].map(([l, n, c]) => <div key={l} className="text-center"><div className="text-[22px] font-extrabold" style={{ color: c }}>{n}</div><div className="text-[11px] text-[#AAA]">{l}</div></div>)}
+                {[['CVs Filed', cands.length, '#111'], ['Shortlisted', shortlisted, '#18181B'], ['Interviewed', interviewed, '#3F3F46']].map(([l, n, c]) => <div key={l} className="text-center"><div className="text-[22px] font-extrabold" style={{ color: c }}>{n}</div><div className="text-[11px] text-[#AAA]">{l}</div></div>)}
                 <div className="ml-auto"><Button size="sm" variant="outline" onClick={() => go('applications', v.id)}>View CVs →</Button></div>
               </div>
             </div>

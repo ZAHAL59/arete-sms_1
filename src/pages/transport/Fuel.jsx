@@ -34,7 +34,7 @@ export default function Fuel({ t, addFuel }) {
     <div className="p-6">
       <PageHeader title="Fuel Log" subtitle="Fill-ups, mileage and running cost"
         actions={<>
-          <select value={veh} onChange={e => setVeh(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">
+          <select value={veh} onChange={e => setVeh(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">
             <option value="">All vehicles</option>{db.routes.map(r => <option key={r.id}>{r.vehicle}</option>)}
           </select>
           <Button onClick={() => { setF(blank); setOpen(true); }}>+ Log Fuel</Button>
@@ -59,7 +59,7 @@ export default function Fuel({ t, addFuel }) {
                   <td className="px-4 py-2.5 text-[#555]">{x.driver}</td>
                   <td className="px-4 py-2.5 font-bold text-[#111]">{x.litres}L</td>
                   <td className="px-4 py-2.5 text-[#555]">₹{x.rate}</td>
-                  <td className="px-4 py-2.5 font-bold text-[#C8202E]">{fmt(x.amount)}</td>
+                  <td className="px-4 py-2.5 font-bold text-[#111]">{fmt(x.amount)}</td>
                   <td className="px-4 py-2.5 font-mono text-[12px] text-[#555]">{x.km || '—'}</td>
                   <td className="px-4 py-2.5 font-semibold" style={{ color: x.mileage >= 8 ? '#166534' : x.mileage > 0 ? '#DC2626' : '#AAA' }}>{x.mileage > 0 ? `${x.mileage} km/L` : '—'}</td>
                   <td className="px-4 py-2.5 text-[12px] text-[#777]">{x.station}</td>

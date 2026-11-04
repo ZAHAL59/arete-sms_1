@@ -45,13 +45,13 @@ export default function PrincipalClassic() {
   }[view];
 
   const Item = ({ id, label, icon }) => (
-    <div onClick={() => goTo(id)} className={`flex items-center gap-2.5 py-2 mx-2 rounded-[7px] text-[12.5px] cursor-pointer transition-all select-none ${view === id ? 'bg-[#F6F6F7] text-[#C8202E] font-semibold border-l-[3px] border-[#C8202E] rounded-l-none ml-0 pl-[11px] pr-3' : 'text-[#555] hover:bg-[#F6F6F7] hover:text-[#C8202E] px-3'}`}>
+    <div onClick={() => goTo(id)} className={`flex items-center gap-2.5 py-2 mx-2 rounded-[7px] text-[12.5px] cursor-pointer transition-all select-none ${view === id ? 'bg-[#F6F6F7] text-[#111] font-semibold border-l-[3px] border-[#71717A] rounded-l-none ml-0 pl-[11px] pr-3' : 'text-[#555] hover:bg-[#F6F6F7] hover:text-[#111] px-3'}`}>
       <span className="text-[14px] w-5 text-center flex-shrink-0">{icon}</span><span className="flex-1">{label}</span>
-      {badge[id] > 0 && <span className="text-[9px] font-bold bg-[#F6F6F7] text-[#C8202E] px-1.5 py-0.5 rounded-full">{badge[id]}</span>}
+      {badge[id] > 0 && <span className="text-[9px] font-bold bg-[#F6F6F7] text-[#111] px-1.5 py-0.5 rounded-full">{badge[id]}</span>}
     </div>
   );
   const Group = ({ id, title, children }) => (
-    <div><div onClick={() => setOpen(o => ({ ...o, [id]: !o[id] }))} className="flex items-center gap-1.5 px-4 pt-3 pb-1 cursor-pointer select-none text-[9.5px] font-bold tracking-[1.6px] uppercase text-[#AAA] hover:text-[#C8202E]"><span className={`transition-transform ${open[id] ? 'rotate-90' : ''}`}>›</span>{title}</div>{open[id] && children}</div>
+    <div><div onClick={() => setOpen(o => ({ ...o, [id]: !o[id] }))} className="flex items-center gap-1.5 px-4 pt-3 pb-1 cursor-pointer select-none text-[9.5px] font-bold tracking-[1.6px] uppercase text-[#AAA] hover:text-[#111]"><span className={`transition-transform ${open[id] ? 'rotate-90' : ''}`}>›</span>{title}</div>{open[id] && children}</div>
   );
 
   return (
@@ -64,12 +64,12 @@ export default function PrincipalClassic() {
         <nav className="flex-1 py-2 overflow-y-auto">
           <Item id="dashboard" label="Dashboard" icon="⊞" />
           {GROUPS.map(g => <Group key={g.id} id={g.id} title={g.title}>{g.items.map(([id, l, i]) => <Item key={id} id={id} label={l} icon={i} />)}</Group>)}
-          <Group id="conn" title="Connected Portals">{CONNECTED.map(([to, l, i]) => <Link key={to} to={to} className="flex items-center gap-2.5 py-2 mx-2 px-3 rounded-[7px] text-[12.5px] text-[#555] no-underline hover:bg-[#F6F6F7] hover:text-[#C8202E]"><span className="text-[14px] w-5 text-center">{i}</span><span className="flex-1">{l}</span><span className="text-[10px]">↗</span></Link>)}</Group>
+          <Group id="conn" title="Connected Portals">{CONNECTED.map(([to, l, i]) => <Link key={to} to={to} className="flex items-center gap-2.5 py-2 mx-2 px-3 rounded-[7px] text-[12.5px] text-[#555] no-underline hover:bg-[#F6F6F7] hover:text-[#111]"><span className="text-[14px] w-5 text-center">{i}</span><span className="flex-1">{l}</span><span className="text-[10px]">↗</span></Link>)}</Group>
         </nav>
         <div className="border-t border-[#E4E4E4] p-2">
-          <Link to="/" className="block px-3 py-1.5 text-[11.5px] text-[#777] no-underline hover:text-[#C8202E]">← All portals</Link>
+          <Link to="/" className="block px-3 py-1.5 text-[11.5px] text-[#777] no-underline hover:text-[#111]">← All portals</Link>
           <div onClick={() => setSettings({ ...p.settings })} className="flex items-center gap-2.5 px-2 py-2 rounded-[7px] cursor-pointer hover:bg-[#F6F6F7]" title="School settings">
-            <div className="w-8 h-8 rounded-full bg-[#C8202E] text-white text-[11px] font-bold flex items-center justify-center flex-shrink-0">MZ</div>
+            <div className="w-8 h-8 rounded-full bg-[#18181B] text-white text-[11px] font-bold flex items-center justify-center flex-shrink-0">MZ</div>
             <div className="flex-1 min-w-0"><div className="text-[12.5px] font-bold text-[#111]">Muhd Zahal</div><div className="text-[10.5px] text-[#AAA]">Principal · ⚙ Settings</div></div>
           </div>
         </div>

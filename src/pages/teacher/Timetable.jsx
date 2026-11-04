@@ -15,7 +15,7 @@ export default function Timetable() {
     <div className="p-6">
       <div className="mb-4">
         <div className="flex items-center gap-2 mb-1">
-          <span className="w-[3px] h-[18px] bg-[#C8202E] rounded-full inline-block"/>
+          <span className="w-[3px] h-[18px] bg-[#18181B] rounded-full inline-block"/>
           <h1 className="text-[20px] font-extrabold text-[#111]">Timetable</h1>
         </div>
         <p className="text-[12.5px] text-[#777] ml-3">Your classes are highlighted — tap any class to mark attendance</p>
@@ -36,7 +36,7 @@ export default function Timetable() {
             const isToday = di === cur.day, isPast = di < cur.day;
             return (
               <div key={di} className="p-3 text-center border-b border-r border-white/10"
-                style={{background: isToday ? '#9A1822' : 'linear-gradient(135deg,#C8202E,#9A1822)', opacity: isPast ? 0.55 : 1}}>
+                style={{background: isToday ? '#3F3F46' : 'linear-gradient(135deg,#C8202E,#9A1822)', opacity: isPast ? 0.55 : 1}}>
                 <div className="text-[9px] font-bold uppercase tracking-wider text-white/65">
                   {dt.toLocaleDateString('en-IN',{weekday:'short'})}
                 </div>
@@ -55,7 +55,7 @@ export default function Timetable() {
               <div key={pi} style={{display:'contents'}}>
                 {/* Time label */}
                 <div className="flex items-center justify-center p-2 text-center text-[9.5px] font-bold border-b border-r border-[#EBEBEB]"
-                  style={{background:'#F6F6F7',color:'#C8202E'}}>
+                  style={{background:'#F6F6F7',color:'#18181B'}}>
                   {per}
                 </div>
                 {/* Day cells */}
@@ -68,7 +68,7 @@ export default function Timetable() {
                     return (
                       <div key={di} className="flex items-center justify-center border-b border-r border-[#EBEBEB] min-h-[64px]"
                         style={{background:'#FFF5F5'}}>
-                        <span className="text-[11px] font-semibold" style={{color:'#C8202E',opacity:.35}}>Free</span>
+                        <span className="text-[11px] font-semibold" style={{color:'#18181B',opacity:.35}}>Free</span>
                       </div>
                     );
                   }
@@ -97,7 +97,7 @@ export default function Timetable() {
                       {isToday && !isStaff && (
                         marked
                           ? <div className="text-[10px] font-bold text-[#166534] mt-1">✓ Marked</div>
-                          : <div className="text-[10px] font-bold text-[#C8202E] mt-1 underline">Mark now</div>
+                          : <div className="text-[10px] font-bold text-[#111] mt-1 underline">Mark now</div>
                       )}
                       {isPast && !isStaff && <div className="text-[10px] font-bold text-[#166534] mt-1">✓ Done</div>}
                       {!isToday && !isPast && !isStaff && <div className="text-[10px] text-[#CCC] mt-1">Upcoming</div>}

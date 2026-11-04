@@ -16,7 +16,7 @@ export default function AppOverview({ cfg, app, go }) {
       </TwoCol>
       <TwoColTop className="mt-6">
         <div className="space-y-6">{(cfg.panels || []).map(p => (
-          <CPanel key={p.title} title={p.title} meta={p.meta} action={p.action && <button onClick={() => go(p.action.page)} className="text-[12px] font-semibold text-[#C8202E] cursor-pointer bg-none border-none">{p.action.label}</button>}>
+          <CPanel key={p.title} title={p.title} meta={p.meta} action={p.action && <button onClick={() => go(p.action.page)} className="text-[12px] font-semibold text-[#111] cursor-pointer bg-none border-none">{p.action.label}</button>}>
             {p.rows.length ? p.rows.map(r => <Row key={r.key} icon={r.icon} title={r.title} sub={r.sub} right={r.right} onClick={r.page ? () => go(r.page) : undefined} />) : <Empty icon={p.empty?.icon || '✓'} title={p.empty?.title || 'Nothing here'} sub={p.empty?.sub} />}
           </CPanel>))}
         </div>

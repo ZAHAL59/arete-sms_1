@@ -28,7 +28,7 @@ export function useHRSummary(hr, go) {
     const training = hr.training.filter(t => t.date >= TODAY).sort((a, b) => a.date.localeCompare(b.date));
     const attention = [
       ...pendingApps.slice(0, 5).map(a => ({ id: 'a' + a.id, letter: 'A', color: '#1A5FB4', title: `${a.name} — application`, sub: `${hr.vacancies.find(v => v.id === a.vacId)?.subj || ''} · score ${a.score}`, actions: [{ label: 'Review', run: () => go('applications') }] })),
-      ...pendingLeaves.map(l => ({ id: 'l' + l.id, letter: 'L', color: '#C8202E', title: `${staffName(l.staffId)} — ${l.type} leave`, sub: `${l.from} to ${l.to || l.from}`, actions: [{ label: 'Open', variant: 'outline', run: () => go('leave') }] })),
+      ...pendingLeaves.map(l => ({ id: 'l' + l.id, letter: 'L', color: '#18181B', title: `${staffName(l.staffId)} — ${l.type} leave`, sub: `${l.from} to ${l.to || l.from}`, actions: [{ label: 'Open', variant: 'outline', run: () => go('leave') }] })),
       ...(docsExpiring.length ? [{ id: 'docs', letter: 'D', color: '#B45309', title: `${plural(docsExpiring.length, 'staff document')} expiring within 30 days`, sub: 'Renew or replace', actions: [{ label: 'Open', variant: 'outline', run: () => go('documents') }] }] : []),
     ];
     return { db, staffName, pendingApps, openVacancies, pipeline, upcoming, pendingLeaves, onLeaveToday, absentToday, docsExpiring, training, attention };

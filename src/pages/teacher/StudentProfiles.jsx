@@ -28,9 +28,9 @@ export default function StudentProfiles() {
         actions={
           <div className="flex gap-2 flex-wrap">
             <input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search student..."
-              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E] w-44"/>
+              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A] w-44"/>
             <select value={cls} onChange={e=>setCls(e.target.value)}
-              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">
+              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">
               <option value="">All Classes</option>
               {TEACHER.classes.map(c => <option key={c}>{c}</option>)}
             </select>

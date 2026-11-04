@@ -77,7 +77,7 @@ export default function Attendance({ settings, p, api }) {
       {/* ── Student attendance ── */}
       <div className="flex items-center gap-2 flex-wrap mb-3">
         <div className="text-[14px] font-bold text-[#111] mr-2">🎒 Student Attendance</div>
-        <select value={cls} onChange={e => { setCls(e.target.value); setOpen(true); setSavedAt(null); }} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">{classes.map(c => <option key={c}>{c}</option>)}</select>
+        <select value={cls} onChange={e => { setCls(e.target.value); setOpen(true); setSavedAt(null); }} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">{classes.map(c => <option key={c}>{c}</option>)}</select>
         <Button variant="outline" onClick={exportRoll}>⬇ Export Roll</Button>
         <Button variant="outline" onClick={() => setAlertOpen(true)}>📱 Parent Alerts ({issues.length})</Button>
       </div>

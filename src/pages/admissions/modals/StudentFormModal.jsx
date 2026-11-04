@@ -40,7 +40,7 @@ export default function StudentFormModal({ student, onClose }) {
         <Field label="Hobbies & interests"><input value={f.hobbies} onChange={e => set('hobbies', e.target.value)} className={inputCls} /></Field>
         <Field label="Health / special needs"><input value={f.health} onChange={e => set('health', e.target.value)} className={inputCls} /></Field>
       </div>
-      <div className="mt-3 bg-[#F6F6F7] border border-[#FECACA] rounded-[6px] p-2.5 text-[12.5px] text-[#555]"><b>Fee breakdown ({f.cls}):</b> Terms {fmt(termOf(fs))} + Activity {fmt(fs.activity)}{transport ? ` + Transport ${fmt(transport)}` : ''}{hostel ? ` + Hostel ${fmt(hostel)}` : ''} = <b className="text-[#C8202E]">{fmt(total)} / year</b></div>
+      <div className="mt-3 bg-[#F6F6F7] border border-[#FECACA] rounded-[6px] p-2.5 text-[12.5px] text-[#555]"><b>Fee breakdown ({f.cls}):</b> Terms {fmt(termOf(fs))} + Activity {fmt(fs.activity)}{transport ? ` + Transport ${fmt(transport)}` : ''}{hostel ? ` + Hostel ${fmt(hostel)}` : ''} = <b className="text-[#111]">{fmt(total)} / year</b></div>
     </Modal>
   );
 }

@@ -87,7 +87,7 @@ export default function Departures({ t, addDeparture }) {
             </Field>
           </div>
           {route && stu && (
-            <div className="bg-[#F6F6F7] border border-[#FECACA] rounded-[6px] p-3 text-[12.5px] text-[#9A1822]">
+            <div className="bg-[#F6F6F7] border border-[#FECACA] rounded-[6px] p-3 text-[12.5px] text-[#111]">
               📱 <strong>SMS to driver {route.driver}:</strong><br />
               "{stu.name} ({stu.cls}) has LEFT SCHOOL EARLY at <strong>{time}</strong>. NO need to wait for them. — Arete Model School"
             </div>

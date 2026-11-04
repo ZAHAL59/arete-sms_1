@@ -41,14 +41,14 @@ export default function StudentLedger({ allPayments, recordPayment }) {
         actions={
           <div className="flex gap-2 flex-wrap">
             <input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search student..."
-              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E] w-40"/>
+              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A] w-40"/>
             <select value={grade} onChange={e=>setGrade(e.target.value)}
-              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">
+              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">
               <option value="">All Grades</option>
               {GRADES.map(g=><option key={g}>{g}</option>)}
             </select>
             <select value={filter} onChange={e=>setFilter(e.target.value)}
-              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">
+              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">
               <option value="all">All Students</option>
               <option value="paid">Fully Paid</option>
               <option value="partial">Partial</option>
@@ -64,7 +64,7 @@ export default function StudentLedger({ allPayments, recordPayment }) {
       {/* KPIs */}
       <div className="grid grid-cols-4 gap-3 mb-5">
         {[
-          {l:'Annual Due',      v:fmtL(totalDue),  c:'#C8202E'},
+          {l:'Annual Due',      v:fmtL(totalDue),  c:'#18181B'},
           {l:'Collected',       v:fmtL(totalPaid), c:'#166534'},
           {l:'Outstanding',     v:fmtL(outstanding),c:'#DC2626'},
           {l:'Showing',         v:`${students.length} students`,c:'#1A5FB4'},
@@ -113,7 +113,7 @@ export default function StudentLedger({ allPayments, recordPayment }) {
                       <td className="px-3.5 py-2.5"><Badge variant={status==='Paid'?'green':status==='Partial'?'amber':'red'}>{status}</Badge></td>
                       <td className="px-3.5 py-2.5">
                         <button onClick={()=>setPayStu(s.id)}
-                          className="text-[11px] font-semibold text-[#C8202E] underline cursor-pointer bg-none border-none">Pay →</button>
+                          className="text-[11px] font-semibold text-[#111] underline cursor-pointer bg-none border-none">Pay →</button>
                       </td>
                     </tr>
                   );

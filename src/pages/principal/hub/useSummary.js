@@ -24,7 +24,7 @@ export default function useSummary(p, nav) {
   // ── "Needs your attention": one list, each row can act on the spot ──
   const attention = [
     ...needCover.map(({ s, n }) => ({ id: 'cv' + s.id, letter: 'S', color: '#B45309', title: `${s.name} is away — ${n} period${n > 1 ? 's' : ''} need a substitute`, sub: 'Classes today without cover', actions: [{ label: 'Assign', run: () => nav.go('school', 'attendance') }] })),
-    ...pendingLeaves.map(l => ({ id: 'l' + l.id, letter: 'L', color: '#C8202E', title: `${staffName(l.staffId)} — ${l.type} leave`, sub: `${l.from} to ${l.to || l.from}${l.reason ? ' · ' + l.reason : ''}`,
+    ...pendingLeaves.map(l => ({ id: 'l' + l.id, letter: 'L', color: '#18181B', title: `${staffName(l.staffId)} — ${l.type} leave`, sub: `${l.from} to ${l.to || l.from}${l.reason ? ' · ' + l.reason : ''}`,
       actions: [{ label: 'Approve', run: () => { setLeaveStatus(l.id, 'Approved'); refresh(); } }, { label: 'Reject', variant: 'outline', run: () => { setLeaveStatus(l.id, 'Rejected'); refresh(); } }] })),
     ...pendingOutings.map(o => ({ id: 'o' + o.id, letter: 'O', color: '#B45309', title: `${o.stuName} — hostel outing (${o.purpose})`, sub: `${o.dep} to ${o.ret}`,
       actions: [{ label: 'Approve', run: () => { setOutingStatus(o.id, 'Approved'); refresh(); } }, { label: 'Reject', variant: 'outline', run: () => { setOutingStatus(o.id, 'Rejected'); refresh(); } }] })),

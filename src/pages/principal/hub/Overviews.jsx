@@ -25,7 +25,7 @@ export function SchoolOverview({ S, p, go }) {
         </div>
       </div>
       <div className="grid grid-cols-[1.45fr_1fr] gap-6 mt-6 items-start">
-        <CPanel title="Recently enrolled" meta={`${S.counts.students} student${S.counts.students === 1 ? '' : 's'}`} action={<button onClick={() => go('school', 'students')} className="text-[12px] font-semibold text-[#C8202E] cursor-pointer bg-none border-none">All students</button>}>
+        <CPanel title="Recently enrolled" meta={`${S.counts.students} student${S.counts.students === 1 ? '' : 's'}`} action={<button onClick={() => go('school', 'students')} className="text-[12px] font-semibold text-[#111] cursor-pointer bg-none border-none">All students</button>}>
           {S.recentStudents.length ? S.recentStudents.map(s => <Row key={s.id} icon="👤" title={s.name} sub={`${s.cls} ${s.section} · admitted ${prettyDate(s.adm)}`} onClick={() => go('school', 'students')} right={s.boarding ? <Badge variant="blue">Boarder</Badge> : null} />) : <Empty icon="👤" title="No students yet" />}
         </CPanel>
         <QuickActions items={[['🎓', 'New application', () => go('school', 'admissions')], ['✅', 'Mark attendance', () => go('school', 'attendance')], ['👤', 'Student records', () => go('school', 'students')], ['📅', 'Timetable', () => go('school', 'timetable')], ['💡', 'Digital learning', () => go('school', 'learning')], ['🩺', 'Health', () => go('school', 'health')]]} />
@@ -54,7 +54,7 @@ export function MoneyOverview({ S, go, route }) {
         </div>
       </div>
       <div className="grid grid-cols-[1.45fr_1fr] gap-6 mt-6 items-start">
-        <CPanel title="Recent leave requests" meta={S.counts.pendingLeaves ? `${S.counts.pendingLeaves} pending` : `${S.recentLeaves.length} recent`} action={<button onClick={() => go('money', 'staff')} className="text-[12px] font-semibold text-[#C8202E] cursor-pointer bg-none border-none">Staff & HR</button>}>
+        <CPanel title="Recent leave requests" meta={S.counts.pendingLeaves ? `${S.counts.pendingLeaves} pending` : `${S.recentLeaves.length} recent`} action={<button onClick={() => go('money', 'staff')} className="text-[12px] font-semibold text-[#111] cursor-pointer bg-none border-none">Staff & HR</button>}>
           {S.recentLeaves.length ? S.recentLeaves.map(l => <Row key={l.id} icon="🗓" title={`${S.db.staff.find(s => s.id === l.staffId)?.name || l.staffId} — ${l.type} leave`} sub={`${l.from} to ${l.to || l.from}`} right={<Badge variant={STATUS[l.status] || 'grey'}>{l.status}</Badge>} />) : <Empty icon="🗓" title="No leave requests" />}
         </CPanel>
         <QuickActions items={[['👥', 'Staff & HR', () => go('money', 'staff')], ['💰', 'Run payroll', () => go('money', 'payroll')], ['₹', 'Fee collection', () => go('money', 'fees')], ['📄', 'Fee report', () => go('office', 'reports')], ['👥', 'Open HR portal', () => route('/hr')], ['₹', 'Open Finance portal', () => route('/finance')]]} />
@@ -86,7 +86,7 @@ export function OfficeOverview({ S, p, go }) {
         </div>
       </div>
       <div className="grid grid-cols-[1.45fr_1fr] gap-6 mt-6 items-start">
-        <CPanel title="Recent announcements" meta={`${p.announcements.length} sent`} action={<button onClick={() => go('office', 'communication')} className="text-[12px] font-semibold text-[#C8202E] cursor-pointer bg-none border-none">All announcements</button>}>
+        <CPanel title="Recent announcements" meta={`${p.announcements.length} sent`} action={<button onClick={() => go('office', 'communication')} className="text-[12px] font-semibold text-[#111] cursor-pointer bg-none border-none">All announcements</button>}>
           {p.announcements.length ? p.announcements.slice(0, 5).map(a => <Row key={a.id} icon="📢" title={a.title} sub={`${prettyDate(a.sent)} · ${a.to}`} right={<Badge variant="grey">{a.channel}</Badge>} />) : <Empty icon="📢" title="No announcements yet" />}
         </CPanel>
         <QuickActions items={[['📢', 'New announcement', () => go('office', 'communication')], ['✉', 'Send a message', () => go('office', 'communication')], ['📄', 'Standard reports', () => go('office', 'reports')], ['🛠', 'Build a report', () => go('office', 'reports')]]} />
@@ -104,10 +104,10 @@ export function PortalsOverview({ S, route }) {
     <div className="max-w-[1240px] mx-auto px-8 pt-4 pb-14">
       <h1 className="text-[32px] font-extrabold tracking-tight text-[#111] mb-1.5">Portals</h1>
       <p className="text-[14px] text-[#777] mb-7">A live look at the other portals. Click a tile to open that portal.</p>
-      <div className="grid grid-cols-4 gap-5 mb-7">{S.indicators.map(([l, v, n, to]) => <Tile key={l} label={l} value={v} note={n} color={v ? '#C8202E' : '#166534'} onClick={() => route(to)} />)}</div>
+      <div className="grid grid-cols-4 gap-5 mb-7">{S.indicators.map(([l, v, n, to]) => <Tile key={l} label={l} value={v} note={n} color={v ? '#18181B' : '#166534'} onClick={() => route(to)} />)}</div>
       <Panel title="Open a portal">
         <div className="grid grid-cols-4 gap-4">{PORTALS.map(([to, name, icon, desc]) => (
-          <div key={to} onClick={() => route(to)} className="border border-[#F0F0F0] rounded-[18px] p-5 cursor-pointer hover:border-[#C8202E]/60 hover:bg-[#F6F6F7] transition-colors">
+          <div key={to} onClick={() => route(to)} className="border border-[#F0F0F0] rounded-[18px] p-5 cursor-pointer hover:border-[#71717A]/60 hover:bg-[#F6F6F7] transition-colors">
             <div className="w-10 h-10 rounded-[11px] bg-[#F6F6F7] flex items-center justify-center text-[18px] mb-2.5">{icon}</div><div className="text-[13.5px] font-bold text-[#111]">{name}</div><div className="text-[11.5px] text-[#999]">{desc}</div></div>))}</div>
       </Panel>
     </div>

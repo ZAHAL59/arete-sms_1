@@ -38,15 +38,15 @@ export default function Learning({ p, api }) {
 
   function saveUp() { if (!up.title.trim()) return; api.addResource({ ...up, title: up.title.trim(), thumb: { Video: '📹', Animation: '🎞', 'Curated Link': '🔗', 'PDF / Document': '📄', Quiz: '❓', 'AR Experience': '🥽', 'VR Experience': '🥽' }[up.type] || '🎮' }); setUp(null); setTab('library'); }
   function saveAsg() { if (!asg.resId || !asg.to) return; api.addAssignment({ ...asg, teacher: 'Principal', total: asg.total || 0 }); setAsg(null); setTab('tracking'); }
-  const sel = 'px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]';
+  const sel = 'px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]';
 
   return (
     <div className="p-6">
       <PageHeader title="Digital Learning" subtitle="Videos, activities, AR/VR and assignments"
         actions={<><Button variant="outline" onClick={() => setTab('tools')}>✏ Create Content</Button><Button variant="outline" onClick={() => setAsg({ resId: lib[0]?.id || '', to: 'Grade 8 — All', due: TODAY })}>+ Assign Resource</Button><Button onClick={() => setUp(blank())}>⬆ Upload Material</Button></>} />
-      <div className="grid grid-cols-4 gap-3 mb-4">{stat.map(([i, l, v, n]) => <div key={l} className="bg-white border border-[#E4E4E4] rounded-[10px] p-3.5 flex items-center gap-3"><div className="text-[24px]">{i}</div><div><div className="text-[10.5px] font-semibold text-[#AAA] uppercase tracking-wider">{l}</div><div className="text-[20px] font-extrabold text-[#C8202E] leading-tight">{v}</div><div className="text-[11px] text-[#AAA]">{n}</div></div></div>)}</div>
+      <div className="grid grid-cols-4 gap-3 mb-4">{stat.map(([i, l, v, n]) => <div key={l} className="bg-white border border-[#E4E4E4] rounded-[10px] p-3.5 flex items-center gap-3"><div className="text-[24px]">{i}</div><div><div className="text-[10.5px] font-semibold text-[#AAA] uppercase tracking-wider">{l}</div><div className="text-[20px] font-extrabold text-[#111] leading-tight">{v}</div><div className="text-[11px] text-[#AAA]">{n}</div></div></div>)}</div>
 
-      <div className="flex gap-1 mb-3 border-b border-[#E4E4E4] overflow-x-auto">{TABS.map(([id, l]) => <button key={id} onClick={() => setTab(id)} className={`px-3.5 py-2 text-[12.5px] font-semibold border-b-2 -mb-px cursor-pointer bg-none whitespace-nowrap ${tab === id ? 'border-[#C8202E] text-[#C8202E]' : 'border-transparent text-[#777]'}`}>{l}</button>)}</div>
+      <div className="flex gap-1 mb-3 border-b border-[#E4E4E4] overflow-x-auto">{TABS.map(([id, l]) => <button key={id} onClick={() => setTab(id)} className={`px-3.5 py-2 text-[12.5px] font-semibold border-b-2 -mb-px cursor-pointer bg-none whitespace-nowrap ${tab === id ? 'border-[#71717A] text-[#111]' : 'border-transparent text-[#777]'}`}>{l}</button>)}</div>
 
       {tabTypes && <div className="flex gap-2 flex-wrap mb-3 items-center">
         <select value={grade} onChange={e => setGrade(e.target.value)} className={sel}><option value="">All grades</option>{Array.from({ length: 12 }, (_, i) => `Grade ${i + 1}`).map(g => <option key={g}>{g}</option>)}</select>
@@ -60,7 +60,7 @@ export default function Learning({ p, api }) {
             <div className="flex items-start gap-3"><div className="w-10 h-10 rounded-[8px] flex items-center justify-center text-[20px] flex-shrink-0" style={{ background: c + '22', border: `1.5px solid ${c}44` }}>{r.thumb}</div><div className="flex-1 min-w-0"><div className="text-[13px] font-bold text-[#111] leading-snug">{r.title}</div><div className="text-[11px] text-[#AAA] mt-0.5">{r.grade} · {r.topic}{r.dur ? ` · ${r.dur}` : ''}</div></div></div>
             <div className="text-[12px] text-[#666] leading-relaxed flex-1">{r.desc}</div>
             <div className="flex items-center gap-2 text-[11px]"><Badge variant="grey">{r.type}</Badge><span className="text-[#F59E0B]">{stars(r.rating)}</span><span className="text-[#AAA] ml-auto">👁 {r.views} · {r.by}</span></div>
-            <div className="flex gap-2">{r.url ? <a href={r.url} target="_blank" rel="noreferrer" className="flex-1 text-center py-1.5 bg-[#C8202E] text-white text-[12px] font-semibold rounded-[6px] no-underline hover:bg-[#9A1822]">▶ Open</a> : <span className="flex-1 text-center py-1.5 bg-[#F2F2F2] text-[#AAA] text-[12px] font-semibold rounded-[6px]">No link yet</span>}<Button size="sm" variant="outline" onClick={() => setAsg({ resId: r.id, to: 'Grade 8 — All', due: TODAY })}>Assign</Button></div>
+            <div className="flex gap-2">{r.url ? <a href={r.url} target="_blank" rel="noreferrer" className="flex-1 text-center py-1.5 bg-[#18181B] text-white text-[12px] font-semibold rounded-[6px] no-underline hover:bg-[#2B2B31]">▶ Open</a> : <span className="flex-1 text-center py-1.5 bg-[#F2F2F2] text-[#AAA] text-[12px] font-semibold rounded-[6px]">No link yet</span>}<Button size="sm" variant="outline" onClick={() => setAsg({ resId: r.id, to: 'Grade 8 — All', due: TODAY })}>Assign</Button></div>
           </div>); })}</div>)}
 
       {tab === 'tracking' && <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden"><table className="w-full border-collapse text-[13px]"><thead><tr><Th>Assignment</Th><Th>Assigned to</Th><Th>Teacher</Th><Th>Due</Th><Th>Engaged</Th><Th>Done</Th></tr></thead>

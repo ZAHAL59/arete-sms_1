@@ -43,7 +43,7 @@ export default function Today({ onNavigate }) {
       {/* KPIs */}
       <div className="grid grid-cols-4 gap-3 mb-5">
         {[
-          {label:"Today's Classes", value:isWeekday?todayClasses.length:'—', note:'Mathematics', color:'#C8202E'},
+          {label:"Today's Classes", value:isWeekday?todayClasses.length:'—', note:'Mathematics', color:'#18181B'},
           {label:'Students',        value:stuCount, note:'Across all classes', color:'#1A5FB4'},
           {label:'Pending',         value:isWeekday?Math.max(0,todayClasses.length-marked):'—', note:'Not yet marked', color:'#B45309'},
           {label:'New Alerts',      value:DEMO_ANN.length, note:'From Principal / HR', color:'#6D28D9'},
@@ -77,7 +77,7 @@ export default function Today({ onNavigate }) {
                 const isNow = pIdx === cur.period && dow === cur.day;
                 return (
                   <div key={i} className={`flex items-center gap-3 px-4 py-3 ${isNow?'bg-[#EFF6FF]':''}`}>
-                    <span className="bg-[#F6F6F7] text-[#C8202E] text-[10px] font-bold px-2 py-1 rounded-[4px] whitespace-nowrap">{timeLabel}</span>
+                    <span className="bg-[#F6F6F7] text-[#111] text-[10px] font-bold px-2 py-1 rounded-[4px] whitespace-nowrap">{timeLabel}</span>
                     {isNow && <span className="text-[10px] font-bold text-[#1A5FB4]">● Now</span>}
                     <div className="flex-1">
                       <div className="text-[13px] font-semibold">{p.cls}</div>
@@ -111,7 +111,7 @@ export default function Today({ onNavigate }) {
         </div>
       } className="mb-3">
         <div className="p-4">
-          <div className="border-l-[3px] border-[#C8202E] bg-[#F6F6F7] rounded-r-[8px] p-3">
+          <div className="border-l-[3px] border-[#71717A] bg-[#F6F6F7] rounded-r-[8px] p-3">
             <div className="text-[13.5px] font-bold text-[#111]">{DEMO_ANN[0].title}</div>
             <div className="text-[12.5px] text-[#555] mt-1 leading-relaxed">{DEMO_ANN[0].msg}</div>
             <div className="text-[11px] text-[#AAA] mt-2">{DEMO_ANN[0].sent} · To: {DEMO_ANN[0].to}</div>

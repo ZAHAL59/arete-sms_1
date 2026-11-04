@@ -1,4 +1,4 @@
-export const inputCls = 'w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E] focus:shadow-[0_0_0_3px_#F6F6F7] bg-white font-[inherit]';
+export const inputCls = 'w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A] focus:shadow-[0_0_0_3px_#F6F6F7] bg-white font-[inherit]';
 
 export function Field({ label, children, className = '' }) {
   return (
@@ -9,7 +9,7 @@ export function Field({ label, children, className = '' }) {
   );
 }
 
-export function Kpi({ label, value, note, color = '#C8202E' }) {
+export function Kpi({ label, value, note, color = '#18181B' }) {
   return (
     <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-3.5 shadow-[0_1px_4px_rgba(0,0,0,.07)]" style={{ borderLeft:`3px solid ${color}` }}>
       <div className="text-[10.5px] font-semibold text-[#AAA] uppercase tracking-wider mb-1">{label}</div>

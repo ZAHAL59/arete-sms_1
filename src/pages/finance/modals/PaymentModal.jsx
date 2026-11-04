@@ -40,7 +40,7 @@ export default function PaymentModal({ onClose, onSave, prefillStudent }) {
       <div className="mb-3">
         <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Student *</label>
         <select value={stuId} onChange={e=>setStuId(e.target.value)}
-          className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]">
+          className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]">
           <option value="">Select student...</option>
           {db.students.map(s=><option key={s.id} value={s.id}>{s.name} — {s.cls}</option>)}
         </select>
@@ -49,35 +49,35 @@ export default function PaymentModal({ onClose, onSave, prefillStudent }) {
         <div>
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Category</label>
           <select value={cat} onChange={e=>setCat(e.target.value)}
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]">
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]">
             {FEE_CATEGORIES.map(c=><option key={c}>{c}</option>)}
           </select>
         </div>
         <div>
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Amount (₹) *</label>
           <input type="number" value={amt} onChange={e=>setAmt(e.target.value)}
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
-          {hint && <div className="text-[11px] text-[#C8202E] mt-1">{hint}</div>}
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
+          {hint && <div className="text-[11px] text-[#111] mt-1">{hint}</div>}
         </div>
       </div>
       <div className="grid grid-cols-2 gap-3 mb-3">
         <div>
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Payment Mode</label>
           <select value={mode} onChange={e=>setMode(e.target.value)}
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]">
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]">
             {PAY_MODES.map(m=><option key={m}>{m}</option>)}
           </select>
         </div>
         <div>
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Date</label>
           <input type="date" value={date} onChange={e=>setDate(e.target.value)}
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
         </div>
       </div>
       <div>
         <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Reference / Transaction ID</label>
         <input value={ref} onChange={e=>setRef(e.target.value)} placeholder="UPI ref, cheque number..."
-          className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+          className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
       </div>
     </Modal>
   );

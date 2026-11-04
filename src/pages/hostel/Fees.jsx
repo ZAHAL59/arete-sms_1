@@ -74,7 +74,7 @@ export default function Fees({ h, setFeeHeads }) {
   const shown = rows.filter(r => has(r.s, mf.q) && (!mf.cls || `${r.s.cls} ${r.s.section}`.trim() === mf.cls) && (!mf.status || (mf.status === 'arrears' ? r.arrearsTotal > 0 : statusKey(r) === mf.status)));
   const mfActive = !!(mf.q || mf.cls || mf.status);
   const tot = k => shown.reduce((a, r) => a + (r.started ? r[k] : 0), 0);
-  const tabBtn = (id, l) => <button onClick={() => setTab(id)} className={`px-4 py-2 text-[13px] font-semibold border-b-2 -mb-px cursor-pointer bg-none ${tab === id ? 'border-[#C8202E] text-[#C8202E]' : 'border-transparent text-[#777] hover:text-[#111]'}`}>{l}</button>;
+  const tabBtn = (id, l) => <button onClick={() => setTab(id)} className={`px-4 py-2 text-[13px] font-semibold border-b-2 -mb-px cursor-pointer bg-none ${tab === id ? 'border-[#71717A] text-[#111]' : 'border-transparent text-[#777] hover:text-[#111]'}`}>{l}</button>;
 
   return (
     <div className="p-6">
@@ -84,7 +84,7 @@ export default function Fees({ h, setFeeHeads }) {
 
       {tab === 'monthly' && <>
         <div className="flex items-center gap-2 mb-4"><span className="text-[12px] text-[#777]">Fee month</span>
-          <select value={month} onChange={e => setMonth(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">{months.map(m => <option key={m} value={m}>{monthName(m)}</option>)}</select>
+          <select value={month} onChange={e => setMonth(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">{months.map(m => <option key={m} value={m}>{monthName(m)}</option>)}</select>
           <span className="text-[11.5px] text-[#AAA]">Due by {dueDate(month).split('-').reverse().join('/')}</span></div>
         <div className="grid grid-cols-4 gap-3 mb-5">
           <Kpi label={`Fee for ${monthShort(month)}`} value={fmt(dueThis)} note={`${rows.filter(r => r.started).length} inmates`} color="#1A5FB4" />
@@ -110,7 +110,7 @@ export default function Fees({ h, setFeeHeads }) {
                   <td className="px-4 py-2.5 font-mono text-[12px] font-bold" style={{ color: r.bal ? '#DC2626' : '#166534' }}>{!r.started ? '—' : r.bal ? fmt(r.bal) : '✓ Clear'}</td>
                   <td className="px-4 py-2.5 font-mono text-[12px]" style={{ color: r.arrearsTotal ? '#DC2626' : '#AAA' }}>{r.arrearsTotal ? <>{fmt(r.arrearsTotal)} <span className="text-[10.5px] text-[#AAA]">({r.arrears.length} mo)</span></> : '–'}</td>
                   <td className="px-4 py-2.5"><Badge variant={v}>{l}</Badge></td>
-                  <td className="px-4 py-2.5 whitespace-nowrap">{r.total > 0 && <Button size="sm" onClick={() => setCollect(r.s)}>Collect</Button>}{last && <button onClick={() => setReceipt(last)} className="text-[11px] font-semibold text-[#C8202E] underline cursor-pointer bg-none border-none ml-3">Receipt</button>}</td>
+                  <td className="px-4 py-2.5 whitespace-nowrap">{r.total > 0 && <Button size="sm" onClick={() => setCollect(r.s)}>Collect</Button>}{last && <button onClick={() => setReceipt(last)} className="text-[11px] font-semibold text-[#111] underline cursor-pointer bg-none border-none ml-3">Receipt</button>}</td>
                 </tr>); })}</tbody>
             {shown.length > 0 && <tfoot><tr className="bg-[#F8F8F8] font-bold"><td className="px-4 py-2.5" colSpan={3}>Total{mfActive ? ' (filtered)' : ''}</td><td className="px-4 py-2.5 font-mono text-[12px]">{fmt(tot('fee'))}</td><td className="px-4 py-2.5 font-mono text-[12px] text-[#166534]">{fmt(tot('paid'))}</td><td className="px-4 py-2.5 font-mono text-[12px] text-[#DC2626]">{fmt(tot('bal'))}</td><td className="px-4 py-2.5 font-mono text-[12px] text-[#DC2626]">{fmt(tot('arrearsTotal'))}</td><td colSpan={2} /></tr></tfoot>}
           </table>
@@ -160,7 +160,7 @@ export default function Fees({ h, setFeeHeads }) {
           <tbody>{!history.length ? <tr><td colSpan={6} className="text-center py-8 text-[#AAA]">No hostel payments yet</td></tr> : !rShown.length ? <tr><td colSpan={6} className="text-center py-8 text-[#AAA]">No receipts match these filters</td></tr> : rShown.map(p => (
             <tr key={p.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]">
               <td className="px-4 py-2.5 text-[#555]">{p.date}</td>
-              <td className="px-4 py-2.5"><button onClick={() => setReceipt(p)} className="font-mono text-[11.5px] text-[#C8202E] underline cursor-pointer bg-none border-none">{p.id}</button></td>
+              <td className="px-4 py-2.5"><button onClick={() => setReceipt(p)} className="font-mono text-[11.5px] text-[#111] underline cursor-pointer bg-none border-none">{p.id}</button></td>
               <td className="px-4 py-2.5 font-semibold text-[#111]">{nameOf(p) || '—'}</td>
               <td className="px-4 py-2.5 text-[#555]">{forLabel(p)}</td>
               <td className="px-4 py-2.5"><Badge variant={p.mode?.includes('Online') ? 'blue' : p.mode === 'Cash' ? 'green' : 'amber'}>{p.mode}</Badge></td>
@@ -172,7 +172,7 @@ export default function Fees({ h, setFeeHeads }) {
       {headPay && <HeadCollect student={headPay.student} head={headPay.head} balance={headStatus(pays, headPay.student.id, headPay.head).balance} onClose={() => setHeadPay(null)} onSave={f => saveHead(headPay.student, headPay.head, f)} />}
       {structure && <StructureModal heads={heads} monthly={boarders[0] ? feeOf(boarders[0]) : MONTHLY_FEE} onClose={() => setStructure(false)} onSave={l => { setFeeHeads(l); setStructure(false); }} />}
       {issued && <Modal open onClose={() => setIssued(null)} title="Receipts issued" subtitle={`${issued.length} receipts — one for each month paid`} footer={<Button variant="outline" onClick={() => setIssued(null)}>Close</Button>}>
-        <div className="border border-[#E4E4E4] rounded-[8px] divide-y divide-[#E4E4E4]">{issued.map(p => <div key={p.id} className="flex items-center gap-3 px-3 py-2.5 text-[12.5px]"><span className="font-mono text-[11.5px] text-[#C8202E] font-bold">{p.id}</span><span className="flex-1 text-[#555]">{monthName(p.period)}</span><b className="font-mono">{fmt(p.amount)}</b><Button size="sm" variant="outline" onClick={() => { setIssued(null); setReceipt(p); }}>View</Button></div>)}</div></Modal>}
+        <div className="border border-[#E4E4E4] rounded-[8px] divide-y divide-[#E4E4E4]">{issued.map(p => <div key={p.id} className="flex items-center gap-3 px-3 py-2.5 text-[12.5px]"><span className="font-mono text-[11.5px] text-[#111] font-bold">{p.id}</span><span className="flex-1 text-[#555]">{monthName(p.period)}</span><b className="font-mono">{fmt(p.amount)}</b><Button size="sm" variant="outline" onClick={() => { setIssued(null); setReceipt(p); }}>View</Button></div>)}</div></Modal>}
       {receipt && <ReceiptModal payment={receipt} onClose={() => setReceipt(null)} />}
     </div>
   );

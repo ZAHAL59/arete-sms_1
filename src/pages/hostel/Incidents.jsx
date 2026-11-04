@@ -33,7 +33,7 @@ export default function Incidents({ h, addIncident, resolveIncident }) {
       <PageHeader title="Incident Log" subtitle="Hostel incidents and actions taken"
         actions={<>
           <select value={filter} onChange={e => setFilter(e.target.value)}
-            className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">
+            className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">
             <option value="all">All</option><option>Open</option><option>Resolved</option>
             {INCIDENT_TYPES.map(t => <option key={t}>{t}</option>)}
           </select>

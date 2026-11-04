@@ -33,7 +33,7 @@ export default function HubHome({ portal, firstName, prompt, pulse, apps, badges
         const n = a.pages.reduce((s, p) => s + (badges[p[0]] || 0), 0);
         return (
           <div key={a.id} onClick={() => onOpen(a.id)} role="link" aria-label={`Open ${a.name}`} className="relative bg-white rounded-[26px] p-7 pb-8 cursor-pointer shadow-[0_2px_16px_rgba(0,0,0,.045)] hover:shadow-[0_12px_34px_rgba(0,0,0,.10)] hover:-translate-y-0.5 transition-all">
-            {n > 0 && <span className="absolute top-5 right-5 text-[10.5px] font-bold bg-[#C8202E] text-white px-2 py-0.5 rounded-full">{n}</span>}
+            {n > 0 && <span className="absolute top-5 right-5 text-[10.5px] font-bold bg-accent text-white px-2 py-0.5 rounded-full">{n}</span>}
             <div className="w-16 h-16 rounded-[18px] bg-[#F6F6F7] flex items-center justify-center text-[28px] mb-10">{a.icon}</div>
             <div className="text-[17px] font-bold text-[#111]">{a.name}</div>
             <div className="text-[13px] text-[#777] mt-1 leading-snug">{a.desc}</div>
@@ -45,8 +45,8 @@ export default function HubHome({ portal, firstName, prompt, pulse, apps, badges
           {today.length ? today.map(i => <Row key={i.id} icon="🕘" title={i.title} sub={i.time || 'All day'} right={i.tag ? <Badge variant="grey">{i.tag}</Badge> : null} />) : (
             <><Empty icon="📅" title="Nothing scheduled today" sub={upcoming.length ? 'Coming up next:' : 'Events and interviews will show here'} />{upcoming.slice(0, 3).map(e => <Row key={e.id} icon={e.date ? <DateChip iso={e.date} /> : '📅'} title={e.title} sub={e.sub} right={e.tag ? <Badge variant="grey">{e.tag}</Badge> : null} />)}</>)}
         </CPanel>
-        <CPanel title="Needs your attention" meta={attention.length ? <b className="text-[#C8202E]">{attention.length} item{attention.length > 1 ? 's' : ''}</b> : 'All clear ✓'}>
-          {attention.length ? <>{items.map(i => <AttentionRow key={i.id} item={i} />)}{attention.length > 5 && <button onClick={() => setAll(a => !a)} className="mt-2 text-[12px] font-semibold text-[#C8202E] cursor-pointer bg-none border-none">{all ? 'Show fewer' : `Show all ${attention.length}`}</button>}</> : <Empty title="Nothing needs your attention" sub="Requests and reminders will appear here" />}
+        <CPanel title="Needs your attention" meta={attention.length ? <b className="text-accent">{attention.length} item{attention.length > 1 ? 's' : ''}</b> : 'All clear ✓'}>
+          {attention.length ? <>{items.map(i => <AttentionRow key={i.id} item={i} />)}{attention.length > 5 && <button onClick={() => setAll(a => !a)} className="mt-2 text-[12px] font-semibold text-[#111] cursor-pointer bg-none border-none">{all ? 'Show fewer' : `Show all ${attention.length}`}</button>}</> : <Empty title="Nothing needs your attention" sub="Requests and reminders will appear here" />}
         </CPanel>
       </div>
     </div>

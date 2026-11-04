@@ -16,8 +16,8 @@ export default function FeeStructureModal({ onClose, onSaved }) {
         <thead><tr><th className="px-2 py-2 text-left text-[10px] font-bold text-[#AAA] uppercase">Grade</th>{COLS.map(([, l]) => <th key={l} className="px-1 py-2 text-right text-[10px] font-bold text-[#AAA] uppercase">{l}</th>)}<th className="px-2 py-2 text-right text-[10px] font-bold text-[#AAA] uppercase">Day-scholar / yr</th></tr></thead>
         <tbody>{FEE_GRADES.map(g => (
           <tr key={g} className="border-t border-[#E4E4E4]"><td className="px-2 py-1.5 font-bold whitespace-nowrap">{g}</td>
-            {COLS.map(([k]) => <td key={k} className="px-1 py-1"><input value={fs[g][k]} onChange={e => set(g, k, e.target.value)} className="w-[72px] text-right font-mono text-[12px] px-1.5 py-1 border border-[#E4E4E4] rounded-[5px] outline-none focus:border-[#C8202E]" /></td>)}
-            <td className="px-2 py-1.5 text-right font-mono font-bold text-[#C8202E]">{fmt(termOf(fs[g]) + fs[g].activity)}</td></tr>))}</tbody>
+            {COLS.map(([k]) => <td key={k} className="px-1 py-1"><input value={fs[g][k]} onChange={e => set(g, k, e.target.value)} className="w-[72px] text-right font-mono text-[12px] px-1.5 py-1 border border-[#E4E4E4] rounded-[5px] outline-none focus:border-[#71717A]" /></td>)}
+            <td className="px-2 py-1.5 text-right font-mono font-bold text-[#111]">{fmt(termOf(fs[g]) + fs[g].activity)}</td></tr>))}</tbody>
       </table></div>
       <p className="text-[11.5px] text-[#AAA] mt-3">Annual due = Term 1–3 + Activity, plus Transport for bus riders and Hostel for boarders. Admission is a one-time fee and is not counted in the annual due.</p>
     </Modal>

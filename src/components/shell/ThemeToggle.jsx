@@ -8,7 +8,7 @@ export function ThemeToggle({ className = '' }) {
   const { dark, toggle } = useTheme();
   return (
     <button onClick={toggle} aria-label="Toggle dark mode" aria-pressed={dark} title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className={`relative w-9 h-9 rounded-full border border-[#E4E4E4] bg-white flex items-center justify-center text-[#555] cursor-pointer hover:border-[#C8202E]/50 hover:text-[#C8202E] ${className}`}>{dark ? <Sun /> : <Moon />}</button>
+      className={`relative w-9 h-9 rounded-full border border-[#E4E4E4] bg-white flex items-center justify-center text-[#555] cursor-pointer hover:border-[#71717A]/50 hover:text-[#111] ${className}`}>{dark ? <Sun /> : <Moon />}</button>
   );
 }
 
@@ -21,7 +21,7 @@ export function AppearancePicker() {
       <div className="grid grid-cols-3 gap-1 p-1 rounded-[10px] bg-[#F4F4F5]" role="radiogroup" aria-label="Appearance">
         {[['light', '☀', 'Light'], ['dark', '☾', 'Dark'], ['system', '◐', 'System']].map(([id, icon, label]) => (
           <button key={id} role="radio" aria-checked={pref === id} onClick={() => setPref(id)}
-            className={`flex items-center justify-center gap-1.5 py-1.5 rounded-[8px] text-[11.5px] font-semibold cursor-pointer border-none ${pref === id ? 'bg-white text-[#C8202E] shadow-[0_1px_4px_rgba(0,0,0,.12)]' : 'bg-transparent text-[#777] hover:text-[#111]'}`}><span>{icon}</span>{label}</button>))}
+            className={`flex items-center justify-center gap-1.5 py-1.5 rounded-[8px] text-[11.5px] font-semibold cursor-pointer border-none ${pref === id ? 'bg-white text-[#111] shadow-[0_1px_4px_rgba(0,0,0,.12)]' : 'bg-transparent text-[#777] hover:text-[#111]'}`}><span>{icon}</span>{label}</button>))}
       </div>
     </div>
   );

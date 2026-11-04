@@ -31,14 +31,14 @@ export default function PaymentHistory({ allPayments, recordPayment }) {
         actions={
           <div className="flex gap-2 flex-wrap">
             <input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search student..."
-              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E] w-40"/>
+              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A] w-40"/>
             <select value={cat} onChange={e=>setCat(e.target.value)}
-              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">
+              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">
               <option value="">All Categories</option>
               {FEE_CATEGORIES.map(c=><option key={c}>{c}</option>)}
             </select>
             <select value={mode} onChange={e=>setMode(e.target.value)}
-              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">
+              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">
               <option value="">All Modes</option>
               {modes.map(m=><option key={m}>{m}</option>)}
             </select>
@@ -68,7 +68,7 @@ export default function PaymentHistory({ allPayments, recordPayment }) {
                       <td className="px-4 py-2.5 font-bold font-mono text-[#166534]">{fmt(p.amount)}</td>
                       <td className="px-4 py-2.5 text-[#555]">{p.date}</td>
                       <td className="px-4 py-2.5"><Badge variant={p.mode?.includes('Online')?'blue':p.mode==='Cash'?'green':'amber'}>{p.mode}</Badge></td>
-                      <td className="px-4 py-2.5"><button onClick={()=>setRcpt(p)} className="font-mono text-[11px] text-[#C8202E] underline cursor-pointer bg-none border-none">{p.id}</button></td>
+                      <td className="px-4 py-2.5"><button onClick={()=>setRcpt(p)} className="font-mono text-[11px] text-[#111] underline cursor-pointer bg-none border-none">{p.id}</button></td>
                     </tr>
                   );
                 })

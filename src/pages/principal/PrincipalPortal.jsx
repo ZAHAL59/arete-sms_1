@@ -38,7 +38,7 @@ export default function PrincipalPortal() {
     { label: 'Students', value: S.counts.students, note: `${S.counts.boarders} boarders`, run: () => go('school', 'students') },
     { label: 'Attendance today', value: S.attendance.pct == null ? '—' : `${S.attendance.pct}%`, note: S.attendance.pct == null ? 'Not marked yet' : `${S.attendance.absent} absent`, color: '#1A5FB4', run: () => go('school', 'attendance') },
     { label: 'Fees collected', value: `${S.fees.pct}%`, note: `${fmtL(S.fees.collected)} of ${fmtL(S.fees.totalDue)}`, color: '#166534', run: () => go('money', 'fees') },
-    { label: 'Pending approvals', value: S.attention.length, note: 'Leave, outings, cover…', color: S.attention.length ? '#C8202E' : '#166534' },
+    { label: 'Pending approvals', value: S.attention.length, note: 'Leave, outings, cover…', color: S.attention.length ? '#18181B' : '#166534' },
   ];
   const upcoming = S.upcomingEvents.slice(0, 3).map(e => ({ id: 'u' + e.id, date: e.date, title: e.title, sub: `${prettyDate(e.date)} · ${e.time || ''}`, tag: e.type }));
   const entities = useMemo(() => [

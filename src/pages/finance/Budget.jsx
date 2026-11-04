@@ -51,7 +51,7 @@ export default function Budget({ fin, allPayments, addBudgetLine, updateBudgetLi
         actions={
           <div className="flex gap-2">
             <select value={period} onChange={e=>setPeriod(e.target.value)}
-              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">
+              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">
               <option value="ay">Full Academic Year</option>
               <option value="t1">Term 1 (Jun–Sep)</option>
               <option value="t2">Term 2 (Oct–Jan)</option>
@@ -65,13 +65,13 @@ export default function Budget({ fin, allPayments, addBudgetLine, updateBudgetLi
       />
 
       <div className="bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] p-3 mb-5 text-[12.5px] text-[#555] leading-relaxed">
-        ℹ️ <strong className="text-[#111]">Budget</strong> — your planned annual spend. <strong className="text-[#111]">Actual</strong> — auto-calculated from payments. Change period above to filter by term. <strong className="text-[#111]">Reset Actuals</strong> starts a fresh count from today; budgets and payment records are untouched.{fin.actualsFrom && <> Counting from <b>{fin.actualsFrom}</b> <button onClick={()=>setActualsFrom(null)} className="underline text-[#C8202E] cursor-pointer bg-none border-none">(clear)</button>.</>}
+        ℹ️ <strong className="text-[#111]">Budget</strong> — your planned annual spend. <strong className="text-[#111]">Actual</strong> — auto-calculated from payments. Change period above to filter by term. <strong className="text-[#111]">Reset Actuals</strong> starts a fresh count from today; budgets and payment records are untouched.{fin.actualsFrom && <> Counting from <b>{fin.actualsFrom}</b> <button onClick={()=>setActualsFrom(null)} className="underline text-[#111] cursor-pointer bg-none border-none">(clear)</button>.</>}
       </div>
 
       {/* KPIs */}
       <div className="grid grid-cols-4 gap-3 mb-5">
         {[
-          {l:'Total Budget',   v:fmtL(totBud),   c:'#C8202E'},
+          {l:'Total Budget',   v:fmtL(totBud),   c:'#18181B'},
           {l:'Total Actual',   v:fmtL(totAct),   c:'#DC2626'},
           {l:'Fee Income',     v:fmtL(totalCollected), c:'#166534'},
           {l:'Surplus/Deficit',v:fmtL(totalCollected-totAct), c:totalCollected>=totAct?'#166534':'#DC2626'},
@@ -101,7 +101,7 @@ export default function Budget({ fin, allPayments, addBudgetLine, updateBudgetLi
                   <div className="text-[10.5px] text-[#AAA]">{b.dept}</div>
                 </div>
                 <div className="flex-1 h-1.5 bg-[#E4E4E4] rounded-full overflow-hidden">
-                  <div className="h-full rounded-full transition-all" style={{width:`${Math.min(pct,100)}%`,background:over?'#DC2626':warn?'#B45309':'#C8202E'}}/>
+                  <div className="h-full rounded-full transition-all" style={{width:`${Math.min(pct,100)}%`,background:over?'#DC2626':warn?'#B45309':'#18181B'}}/>
                 </div>
                 <div className="text-right min-w-[140px]">
                   <div className="text-[11.5px] font-mono text-[#555]">{fmtL(b.actual)} <span className="text-[#AAA]">/ {fmtL(b.budgeted)}</span></div>
@@ -111,7 +111,7 @@ export default function Budget({ fin, allPayments, addBudgetLine, updateBudgetLi
                 </div>
                 <div className="flex gap-1">
                   <button onClick={()=>{setEditOpen(b);setForm({cat:b.cat,dept:b.dept,budgeted:String(b.budgeted)});}}
-                    className="text-[11px] font-semibold text-[#C8202E] underline cursor-pointer bg-none border-none">✎</button>
+                    className="text-[11px] font-semibold text-[#111] underline cursor-pointer bg-none border-none">✎</button>
                   <button onClick={()=>deleteBudgetLine(b.id)}
                     className="text-[11px] font-semibold text-[#DC2626] underline cursor-pointer bg-none border-none ml-1">✕</button>
                 </div>
@@ -130,19 +130,19 @@ export default function Budget({ fin, allPayments, addBudgetLine, updateBudgetLi
             <div>
               <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Category</label>
               <input value={form.cat} onChange={e=>setForm(f=>({...f,cat:e.target.value}))}
-                className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+                className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
             </div>
             <div>
               <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Department</label>
               <select value={form.dept} onChange={e=>setForm(f=>({...f,dept:e.target.value}))}
-                className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]">
+                className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]">
                 {BUDGET_DEPTS.map(d=><option key={d}>{d}</option>)}
               </select>
             </div>
             <div>
               <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Budgeted Amount (₹)</label>
               <input type="number" value={form.budgeted} onChange={e=>setForm(f=>({...f,budgeted:e.target.value}))}
-                className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+                className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
             </div>
           </div>
         </Modal>
@@ -157,13 +157,13 @@ export default function Budget({ fin, allPayments, addBudgetLine, updateBudgetLi
             <div key={k}>
               <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">{l}</label>
               <input value={form[k]||''} onChange={e=>setForm(f=>({...f,[k]:e.target.value}))} type={k==='budgeted'?'number':'text'}
-                className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+                className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
             </div>
           ))}
           <div>
             <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Department</label>
             <select value={form.dept} onChange={e=>setForm(f=>({...f,dept:e.target.value}))}
-              className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]">
+              className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]">
               {BUDGET_DEPTS.map(d=><option key={d}>{d}</option>)}
             </select>
           </div>

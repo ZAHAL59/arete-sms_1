@@ -52,7 +52,7 @@ export default function Routes({ addRoute, updateRoute }) {
               <div>
                 <div className="text-[10.5px] text-[#AAA] mb-1">Students</div>
                 <div className="text-[13px] font-bold text-[#111]">{students.length}{seats ? <span className="text-[#AAA] font-normal"> / {seats}</span> : ''}</div>
-                {seats > 0 && <div className="h-1.5 bg-[#E4E4E4] rounded-full mt-1.5 overflow-hidden"><div className="h-full rounded-full" style={{ width:`${Math.min(100, pct)}%`, background: pct > 90 ? '#DC2626' : '#C8202E' }} /></div>}
+                {seats > 0 && <div className="h-1.5 bg-[#E4E4E4] rounded-full mt-1.5 overflow-hidden"><div className="h-full rounded-full" style={{ width:`${Math.min(100, pct)}%`, background: pct > 90 ? '#DC2626' : '#18181B' }} /></div>}
               </div>
             </div>
           </Collapsible>

@@ -23,12 +23,12 @@ export default function PortalShell({ title, user, views, defaultView, children 
                 <div key={v.id} onClick={() => setView(v.id)}
                   className={`flex items-center gap-2.5 py-2 mx-2 rounded-[7px] text-[12.5px] cursor-pointer transition-all select-none
                     ${view === v.id
-                      ? 'bg-[#F6F6F7] text-[#C8202E] font-semibold border-l-[3px] border-[#C8202E] rounded-l-none ml-0 pl-[11px] pr-3'
-                      : 'text-[#555] hover:bg-[#F6F6F7] hover:text-[#C8202E] px-3'}`}
+                      ? 'bg-[#F6F6F7] text-[#111] font-semibold border-l-[3px] border-[#71717A] rounded-l-none ml-0 pl-[11px] pr-3'
+                      : 'text-[#555] hover:bg-[#F6F6F7] hover:text-[#111] px-3'}`}
                 >
                   <span className="text-[14px] w-5 text-center flex-shrink-0">{v.icon}</span>
                   <span className="flex-1">{v.label}</span>
-                  {v.badge && <span className="text-[9px] font-bold bg-[#C8202E] text-white px-1.5 py-0.5 rounded-full">{v.badge}</span>}
+                  {v.badge && <span className="text-[9px] font-bold bg-[#18181B] text-white px-1.5 py-0.5 rounded-full">{v.badge}</span>}
                 </div>
               ))}
             </div>
@@ -36,7 +36,7 @@ export default function PortalShell({ title, user, views, defaultView, children 
         </nav>
         {user && (
           <div className="flex items-center gap-2.5 px-3 py-3 border-t border-[#E4E4E4]">
-            <div className="w-8 h-8 rounded-full bg-[#C8202E] text-white text-[11px] font-bold flex items-center justify-center flex-shrink-0">{user.initials}</div>
+            <div className="w-8 h-8 rounded-full bg-[#18181B] text-white text-[11px] font-bold flex items-center justify-center flex-shrink-0">{user.initials}</div>
             <div className="min-w-0">
               <div className="text-[12.5px] font-bold text-[#111] truncate">{user.name}</div>
               <div className="text-[10.5px] text-[#AAA] truncate">{user.role}</div>

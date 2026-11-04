@@ -32,7 +32,7 @@ export default function Outing({ h, addOuting, setOutingStatus }) {
       <PageHeader title="Outing Requests" subtitle="Leave-of-absence from hostel"
         actions={<>
           <select value={filter} onChange={e => setFilter(e.target.value)}
-            className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">
+            className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">
             <option value="all">All</option><option>Pending Approval</option><option>Approved</option><option>Rejected</option>
           </select>
           <Button onClick={() => setOpen(true)}>+ New Request</Button>

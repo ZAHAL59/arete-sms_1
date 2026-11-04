@@ -22,7 +22,7 @@ export default function Pipeline({ A, onNavigate, hideNew = false }) {
       {/* KPI strip */}
       <div className="grid grid-cols-4 gap-3 mb-6">
         {[
-          {label:'Total', value:admissions.length, color:'#C8202E'},
+          {label:'Total', value:admissions.length, color:'#18181B'},
           {label:'Active Pipeline', value:active.length, color:'#1A5FB4'},
           {label:'Enrolled', value:enrolled, color:'#166534'},
           {label:'Waitlisted', value:admissions.filter(a=>a.stage==='Waitlisted').length, color:'#DC2626'},
@@ -48,7 +48,7 @@ export default function Pipeline({ A, onNavigate, hideNew = false }) {
               {matched.slice(0,2).map(a => (
                 <div key={a.id} className="text-[11px] text-[#555] truncate">· {a.name}</div>
               ))}
-              {matched.length>2 && <div className="text-[11px] text-[#C8202E] font-semibold">+{matched.length-2} more</div>}
+              {matched.length>2 && <div className="text-[11px] text-[#111] font-semibold">+{matched.length-2} more</div>}
             </div>
           );
         })}
@@ -58,7 +58,7 @@ export default function Pipeline({ A, onNavigate, hideNew = false }) {
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]">
         <div className="px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8] flex items-center justify-between">
           <div className="text-[13.5px] font-bold text-[#111]">Recent Applications</div>
-          <button onClick={() => onNavigate('list')} className="text-[12px] font-semibold text-[#C8202E] underline cursor-pointer bg-none border-none">View all →</button>
+          <button onClick={() => onNavigate('list')} className="text-[12px] font-semibold text-[#111] underline cursor-pointer bg-none border-none">View all →</button>
         </div>
         <table className="w-full border-collapse text-[13px]">
           <thead>
@@ -80,7 +80,7 @@ export default function Pipeline({ A, onNavigate, hideNew = false }) {
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-1.5">
                       <div className="h-1.5 bg-[#E4E4E4] rounded-full w-14 overflow-hidden">
-                        <div className="h-full bg-[#C8202E] rounded-full" style={{width:`${dc/dt*100}%`}}/>
+                        <div className="h-full bg-[#18181B] rounded-full" style={{width:`${dc/dt*100}%`}}/>
                       </div>
                       <span className="text-[11px] text-[#AAA]">{dc}/{dt}</span>
                     </div>

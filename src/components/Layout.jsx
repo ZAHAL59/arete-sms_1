@@ -25,8 +25,8 @@ function NavSection({ title, items }) {
           className={({ isActive }) =>
             `flex items-center gap-2.5 px-3 py-2 mx-2 rounded-[7px] text-[13px] font-medium cursor-pointer transition-all duration-150 no-underline ` +
             (isActive
-              ? 'bg-[#F6F6F7] text-[#C8202E] font-semibold border-l-[3px] border-[#C8202E] rounded-l-none ml-0 pl-[11px]'
-              : 'text-[#555] hover:bg-[#F6F6F7] hover:text-[#C8202E]')
+              ? 'bg-[#F6F6F7] text-[#111] font-semibold border-l-[3px] border-[#71717A] rounded-l-none ml-0 pl-[11px]'
+              : 'text-[#555] hover:bg-[#F6F6F7] hover:text-[#111]')
           }
         >
           <span className="text-[14px] w-5 text-center flex-shrink-0">{item.icon}</span>
@@ -62,7 +62,7 @@ export default function Layout({ children, user }) {
         {/* User */}
         {user && (
           <div className="flex items-center gap-2.5 px-3 py-3 border-t border-[#E4E4E4]">
-            <div className="w-8 h-8 rounded-full bg-[#C8202E] text-white text-[11px] font-bold flex items-center justify-center flex-shrink-0">
+            <div className="w-8 h-8 rounded-full bg-[#18181B] text-white text-[11px] font-bold flex items-center justify-center flex-shrink-0">
               {user.initials}
             </div>
             <div className="min-w-0">
@@ -86,7 +86,7 @@ export function PageHeader({ title, subtitle, actions }) {
     <div className="flex justify-between items-start mb-5 flex-wrap gap-3">
       <div>
         <div className="flex items-center gap-2">
-          <span className="w-[3px] h-[18px] bg-[#C8202E] rounded-full inline-block"></span>
+          <span className="w-[3px] h-[18px] bg-[#18181B] rounded-full inline-block"></span>
           <h1 className="text-[20px] font-extrabold text-[#111] tracking-tight">{title}</h1>
         </div>
         {subtitle && <p className="text-[12.5px] text-[#777] mt-1 ml-3">{subtitle}</p>}

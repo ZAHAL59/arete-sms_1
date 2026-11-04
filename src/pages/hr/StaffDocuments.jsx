@@ -16,7 +16,7 @@ export default function StaffDocuments({ hr, addStaffDoc, deleteStaffDoc }) {
   const name = id => staff.find(s => s.id === id)?.name || id;
   const rows = docs.filter(d => (!fs || d.staffId === fs) && (!ft || d.type === ft) && (!fst || docState(d.expiry).label === fst));
   const count = l => docs.filter(d => docState(d.expiry).label === l).length;
-  const sel = 'px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]';
+  const sel = 'px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]';
   function save() { if (!f.staffId || !f.type) return; addStaffDoc({ ...f, num: f.num || '—' }); setOpen(false); setF(blank); }
   return (
     <div className="p-6">

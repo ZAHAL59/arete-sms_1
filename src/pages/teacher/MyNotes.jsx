@@ -73,7 +73,7 @@ export default function MyNotes() {
         <div>
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Note</label>
           <textarea value={text} onChange={e=>setText(e.target.value)} placeholder="Write your note..." rows={4}
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] font-[inherit] outline-none focus:border-[#C8202E] focus:shadow-[0_0_0_3px_#F6F6F7] resize-y"/>
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] font-[inherit] outline-none focus:border-[#71717A] focus:shadow-[0_0_0_3px_#F6F6F7] resize-y"/>
         </div>
       </Modal>
     </div>

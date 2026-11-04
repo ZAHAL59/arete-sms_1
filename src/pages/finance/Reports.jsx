@@ -120,7 +120,7 @@ export default function Reports({ allPayments }) {
     setRes({ ...r, opts, id: type, meta: { period: rep.asOfToday ? `As of ${fmtDate(iso(new Date()))}` : uses('period') ? `${range.label}${range.from && period !== 'custom' ? ` (${fmtDate(range.from)} to ${fmtDate(range.to)})` : ''}` : 'Annual', filters, from: o.range.from, to: o.range.to, at: new Date().toLocaleString('en-IN') } });
   }
   const stale = res && res.opts !== opts;
-  const sel = 'w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E] bg-white';
+  const sel = 'w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A] bg-white';
   const off = k => uses(k) ? '' : ' opacity-50 cursor-not-allowed';
 
   return (
@@ -130,15 +130,15 @@ export default function Reports({ allPayments }) {
       <div className="bg-white border border-[#E4E4E4] rounded-[12px] p-5 mb-5 shadow-[0_1px_4px_rgba(0,0,0,.07)]">
         <Label>Report</Label>
         <div className="grid grid-cols-4 gap-2 mb-5">{REPORTS.map(r => (
-          <div key={r.id} onClick={() => setType(r.id)} title={r.desc} className={`px-3 py-2.5 rounded-[8px] border-[1.5px] cursor-pointer transition-all ${type === r.id ? 'border-[#C8202E] bg-[#F6F6F7]' : 'border-[#E4E4E4] hover:border-[#C8202E]'}`}>
-            <div className="flex items-center gap-2"><span className="text-[15px]">{r.icon}</span><span className={`text-[12.5px] font-bold ${type === r.id ? 'text-[#C8202E]' : 'text-[#111]'}`}>{r.label}</span></div></div>))}</div>
+          <div key={r.id} onClick={() => setType(r.id)} title={r.desc} className={`px-3 py-2.5 rounded-[8px] border-[1.5px] cursor-pointer transition-all ${type === r.id ? 'border-[#71717A] bg-[#F6F6F7]' : 'border-[#E4E4E4] hover:border-[#71717A]'}`}>
+            <div className="flex items-center gap-2"><span className="text-[15px]">{r.icon}</span><span className={`text-[12.5px] font-bold ${type === r.id ? 'text-[#111]' : 'text-[#111]'}`}>{r.label}</span></div></div>))}</div>
         <div className="text-[12px] text-[#777] -mt-3 mb-5">{rep.desc}</div>
 
         <div className="grid grid-cols-[1.2fr_1fr] gap-8 pt-4 border-t border-[#EEE]">
           <div>
             <Label note={rep.asOfToday ? 'Not applicable' : !uses('period') ? 'Annual' : ''}>Period</Label>
             {rep.asOfToday ? <div className="text-[12.5px] text-[#555] bg-[#F8F8F8] rounded-[8px] px-3 py-2.5">As of today — {fmtDate(iso(new Date()))}</div> : !uses('period') ? <div className="text-[12.5px] text-[#555] bg-[#F8F8F8] rounded-[8px] px-3 py-2.5">Current academic year</div> : <>
-              <div className="flex flex-wrap gap-1.5 mb-2">{PERIODS.map(([k, l]) => <button key={k} onClick={() => setPeriod(k)} className={`px-3 py-1.5 rounded-full text-[12px] font-semibold cursor-pointer border ${period === k ? 'bg-[#C8202E] text-white border-[#C8202E]' : 'bg-white text-[#555] border-[#E4E4E4] hover:border-[#C8202E]'}`}>{l}</button>)}</div>
+              <div className="flex flex-wrap gap-1.5 mb-2">{PERIODS.map(([k, l]) => <button key={k} onClick={() => setPeriod(k)} className={`px-3 py-1.5 rounded-full text-[12px] font-semibold cursor-pointer border ${period === k ? 'bg-[#18181B] text-white border-[#71717A]' : 'bg-white text-[#555] border-[#E4E4E4] hover:border-[#71717A]'}`}>{l}</button>)}</div>
               {period === 'custom' && <div className="flex items-end gap-3 mb-2"><Field label="From"><input type="date" value={custom.from} onChange={e => setCustom(c => ({ ...c, from: e.target.value }))} className={inputCls} /></Field><Field label="To"><input type="date" value={custom.to} min={custom.from} onChange={e => setCustom(c => ({ ...c, to: e.target.value }))} className={inputCls} /></Field></div>}
               <div className="text-[12px] text-[#777]">{range.label}{range.from && range.to && <>{period === 'custom' ? '' : ` · ${fmtDate(range.from)} to ${fmtDate(range.to)}`}{days ? ` · ${days} day${days > 1 ? 's' : ''}` : ''}</>}</div></>}
           </div>
@@ -162,7 +162,7 @@ export default function Reports({ allPayments }) {
             <Button size="sm" variant="outline" onClick={() => window.print()}>🖨 Print / PDF</Button><Button size="sm" onClick={() => downloadReport(res)}>⬇ Export CSV</Button></div>
           {stale && <div className="mt-2 text-[12px] text-[#B45309] bg-[#FFFBEB] border border-[#FEF08A] rounded-[6px] px-2.5 py-1.5">Options changed. Select Generate to refresh.</div>}
         </div>
-        {res.summary && <div className="px-4 py-2.5 border-b border-[#E4E4E4] flex gap-6 text-[12.5px]"><span><span className="text-[#AAA]">{res.summary.owed ? 'Total outstanding' : 'Total'}</span> <b className="font-mono text-[#C8202E] text-[15px]">{fmt(res.summary.total)}</b></span><span><span className="text-[#AAA]">{res.id === 'grade' ? 'Grades' : res.id === 'ledger' || res.id === 'outstanding' ? 'Students' : 'Payments'}</span> <b className="text-[#111]">{res.summary.count}</b></span></div>}
+        {res.summary && <div className="px-4 py-2.5 border-b border-[#E4E4E4] flex gap-6 text-[12.5px]"><span><span className="text-[#AAA]">{res.summary.owed ? 'Total outstanding' : 'Total'}</span> <b className="font-mono text-[#111] text-[15px]">{fmt(res.summary.total)}</b></span><span><span className="text-[#AAA]">{res.id === 'grade' ? 'Grades' : res.id === 'ledger' || res.id === 'outstanding' ? 'Students' : 'Payments'}</span> <b className="text-[#111]">{res.summary.count}</b></span></div>}
         <div className="overflow-x-auto"><table className="w-full border-collapse text-[13px]"><thead><tr>{res.columns.map(c => <th key={c} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#AAA] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8] whitespace-nowrap">{c}</th>)}</tr></thead>
           <tbody>{res.rows.length <= 1 && res.rows[0]?.[0] === 'TOTAL' || !res.rows.length ? <tr><td colSpan={res.columns.length} className="text-center py-10 text-[#AAA]">No records for {res.meta.period}{res.meta.filters === 'None' ? '' : ' with the selected filters'}.</td></tr> :
             res.rows.map((r, i) => <tr key={i} className={`border-b border-[#E4E4E4] last:border-b-0 ${r[0] === 'TOTAL' || r[2] === 'TOTAL' ? 'bg-[#F8F8F8] font-bold' : 'hover:bg-[#F8F8F8]'}`}>{r.map((c, j) => <td key={j} className="px-4 py-2.5 text-[#333] whitespace-nowrap">{typeof c === 'number' ? c.toLocaleString('en-IN') : c}</td>)}</tr>)}</tbody></table></div>

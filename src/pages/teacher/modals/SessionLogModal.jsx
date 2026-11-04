@@ -31,7 +31,7 @@ export default function SessionLogModal({ student, onClose }) {
         <div>
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Session Date</label>
           <input type="date" value={date} onChange={e=>setDate(e.target.value)}
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E] focus:shadow-[0_0_0_3px_#F6F6F7]"/>
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A] focus:shadow-[0_0_0_3px_#F6F6F7]"/>
         </div>
         <Select label="Session Type *" value={type} onChange={e=>setType(e.target.value)}>
           <option value="">— Select type —</option>
@@ -42,7 +42,7 @@ export default function SessionLogModal({ student, onClose }) {
         <div>
           <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Topic / Chapter *</label>
           <input value={topic} onChange={e=>setTopic(e.target.value)} placeholder="e.g. Algebra Ch.2"
-            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E] focus:shadow-[0_0_0_3px_#F6F6F7]"/>
+            className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A] focus:shadow-[0_0_0_3px_#F6F6F7]"/>
         </div>
         <Select label="Material Used" value={material} onChange={e=>setMaterial(e.target.value)}>
           <option value="">— None —</option>
@@ -53,7 +53,7 @@ export default function SessionLogModal({ student, onClose }) {
         <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Observation *</label>
         <textarea value={obs} onChange={e=>setObs(e.target.value)} rows={3}
           placeholder="How did this student engage? Any breakthrough or concern?"
-          className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E] resize-y font-[inherit]"/>
+          className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A] resize-y font-[inherit]"/>
       </div>
       <div className="mb-3">
         <label className="block text-[11.5px] font-semibold text-[#333] mb-2">Engagement</label>
@@ -70,7 +70,7 @@ export default function SessionLogModal({ student, onClose }) {
         <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Follow-up Action</label>
         <input value={followUp} onChange={e=>setFollowUp(e.target.value)}
           placeholder="e.g. Needs more practice, Excelled — extend with bonus problems"
-          className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+          className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
       </div>
     </Modal>
   );

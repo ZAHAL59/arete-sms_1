@@ -51,10 +51,10 @@ export default function Complaints({ addComplaint, resolveComplaint, addComplain
             <span className={`text-[11px] font-semibold flex-shrink-0 ${days > 7 ? 'text-[#DC2626]' : 'text-[#AAA]'}`}>{days} day{days === 1 ? '' : 's'}</span>
             <Button size="sm" onClick={e => { e.stopPropagation(); resolveComplaint(c.id); }}>Resolve</Button>
           </div>}>
-        <div className="p-4" style={{ borderLeft: `3px solid ${days > 7 ? '#DC2626' : '#C8202E'}` }}>
+        <div className="p-4" style={{ borderLeft: `3px solid ${days > 7 ? '#DC2626' : '#18181B'}` }}>
           <div className="text-[11.5px] text-[#AAA] mb-1">Logged {prettyDate(c.date)} · From: <span className="text-[#555] font-semibold">{c.who}</span> · Open {days} day{days === 1 ? '' : 's'}</div>
           <div className="text-[13.5px] font-bold text-[#111] mb-2">{c.subj}</div>
-          <div className="text-[12px] text-[#9A1822] bg-[#F6F6F7] rounded-[6px] px-2.5 py-1.5 mb-3">⚡ {c.action}</div>
+          <div className="text-[12px] text-[#111] bg-[#F6F6F7] rounded-[6px] px-2.5 py-1.5 mb-3">⚡ {c.action}</div>
           <div className="flex gap-2">
             <Button size="sm" onClick={() => resolveComplaint(c.id)}>Mark Resolved</Button>
             <Button size="sm" variant="outline" onClick={() => { setNoteFor(c.id); setNote(''); }}>Update Action</Button>

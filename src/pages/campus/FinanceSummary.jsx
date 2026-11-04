@@ -55,7 +55,7 @@ export default function FinanceSummary() {
       </Collapsible>
       <div className="grid grid-cols-2 gap-3">
         <Collapsible header={<span className="text-[13.5px] font-bold text-[#111]">Staff Payroll — {fmt(payroll)}/mo</span>}>
-          <div className="divide-y divide-[#E4E4E4] border-t border-[#E4E4E4]">{db.staff.map(s => <div key={s.id} className="flex items-center px-4 py-2.5"><div className="flex-1"><div className="text-[13px] font-semibold text-[#111]">{s.name}</div><div className="text-[11.5px] text-[#777]">{s.subj}</div></div><span className="text-[13px] font-bold text-[#C8202E]">{fmt(s.salary)}</span></div>)}</div>
+          <div className="divide-y divide-[#E4E4E4] border-t border-[#E4E4E4]">{db.staff.map(s => <div key={s.id} className="flex items-center px-4 py-2.5"><div className="flex-1"><div className="text-[13px] font-semibold text-[#111]">{s.name}</div><div className="text-[11.5px] text-[#777]">{s.subj}</div></div><span className="text-[13px] font-bold text-[#111]">{fmt(s.salary)}</span></div>)}</div>
         </Collapsible>
         <Collapsible header={<span className="text-[13.5px] font-bold text-[#111]">Recent Payments</span>}>
           <div className="divide-y divide-[#E4E4E4] border-t border-[#E4E4E4]">{db.payments.filter(p => p.studentId).slice(0, 8).map(p => <div key={p.id} className="flex items-center px-4 py-2.5"><div className="flex-1"><div className="text-[13px] font-semibold text-[#111]">{db.students.find(s => s.id === p.studentId)?.name || '—'}</div><div className="text-[11.5px] text-[#777]">{p.category} · {p.date}</div></div><span className="text-[13px] font-bold text-[#166534]">{fmt(p.amount)}</span></div>)}</div>

@@ -41,7 +41,7 @@ export default function GrowthTracker({ hr }) {
                 </div>
                 <div className="flex gap-2 flex-shrink-0 items-center">
                   <div className="text-center">
-                    <div className="text-[16px] font-extrabold text-[#C8202E]">{attPct}%</div>
+                    <div className="text-[16px] font-extrabold text-[#111]">{attPct}%</div>
                     <div className="text-[9px] text-[#AAA] uppercase tracking-wider">Training</div>
                   </div>
                   <div className="w-px h-8 bg-[#E4E4E4]"/>
@@ -57,7 +57,7 @@ export default function GrowthTracker({ hr }) {
               <div className="grid grid-cols-4 gap-3 mb-4">
                 {[
                   {label:'Sessions Attended', value:`${attended}/${sessionsDone.length}`, color:'#6D28D9'},
-                  {label:'Training %',         value:`${attPct}%`, color:'#C8202E'},
+                  {label:'Training %',         value:`${attPct}%`, color:'#18181B'},
                   {label:'Monthly Att.',        value:`${monthPct}%`, color:'#1A5FB4'},
                   {label:'Leave Requests',      value:leaveCount, color:'#B45309'},
                 ].map(k=>(

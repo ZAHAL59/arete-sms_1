@@ -77,7 +77,7 @@ export default function LeaveRequests({ hr, updateLeave, addLeave }) {
           <div className="col-span-2">
             <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Staff Member *</label>
             <select value={form.staffId} onChange={e=>setForm(f=>({...f,staffId:e.target.value}))}
-              className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]">
+              className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]">
               <option value="">— Select staff —</option>
               {db.staff.map(s=><option key={s.id} value={s.id}>{s.name}</option>)}
             </select>
@@ -88,22 +88,22 @@ export default function LeaveRequests({ hr, updateLeave, addLeave }) {
           <div>
             <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Days</label>
             <input type="number" min={1} value={form.days} onChange={e=>setForm(f=>({...f,days:parseInt(e.target.value)||1}))}
-              className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+              className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
           </div>
           <div>
             <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">From</label>
             <input type="date" value={form.from} onChange={e=>setForm(f=>({...f,from:e.target.value}))}
-              className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+              className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
           </div>
           <div>
             <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">To</label>
             <input type="date" value={form.to} onChange={e=>setForm(f=>({...f,to:e.target.value}))}
-              className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+              className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
           </div>
           <div className="col-span-2">
             <label className="block text-[11.5px] font-semibold text-[#333] mb-1.5">Reason</label>
             <input value={form.reason} onChange={e=>setForm(f=>({...f,reason:e.target.value}))}
-              className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#C8202E]"/>
+              className="w-full px-2.5 py-2 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[13px] outline-none focus:border-[#71717A]"/>
           </div>
         </div>
       </Modal>

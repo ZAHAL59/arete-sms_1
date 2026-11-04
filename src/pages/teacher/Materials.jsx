@@ -31,13 +31,13 @@ export default function Materials() {
               [types,'All Types',type,setType],
             ].map(([opts,placeholder,val,setter],i) => (
               <select key={i} value={val} onChange={e=>setter(e.target.value)}
-                className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]">
+                className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">
                 <option value="">{placeholder}</option>
                 {opts.map(o => <option key={o}>{o}</option>)}
               </select>
             ))}
             <input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search topic..."
-              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E] w-36"/>
+              className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A] w-36"/>
           </div>
         }
       />
@@ -45,7 +45,7 @@ export default function Materials() {
       {/* KPI strip */}
       <div className="grid grid-cols-4 gap-3 mb-5">
         {[
-          ['Showing', filtered.length, `of ${LMS_LIB.length} total`,'#C8202E'],
+          ['Showing', filtered.length, `of ${LMS_LIB.length} total`,'#18181B'],
           ['Your Resources', LMS_LIB.filter(m=>m.by===TEACHER.name).length, 'created by you','#1A5FB4'],
           ['AR / VR', LMS_LIB.filter(m=>m.type.includes('AR')||m.type.includes('VR')).length, 'immersive','#6D28D9'],
           ['Interactive', LMS_LIB.filter(m=>m.type==='Interactive Activity'||m.type==='Simulation').length, 'hands-on','#166534'],
@@ -75,7 +75,7 @@ export default function Materials() {
               <div className="flex flex-col items-end gap-2 flex-shrink-0">
                 <div className="text-[13px] text-amber-400">{'★'.repeat(Math.round(m.rating))}{'☆'.repeat(5-Math.round(m.rating))}</div>
                 {m.url
-                  ? <a href={m.url} target="_blank" rel="noreferrer" className="px-3 py-1.5 bg-[#C8202E] text-white text-[11.5px] font-semibold rounded-[6px] no-underline hover:bg-[#9A1822]">Open →</a>
+                  ? <a href={m.url} target="_blank" rel="noreferrer" className="px-3 py-1.5 bg-[#18181B] text-white text-[11.5px] font-semibold rounded-[6px] no-underline hover:bg-[#2B2B31]">Open →</a>
                   : <button className="px-3 py-1.5 bg-white border border-[#E4E4E4] text-[#555] text-[11.5px] font-semibold rounded-[6px] cursor-pointer hover:bg-[#F8F8F8]">Preview</button>}
               </div>
             </div>

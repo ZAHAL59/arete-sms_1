@@ -38,7 +38,7 @@ export default function FeeOverview({ allPayments, recordPayment }) {
         {[
           {label:'Total Collected',  value:fmtL(totalCollected), note:'All categories · AY 2026–27', color:'#166534'},
           {label:'Outstanding',      value:fmtL(outstanding),    note:`Pending from ${db.students.length} students`, color:'#DC2626'},
-          {label:'Collection %',     value:collPct+'%',          note:'Against annual due', color:'#C8202E'},
+          {label:'Collection %',     value:collPct+'%',          note:'Against annual due', color:'#18181B'},
           {label:'Transactions',     value:allPayments.filter(p=>p.studentId).length, note:'This academic year', color:'#1A5FB4'},
         ].map(k=>(
           <div key={k.label} className="bg-white border border-[#E4E4E4] rounded-[10px] p-4 shadow-[0_1px_4px_rgba(0,0,0,.07)]"
@@ -57,7 +57,7 @@ export default function FeeOverview({ allPayments, recordPayment }) {
           <span>{fmtL(totalCollected)} / {fmtL(totalDue)}</span>
         </div>
         <div className="h-3 bg-[#E4E4E4] rounded-full overflow-hidden">
-          <div className="h-full bg-[#C8202E] rounded-full transition-all" style={{width:`${collPct}%`}}/>
+          <div className="h-full bg-[#18181B] rounded-full transition-all" style={{width:`${collPct}%`}}/>
         </div>
         <div className="text-[11px] text-[#AAA] mt-1">{collPct}% collected · {fmtL(outstanding)} outstanding{otherCollected > 0 && <> · plus {fmt(otherCollected)} in admission fees, deposits and advances (not counted against annual fees)</>}</div>
       </div>
@@ -72,7 +72,7 @@ export default function FeeOverview({ allPayments, recordPayment }) {
             <div key={cat} className="flex items-center gap-3">
               <span className="text-[13px] text-[#333] font-medium min-w-[160px]">{cat}</span>
               <div className="flex-1 h-1.5 bg-[#E4E4E4] rounded-full overflow-hidden">
-                <div className="h-full bg-[#C8202E] rounded-full" style={{width:`${Math.min(100,total/totalCollected*100)}%`}}/>
+                <div className="h-full bg-[#18181B] rounded-full" style={{width:`${Math.min(100,total/totalCollected*100)}%`}}/>
               </div>
               <span className="text-[12.5px] font-bold text-[#111] font-mono min-w-[80px] text-right">{fmt(total)}</span>
               <span className="text-[11px] text-[#AAA] min-w-[60px]">{count} payments</span>
@@ -106,7 +106,7 @@ export default function FeeOverview({ allPayments, recordPayment }) {
                       <td className="px-4 py-2.5 font-bold font-mono text-[#166534]">{fmt(p.amount)}</td>
                       <td className="px-4 py-2.5 text-[#555]">{p.date}</td>
                       <td className="px-4 py-2.5"><Badge variant={p.mode?.includes('Online')?'blue':p.mode==='Cash'?'green':'amber'}>{p.mode}</Badge></td>
-                      <td className="px-4 py-2.5"><button onClick={()=>setRcpt(p)} className="font-mono text-[11px] text-[#C8202E] underline cursor-pointer bg-none border-none">{p.id}</button></td>
+                      <td className="px-4 py-2.5"><button onClick={()=>setRcpt(p)} className="font-mono text-[11px] text-[#111] underline cursor-pointer bg-none border-none">{p.id}</button></td>
                     </tr>
                   );
                 })

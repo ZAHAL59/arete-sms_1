@@ -14,7 +14,7 @@ function Section({ n, icon, title, state, defaultOpen, children }) {
   const badge = state === 'done' ? <Badge variant="green">✓ Done</Badge> : state === 'current' ? <Badge variant="blue">In progress</Badge> : <Badge variant="grey">Pending</Badge>;
   return (
     <Collapsible defaultOpen={defaultOpen ?? state === 'current'} className="mb-2"
-      header={<div className="flex items-center gap-3 flex-1"><div className="w-7 h-7 rounded-full text-white text-[12px] font-extrabold flex items-center justify-center flex-shrink-0" style={{ background: state === 'done' ? '#166534' : state === 'current' ? '#C8202E' : '#BBB' }}>{state === 'done' ? '✓' : n}</div><span className="text-[13.5px] font-bold text-[#111] flex-1">{icon} {title}</span>{badge}</div>}>
+      header={<div className="flex items-center gap-3 flex-1"><div className="w-7 h-7 rounded-full text-white text-[12px] font-extrabold flex items-center justify-center flex-shrink-0" style={{ background: state === 'done' ? '#166534' : state === 'current' ? '#18181B' : '#BBB' }}>{state === 'done' ? '✓' : n}</div><span className="text-[13.5px] font-bold text-[#111] flex-1">{icon} {title}</span>{badge}</div>}>
       <div className="p-4 border-t border-[#E4E4E4]">{children}</div>
     </Collapsible>
   );
@@ -56,7 +56,7 @@ export default function ApplicationDetailModal({ app, A, onClose }) {
       footer={<><span className="mr-auto text-[12px] text-[#DC2626] font-semibold">{err}</span><Button variant="outline" onClick={onClose}>Close</Button>
         {!enrolled && !waitlisted && pos < JOURNEY_STAGES.length - 1 && <Button variant="outline" onClick={() => A.advanceStage(a.id)}>Advance stage →</Button>}</>}>
       {/* stage banner */}
-      <div className="rounded-[10px] px-4 py-3 mb-4 text-white flex items-center gap-3" style={{ background: enrolled ? '#166534' : waitlisted ? '#DC2626' : '#C8202E' }}>
+      <div className="rounded-[10px] px-4 py-3 mb-4 text-white flex items-center gap-3" style={{ background: enrolled ? '#166534' : waitlisted ? '#DC2626' : '#18181B' }}>
         <div className="flex-1"><div className="text-[10.5px] opacity-75">Current stage</div><div className="text-[16px] font-extrabold">{a.stage}</div></div>
         {enrolled && <span className="bg-white/25 rounded-[6px] px-3 py-1.5 font-semibold text-[13px]">✓ Enrolled</span>}
         {waitlisted && <Button size="sm" variant="outline" onClick={() => A.setWaitlist(a.id, false)}>↩ Restore</Button>}
@@ -83,7 +83,7 @@ export default function ApplicationDetailModal({ app, A, onClose }) {
 
       <Section n={2} icon="📄" title={`Documents (${docs}/${docTotal})`} state={docs === docTotal ? 'done' : pos >= 2 ? 'current' : 'upcoming'} defaultOpen={false}>
         <div className="grid grid-cols-2 gap-2">{Object.entries(DOC_KEYS).map(([k, l]) => (
-          <div key={k} onClick={() => A.toggleDoc(a.id, k)} className={`flex items-center gap-2.5 p-2.5 rounded-[6px] cursor-pointer ${a.docs[k] ? 'bg-[#F0FDF4]' : 'bg-[#FFF5F5]'}`}><span className="text-[16px]">{a.docs[k] ? '✅' : '📄'}</span><div><div className="text-[12px] font-semibold text-[#111]">{l}</div><div className={`text-[10.5px] font-medium ${a.docs[k] ? 'text-[#166534]' : 'text-[#C8202E]'}`}>{a.docs[k] ? 'Received' : 'Pending — click to mark'}</div></div></div>))}</div>
+          <div key={k} onClick={() => A.toggleDoc(a.id, k)} className={`flex items-center gap-2.5 p-2.5 rounded-[6px] cursor-pointer ${a.docs[k] ? 'bg-[#F0FDF4]' : 'bg-[#FFF5F5]'}`}><span className="text-[16px]">{a.docs[k] ? '✅' : '📄'}</span><div><div className="text-[12px] font-semibold text-[#111]">{l}</div><div className={`text-[10.5px] font-medium ${a.docs[k] ? 'text-[#166534]' : 'text-[#111]'}`}>{a.docs[k] ? 'Received' : 'Pending — click to mark'}</div></div></div>))}</div>
       </Section>
 
       <Section n={3} icon="🗓" title="Interview / assessment" state={a.interviewDate && a.interviewTime ? 'done' : pos >= 3 ? 'current' : 'upcoming'}>

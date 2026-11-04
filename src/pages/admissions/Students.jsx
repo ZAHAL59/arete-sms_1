@@ -22,12 +22,12 @@ export function StudentDetail({ student, onClose, onEdit }) {
   const [copied, setCopied] = useState(false);
   const rows = [['Learning style', s.learningStyle || '—'], ['Diet', s.diet || '—'], ['Travel', s.boarding ? 'Boarding' : route ? 'Bus' : 'Own transport'], ['Health', s.health || 'None'], ['Special needs', s.needs || 'None'], ['Parent', `${s.parentName || '—'} ${s.parentPhone || ''}`]];
   const summary = `${s.name} · ${s.cls} ${s.section} · Parent: ${s.parentName} ${s.parentPhone} · Learning style: ${s.learningStyle || '—'} · Diet: ${s.diet || '—'} · Health: ${s.health || 'None'} · Needs: ${s.needs || 'None'}`;
-  const svc = (ic, title, on, lines) => <div className={`border-[1.5px] rounded-[8px] p-3 ${on ? 'border-[#C8202E]/40 bg-[#F6F6F7]' : 'border-[#E4E4E4]'}`}><div className="text-[11px] font-bold text-[#777] uppercase tracking-wider mb-1">{ic} {title}</div>{lines}</div>;
+  const svc = (ic, title, on, lines) => <div className={`border-[1.5px] rounded-[8px] p-3 ${on ? 'border-[#71717A]/40 bg-[#F6F6F7]' : 'border-[#E4E4E4]'}`}><div className="text-[11px] font-bold text-[#777] uppercase tracking-wider mb-1">{ic} {title}</div>{lines}</div>;
   return (
     <Modal open onClose={onClose} size="lg" title={s.name} subtitle={`${s.cls} ${s.section} · Roll ${s.roll || '—'} · Admitted ${s.adm}`}
       footer={<><Button variant="outline" onClick={() => { navigator.clipboard?.writeText(summary); setCopied(true); }}>{copied ? '✓ Copied' : '📋 Copy profile summary'}</Button><Button variant="outline" onClick={onClose}>Close</Button><Button onClick={() => onEdit(s)}>✎ Edit</Button></>}>
       <div className="grid grid-cols-3 gap-2 mb-4">{rows.map(([l, v]) => <div key={l} className="bg-[#F8F8F8] p-2.5 rounded-[6px]"><div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-1">{l}</div><div className="text-[13px] font-semibold text-[#333]">{v}</div></div>)}</div>
-      <div className="text-[11px] font-bold text-[#C8202E] uppercase tracking-wider mb-2">Connected services</div>
+      <div className="text-[11px] font-bold text-[#111] uppercase tracking-wider mb-2">Connected services</div>
       <div className="grid grid-cols-3 gap-2 mb-2">
         {svc('🚌', 'Transport', !!route, route ? <><div className="text-[13px] font-bold">{route.name}</div><div className="text-[11.5px] text-[#777]">{route.driver} · dep {route.dept}</div></> : <div className="text-[12.5px] text-[#AAA]">Own transport</div>)}
         {svc('🏠', 'Hostel', !!s.boarding, s.boarding ? <><div className="text-[13px] font-bold">{room ? `Room ${room.id}` : 'Boarder'}</div><div className="text-[11.5px] text-[#777]">{room ? room.type : 'No room allotted yet'}</div></> : <div className="text-[12.5px] text-[#AAA]">Day scholar</div>)}
@@ -45,7 +45,7 @@ export default function Students() {
   const [detail, setDetail] = useState(null); const [form, setForm] = useState(undefined);   // undefined = closed, null = new, obj = edit
   const grades = [...new Set(db.students.map(s => s.cls))].sort();
   const rows = db.students.filter(s => (!grade || s.cls === grade) && (!section || s.section === section) && (!q || `${s.name} ${s.cls} ${s.section}`.toLowerCase().includes(q.toLowerCase())));
-  const sc = 'px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#C8202E]';
+  const sc = 'px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]';
   const exportCsv = () => downloadCsv(`students_${new Date().toISOString().slice(0, 10)}.csv`, ['ID', 'Name', 'Class', 'Section', 'Bus route', 'Boarding', 'Learning style', 'Diet', 'Parent', 'Phone'],
     rows.map(s => [s.id, s.name, s.cls, s.section, db.routes.find(r => r.id === s.busRoute)?.name || '—', s.boarding ? 'Yes' : 'No', s.learningStyle, s.diet, s.parentName, s.parentPhone]));
   return (
@@ -63,7 +63,7 @@ export default function Students() {
         <thead><tr><Th>Student</Th><Th>Class</Th><Th>Transport</Th><Th>Boarding</Th><Th>Learning</Th><Th>Diet</Th><Th>Status</Th><Th /></tr></thead>
         <tbody>{!rows.length ? <tr><td colSpan={8} className="text-center py-12 text-[#AAA]">No students found</td></tr> : rows.map((s, i) => { const r = db.routes.find(x => x.id === s.busRoute); return (
           <tr key={s.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]">
-            <td className="px-3.5 py-2.5"><div className="flex items-center gap-2"><div style={{ background: COLORS[i % COLORS.length] }} className="w-7 h-7 rounded-full text-white text-[10px] font-bold flex items-center justify-center">{s.name.split(' ').map(w => w[0]).join('').slice(0, 2)}</div><div><button onClick={() => setDetail(s)} className="font-semibold text-[#C8202E] underline cursor-pointer bg-none border-none text-[13px] text-left">{s.name}</button><div className="text-[11px] text-[#AAA]">{s.parentName} · {s.parentPhone}</div></div></div></td>
+            <td className="px-3.5 py-2.5"><div className="flex items-center gap-2"><div style={{ background: COLORS[i % COLORS.length] }} className="w-7 h-7 rounded-full text-white text-[10px] font-bold flex items-center justify-center">{s.name.split(' ').map(w => w[0]).join('').slice(0, 2)}</div><div><button onClick={() => setDetail(s)} className="font-semibold text-[#111] underline cursor-pointer bg-none border-none text-[13px] text-left">{s.name}</button><div className="text-[11px] text-[#AAA]">{s.parentName} · {s.parentPhone}</div></div></div></td>
             <td className="px-3.5 py-2.5 text-[#555]">{s.cls} {s.section}</td><td className="px-3.5 py-2.5">{r ? <Badge variant="amber">{r.name.split('—')[0].trim()}</Badge> : <span className="text-[#AAA]">Own</span>}</td>
             <td className="px-3.5 py-2.5">{s.boarding ? <Badge variant="blue">Boarder</Badge> : <span className="text-[#AAA]">Day</span>}</td><td className="px-3.5 py-2.5"><Badge variant="grey">{s.learningStyle || '—'}</Badge></td><td className="px-3.5 py-2.5 text-[#555] text-[12px]">{s.diet}</td>
             <td className="px-3.5 py-2.5"><Badge variant="green">{s.status || 'Active'}</Badge>{s.needs && s.needs !== 'None' && <Badge variant="amber" className="ml-1">SEN</Badge>}</td>

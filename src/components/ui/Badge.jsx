@@ -1,15 +1,9 @@
-const VARIANTS = {
-  green:  'bg-[#F0FDF4] text-[#166534]',
-  red:    'bg-[#FEF2F2] text-[#DC2626]',
-  amber:  'bg-[#FFFBEB] text-[#B45309]',
-  blue:   'bg-[#EFF5FF] text-[#1A5FB4]',
-  purple: 'bg-[#F5F3FF] text-[#6D28D9]',
-  grey:   'bg-[#F2F2F2] text-[#777777]',
-  red2:   'bg-[#FEF4F4] text-[#C8202E]',
-};
+const DOT = { green: '#16A34A', red: '#DC2626', amber: '#D97706', blue: '#2563EB', purple: '#7C3AED', grey: '#A1A1AA', red2: '#C8202E' };
+// A neutral pill with a small coloured dot — colour carries the meaning, not a filled block.
 export default function Badge({ children, variant = 'grey', className = '' }) {
   return (
-    <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10.5px] font-semibold ${VARIANTS[variant] || VARIANTS.grey} ${className}`}>
+    <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-[#E4E4E4] bg-white text-[10.5px] font-semibold text-[#444] whitespace-nowrap ${className}`}>
+      <i className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: DOT[variant] || DOT.grey }} />
       {children}
     </span>
   );

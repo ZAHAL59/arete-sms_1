@@ -52,10 +52,10 @@ export default function ProcurementModal({ stock, onClose, onPlace }) {
             <td className="px-3 py-2"><input type="checkbox" aria-label={`Order ${s.item}`} checked={r.on} disabled={placed} onChange={e => set(s.item, { on: e.target.checked })} className="accent-[#C8202E] w-4 h-4" /></td>
             <td className="px-3 py-2 font-semibold text-[#111]">{s.item} {isLow && <Badge variant="red" className="ml-1">Low</Badge>}</td>
             <td className="px-3 py-2 text-[#555]">{s.qty} <span className="text-[#AAA]">/ {s.max} {s.unit}</span></td>
-            <td className="px-3 py-2"><div className="flex items-center gap-1.5"><input type="number" min={1} disabled={!r.on || placed} value={r.qty} onChange={e => set(s.item, { qty: e.target.value })} className="w-20 px-2 py-1 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[12.5px] text-right outline-none focus:border-[#C8202E] disabled:opacity-40" /><span className="text-[11.5px] text-[#AAA]">{s.unit}</span></div></td>
+            <td className="px-3 py-2"><div className="flex items-center gap-1.5"><input type="number" min={1} disabled={!r.on || placed} value={r.qty} onChange={e => set(s.item, { qty: e.target.value })} className="w-20 px-2 py-1 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-[12.5px] text-right outline-none focus:border-[#71717A] disabled:opacity-40" /><span className="text-[11.5px] text-[#AAA]">{s.unit}</span></div></td>
             <td className="px-3 py-2 font-mono text-[12px] text-[#555]">{fmt(s.cost)}</td>
             <td className="px-3 py-2 font-mono text-[12.5px] font-bold text-[#111]">{r.on && +r.qty > 0 ? fmt(Math.round(+r.qty) * s.cost) : '—'}</td></tr>); })}</tbody></table></div>
-      <div className="bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] p-3 mt-3 flex justify-between"><span className="font-bold text-[#111]">Estimated total · {chosen.length} item{chosen.length === 1 ? '' : 's'}</span><span className="font-extrabold text-[#C8202E] font-mono">{fmt(total)}</span></div>
+      <div className="bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] p-3 mt-3 flex justify-between"><span className="font-bold text-[#111]">Estimated total · {chosen.length} item{chosen.length === 1 ? '' : 's'}</span><span className="font-extrabold text-[#111] font-mono">{fmt(total)}</span></div>
     </Modal>
   );
 }

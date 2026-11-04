@@ -10,7 +10,7 @@ export default function BusAllocation() {
       <PageHeader title="Bus Allocation" subtitle="Students assigned per route" />
       <div className="grid grid-cols-3 gap-3 mb-5">
         {[
-          {label:'Total Bus Students', value:db.students.filter(s=>s.travel==='Bus').length, color:'#C8202E'},
+          {label:'Total Bus Students', value:db.students.filter(s=>s.travel==='Bus').length, color:'#18181B'},
           {label:'Active Routes',      value:db.routes.length, color:'#1A5FB4'},
           {label:'Day Scholars',       value:db.students.filter(s=>s.travel!=='Bus'&&!s.boarding).length, color:'#166534'},
         ].map(k=>(

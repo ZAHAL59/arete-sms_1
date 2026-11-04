@@ -42,7 +42,7 @@ export default function Events({ c, addEvent, allocateSeats }) {
         header={
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-11 flex-shrink-0 text-center rounded-[7px] py-1" style={{ background: isPast ? '#F2F2F2' : '#F6F6F7' }}>
-              <div className="text-[16px] font-extrabold leading-none" style={{ color: isPast ? '#777' : '#C8202E' }}>{d.getDate()}</div>
+              <div className="text-[16px] font-extrabold leading-none" style={{ color: isPast ? '#777' : '#18181B' }}>{d.getDate()}</div>
               <div className="text-[9px] font-bold uppercase tracking-wider text-[#AAA] mt-0.5">{d.toLocaleString('en-IN', { month: 'short' })}</div></div>
             <div className="flex-1 min-w-0"><div className="text-[13.5px] font-bold text-[#111] truncate">{e.title}</div><div className="text-[11.5px] text-[#777]">{e.time} · {e.venue}</div></div>
             <Badge variant="grey">{e.type}</Badge>
@@ -51,7 +51,7 @@ export default function Events({ c, addEvent, allocateSeats }) {
           </div>}>
         <div className="px-4 py-3 text-[12.5px] text-[#555] space-y-2">
           <div className="flex items-center gap-3"><span>{e.alloc === 0 ? <em className="text-[#AAA]">Seats not yet allocated</em> : <>Seats: <strong>{e.alloc}/{e.seats}</strong>{e.allocTo && <span className="text-[#AAA]"> · {e.allocTo}</span>}</>}</span>
-            {e.alloc > 0 && <div className="w-40 h-1.5 bg-[#E4E4E4] rounded-full overflow-hidden"><div className="h-full bg-[#C8202E] rounded-full" style={{ width: `${pct}%` }} /></div>}</div>
+            {e.alloc > 0 && <div className="w-40 h-1.5 bg-[#E4E4E4] rounded-full overflow-hidden"><div className="h-full bg-[#18181B] rounded-full" style={{ width: `${pct}%` }} /></div>}</div>
           <div className="text-[#777]">Venue: <b className="text-[#333]">{e.venue}</b> · Capacity {e.seats}</div>
           {e.resources?.length > 0 ? <div className="text-[#777]">Resources: {e.resources.join(', ')}</div> : <div className="text-[#BBB]">No resources listed</div>}
         </div>

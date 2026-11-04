@@ -24,7 +24,7 @@ export function useTeacherSummary(go) {
     const cover = (loadPrincipal().substitutions || []).filter(x => x.date === TODAY && x.sub === TEACHER.name).sort((a, b) => a.row - b.row);
     const students = db.students.filter(s => TEACHER.classes.includes(`${s.cls} ${s.section}`.trim()));
     const attention = [
-      ...pending.map(x => ({ id: 'att' + x.i, letter: '✓', color: '#C8202E', title: `Mark attendance — ${x.c.cls}`, sub: `Period ${x.i + 1} · ${PERIODS[x.i]}`, actions: [{ label: 'Mark', run: () => go('myclass') }] })),
+      ...pending.map(x => ({ id: 'att' + x.i, letter: '✓', color: '#18181B', title: `Mark attendance — ${x.c.cls}`, sub: `Period ${x.i + 1} · ${PERIODS[x.i]}`, actions: [{ label: 'Mark', run: () => go('myclass') }] })),
       ...cover.map(x => ({ id: 'cv' + x.id, letter: 'S', color: '#B45309', title: `Cover duty — ${x.cls} (${x.subject})`, sub: `${x.time} · covering for ${x.absent}`, actions: [{ label: 'Open', variant: 'outline', run: () => go('timetable') }] })),
     ];
     return { db, weekday, classes, marked, pending, next, notices, training, materials, cover, students, myNotes, attention };
@@ -35,7 +35,7 @@ export function teacherHub(S, go) {
   const n = S.next;
   const pulse = [
     { label: 'Classes today', value: S.classes.length, note: S.weekday ? 'On your timetable' : 'Weekend', run: () => go('timetable') },
-    { label: 'Attendance to mark', value: S.pending.length, note: 'Classes already begun', color: S.pending.length ? '#C8202E' : '#166534', run: () => go('myclass') },
+    { label: 'Attendance to mark', value: S.pending.length, note: 'Classes already begun', color: S.pending.length ? '#18181B' : '#166534', run: () => go('myclass') },
     { label: 'Notices', value: S.notices.length, note: 'From school & HR', color: '#1A5FB4', run: () => go('alerts') },
     { label: 'Training', value: S.training.length, note: 'Upcoming sessions', color: '#6D28D9', run: () => go('training') },
   ];
