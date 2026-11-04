@@ -15,19 +15,19 @@ html,body,#root{height:100%;font-family:'DM Sans',sans-serif;-webkit-font-smooth
   body, #root { background: #fff !important; }
 }
 
-/* ── The "hero" cards (home banner, Overview, Careers): a soft light gradient — lavender → orchid → peach — with ink text.
-      Tints derived from the 21st.dev "Quick theme" tokens (primary indigo hsl(248 69% 51%), secondary orchid, chart peach/amber).
-      One solid accent (indigo) for the main button and progress. No red. ── */
-.arete-hero { position:relative; overflow:hidden; color:#0F172A; background:linear-gradient(135deg,#E4E3FF 0%,#F2DBFF 52%,#FFE5D3 100%); border:1px solid rgba(15,23,42,.06); }
-.arete-stat { color:#0F172A; background:rgba(255,255,255,.68); border:1px solid rgba(15,23,42,.06); }
+/* ── The "hero" cards (home banner, Overview, Careers): a soft light green gradient — pale sage → fresh green — with ink text.
+      Greens from the 21st.dev "Yoga with Ethan" theme (pale sage #E4EAE1, fresh green #A9E382, deep moss #495940).
+      Deep moss is the one solid accent (main button, progress). No red. ── */
+.arete-hero { position:relative; overflow:hidden; color:#0F1A10; background:linear-gradient(135deg,#E8F0E2 0%,#CDE6B8 50%,#A9E382 100%); border:1px solid rgba(15,26,16,.07); }
+.arete-stat { color:#0F1A10; background:rgba(255,255,255,.66); border:1px solid rgba(15,26,16,.06); }
 .arete-stat:hover { background:rgba(255,255,255,.9); }
-.arete-pill { display:inline-block; padding:3px 10px; border-radius:999px; background:rgba(255,255,255,.75); color:#3730A3; border:1px solid rgba(79,70,229,.18); font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; }
-.arete-btn { background:rgba(255,255,255,.6); color:#0F172A; border:1px solid rgba(15,23,42,.16); }
+.arete-pill { display:inline-block; padding:3px 10px; border-radius:999px; background:rgba(255,255,255,.75); color:#33452B; border:1px solid rgba(73,89,64,.22); font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; }
+.arete-btn { background:rgba(255,255,255,.6); color:#0F1A10; border:1px solid rgba(15,26,16,.18); }
 .arete-btn:hover { background:rgba(255,255,255,.92); }
-.arete-btn-primary { background:#4F46E5; color:#FFFFFF; border:1px solid #4F46E5; }
-.arete-btn-primary:hover { background:#4338CA; }
-.arete-track { background:rgba(79,70,229,.14); }
-.arete-fill { background:#4F46E5; }
+.arete-btn-primary { background:#495940; color:#FFFFFF; border:1px solid #495940; }
+.arete-btn-primary:hover { background:#3A4833; }
+.arete-track { background:rgba(73,89,64,.16); }
+.arete-fill { background:#495940; }
 
 /* ── Accessibility ── */
 :focus-visible { outline: 2px solid #18181B; outline-offset: 2px; border-radius: 4px; }
