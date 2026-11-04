@@ -6,8 +6,10 @@ import Button from '../../components/ui/Button';
 import { fmt, fmtL, getStudentDue, countsTowardDue } from './constants';
 import PaymentModal from './modals/PaymentModal';
 import ReceiptModal from './modals/ReceiptModal';
+import CollectionBreakdown from './CollectionBreakdown';
 
-export default function FeeOverview({ allPayments, recordPayment }) {
+// unified = Principal view: one "Collection" section with a By grade / By category dropdown (Finance keeps its own category card)
+export default function FeeOverview({ allPayments, recordPayment, unified = false }) {
   const db = useStore(s => s.db);
   const [payOpen, setPayOpen] = useState(false); const [rcpt, setRcpt] = useState(null);
 
@@ -62,7 +64,7 @@ export default function FeeOverview({ allPayments, recordPayment }) {
         <div className="text-[11px] text-[#666666] mt-1">{collPct}% collected · {fmtL(outstanding)} outstanding{otherCollected > 0 && <> · plus {fmt(otherCollected)} in admission fees, deposits and advances (not counted against annual fees)</>}</div>
       </div>
 
-      {/* By category */}
+      {unified ? <CollectionBreakdown allPayments={allPayments} /> : (
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)] mb-4">
         <div className="px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8]">
           <div className="text-[13.5px] font-bold text-[#111]">Collection by Category</div>
@@ -83,6 +85,8 @@ export default function FeeOverview({ allPayments, recordPayment }) {
           )}
         </div>
       </div>
+
+      )}
 
       {/* Recent payments */}
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]">
