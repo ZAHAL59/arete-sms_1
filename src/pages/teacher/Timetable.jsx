@@ -18,7 +18,7 @@ export default function Timetable() {
           <span className="w-[3px] h-[18px] bg-[#18181B] rounded-full inline-block"/>
           <h1 className="text-[20px] font-extrabold text-[#111]">Timetable</h1>
         </div>
-        <p className="text-[12.5px] text-[#777] ml-3">Your classes are highlighted — tap any class to mark attendance</p>
+        <p className="text-[12.5px] text-[#666666] ml-3">Your classes are highlighted — tap any class to mark attendance</p>
       </div>
 
       <div className="overflow-x-auto rounded-[14px] border border-[#E0E0E0] shadow-[0_4px_24px_rgba(0,0,0,.07)]">
@@ -68,7 +68,7 @@ export default function Timetable() {
                     return (
                       <div key={di} className="flex items-center justify-center border-b border-r border-[#EBEBEB] min-h-[64px]"
                         style={{background:'#FFF5F5'}}>
-                        <span className="text-[11px] font-semibold" style={{color:'#18181B',opacity:.35}}>Free</span>
+                        <span className="text-[11px] font-semibold" style={{color:'#666666'}}>Free</span>
                       </div>
                     );
                   }
@@ -100,7 +100,7 @@ export default function Timetable() {
                           : <div className="text-[10px] font-bold text-[#111] mt-1 underline">Mark now</div>
                       )}
                       {isPast && !isStaff && <div className="text-[10px] font-bold text-[#166534] mt-1">✓ Done</div>}
-                      {!isToday && !isPast && !isStaff && <div className="text-[10px] text-[#CCC] mt-1">Upcoming</div>}
+                      {!isToday && !isPast && !isStaff && <div className="text-[10px] text-[#666666] mt-1">Upcoming</div>}
                     </div>
                   );
                 })}

@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import { loadHR } from '../hr/constants';
 import ApplyModal from './ApplyModal';
 import { WHY, PROCESS } from './constants';
+import usePageMeta from '../../hooks/usePageMeta';
 
 const PORTALS = [['/', '🏠 All Portals'], ['/principal', '🏛 Principal Dashboard'], ['/admissions', '📋 Admissions'], ['/hr', '👥 HR — Staff & Recruitment'], ['/finance', '₹ Finance'], ['/transport', '🚌 Transport'], ['/hostel', '🏠 Hostel'], ['/campus', '🏫 Campus'], ['/teacher', '🍎 Teacher']];
 
 export default function CareersPage() {
+  usePageMeta('Careers — join our team', { index: true });   // the one public page search engines may list
   const hr = useMemo(loadHR, []);
   const [vac, setVac] = useState(null);
   const [menu, setMenu] = useState(false);
@@ -27,7 +29,8 @@ export default function CareersPage() {
         </div>
       </header>
 
-      <section className="px-6 py-16 text-white" style={{ background:'linear-gradient(135deg,#C8202E,#9A1822)' }}>
+      <main id="main" tabIndex={-1}>
+      <section className="arete-hero px-6 py-16 text-white">
         <div className="max-w-4xl mx-auto">
           <div className="text-[12px] font-bold uppercase tracking-widest text-white/60 mb-3">Arete Model School · Kozhikode, Kerala · CBSE Affiliated · Estd. 2015</div>
           <h1 className="text-[40px] font-extrabold tracking-tight leading-tight mb-3">Build Your Career at Arete</h1>
@@ -39,13 +42,13 @@ export default function CareersPage() {
       <section id="openings-section" className="px-6 py-14 bg-[#F8F8F8]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-[24px] font-extrabold tracking-tight">Current Openings</h2>
-          <p className="text-[13.5px] text-[#777] mt-1 mb-6">{active.length ? `${active.length} position${active.length > 1 ? 's' : ''} open · Apply directly on this page` : 'No current openings — check back soon'}</p>
-          {!active.length ? <div className="text-center py-12 text-[#777]">No positions are currently open. Please check back or send your CV to hr@aretemodel.edu</div> :
+          <p className="text-[13.5px] text-[#666666] mt-1 mb-6">{active.length ? `${active.length} position${active.length > 1 ? 's' : ''} open · Apply directly on this page` : 'No current openings — check back soon'}</p>
+          {!active.length ? <div className="text-center py-12 text-[#666666]">No positions are currently open. Please check back or send your CV to hr@aretemodel.edu</div> :
             <div className="grid md:grid-cols-2 gap-4">{active.map(v => (
               <div key={v.id} onClick={() => setVac(v)} className={`bg-white rounded-[12px] p-5 cursor-pointer border transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(0,0,0,.1)] ${v.priority === 'Urgent' ? 'border-[#71717A]' : 'border-[#E4E4E4]'}`}>
-                <div className="flex items-center gap-2 mb-2"><span className={`text-[10.5px] font-bold px-2 py-0.5 rounded ${v.priority === 'Urgent' ? 'bg-[#FEF2F2] text-[#DC2626]' : 'bg-[#F2F2F2] text-[#777]'}`}>{v.priority}</span>{apps(v.id) > 0 && <span className="text-[11px] text-[#AAA]">{apps(v.id)} applicant{apps(v.id) > 1 ? 's' : ''} so far</span>}</div>
+                <div className="flex items-center gap-2 mb-2"><span className={`text-[10.5px] font-bold px-2 py-0.5 rounded ${v.priority === 'Urgent' ? 'bg-[#FEF2F2] text-[#B91C1C]' : 'bg-[#F2F2F2] text-[#666666]'}`}>{v.priority}</span>{apps(v.id) > 0 && <span className="text-[11px] text-[#666666]">{apps(v.id)} applicant{apps(v.id) > 1 ? 's' : ''} so far</span>}</div>
                 <div className="text-[18px] font-extrabold">{v.subj} Teacher</div>
-                <div className="text-[12.5px] text-[#777] mb-3">{v.dept} Department</div>
+                <div className="text-[12.5px] text-[#666666] mb-3">{v.dept} Department</div>
                 <div className="text-[13px] text-[#555] leading-relaxed"><b>Qualification:</b> {v.qual}<br /><b>Experience:</b> {v.exp}{v.skills && <><br /><b>Skills:</b> {v.skills}</>}</div>
                 <div className="flex gap-2 flex-wrap mt-3">{v.count > 0 && <span className="text-[11.5px] bg-[#F8F8F8] px-2.5 py-1 rounded-full text-[#555]">👥 {v.count} position{v.count > 1 ? 's' : ''}</span>}{v.deadline && <span className="text-[11.5px] bg-[#F8F8F8] px-2.5 py-1 rounded-full text-[#555]">📅 Deadline: {v.deadline}</span>}</div>
                 <button className="mt-4 w-full py-2.5 bg-[#18181B] text-white text-[13px] font-bold rounded-[8px] cursor-pointer border-none hover:bg-[#2B2B31]">Apply Now →</button>
@@ -56,7 +59,7 @@ export default function CareersPage() {
       <section id="why-section" className="px-6 py-14">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-[24px] font-extrabold tracking-tight">Why Join Arete</h2>
-          <p className="text-[13.5px] text-[#777] mt-1 mb-6">A school that invests in its educators as much as its students</p>
+          <p className="text-[13.5px] text-[#666666] mt-1 mb-6">A school that invests in its educators as much as its students</p>
           <div className="grid md:grid-cols-3 gap-4">{WHY.map(([i, t, d]) => <div key={t} className="border border-[#E4E4E4] rounded-[12px] p-5"><div className="text-[26px] mb-2">{i}</div><div className="text-[14.5px] font-bold mb-1">{t}</div><div className="text-[12.5px] text-[#666] leading-relaxed">{d}</div></div>)}</div>
         </div>
       </section>
@@ -64,12 +67,13 @@ export default function CareersPage() {
       <section id="process-section" className="px-6 py-14 bg-[#F8F8F8]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-[24px] font-extrabold tracking-tight">Selection Process</h2>
-          <p className="text-[13.5px] text-[#777] mt-1 mb-6">Transparent, fair, and typically completed within 2–3 weeks</p>
-          <div className="grid md:grid-cols-5 gap-3">{PROCESS.map(([i, t, d]) => <div key={t} className="bg-white border border-[#E4E4E4] rounded-[12px] p-4 text-center"><div className="text-[24px] mb-1.5">{i}</div><div className="text-[13px] font-bold mb-1">{t}</div><div className="text-[11.5px] text-[#777] leading-relaxed">{d}</div></div>)}</div>
+          <p className="text-[13.5px] text-[#666666] mt-1 mb-6">Transparent, fair, and typically completed within 2–3 weeks</p>
+          <div className="grid md:grid-cols-5 gap-3">{PROCESS.map(([i, t, d]) => <div key={t} className="bg-white border border-[#E4E4E4] rounded-[12px] p-4 text-center"><div className="text-[24px] mb-1.5">{i}</div><div className="text-[13px] font-bold mb-1">{t}</div><div className="text-[11.5px] text-[#666666] leading-relaxed">{d}</div></div>)}</div>
         </div>
       </section>
 
-      <footer className="px-6 py-8 text-center text-[12px] text-[#AAA] border-t border-[#E4E4E4]">Arete Model School · Kozhikode, Kerala · <a href="mailto:hr@aretemodel.edu" className="text-[#111] no-underline">hr@aretemodel.edu</a></footer>
+      </main>
+      <footer className="px-6 py-8 text-center text-[12px] text-[#666666] border-t border-[#E4E4E4]">Arete Model School · Kozhikode, Kerala · <a href="mailto:hr@aretemodel.edu" className="text-[#111] underline">hr@aretemodel.edu</a></footer>
       {vac && <ApplyModal vac={vac} onClose={() => setVac(null)} />}
     </div>
   );

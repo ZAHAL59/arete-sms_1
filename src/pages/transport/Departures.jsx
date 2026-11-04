@@ -33,7 +33,7 @@ export default function Departures({ t, addDeparture }) {
     <div className="p-6">
       <PageHeader title="Early Departure" subtitle="Notify the driver when a student leaves school early"
         actions={<Button onClick={() => setOpen(true)}>+ Log Early Departure</Button>} />
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         <Kpi label="Today" value={today.length} note="Early departures" />
         <Kpi label="Last 7 Days" value={week.length} note="Departures" color="#1A5FB4" />
         <Kpi label="SMS Sent" value={`${t.departures.filter(d => d.smsSent).length}/${t.departures.length}`} note="Driver notified" color="#166534" />
@@ -45,7 +45,7 @@ export default function Departures({ t, addDeparture }) {
           <thead><tr><Th>Student</Th><Th>Class</Th><Th>Route</Th><Th>Reason</Th><Th>Time</Th><Th>Date</Th><Th>SMS</Th></tr></thead>
           <tbody>
             {!t.departures.length
-              ? <tr><td colSpan={7} className="text-center py-10 text-[#AAA]">No early departures logged</td></tr>
+              ? <tr><td colSpan={7} className="text-center py-10 text-[#666666]">No early departures logged</td></tr>
               : t.departures.map(d => {
                   const s = db.students.find(x => x.id === d.studentId);
                   const r = db.routes.find(x => x.id === s?.busRoute);

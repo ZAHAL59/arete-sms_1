@@ -42,36 +42,36 @@ export default function Health({ p, api }) {
   return (
     <div className="p-6">
       <PageHeader title="Health & Incidents" subtitle="Incidents, immunisation, visitors and medical summary" actions={<Button onClick={() => setOpen(true)}>+ Log Incident</Button>} />
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         <Kpi label="Incidents" value={p.incidents.length} note="All logged" /><Kpi label="This Month" value={p.incidents.filter(i => i.date.startsWith(month)).length} note="Current month" color="#1A5FB4" />
-        <Kpi label="Parent Not Told" value={p.incidents.filter(i => i.parent === 'Not yet').length} note="Needs follow-up" color={p.incidents.some(i => i.parent === 'Not yet') ? '#DC2626' : '#166534'} />
+        <Kpi label="Parent Not Told" value={p.incidents.filter(i => i.parent === 'Not yet').length} note="Needs follow-up" color={p.incidents.some(i => i.parent === 'Not yet') ? '#B91C1C' : '#166534'} />
         <Kpi label="Visitors Inside" value={visitors.filter(x => x.status === 'In').length} note="Right now" color="#B45309" />
       </div>
 
       <Collapsible defaultOpen className="mb-3" header={<span className="text-[13.5px] font-bold text-[#111]">Health Incidents</span>}>
         <table className="w-full border-collapse text-[13px] border-t border-[#E4E4E4]"><thead><tr><Th>Student</Th><Th>Date</Th><Th>Type</Th><Th>Incident</Th><Th>Action</Th><Th>Parent</Th><Th /></tr></thead>
-          <tbody>{!p.incidents.length ? <tr><td colSpan={7} className="text-center py-8 text-[#AAA]">No incidents logged</td></tr> : p.incidents.map(i => (
-            <tr key={i.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]"><td className="px-4 py-2.5 font-semibold text-[#111]">{i.stu}<div className="text-[11px] text-[#AAA] font-normal">{i.cls}</div></td><td className="px-4 py-2.5 text-[#555]">{prettyDate(i.date)}</td><td className="px-4 py-2.5"><Badge variant="amber">{i.type}</Badge></td><td className="px-4 py-2.5 text-[#333]">{i.issue}</td><td className="px-4 py-2.5 text-[#555] text-[12px]">{i.action || '—'}</td>
+          <tbody>{!p.incidents.length ? <tr><td colSpan={7} className="text-center py-8 text-[#666666]">No incidents logged</td></tr> : p.incidents.map(i => (
+            <tr key={i.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]"><td className="px-4 py-2.5 font-semibold text-[#111]">{i.stu}<div className="text-[11px] text-[#666666] font-normal">{i.cls}</div></td><td className="px-4 py-2.5 text-[#555]">{prettyDate(i.date)}</td><td className="px-4 py-2.5"><Badge variant="amber">{i.type}</Badge></td><td className="px-4 py-2.5 text-[#333]">{i.issue}</td><td className="px-4 py-2.5 text-[#555] text-[12px]">{i.action || '—'}</td>
               <td className="px-4 py-2.5"><Badge variant={i.parent === 'Not yet' ? 'red' : 'green'}>{i.parent.replace('Yes — ', '').replace(' sent', '') === 'Not yet' ? 'Pending' : i.parent.replace('Yes — ', '').replace(' sent', '')}</Badge></td>
-              <td className="px-4 py-2.5"><button onClick={() => api.deleteIncident(i.id)} className="text-[11px] text-[#DC2626] font-semibold cursor-pointer bg-none border-none underline">Remove</button></td></tr>))}</tbody></table>
+              <td className="px-4 py-2.5"><button onClick={() => api.deleteIncident(i.id)} className="text-[11px] text-[#B91C1C] font-semibold cursor-pointer bg-none border-none underline">Remove</button></td></tr>))}</tbody></table>
       </Collapsible>
 
       <Collapsible defaultOpen className="mb-3" header={<span className="text-[13.5px] font-bold text-[#111]">Immunisation Coverage</span>}>
         <div className="border-t border-[#E4E4E4] divide-y divide-[#E4E4E4]">{p.immunisation.map(x => (
           <div key={x.vaccine} className="flex items-center gap-3 px-4 py-2.5"><span className="w-36 text-[13px] font-semibold">{x.vaccine}</span>
-            <div className="flex-1 h-2 bg-[#E4E4E4] rounded-full overflow-hidden"><div className="h-full rounded-full" style={{ width: `${x.coverage}%`, background: x.coverage >= 90 ? '#166534' : x.coverage >= 85 ? '#B45309' : '#DC2626' }} /></div>
-            <input type="number" min={0} max={100} value={x.coverage} onChange={e => api.setImmunisation(x.vaccine, { coverage: Math.min(100, Math.max(0, +e.target.value || 0)) })} className="w-16 px-2 py-1 border border-[#E4E4E4] rounded-[6px] text-[12px] text-center outline-none" /><span className="text-[12px] text-[#777]">%</span>
-            <span className="text-[11.5px] text-[#AAA] w-24 text-right">Review {x.next}</span></div>))}</div>
+            <div className="flex-1 h-2 bg-[#E4E4E4] rounded-full overflow-hidden"><div className="h-full rounded-full" style={{ width: `${x.coverage}%`, background: x.coverage >= 90 ? '#166534' : x.coverage >= 85 ? '#B45309' : '#B91C1C' }} /></div>
+            <input type="number" min={0} max={100} value={x.coverage} onChange={e => api.setImmunisation(x.vaccine, { coverage: Math.min(100, Math.max(0, +e.target.value || 0)) })} className="w-16 px-2 py-1 border border-[#E4E4E4] rounded-[6px] text-[12px] text-center outline-none" /><span className="text-[12px] text-[#666666]">%</span>
+            <span className="text-[11.5px] text-[#666666] w-24 text-right">Review {x.next}</span></div>))}</div>
       </Collapsible>
 
       <Collapsible className="mb-3" header={<div className="flex items-center gap-3 flex-1"><span className="text-[13.5px] font-bold text-[#111]">Visitors Today</span><Button size="sm" variant="outline" className="ml-auto" onClick={e => { e.stopPropagation(); setVisOpen(true); }}>+ Log Visitor</Button></div>}>
-        <div className="border-t border-[#E4E4E4] divide-y divide-[#E4E4E4]">{!visitors.length && <div className="p-4 text-[13px] text-[#AAA]">No visitors today</div>}{visitors.map(x => (
-          <div key={x.id} className="flex items-center gap-3 px-4 py-2.5"><div className="flex-1"><div className="text-[13px] font-semibold">{x.name}</div><div className="text-[11.5px] text-[#777]">{x.purpose} · in {x.timeIn}{x.timeOut ? ` · out ${x.timeOut}` : ''}</div></div>
+        <div className="border-t border-[#E4E4E4] divide-y divide-[#E4E4E4]">{!visitors.length && <div className="p-4 text-[13px] text-[#666666]">No visitors today</div>}{visitors.map(x => (
+          <div key={x.id} className="flex items-center gap-3 px-4 py-2.5"><div className="flex-1"><div className="text-[13px] font-semibold">{x.name}</div><div className="text-[11.5px] text-[#666666]">{x.purpose} · in {x.timeIn}{x.timeOut ? ` · out ${x.timeOut}` : ''}</div></div>
             <Badge variant={x.status === 'In' ? 'amber' : 'green'}>{x.status === 'In' ? 'Inside' : 'Signed out'}</Badge>{x.status === 'In' && <Button size="sm" variant="outline" onClick={() => { signOutVisitor(x.id); setTick(t => t + 1); }}>Sign Out</Button>}</div>))}</div>
       </Collapsible>
 
-      <Collapsible header={<span className="text-[13.5px] font-bold text-[#111]">Medical Summary <span className="text-[11px] font-normal text-[#AAA]">from student records</span></span>}>
-        <div className="border-t border-[#E4E4E4] divide-y divide-[#E4E4E4]">{medical.map(([l, list]) => <div key={l} className="px-4 py-2.5"><div className="flex items-center"><span className="flex-1 text-[13px] font-semibold">{l}</span><span className="text-[13px] font-bold text-[#111]">{list.length} student{list.length === 1 ? '' : 's'}</span></div>{list.length > 0 && <div className="text-[12px] text-[#777] mt-0.5">{list.map(s => s.name).join(', ')}</div>}</div>)}</div>
+      <Collapsible header={<span className="text-[13.5px] font-bold text-[#111]">Medical Summary <span className="text-[11px] font-normal text-[#666666]">from student records</span></span>}>
+        <div className="border-t border-[#E4E4E4] divide-y divide-[#E4E4E4]">{medical.map(([l, list]) => <div key={l} className="px-4 py-2.5"><div className="flex items-center"><span className="flex-1 text-[13px] font-semibold">{l}</span><span className="text-[13px] font-bold text-[#111]">{list.length} student{list.length === 1 ? '' : 's'}</span></div>{list.length > 0 && <div className="text-[12px] text-[#666666] mt-0.5">{list.map(s => s.name).join(', ')}</div>}</div>)}</div>
       </Collapsible>
 
       <Modal open={open} onClose={() => setOpen(false)} title="Log Incident" footer={<><Button variant="outline" onClick={() => setOpen(false)}>Cancel</Button><Button onClick={saveInc}>Save Incident</Button></>}>

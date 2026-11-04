@@ -16,10 +16,10 @@ export default function BoardingStudents() {
   return (
     <div className="p-6">
       <PageHeader title="Boarding Students" subtitle="Room allocation and meals are managed in the Hostel portal" />
-      <div className="grid grid-cols-3 gap-3 mb-5"><Kpi label="Boarders" value={boarders.length} note="In hostel" /><Kpi label="Room allotted" value={boarders.length - unplaced} note="Placed" color="#166534" /><Kpi label="Awaiting a room" value={unplaced} note="Allocate in Hostel" color={unplaced ? '#DC2626' : '#166534'} /></div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-5"><Kpi label="Boarders" value={boarders.length} note="In hostel" /><Kpi label="Room allotted" value={boarders.length - unplaced} note="Placed" color="#166534" /><Kpi label="Awaiting a room" value={unplaced} note="Allocate in Hostel" color={unplaced ? '#B91C1C' : '#166534'} /></div>
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]"><table className="w-full border-collapse text-[13px]">
         <thead><tr><Th>Student</Th><Th>Class</Th><Th>Admitted</Th><Th>Room</Th><Th>Hostel fee</Th><Th>Status</Th></tr></thead>
-        <tbody>{!boarders.length ? <tr><td colSpan={6} className="text-center py-10 text-[#AAA]">No boarding students</td></tr> : boarders.map(s => (
+        <tbody>{!boarders.length ? <tr><td colSpan={6} className="text-center py-10 text-[#666666]">No boarding students</td></tr> : boarders.map(s => (
           <tr key={s.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]"><td className="px-4 py-2.5 font-semibold text-[#111]">{s.name}</td><td className="px-4 py-2.5 text-[#555]">{s.cls} {s.section}</td><td className="px-4 py-2.5 text-[#555]">{s.adm}</td>
             <td className="px-4 py-2.5">{roomOf(s.name) ? <Badge variant="blue">{roomOf(s.name)}</Badge> : <Badge variant="amber">Not allotted</Badge>}</td><td className="px-4 py-2.5 font-semibold text-[#166534]">{fmt(monthly(s))}/mo</td><td className="px-4 py-2.5"><Badge variant="green">{s.status || 'Active'}</Badge></td></tr>))}</tbody></table></div>
     </div>

@@ -40,7 +40,7 @@ export default function StudentDetailModal({ student, onClose, onMarkAtt }) {
         <div className="grid grid-cols-2 gap-2 mb-4">
           {FIELDS(student).map(([l,v]) => (
             <div key={l} className="bg-[#F8F8F8] p-2.5 rounded-[6px]">
-              <div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-1">{l}</div>
+              <div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">{l}</div>
               <div className="text-[13px] text-[#333]">{v}</div>
             </div>
           ))}
@@ -58,7 +58,7 @@ export default function StudentDetailModal({ student, onClose, onMarkAtt }) {
             <div className="p-3 border-t border-[#E4E4E4] space-y-2">
               {milestones.map((m, i) => (
                 <div key={i} className="flex gap-3 text-[12.5px]">
-                  <span className="font-mono text-[#AAA] flex-shrink-0">{m.date}</span>
+                  <span className="font-mono text-[#666666] flex-shrink-0">{m.date}</span>
                   <span className="text-[#555]">{m.text}</span>
                 </div>
               ))}
@@ -71,7 +71,7 @@ export default function StudentDetailModal({ student, onClose, onMarkAtt }) {
           header={<span className="text-[13px] font-bold text-[#111]">Session Logs ({myLogs.length})</span>}>
           <div className="border-t border-[#E4E4E4]">
             {!myLogs.length
-              ? <div className="p-4 text-[12.5px] text-[#AAA] text-center">No sessions logged yet</div>
+              ? <div className="p-4 text-[12.5px] text-[#666666] text-center">No sessions logged yet</div>
               : myLogs.slice().reverse().map(l => {
                   const stars = '★'.repeat(l.engagement||0) + '☆'.repeat(5-(l.engagement||0));
                   return (
@@ -79,7 +79,7 @@ export default function StudentDetailModal({ student, onClose, onMarkAtt }) {
                       <div className="flex items-center gap-2 mb-1">
                         <Badge variant={TYPE_VARIANT[l.type]||'grey'}>{l.type}</Badge>
                         <span className="font-semibold text-[13px] text-[#111]">{l.topic}</span>
-                        <span className="ml-auto font-mono text-[11px] text-[#AAA]">{l.date}</span>
+                        <span className="ml-auto font-mono text-[11px] text-[#666666]">{l.date}</span>
                       </div>
                       <div className="text-[12.5px] text-[#555] mb-1">{l.observation}</div>
                       <div className="flex items-center gap-3 text-[11.5px]">

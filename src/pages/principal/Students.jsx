@@ -30,13 +30,13 @@ export function StudentPanel({ student, onClose, onEdit }) {
   return (
     <Modal open onClose={onClose} size="lg" title={s.name} subtitle={`${classLabel(s)} · ${s.id}`}
       footer={<><Button variant="outline" onClick={onClose}>Close</Button>{onEdit && <Button onClick={() => onEdit(s)}>✎ Edit</Button>}</>}>
-      <div className="grid grid-cols-3 gap-2 mb-4">
-        {[['Attendance', att ? att.pct + '%' : '—', att && att.pct < 75 ? '#DC2626' : '#166534'], ['Fee Balance', fmt(fee.bal), fee.bal ? '#DC2626' : '#166534'], ['Session Logs', sessionLogs.filter(l => l.stuId === s.id).length, '#6D28D9']].map(([l, v, c]) => (
-          <div key={l} className="bg-[#F8F8F8] rounded-[8px] p-3 text-center"><div className="text-[20px] font-extrabold" style={{ color: c }}>{v}</div><div className="text-[10.5px] text-[#AAA] uppercase tracking-wider">{l}</div></div>))}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
+        {[['Attendance', att ? att.pct + '%' : '—', att && att.pct < 75 ? '#B91C1C' : '#166534'], ['Fee Balance', fmt(fee.bal), fee.bal ? '#B91C1C' : '#166534'], ['Session Logs', sessionLogs.filter(l => l.stuId === s.id).length, '#6D28D9']].map(([l, v, c]) => (
+          <div key={l} className="bg-[#F8F8F8] rounded-[8px] p-3 text-center"><div className="text-[20px] font-extrabold" style={{ color: c }}>{v}</div><div className="text-[10.5px] text-[#666666] uppercase tracking-wider">{l}</div></div>))}
       </div>
-      <div className="grid grid-cols-2 gap-2">{rows.map(([l, v]) => <div key={l} className="bg-[#F8F8F8] p-2.5 rounded-[6px]"><div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-1">{l}</div><div className="text-[13px] text-[#333] break-words">{v}</div></div>)}</div>
+      <div className="grid grid-cols-2 gap-2">{rows.map(([l, v]) => <div key={l} className="bg-[#F8F8F8] p-2.5 rounded-[6px]"><div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">{l}</div><div className="text-[13px] text-[#333] break-words">{v}</div></div>)}</div>
       {s.behav && <div className="mt-3 bg-[#FFFBEB] border border-[#FEF08A] rounded-[6px] p-3 text-[12.5px] text-[#B45309]"><b>Behaviour:</b> {s.behav}</div>}
-      {(s.milestones || []).length > 0 && <div className="mt-3"><div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-1.5">Milestones</div>{s.milestones.map((m, i) => <div key={i} className="text-[12.5px] text-[#555] flex gap-3 mb-1"><span className="font-mono text-[#AAA]">{m.date}</span>{m.text}</div>)}</div>}
+      {(s.milestones || []).length > 0 && <div className="mt-3"><div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1.5">Milestones</div>{s.milestones.map((m, i) => <div key={i} className="text-[12.5px] text-[#555] flex gap-3 mb-1"><span className="font-mono text-[#666666]">{m.date}</span>{m.text}</div>)}</div>}
     </Modal>
   );
 }
@@ -92,13 +92,13 @@ export default function Students({ settings }) {
         <table className="w-full border-collapse text-[13px]">
           <thead><tr><Th>Student</Th><Th>ID</Th><Th>Class</Th><Th>Guardian</Th><Th>Attendance</Th><Th>Fee Status</Th><Th /></tr></thead>
           <tbody>
-            {!rows.length ? <tr><td colSpan={7} className="text-center py-10 text-[#AAA]">No students match</td></tr> : rows.map(({ s, fee, att }, i) => (
+            {!rows.length ? <tr><td colSpan={7} className="text-center py-10 text-[#666666]">No students match</td></tr> : rows.map(({ s, fee, att }, i) => (
               <tr key={s.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]">
                 <td className="px-4 py-2.5"><div className="flex items-center gap-2 cursor-pointer" onClick={() => setSel(s)}><div style={{ background: COLORS[i % COLORS.length] }} className="w-7 h-7 rounded-full text-white text-[10px] font-bold flex items-center justify-center">{s.name.split(' ').map(w => w[0]).join('').slice(0, 2)}</div><span className="font-semibold text-[#111] underline">{s.name}</span></div></td>
-                <td className="px-4 py-2.5 font-mono text-[11.5px] text-[#AAA]">{s.id}</td>
+                <td className="px-4 py-2.5 font-mono text-[11.5px] text-[#666666]">{s.id}</td>
                 <td className="px-4 py-2.5 text-[#555]">{classLabel(s)}</td>
                 <td className="px-4 py-2.5 text-[#555]">{s.parentName}</td>
-                <td className="px-4 py-2.5">{att ? <span className="font-bold" style={{ color: att.pct < settings.lowAtt ? '#DC2626' : '#166534' }}>{att.pct}%</span> : <span className="text-[#CCC]">—</span>}</td>
+                <td className="px-4 py-2.5">{att ? <span className="font-bold" style={{ color: att.pct < settings.lowAtt ? '#B91C1C' : '#166534' }}>{att.pct}%</span> : <span className="text-[#666666]">—</span>}</td>
                 <td className="px-4 py-2.5"><Badge variant={fee.bal > 0 ? (fee.paid ? 'amber' : 'red') : 'green'}>{fee.bal > 0 ? (fee.paid ? 'Partial' : 'Pending') : 'Paid'}</Badge></td>
                 <td className="px-4 py-2.5 whitespace-nowrap"><button onClick={() => setSel(s)} className="text-[11px] font-semibold text-[#111] underline cursor-pointer bg-none border-none mr-3">View</button><button onClick={() => setEdit(s)} className="text-[11px] font-semibold text-[#555] underline cursor-pointer bg-none border-none">Edit</button></td>
               </tr>))}

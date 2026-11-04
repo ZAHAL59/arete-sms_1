@@ -1,0 +1,4 @@
+# Arete is an internal school system. Only the public careers page should appear in search results.
+User-agent: *
+Allow: /careers
+Disallow: /

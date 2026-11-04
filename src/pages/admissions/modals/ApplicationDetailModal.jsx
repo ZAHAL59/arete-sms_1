@@ -53,10 +53,10 @@ export default function ApplicationDetailModal({ app, A, onClose }) {
 
   return (
     <Modal open onClose={onClose} size="lg" title={a.name} subtitle={`${a.grade} · ${a.id} · applied ${a.applied}${a.studentId ? ' · student ' + a.studentId : ''}`}
-      footer={<><span className="mr-auto text-[12px] text-[#DC2626] font-semibold">{err}</span><Button variant="outline" onClick={onClose}>Close</Button>
+      footer={<><span className="mr-auto text-[12px] text-[#B91C1C] font-semibold">{err}</span><Button variant="outline" onClick={onClose}>Close</Button>
         {!enrolled && !waitlisted && pos < JOURNEY_STAGES.length - 1 && <Button variant="outline" onClick={() => A.advanceStage(a.id)}>Advance stage →</Button>}</>}>
       {/* stage banner */}
-      <div className="rounded-[10px] px-4 py-3 mb-4 text-white flex items-center gap-3" style={{ background: enrolled ? '#166534' : waitlisted ? '#DC2626' : '#18181B' }}>
+      <div className="rounded-[10px] px-4 py-3 mb-4 text-white flex items-center gap-3" style={{ background: enrolled ? '#166534' : waitlisted ? '#B91C1C' : '#18181B' }}>
         <div className="flex-1"><div className="text-[10.5px] opacity-75">Current stage</div><div className="text-[16px] font-extrabold">{a.stage}</div></div>
         {enrolled && <span className="bg-white/25 rounded-[6px] px-3 py-1.5 font-semibold text-[13px]">✓ Enrolled</span>}
         {waitlisted && <Button size="sm" variant="outline" onClick={() => A.setWaitlist(a.id, false)}>↩ Restore</Button>}
@@ -97,7 +97,7 @@ export default function ApplicationDetailModal({ app, A, onClose }) {
       </Section>
 
       <Section n={4} icon="🪑" title="Seat allocation" state={a.seat ? 'done' : pos >= 4 ? 'current' : 'upcoming'}>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           <Field label="Assign to section"><select value={f.section} onChange={e => set('section', e.target.value)} className={inputCls}><option value="">— Select —</option>{['A', 'B', 'C'].map(s => <option key={s} value={s} disabled={sectionFree(s) <= 0}>Section {s} ({Math.max(0, sectionFree(s))} seats free)</option>)}</select></Field>
           <Field label="Roll / seat number"><input value={f.seat} onChange={e => set('seat', e.target.value)} className={inputCls} /></Field>
           <Field label="Admission category"><select value={f.category} onChange={e => set('category', e.target.value)} className={inputCls}>{CATEGORIES.map(s => <option key={s}>{s}</option>)}</select></Field>
@@ -106,22 +106,22 @@ export default function ApplicationDetailModal({ app, A, onClose }) {
 
       <Section n={5} icon="₹" title={`Fees (${fmt(paid)} of ${fmt(invoiced)} paid)`} state={a.feeLines.length && paid >= invoiced ? 'done' : a.feeLines.length ? 'current' : 'upcoming'}>
         {a.feeLines.length > 0 && <div className="border border-[#E4E4E4] rounded-[8px] divide-y divide-[#E4E4E4] mb-3">{a.feeLines.map(l => (
-          <div key={l.id} className="flex items-center gap-3 px-3 py-2 text-[12.5px]"><span className="flex-1 font-semibold">{l.type}</span><span className="text-[#777]">{fmt(l.invoice)}</span><span className="font-bold text-[#166534] w-24 text-right">{fmt(l.paid)} paid</span><Badge variant={l.paid >= l.invoice ? 'green' : l.paid ? 'amber' : 'red'}>{l.paid >= l.invoice ? 'Paid' : l.paid ? 'Partial' : 'Unpaid'}</Badge></div>))}</div>}
-        <div className="grid grid-cols-5 gap-2 items-end">
+          <div key={l.id} className="flex items-center gap-3 px-3 py-2 text-[12.5px]"><span className="flex-1 font-semibold">{l.type}</span><span className="text-[#666666]">{fmt(l.invoice)}</span><span className="font-bold text-[#166534] w-24 text-right">{fmt(l.paid)} paid</span><Badge variant={l.paid >= l.invoice ? 'green' : l.paid ? 'amber' : 'red'}>{l.paid >= l.invoice ? 'Paid' : l.paid ? 'Partial' : 'Unpaid'}</Badge></div>))}</div>}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 items-end">
           <Field label="Fee type" className="col-span-2"><select value={pay.type} onChange={e => setPay(p => ({ ...p, type: e.target.value, invoice: String(suggest[e.target.value] || '') }))} className={inputCls}>{FEE_TYPES.map(t => <option key={t}>{t}</option>)}</select></Field>
           <Field label="Invoice ₹"><input type="number" value={pay.invoice} onChange={e => setPay(p => ({ ...p, invoice: e.target.value }))} className={inputCls} /></Field>
           <Field label="Paid now ₹"><input type="number" value={pay.paid} onChange={e => setPay(p => ({ ...p, paid: e.target.value }))} className={inputCls} /></Field>
           <Field label="Mode"><select value={pay.mode} onChange={e => setPay(p => ({ ...p, mode: e.target.value }))} className={inputCls}>{PAY_MODES.map(m => <option key={m}>{m}</option>)}</select></Field>
         </div><Button size="sm" className="mt-3" onClick={recordPay}>+ Record / add payment</Button>
-        <div className="text-[11.5px] text-[#AAA] mt-2">Amounts default from the fee structure for {a.grade}. Paid amounts move into Finance when the student is enrolled.</div>
+        <div className="text-[11.5px] text-[#666666] mt-2">Amounts default from the fee structure for {a.grade}. Paid amounts move into Finance when the student is enrolled.</div>
       </Section>
 
       <Section n={6} icon="🎓" title="Enrolment" state={enrolled ? 'done' : ready ? 'current' : 'upcoming'} defaultOpen={ready}>
         {enrolled ? <div className="text-[13px] text-[#166534]">Enrolled as <b>{a.studentId}</b> in {a.grade} {a.section}. Fees paid at admission are in Finance.</div> : <>
-          <div className="space-y-1 text-[12.5px] mb-3">{[[docs === docTotal, 'All documents received'], [!!(a.interviewDate && a.interviewTime), 'Interview scheduled'], [!!a.seat, 'Seat allocated'], [a.feeLines.length > 0, 'Admission fee recorded'], [a.feeLines.length > 0 && paid >= invoiced, 'Fees fully paid (optional — can enrol with a balance)']].map(([ok, l]) => <div key={l} className={ok ? 'text-[#166534]' : 'text-[#AAA]'}>{ok ? '✓' : '○'} {l}</div>)}</div>
+          <div className="space-y-1 text-[12.5px] mb-3">{[[docs === docTotal, 'All documents received'], [!!(a.interviewDate && a.interviewTime), 'Interview scheduled'], [!!a.seat, 'Seat allocated'], [a.feeLines.length > 0, 'Admission fee recorded'], [a.feeLines.length > 0 && paid >= invoiced, 'Fees fully paid (optional — can enrol with a balance)']].map(([ok, l]) => <div key={l} className={ok ? 'text-[#166534]' : 'text-[#666666]'}>{ok ? '✓' : '○'} {l}</div>)}</div>
           {confirmEnrol && <div className="bg-[#FFFBEB] border border-[#FEF08A] rounded-[6px] p-2.5 text-[12.5px] text-[#B45309] mb-3">{a.name} has an outstanding balance of <b>{fmt(invoiced - paid)}</b>. Click again to enrol anyway.</div>}
           <Button disabled={!ready || waitlisted} onClick={enrol}>{confirmEnrol ? '✓ Enrol anyway' : '✓ Confirm enrolment'}</Button>
-          {!ready && <span className="text-[11.5px] text-[#AAA] ml-3">Available once the stage reaches Seat Allocated.</span>}</>}
+          {!ready && <span className="text-[11.5px] text-[#666666] ml-3">Available once the stage reaches Seat Allocated.</span>}</>}
       </Section>
 
       <Section n={7} icon="🧠" title="Development profile" state={a.dev.hobbies || a.dev.behav ? 'done' : 'upcoming'} defaultOpen={false}>
@@ -130,12 +130,12 @@ export default function ApplicationDetailModal({ app, A, onClose }) {
           <Field label="Diet preference"><select value={dev.diet} onChange={e => setDev(d => ({ ...d, diet: e.target.value }))} className={inputCls}>{DIETS.map(s => <option key={s}>{s}</option>)}</select></Field>
           {[['Hobbies & interests', 'hobbies'], ['Health / medical notes', 'health'], ['Special educational needs', 'needs'], ['Behavioural profile', 'behav'], ['Preferred learning environment', 'expPref']].map(([l, k]) => <Field key={k} label={l} className={k === 'expPref' ? 'col-span-2' : ''}><input value={dev[k]} onChange={e => setDev(d => ({ ...d, [k]: e.target.value }))} className={inputCls} /></Field>)}
         </div><Button size="sm" className="mt-3" onClick={() => A.updateDev(a.id, dev)}>Save profile</Button>
-        <div className="text-[11.5px] text-[#AAA] mt-2">Carried over to the student record on enrolment.</div>
+        <div className="text-[11.5px] text-[#666666] mt-2">Carried over to the student record on enrolment.</div>
       </Section>
 
       <Collapsible header={<span className="text-[13px] font-bold text-[#111]">Activity log ({a.log.length})</span>}>
         <div className="border-t border-[#E4E4E4]"><div className="flex gap-2 p-3"><input value={note} onChange={e => setNote(e.target.value)} placeholder="Add a note…" onKeyDown={e => { if (e.key === 'Enter') { A.addNote(a.id, note); setNote(''); } }} className={inputCls + ' flex-1'} /><Button size="sm" onClick={() => { A.addNote(a.id, note); setNote(''); }}>Add</Button></div>
-          <div className="divide-y divide-[#E4E4E4]">{[...a.log].reverse().map((l, i) => <div key={i} className="flex gap-3 px-4 py-2 text-[12.5px]"><span className="font-mono text-[11px] text-[#AAA] flex-shrink-0 mt-0.5">{new Date(l.time).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</span><span className="flex-1 text-[#555]">{l.msg}</span><span className="text-[10.5px] text-[#AAA]">{l.by}</span></div>)}</div></div>
+          <div className="divide-y divide-[#E4E4E4]">{[...a.log].reverse().map((l, i) => <div key={i} className="flex gap-3 px-4 py-2 text-[12.5px]"><span className="font-mono text-[11px] text-[#666666] flex-shrink-0 mt-0.5">{new Date(l.time).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</span><span className="flex-1 text-[#555]">{l.msg}</span><span className="text-[10.5px] text-[#666666]">{l.by}</span></div>)}</div></div>
       </Collapsible>
     </Modal>
   );

@@ -39,7 +39,7 @@ export default function Fuel({ t, addFuel }) {
           </select>
           <Button onClick={() => { setF(blank); setOpen(true); }}>+ Log Fuel</Button>
         </>} />
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         <Kpi label="Total Fuel Cost" value={fmt(totalAmt)} note={veh || 'All vehicles'} />
         <Kpi label="Total Litres" value={`${totalLit}L`} note={`${list.length} fill-ups`} color="#1A5FB4" />
         <Kpi label="Avg Mileage" value={`${avgM} km/L`} note="From logged fill-ups" color="#166534" />
@@ -51,7 +51,7 @@ export default function Fuel({ t, addFuel }) {
           <thead><tr><Th>Date</Th><Th>Vehicle</Th><Th>Driver</Th><Th>Litres</Th><Th>Rate</Th><Th>Amount</Th><Th>Odometer</Th><Th>Mileage</Th><Th>Station</Th></tr></thead>
           <tbody>
             {!list.length
-              ? <tr><td colSpan={9} className="text-center py-10 text-[#AAA]">No fuel entries</td></tr>
+              ? <tr><td colSpan={9} className="text-center py-10 text-[#666666]">No fuel entries</td></tr>
               : list.map(x => (
                 <tr key={x.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]">
                   <td className="px-4 py-2.5 text-[#555]">{x.date}</td>
@@ -61,8 +61,8 @@ export default function Fuel({ t, addFuel }) {
                   <td className="px-4 py-2.5 text-[#555]">₹{x.rate}</td>
                   <td className="px-4 py-2.5 font-bold text-[#111]">{fmt(x.amount)}</td>
                   <td className="px-4 py-2.5 font-mono text-[12px] text-[#555]">{x.km || '—'}</td>
-                  <td className="px-4 py-2.5 font-semibold" style={{ color: x.mileage >= 8 ? '#166534' : x.mileage > 0 ? '#DC2626' : '#AAA' }}>{x.mileage > 0 ? `${x.mileage} km/L` : '—'}</td>
-                  <td className="px-4 py-2.5 text-[12px] text-[#777]">{x.station}</td>
+                  <td className="px-4 py-2.5 font-semibold" style={{ color: x.mileage >= 8 ? '#166534' : x.mileage > 0 ? '#B91C1C' : '#AAA' }}>{x.mileage > 0 ? `${x.mileage} km/L` : '—'}</td>
+                  <td className="px-4 py-2.5 text-[12px] text-[#666666]">{x.station}</td>
                 </tr>
               ))}
           </tbody>
@@ -70,7 +70,7 @@ export default function Fuel({ t, addFuel }) {
       </div>
 
       <Collapsible header={<div className="flex items-center gap-2"><span className="text-[13.5px] font-bold text-[#111]">📡 GPS Tracking</span><Badge variant="grey">Not connected</Badge></div>}>
-        <div className="p-4 border-t border-[#E4E4E4] text-[13px] text-[#777]">
+        <div className="p-4 border-t border-[#E4E4E4] text-[13px] text-[#666666]">
           Live vehicle location needs a GPS device or tracking service connected. The HTML version showed placeholder statuses here — they were not real data, so this is left empty until a tracker is integrated.
         </div>
       </Collapsible>

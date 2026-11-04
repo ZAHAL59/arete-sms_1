@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
 
 *,*::before,*::after{box-sizing:border-box;}
 html,body,#root{height:100%;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;}
@@ -24,3 +23,20 @@ html,body,#root{height:100%;font-family:'DM Sans',sans-serif;-webkit-font-smooth
 .arete-hero::after { content:""; position:absolute; inset:0; border-radius:inherit; padding:1px; pointer-events:none;
   background:linear-gradient(135deg, rgba(255,255,255,.26), rgba(255,255,255,.03) 55%, rgba(214,48,62,.30));
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); }
+
+/* ── Accessibility ── */
+:focus-visible { outline: 2px solid #18181B; outline-offset: 2px; border-radius: 4px; }
+html.dark :focus-visible { outline-color: #F2F2F4; }
+[tabindex="-1"]:focus { outline: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* ── Small screens: wide tables scroll sideways inside their card instead of being clipped ── */
+@media (max-width: 767px) {
+  main div:has(> table) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  main table { min-width: 620px; }
+}
+
+/* form fields never grow wider than the space they are in */
+main select, main input:not([type=checkbox]):not([type=radio]), main textarea { max-width: 100%; min-width: 0; }

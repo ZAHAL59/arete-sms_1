@@ -21,11 +21,11 @@ export default function Rooms({ h, removeInmate, go }) {
       <PageHeader title="Room Allocation" subtitle="Beds, occupancy and who is in which room — new admissions and room allocation are done together"
         actions={<Button onClick={() => go('admit')}>+ Admit Student to Hostel</Button>} />
 
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         <Kpi label="Total Beds" value={cap} note={`Across ${rooms.length} rooms`} />
         <Kpi label="Occupied" value={occ} note={`${cap ? Math.round(occ / cap * 100) : 0}% occupancy`} color="#1A5FB4" />
         <Kpi label="Available" value={cap - occ} note="Beds free" color="#166534" />
-        <Kpi label="Full Rooms" value={full} note="No vacancies" color="#DC2626" />
+        <Kpi label="Full Rooms" value={full} note="No vacancies" color="#B91C1C" />
       </div>
 
       {unplaced.length > 0 && (
@@ -46,7 +46,7 @@ export default function Rooms({ h, removeInmate, go }) {
                   style={{ background: 'linear-gradient(135deg,#C8202E,#9A1822)' }}>{r.id}</div>
                 <div className="flex-1">
                   <div className="text-[13.5px] font-bold text-[#111]">Room {r.id}</div>
-                  <div className="text-[11.5px] text-[#777]">{r.type} · {inmates.length}/{r.capacity} beds</div>
+                  <div className="text-[11.5px] text-[#666666]">{r.type} · {inmates.length}/{r.capacity} beds</div>
                 </div>
                 {!isStaff && (
                   <div className="h-1.5 bg-[#E4E4E4] rounded-full w-16 overflow-hidden">
@@ -60,11 +60,11 @@ export default function Rooms({ h, removeInmate, go }) {
             }>
             <div className="border-t border-[#E4E4E4]">
               {!inmates.length
-                ? <div className="p-4 text-center text-[#AAA] text-[13px]">No inmates in this room</div>
+                ? <div className="p-4 text-center text-[#666666] text-[13px]">No inmates in this room</div>
                 : inmates.map(n => (
                     <div key={n} className="flex items-center px-4 py-2.5 border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]">
                       <span className="flex-1 text-[13px] font-semibold text-[#111]">{n}</span>
-                      {!isStaff && <button onClick={() => removeInmate(r.id, n)} className="text-[11px] font-semibold text-[#DC2626] underline cursor-pointer bg-none border-none" title="Frees the bed; re-admit from Hostel Admission">Remove</button>}
+                      {!isStaff && <button onClick={() => removeInmate(r.id, n)} className="text-[11px] font-semibold text-[#B91C1C] underline cursor-pointer bg-none border-none" title="Frees the bed; re-admit from Hostel Admission">Remove</button>}
                     </div>
                   ))}
             </div>

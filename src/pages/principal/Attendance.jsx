@@ -11,7 +11,7 @@ import SubstituteModal from './SubstituteModal';
 import { uncovered } from './cover';
 import { classLabel, downloadCsv, TODAY, prettyDate } from './constants';
 
-const DOT = { P: ['#166534', '#F0FDF4'], A: ['#DC2626', '#FEF2F2'], L: ['#B45309', '#FFFBEB'] };
+const DOT = { P: ['#166534', '#F0FDF4'], A: ['#B91C1C', '#FEF2F2'], L: ['#B45309', '#FFFBEB'] };
 
 export default function Attendance({ settings, p, api }) {
   const db = useStore(s => s.db); const attLog = useStore(s => s.attLog);
@@ -56,19 +56,19 @@ export default function Attendance({ settings, p, api }) {
       <Collapsible defaultOpen className="mb-6" header={
         <div className="flex items-center gap-3 flex-1"><span className="text-[14px] font-bold text-[#111]">👥 Staff Attendance — Today</span>
           {changed.length > 0 ? <Badge variant="amber">{changed.length} unsaved change{changed.length > 1 ? 's' : ''}</Badge> : staffSavedAt ? <Badge variant="green">✓ Saved at {staffSavedAt}</Badge> : null}
-          <span className="ml-auto text-[12px] text-[#777]"><b className="text-[#166534]">{sCount.P}</b> present · <b className="text-[#B45309]">{sCount.L}</b> late · <b className="text-[#DC2626]">{sCount.A}</b> absent · {sUnmarked} not marked</span></div>}>
+          <span className="ml-auto text-[12px] text-[#666666]"><b className="text-[#166534]">{sCount.P}</b> present · <b className="text-[#B45309]">{sCount.L}</b> late · <b className="text-[#B91C1C]">{sCount.A}</b> absent · {sUnmarked} not marked</span></div>}>
         <div className="flex items-center gap-2 px-4 py-2.5 border-t border-[#E4E4E4] bg-[#F8F8F8]">
           <Button size="sm" variant="outline" onClick={markAllStaff}>✓ All Present</Button>
-          <span className="text-[11.5px] text-[#AAA]">P = Present · L = Late · A = Absent</span>
+          <span className="text-[11.5px] text-[#666666]">P = Present · L = Late · A = Absent</span>
           <Button size="sm" className="ml-auto" disabled={!changed.length} onClick={saveStaff}>💾 Save Staff Attendance</Button>
         </div>
         <div className="divide-y divide-[#E4E4E4]">{db.staff.map(s => {
           const v = valOf(s.id), leave = onLeaveToday(hr, s.id), dirty = draft[s.id] !== undefined && draft[s.id] !== savedVal(s.id);
           return <div key={s.id} className={`flex items-center gap-3 px-4 py-2.5 ${v === 'P' ? 'bg-[#F6FEF9]' : v === 'A' ? 'bg-[#FFF5F5]' : v === 'L' ? 'bg-[#FFFDF0]' : ''}`}>
-            <div className="flex-1"><div className="text-[13px] font-semibold text-[#111]">{s.name}{dirty && <span className="ml-2 text-[10px] font-bold text-[#B45309]">● unsaved</span>}</div><div className="text-[11.5px] text-[#777]">{s.subj}</div></div>
+            <div className="flex-1"><div className="text-[13px] font-semibold text-[#111]">{s.name}{dirty && <span className="ml-2 text-[10px] font-bold text-[#B45309]">● unsaved</span>}</div><div className="text-[11.5px] text-[#666666]">{s.subj}</div></div>
             {leave && <Badge variant="amber">On approved leave</Badge>}
             {(v === 'A' || leave) && (() => { const left = uncovered(p.timetable, p.substitutions || [], s.name, TODAY).length, total = (p.substitutions || []).filter(x => x.date === TODAY && x.absent === s.name).length;
-              return <div className="flex items-center gap-2">{left > 0 ? <Badge variant="red">{left} period{left > 1 ? 's' : ''} need cover</Badge> : total > 0 ? <Badge variant="green">✓ Covered</Badge> : <span className="text-[11px] text-[#AAA]">No classes today</span>}
+              return <div className="flex items-center gap-2">{left > 0 ? <Badge variant="red">{left} period{left > 1 ? 's' : ''} need cover</Badge> : total > 0 ? <Badge variant="green">✓ Covered</Badge> : <span className="text-[11px] text-[#666666]">No classes today</span>}
                 <Button size="sm" variant="outline" onClick={() => setSubFor(s.name)}>↻ Assign substitute</Button></div>; })()}
             <div className="flex gap-1">{['P', 'L', 'A'].map(x => <button key={x} onClick={() => setDraft(d => ({ ...d, [s.id]: x }))} className="w-8 h-7 rounded-[5px] text-[11px] font-bold border-[1.5px] cursor-pointer" style={{ background: v === x ? DOT[x][0] : DOT[x][1], color: v === x ? '#fff' : DOT[x][0], borderColor: v === x ? DOT[x][0] : DOT[x][0] + '44' }}>{x}</button>)}</div></div>;
         })}</div>
@@ -82,9 +82,9 @@ export default function Attendance({ settings, p, api }) {
         <Button variant="outline" onClick={() => setAlertOpen(true)}>📱 Parent Alerts ({issues.length})</Button>
       </div>
 
-      <div className="grid grid-cols-4 gap-3 mb-4">
-        {[['Present', counts.P, '#166534'], ['Absent', counts.A, '#DC2626'], ['Late', counts.L, '#B45309'], ['Not marked', Math.max(0, roster.length - counts.P - counts.A - counts.L), '#AAA']].map(([l, v, c]) => (
-          <div key={l} className="bg-white border border-[#E4E4E4] rounded-[10px] p-3.5" style={{ borderLeft: `3px solid ${c}` }}><div className="text-[10.5px] font-semibold text-[#AAA] uppercase tracking-wider">{l}</div><div className="text-[22px] font-extrabold" style={{ color: c }}>{v}</div></div>))}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+        {[['Present', counts.P, '#166534'], ['Absent', counts.A, '#B91C1C'], ['Late', counts.L, '#B45309'], ['Not marked', Math.max(0, roster.length - counts.P - counts.A - counts.L), '#AAA']].map(([l, v, c]) => (
+          <div key={l} className="bg-white border border-[#E4E4E4] rounded-[10px] p-3.5" style={{ borderLeft: `3px solid ${c}` }}><div className="text-[10.5px] font-semibold text-[#666666] uppercase tracking-wider">{l}</div><div className="text-[22px] font-extrabold" style={{ color: c }}>{v}</div></div>))}
       </div>
 
       {open && cls ? <AttendancePanel key={cls + (savedAt || '')} cls={cls} date={TODAY} onClose={() => setOpen(false)} onSaved={() => setSavedAt(new Date().toTimeString().slice(0, 5))} />
@@ -93,9 +93,9 @@ export default function Attendance({ settings, p, api }) {
       <Collapsible defaultOpen className="mt-4" header={<div className="flex items-center gap-3 flex-1"><span className="text-[13.5px] font-bold text-[#111]">Attendance History</span>
         <select value={stuId} onClick={e => e.stopPropagation()} onChange={e => setStuId(e.target.value)} className="ml-auto px-2 py-1 border border-[#E4E4E4] rounded-[6px] text-[12px] outline-none">{db.students.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}</select></div>}>
         <div className="p-4 border-t border-[#E4E4E4]">
-          {!history.length ? <div className="text-[13px] text-[#AAA]">No attendance recorded for {stu?.name} yet.</div> : <>
+          {!history.length ? <div className="text-[13px] text-[#666666]">No attendance recorded for {stu?.name} yet.</div> : <>
             <div className="flex gap-1.5 flex-wrap mb-3">{history.map((h, i) => <span key={i} title={`${prettyDate(h.date)} — ${h.st}`} className="w-7 h-7 rounded-[6px] text-[11px] font-bold flex items-center justify-center" style={{ background: DOT[h.st][1], color: DOT[h.st][0], border: `1px solid ${DOT[h.st][0]}33` }}>{h.st}</span>)}</div>
-            <div className="text-[12.5px] text-[#555]">{monthPct != null ? <>This month: <b style={{ color: monthPct < settings.lowAtt ? '#DC2626' : '#166534' }}>{monthPct}%</b> present · </> : ''}{history.length} day(s) recorded</div></>}
+            <div className="text-[12.5px] text-[#555]">{monthPct != null ? <>This month: <b style={{ color: monthPct < settings.lowAtt ? '#B91C1C' : '#166534' }}>{monthPct}%</b> present · </> : ''}{history.length} day(s) recorded</div></>}
         </div>
       </Collapsible>
 
@@ -104,7 +104,7 @@ export default function Attendance({ settings, p, api }) {
       <Modal open={alertOpen} onClose={() => setAlertOpen(false)} size="lg" title="Parent Alerts" subtitle="Absent and late students today — SMS sending is not connected yet, so copy the message"
         footer={<Button variant="outline" onClick={() => setAlertOpen(false)}>Close</Button>}>
         {!issues.length ? <div className="text-center py-6 text-[#166534] font-semibold">No absent or late students recorded today</div> : <div className="space-y-2">{issues.map((x, i) => (
-          <div key={i} className="border border-[#E4E4E4] rounded-[8px] p-3"><div className="flex items-center gap-2 mb-1"><b className="text-[13px]">{x.s.name}</b><Badge variant={x.v === 'A' ? 'red' : 'amber'}>{x.v === 'A' ? 'Absent' : 'Late'}</Badge><span className="font-mono text-[11px] text-[#AAA] ml-auto">{x.s.parentPhone}</span></div>
+          <div key={i} className="border border-[#E4E4E4] rounded-[8px] p-3"><div className="flex items-center gap-2 mb-1"><b className="text-[13px]">{x.s.name}</b><Badge variant={x.v === 'A' ? 'red' : 'amber'}>{x.v === 'A' ? 'Absent' : 'Late'}</Badge><span className="font-mono text-[11px] text-[#666666] ml-auto">{x.s.parentPhone}</span></div>
             <div className="text-[12.5px] text-[#555] leading-relaxed mb-2">{msg(x)}</div><Button size="sm" variant="outline" onClick={() => navigator.clipboard?.writeText(msg(x))}>Copy message</Button></div>))}</div>}
       </Modal>
     </div>

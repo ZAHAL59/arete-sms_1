@@ -16,7 +16,7 @@ const PORTALS = [
 function NavSection({ title, items }) {
   return (
     <div className="mb-1">
-      <div className="px-4 pt-3 pb-1 text-[9px] font-bold tracking-[1.8px] uppercase text-[#AAA]">{title}</div>
+      <div className="px-4 pt-3 pb-1 text-[9px] font-bold tracking-[1.8px] uppercase text-[#666666]">{title}</div>
       {items.map(item => (
         <NavLink
           key={item.path}
@@ -48,7 +48,7 @@ export default function Layout({ children, user }) {
           <Logo />
           <div>
             <div className="text-[14px] font-bold text-[#111] leading-tight">Arete</div>
-            <div className="text-[10px] text-[#AAA] leading-tight">Model School</div>
+            <div className="text-[10px] text-[#666666] leading-tight">Model School</div>
           </div>
         </div>
 
@@ -67,7 +67,7 @@ export default function Layout({ children, user }) {
             </div>
             <div className="min-w-0">
               <div className="text-[12.5px] font-bold text-[#111] truncate">{user.name}</div>
-              <div className="text-[10.5px] text-[#AAA] truncate">{user.role}</div>
+              <div className="text-[10.5px] text-[#666666] truncate">{user.role}</div>
             </div>
           </div>
         )}
@@ -89,7 +89,7 @@ export function PageHeader({ title, subtitle, actions }) {
           <span className="w-[3px] h-[18px] bg-[#18181B] rounded-full inline-block"></span>
           <h1 className="text-[20px] font-extrabold text-[#111] tracking-tight">{title}</h1>
         </div>
-        {subtitle && <p className="text-[12.5px] text-[#777] mt-1 ml-3">{subtitle}</p>}
+        {subtitle && <p className="text-[12.5px] text-[#666666] mt-1 ml-3">{subtitle}</p>}
       </div>
       {actions && <div className="flex gap-2 items-center flex-wrap">{actions}</div>}
     </div>

@@ -62,33 +62,33 @@ export default function StudentLedger({ allPayments, recordPayment }) {
       />
 
       {/* KPIs */}
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         {[
           {l:'Annual Due',      v:fmtL(totalDue),  c:'#18181B'},
           {l:'Collected',       v:fmtL(totalPaid), c:'#166534'},
-          {l:'Outstanding',     v:fmtL(outstanding),c:'#DC2626'},
+          {l:'Outstanding',     v:fmtL(outstanding),c:'#B91C1C'},
           {l:'Showing',         v:`${students.length} students`,c:'#1A5FB4'},
         ].map(k=>(
           <div key={k.l} className="bg-white border border-[#E4E4E4] rounded-[10px] p-3.5 shadow-[0_1px_4px_rgba(0,0,0,.07)]"
             style={{borderLeft:`3px solid ${k.c}`}}>
-            <div className="text-[10.5px] font-semibold text-[#AAA] uppercase tracking-wider mb-1">{k.l}</div>
+            <div className="text-[10.5px] font-semibold text-[#666666] uppercase tracking-wider mb-1">{k.l}</div>
             <div className="text-[20px] font-extrabold font-mono" style={{color:k.c}}>{k.v}</div>
           </div>
         ))}
       </div>
 
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]">
-        <div className="px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8] flex items-center justify-between">
+        <div className="px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8] flex items-center justify-between flex-wrap gap-y-2">
           <div className="text-[13.5px] font-bold text-[#111]">Student Fee Register</div>
           <Badge variant="green">{students.length} students</Badge>
         </div>
         <table className="w-full border-collapse text-[13px]">
           <thead><tr>{['Student','Class','Annual Due','Paid','Balance','Progress','Status',''].map(h=>
-            <th key={h} className="px-3.5 py-2.5 text-left text-[10px] font-bold text-[#AAA] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
+            <th key={h} className="px-3.5 py-2.5 text-left text-[10px] font-bold text-[#666666] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
           )}</tr></thead>
           <tbody>
             {!students.length
-              ? <tr><td colSpan={8} className="text-center py-10 text-[#AAA]">No students match</td></tr>
+              ? <tr><td colSpan={8} className="text-center py-10 text-[#666666]">No students match</td></tr>
               : students.map(s=>{
                   const due  = getStudentDue(s);
                   const paid = paidTowardDue(allPayments, s.id);
@@ -101,13 +101,13 @@ export default function StudentLedger({ allPayments, recordPayment }) {
                       <td className="px-3.5 py-2.5 text-[#555]">{s.cls} {s.section}</td>
                       <td className="px-3.5 py-2.5 font-mono text-[12px] text-[#555]">{fmt(due)}</td>
                       <td className="px-3.5 py-2.5 font-mono text-[12px] font-bold text-[#166534]">{fmt(paid)}</td>
-                      <td className="px-3.5 py-2.5 font-mono text-[12px] font-bold" style={{color:bal>0?'#DC2626':'#166534'}}>{fmt(Math.max(0,bal))}</td>
+                      <td className="px-3.5 py-2.5 font-mono text-[12px] font-bold" style={{color:bal>0?'#B91C1C':'#166534'}}>{fmt(Math.max(0,bal))}</td>
                       <td className="px-3.5 py-2.5">
                         <div className="flex items-center gap-1.5">
                           <div className="h-1.5 bg-[#E4E4E4] rounded-full w-16 overflow-hidden">
-                            <div className="h-full rounded-full" style={{width:`${pct}%`,background:pct>=100?'#166534':pct>50?'#B45309':'#DC2626'}}/>
+                            <div className="h-full rounded-full" style={{width:`${pct}%`,background:pct>=100?'#166534':pct>50?'#B45309':'#B91C1C'}}/>
                           </div>
-                          <span className="text-[11px] text-[#AAA]">{pct}%</span>
+                          <span className="text-[11px] text-[#666666]">{pct}%</span>
                         </div>
                       </td>
                       <td className="px-3.5 py-2.5"><Badge variant={status==='Paid'?'green':status==='Partial'?'amber':'red'}>{status}</Badge></td>

@@ -28,7 +28,7 @@ export default function StaffDirectory() {
   return (
     <div className="p-6">
       <PageHeader title="Staff Directory" subtitle={`${db.staff.length} active staff`} />
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         {[
           {label:'Total Staff',    value:db.staff.length,  color:'#18181B'},
           {label:'Teaching',       value:db.staff.length,  color:'#1A5FB4'},
@@ -37,7 +37,7 @@ export default function StaffDirectory() {
         ].map(k=>(
           <div key={k.label} className="bg-white border border-[#E4E4E4] rounded-[10px] p-3.5 shadow-[0_1px_4px_rgba(0,0,0,.07)]"
             style={{borderLeft:`3px solid ${k.color}`}}>
-            <div className="text-[10.5px] font-semibold text-[#AAA] uppercase tracking-wider mb-1">{k.label}</div>
+            <div className="text-[10.5px] font-semibold text-[#666666] uppercase tracking-wider mb-1">{k.label}</div>
             <div className="text-[20px] font-extrabold" style={{color:k.color}}>{k.value}</div>
           </div>
         ))}
@@ -45,7 +45,7 @@ export default function StaffDirectory() {
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]">
         <table className="w-full border-collapse text-[13px]">
           <thead><tr>{['Staff Member','Subject / Role','Phone','Joined','Salary','Status',''].map(h=>
-            <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#AAA] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
+            <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#666666] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
           )}</tr></thead>
           <tbody>
             {db.staff.map((s,i)=>{
@@ -105,7 +105,7 @@ export default function StaffDirectory() {
                 ['Classes',(sel.classes||[]).join(', ')||'—']
               ].map(([l,v])=>(
                 <div key={l} className={`bg-[#F8F8F8] p-2.5 rounded-[6px] ${l==='Classes'?'col-span-2':''}`}>
-                  <div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-1">{l}</div>
+                  <div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">{l}</div>
                   <div className="text-[13px] text-[#333]">{v}</div>
                 </div>
               ))}

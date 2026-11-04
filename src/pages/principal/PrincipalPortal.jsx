@@ -59,7 +59,7 @@ export default function PrincipalPortal() {
     <>
       <PortalHub portalId="principal" apps={APPS} nav={nav} overviews={overviews} badges={{ staff: S.counts.pendingLeaves }} prompt="Pick an app to work in."
         pulse={pulse} today={S.todayAgenda} upcoming={upcoming} attention={S.attention} entities={entities}
-        accountExtras={[['⚙', 'School settings', () => setSettings(true)], ['⊞', 'Classic Principal view', () => route('/principal-classic')]]}>
+        accountExtras={[['⚙', 'School settings', () => setSettings(true)]]}>
         {page}
       </PortalHub>
       {settings && <SettingsModal initial={p.settings} onSave={api.setSettings} onClose={() => setSettings(false)} />}

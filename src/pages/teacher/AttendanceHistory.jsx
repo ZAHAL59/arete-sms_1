@@ -56,20 +56,20 @@ export default function AttendanceHistory() {
 
       {/* At-risk */}
       {atRisk.length > 0 && (
-        <Collapsible defaultOpen className="mb-4 !border-l-[3px] !border-l-[#DC2626]"
+        <Collapsible defaultOpen className="mb-4 !border-l-[3px] !border-l-[#B91C1C]"
           header={
             <div className="flex items-center gap-2">
               <span className="text-[16px]">⚠️</span>
               <div>
-                <div className="text-[13.5px] font-bold text-[#DC2626]">Attendance Risk</div>
-                <div className="text-[11.5px] text-[#AAA]">{atRisk.length} student{atRisk.length>1?'s':''} below 75%</div>
+                <div className="text-[13.5px] font-bold text-[#B91C1C]">Attendance Risk</div>
+                <div className="text-[11.5px] text-[#666666]">{atRisk.length} student{atRisk.length>1?'s':''} below 75%</div>
               </div>
             </div>
           }
         >
           <table className="w-full border-collapse text-[13px] border-t border-[#E4E4E4]">
             <thead><tr>{['Student','Class','Present','Days','Att %','Status'].map(h =>
-              <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#AAA] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
+              <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#666666] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
             )}</tr></thead>
             <tbody>
               {atRisk.map(s => (
@@ -78,7 +78,7 @@ export default function AttendanceHistory() {
                   <td className="px-4 py-2.5 text-[#555]">{s.cls} {s.section}</td>
                   <td className="px-4 py-2.5 text-[#555]">{s.p}</td>
                   <td className="px-4 py-2.5 text-[#555]">{s.total}</td>
-                  <td className="px-4 py-2.5 font-bold" style={{color:s.pct<50?'#DC2626':'#B45309'}}>{s.pct}%</td>
+                  <td className="px-4 py-2.5 font-bold" style={{color:s.pct<50?'#B91C1C':'#B45309'}}>{s.pct}%</td>
                   <td className="px-4 py-2.5"><Badge variant={s.pct<50?'red':'amber'}>{s.pct<50?'Critical':'At Risk'}</Badge></td>
                 </tr>
               ))}
@@ -88,19 +88,19 @@ export default function AttendanceHistory() {
       )}
 
       {!keys.length
-        ? <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-10 text-center text-[#AAA]">
+        ? <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-10 text-center text-[#666666]">
             {dateFilter ? 'No attendance recorded for this date.' : 'No records yet — mark attendance from the Timetable view.'}
           </div>
         : (
           <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]">
-            <div className="px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8] text-[12px] text-[#AAA]">
+            <div className="px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8] text-[12px] text-[#666666]">
               {dateFilter
                 ? `Showing: ${new Date(dateFilter+'T00:00:00').toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'})}`
                 : 'All records — select a date to filter'}
             </div>
             <table className="w-full border-collapse text-[13px]">
               <thead><tr>{['Date','Class','Total','Present','Absent','Late','Att %',''].map(h =>
-                <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#AAA] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
+                <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#666666] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
               )}</tr></thead>
               <tbody>
                 {keys.map(k => {
@@ -109,7 +109,7 @@ export default function AttendanceHistory() {
                   const log = attLog[k]; let p=0,a=0,l=0;
                   Object.values(log).forEach(v => { if(v==='P')p++;else if(v==='A')a++;else if(v==='L')l++; });
                   const tot=p+a+l, pct=tot?Math.round(p/tot*100):0;
-                  const col=pct>=90?'#166534':pct>=75?'#B45309':'#DC2626';
+                  const col=pct>=90?'#166534':pct>=75?'#B45309':'#B91C1C';
                   return (
                     <tr key={k} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]">
                       <td className="px-4 py-2.5 text-[#555]">{new Date(datePart+'T00:00:00').toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'})}</td>

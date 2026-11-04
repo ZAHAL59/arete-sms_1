@@ -2,7 +2,7 @@ const VARIANTS = {
   primary: 'bg-[#18181B] text-white hover:bg-[#2B2B31]',
   outline: 'bg-white text-[#555] border border-[#E4E4E4] hover:bg-[#F8F8F8]',
   ghost:   'bg-transparent text-[#111] hover:bg-[#F6F6F7]',
-  danger:  'bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA] hover:bg-[#FEE2E2]',
+  danger:  'bg-[#FEF2F2] text-[#B91C1C] border border-[#FECACA] hover:bg-[#FEE2E2]',
 };
 const SIZES = {
   sm: 'px-3 py-1.5 text-[11.5px]',

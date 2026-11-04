@@ -44,7 +44,7 @@ export default function AttDetailModal({ attKey, onClose }) {
       <div className="mb-4">
         <label className="block text-[11.5px] font-semibold text-[#333] mb-2">New Status</label>
         <div className="flex gap-3">
-          {[['P','#166534','#F0FDF4','#BBF7D0'],['L','#B45309','#FFFBEB','#FEF08A'],['A','#DC2626','#FEF2F2','#FECACA']].map(([s,col,bg,border]) => (
+          {[['P','#166534','#F0FDF4','#BBF7D0'],['L','#B45309','#FFFBEB','#FEF08A'],['A','#B91C1C','#FEF2F2','#FECACA']].map(([s,col,bg,border]) => (
             <button key={s} onClick={() => setNewStatus(s)}
               className="w-16 h-10 rounded-[6px] text-[14px] font-bold border-2 cursor-pointer transition-all"
               style={{ background: newStatus===s ? col : bg, color: newStatus===s ? '#fff' : col, borderColor: newStatus===s ? col : border }}>
@@ -76,7 +76,7 @@ export default function AttDetailModal({ attKey, onClose }) {
       footer={<Button variant="outline" onClick={onClose}>Close</Button>}
     >
       <div className="flex gap-3 mb-4">
-        {[['#166534','#F0FDF4','#BBF7D0',p,'Present'],['#DC2626','#FEF2F2','#FECACA',a,'Absent'],['#B45309','#FFFBEB','#FEF08A',l,'Late'],
+        {[['#166534','#F0FDF4','#BBF7D0',p,'Present'],['#B91C1C','#FEF2F2','#FECACA',a,'Absent'],['#B45309','#FFFBEB','#FEF08A',l,'Late'],
           ['#AAA','#F8F8F8','#E4E4E4',students.length-p-a-l,'Unmarked']].map(([col,bg,border,val,label]) => (
           <div key={label} className="flex-1 text-center p-3 rounded-[8px]" style={{background:bg,border:`1px solid ${border}`}}>
             <div className="text-[20px] font-extrabold" style={{color:col}}>{val}</div>

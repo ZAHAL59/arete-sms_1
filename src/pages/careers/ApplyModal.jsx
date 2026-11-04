@@ -45,14 +45,14 @@ export default function ApplyModal({ vac, onClose }) {
       <div className="text-center py-4">
         <div className="text-[44px] mb-2">🎉</div>
         <p className="text-[13.5px] text-[#555] leading-relaxed mb-4">Thank you for applying to Arete Model School. Your application has been received and will be reviewed by our HR team within 5–7 working days. Shortlisted candidates will be contacted directly.</p>
-        <div className="inline-block bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] px-5 py-3"><div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-1">Reference number</div><div className="font-mono text-[18px] font-extrabold text-[#111]">{ref}</div></div>
-        <p className="text-[12px] text-[#AAA] mt-3">Please save your reference number.</p>
+        <div className="inline-block bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] px-5 py-3"><div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">Reference number</div><div className="font-mono text-[18px] font-extrabold text-[#111]">{ref}</div></div>
+        <p className="text-[12px] text-[#666666] mt-3">Please save your reference number.</p>
       </div>
     </Modal>);
 
   return (
     <Modal open onClose={onClose} size="lg" title={`Apply — ${vac.subj} Teacher`} subtitle={`${vac.dept} Department · ${vac.qual} required · ${vac.exp} experience`}
-      footer={<><span className="mr-auto text-[12px] text-[#DC2626] font-semibold">{error}</span><Button variant="outline" onClick={onClose}>Cancel</Button><Button onClick={submit}>Submit Application</Button></>}>
+      footer={<><span className="mr-auto text-[12px] text-[#B91C1C] font-semibold">{error}</span><Button variant="outline" onClick={onClose}>Cancel</Button><Button onClick={submit}>Submit Application</Button></>}>
       <div className="bg-[#F6F6F7] rounded-[6px] px-3 py-2 text-[12.5px] text-[#111] font-semibold mb-4">📋 {vac.subj} Teacher · {vac.dept} · {vac.qual}</div>
       <Section title="Personal Details">
         <div className="grid grid-cols-2 gap-3">
@@ -77,7 +77,7 @@ export default function ApplyModal({ vac, onClose }) {
           onDrop={e => { e.preventDefault(); setDrag(false); pick(e.dataTransfer.files[0]); }}
           className={`cursor-pointer text-center rounded-[8px] border-2 border-dashed py-5 transition-colors ${drag ? 'border-[#71717A] bg-[#F6F6F7]' : 'border-[#E4E4E4] hover:border-[#71717A] hover:bg-[#F6F6F7]'}`}>
           <input ref={input} type="file" accept=".pdf,.doc,.docx" className="hidden" onChange={e => pick(e.target.files[0])} />
-          <div className="text-[22px]">📎</div><div className="text-[13px] font-semibold text-[#333]">Click to upload or drag & drop your CV</div><div className="text-[11.5px] text-[#AAA]">PDF, DOC or DOCX · Max 5 MB</div>
+          <div className="text-[22px]">📎</div><div className="text-[13px] font-semibold text-[#333]">Click to upload or drag & drop your CV</div><div className="text-[11.5px] text-[#666666]">PDF, DOC or DOCX · Max 5 MB</div>
         </div>
         {file && <div className="mt-2 text-[12.5px] text-[#166534] font-semibold">✓ File selected: {file.name} ({Math.round(file.size / 1024)} KB)</div>}
       </Section>

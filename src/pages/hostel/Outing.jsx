@@ -38,10 +38,10 @@ export default function Outing({ h, addOuting, setOutingStatus }) {
           <Button onClick={() => setOpen(true)}>+ New Request</Button>
         </>} />
 
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         <Kpi label="Pending Approval" value={pending} note="Awaiting warden sign-off" color="#B45309" />
         <Kpi label="Approved" value={approved} note="This month" color="#166534" />
-        <Kpi label="Currently Away" value={away} note="Out of hostel now" color="#DC2626" />
+        <Kpi label="Currently Away" value={away} note="Out of hostel now" color="#B91C1C" />
         <Kpi label="Total Requests" value={h.outings.length} note="All time" color="#1A5FB4" />
       </div>
 
@@ -50,7 +50,7 @@ export default function Outing({ h, addOuting, setOutingStatus }) {
           <thead><tr><Th>Student</Th><Th>Class</Th><Th>Purpose</Th><Th>Departure</Th><Th>Return</Th><Th>Consent</Th><Th>Status</Th><Th /></tr></thead>
           <tbody>
             {!rows.length
-              ? <tr><td colSpan={8} className="text-center py-10 text-[#AAA]">No requests</td></tr>
+              ? <tr><td colSpan={8} className="text-center py-10 text-[#666666]">No requests</td></tr>
               : rows.map(o => (
                 <tr key={o.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]">
                   <td className="px-4 py-2.5 font-semibold text-[#111]">{o.stuName}</td>
@@ -64,7 +64,7 @@ export default function Outing({ h, addOuting, setOutingStatus }) {
                     {o.status === 'Pending Approval' && (
                       <div className="flex gap-2">
                         <button onClick={() => setOutingStatus(o.id, 'Approved')} className="text-[11px] font-semibold text-[#166534] underline cursor-pointer bg-none border-none">Approve</button>
-                        <button onClick={() => setOutingStatus(o.id, 'Rejected')} className="text-[11px] font-semibold text-[#DC2626] underline cursor-pointer bg-none border-none">Reject</button>
+                        <button onClick={() => setOutingStatus(o.id, 'Rejected')} className="text-[11px] font-semibold text-[#B91C1C] underline cursor-pointer bg-none border-none">Reject</button>
                       </div>
                     )}
                   </td>

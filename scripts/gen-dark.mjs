@@ -30,7 +30,7 @@ function darkText(hex) {
   const [h, s, l] = rgb2hsl(hex2rgb(hex));
   if (s < 0.12) { if (l > 0.93) return null; return hsl2hex([NEUTRAL_HUE, 0.04, clamp(1.002 - 0.777 * l, 0.47, 0.95)]); }
   if (l >= 0.62) return null;
-  return hsl2hex([h, clamp(s + 0.04, 0.5, 0.9), clamp(0.62 + (0.5 - l) * 0.2, 0.62, 0.74)]);   // dark coloured text → lighter shade of the same hue
+  return hsl2hex([h, clamp(s + 0.04, 0.5, 0.9), clamp(0.71 + (0.5 - l) * 0.2, 0.71, 0.8)]);   // dark coloured text → lighter shade of the same hue
 }
 function darkBorder(hex, alpha) {
   const [h, s, l] = rgb2hsl(hex2rgb(hex));
@@ -94,11 +94,17 @@ html.dark ::-webkit-scrollbar-thumb:hover { background:#48484F; }
 html.dark input, html.dark select, html.dark textarea { color-scheme: dark; }
 html.dark input::placeholder, html.dark textarea::placeholder { color:#6C6C74; }
 html.dark kbd { color:#A0A0A8; }
-/* the big red cards: a lighter, softer red on dark, with text kept readable */
-html.dark .arete-hero { background:linear-gradient(135deg,#D8505A 0%,#BC3640 100%) !important; box-shadow:0 10px 34px rgba(216,80,90,.18) !important; }
-html.dark .arete-hero [class*="text-white/"] { color:rgba(255,255,255,.93) !important; }
-html.dark .arete-hero .arete-stat { background:rgba(110,16,26,.30) !important; border-color:rgba(255,255,255,.18) !important; }
-html.dark .arete-hero .arete-stat:hover { background:rgba(110,16,26,.42) !important; }
+html.dark .text-accent { color:#FF7A82; }
+/* native fields without their own colour classes (e.g. filter dropdowns) */
+html.dark :where(select, textarea, input:not([type=checkbox]):not([type=radio]):not([type=range])) { background-color:#1B1B1F; color:#E8E8EC; }
+/* ink buttons & fills flip to light in dark mode (text flips with them) */
+html.dark .bg-\\[\\#18181B\\] { background-color:#E7E7EB !important; color:#111114 !important; }
+/* …but a banner that carries white text inside it stays a raised charcoal */
+html.dark .bg-\\[\\#18181B\\]:has([class*="text-white"]) { background-color:#2C2C33 !important; color:#fff !important; }
+html.dark .hover\\:bg-\\[\\#2B2B31\\]:hover { background-color:#FFFFFF !important; }
+html.dark .arete-hero .bg-white.text-\\[\\#18181B\\] { background-color:#fff !important; color:#18181B !important; }
+/* the ink hero cards: a touch lighter than the page so they read as raised */
+html.dark .arete-hero { background:linear-gradient(135deg,#29292F 0%,#1D1D22 100%); box-shadow:0 14px 40px rgba(0,0,0,.45) !important; }
 html.dark img[src*="logo"] { background:#fff; border-radius:8px; }
 `;
 const body = [...rules.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([s, d]) => `${s}{${d}}`).join('\n');

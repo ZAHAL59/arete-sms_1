@@ -24,7 +24,7 @@ export default function StudentFormModal({ student, onClose }) {
   }
   return (
     <Modal open onClose={onClose} size="lg" title={student ? `Edit — ${student.name}` : 'New Student'} subtitle="Direct enrolment. For new families use the Applications pipeline."
-      footer={<><span className="mr-auto text-[12px] text-[#DC2626] font-semibold">{err}</span><Button variant="outline" onClick={onClose}>Cancel</Button><Button onClick={save}>{student ? 'Save changes' : 'Enrol student'}</Button></>}>
+      footer={<><span className="mr-auto text-[12px] text-[#B91C1C] font-semibold">{err}</span><Button variant="outline" onClick={onClose}>Cancel</Button><Button onClick={save}>{student ? 'Save changes' : 'Enrol student'}</Button></>}>
       <div className="grid grid-cols-2 gap-3">
         <Field label="Full name *" className="col-span-2"><input value={f.name} onChange={e => set('name', e.target.value)} className={inputCls} /></Field>
         <Field label="Date of birth"><input type="date" value={f.dob || ''} onChange={e => set('dob', e.target.value)} className={inputCls} /></Field>

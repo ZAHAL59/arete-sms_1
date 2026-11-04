@@ -12,7 +12,7 @@ import { headStatus } from './hostelFees';
 import { DEFAULT_FEE_HEADS } from './constants';
 
 const monthName = ym => new Date(ym + '-01T00:00:00').toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
-const Info = ({ l, v }) => <div className="bg-[#F8F8F8] rounded-[6px] p-2.5"><div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-0.5">{l}</div><div className="text-[12.5px] text-[#333] font-semibold break-words">{v || '—'}</div></div>;
+const Info = ({ l, v }) => <div className="bg-[#F8F8F8] rounded-[6px] p-2.5"><div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-0.5">{l}</div><div className="text-[12.5px] text-[#333] font-semibold break-words">{v || '—'}</div></div>;
 
 export default function Inmates({ h }) {
   const db = useStore(s => s.db);
@@ -33,15 +33,15 @@ export default function Inmates({ h }) {
     const pays = db.payments.filter(p => p.studentId === s.id && (p.category || '').startsWith('Hostel')).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
     return (
       <Modal open onClose={() => setSel(null)} size="lg" title={s.name} subtitle={`${s.cls} ${s.section} · ${roomOf(s.name) ? 'Room ' + roomOf(s.name) : 'No room yet'}`} footer={<Button variant="outline" onClick={() => setSel(null)}>Close</Button>}>
-        <div className="grid grid-cols-3 gap-2 mb-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
           <Info l="Hostel since" v={rec?.date} /><Info l="Gender" v={rec?.gender || s.gender} /><Info l="Diet" v={s.diet} />
           <Info l="Parent / guardian" v={`${s.parentName || '—'} ${s.parentPhone || ''}`} /><Info l="Emergency contact" v={rec ? `${rec.emergencyName || '—'} ${rec.emergencyPhone}` : s.emergencyPhone} /><Info l="Local guardian" v={rec?.localName ? `${rec.localName} ${rec.localPhone}` : ''} />
           <Info l="Medical / allergies" v={s.health !== 'None' ? s.health : 'None'} /><Info l="Medication" v={s.medication || 'None'} /><Info l="Special needs" v={s.needs !== 'None' ? s.needs : 'None'} />
         </div>
         {rec?.notes && <div className="text-[12.5px] text-[#555] bg-[#FFFBEB] rounded-[6px] p-2.5 mb-3">📝 {rec.notes}</div>}
-        {(() => { const heads = h.feeHeads || DEFAULT_FEE_HEADS; return <div className="grid grid-cols-3 gap-2 mb-3">{heads.map(x => { const st = headStatus(db.payments, s.id, x); return <div key={x.id} className="bg-[#F8F8F8] rounded-[6px] p-2.5"><div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-0.5">{x.name}{x.kind !== 'One-time fee' ? ' · held' : ''}</div><div className="text-[12.5px] font-semibold" style={{ color: st.balance ? '#DC2626' : '#166534' }}>{st.balance ? (st.paid ? `${fmt(st.paid)} of ${fmt(x.amount)}` : `Due ${fmt(x.amount)}`) : `✓ ${fmt(st.paid)}`}</div></div>; })}</div>; })()}
-        <div className="text-[10.5px] font-bold text-[#AAA] uppercase tracking-wider mb-1.5">Hostel fee payments · {fmt(fee(s))} / month</div>
-        {!pays.length ? <div className="text-[12.5px] text-[#AAA]">No payments yet — collect from Hostel Fees.</div> : <div className="border border-[#E4E4E4] rounded-[8px] divide-y divide-[#E4E4E4]">{pays.map(p => <div key={p.id} className="flex items-center gap-3 px-3 py-2 text-[12.5px]"><span className="font-mono text-[11.5px] text-[#111]">{p.id}</span><span className="flex-1 text-[#555]">{p.period ? monthName(p.period) : p.category}</span><span className="text-[#AAA]">{p.mode}</span><b className="font-mono text-[#166534]">{fmt(p.amount)}</b></div>)}</div>}
+        {(() => { const heads = h.feeHeads || DEFAULT_FEE_HEADS; return <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">{heads.map(x => { const st = headStatus(db.payments, s.id, x); return <div key={x.id} className="bg-[#F8F8F8] rounded-[6px] p-2.5"><div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-0.5">{x.name}{x.kind !== 'One-time fee' ? ' · held' : ''}</div><div className="text-[12.5px] font-semibold" style={{ color: st.balance ? '#B91C1C' : '#166534' }}>{st.balance ? (st.paid ? `${fmt(st.paid)} of ${fmt(x.amount)}` : `Due ${fmt(x.amount)}`) : `✓ ${fmt(st.paid)}`}</div></div>; })}</div>; })()}
+        <div className="text-[10.5px] font-bold text-[#666666] uppercase tracking-wider mb-1.5">Hostel fee payments · {fmt(fee(s))} / month</div>
+        {!pays.length ? <div className="text-[12.5px] text-[#666666]">No payments yet — collect from Hostel Fees.</div> : <div className="border border-[#E4E4E4] rounded-[8px] divide-y divide-[#E4E4E4]">{pays.map(p => <div key={p.id} className="flex items-center gap-3 px-3 py-2 text-[12.5px]"><span className="font-mono text-[11.5px] text-[#111]">{p.id}</span><span className="flex-1 text-[#555]">{p.period ? monthName(p.period) : p.category}</span><span className="text-[#666666]">{p.mode}</span><b className="font-mono text-[#166534]">{fmt(p.amount)}</b></div>)}</div>}
       </Modal>);
   })();
 
@@ -58,10 +58,10 @@ export default function Inmates({ h }) {
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]">
         <table className="w-full border-collapse text-[13px]">
           <thead><tr>{['Student', 'Class', 'Room', 'Diet', 'Health', 'Parent', 'Emergency contact', 'Hostel since'].map(t =>
-            <th key={t} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#AAA] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{t}</th>)}</tr></thead>
+            <th key={t} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#666666] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{t}</th>)}</tr></thead>
           <tbody>
             {!boarders.length
-              ? <tr><td colSpan={8} className="text-center py-10 text-[#AAA]">{all.length ? 'No boarders match these filters' : 'No boarders yet'}</td></tr>
+              ? <tr><td colSpan={8} className="text-center py-10 text-[#666666]">{all.length ? 'No boarders match these filters' : 'No boarders yet'}</td></tr>
               : boarders.map((s, i) => { const rec = recOf(s); return (
                 <tr key={s.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]">
                   <td className="px-4 py-2.5">
@@ -73,7 +73,7 @@ export default function Inmates({ h }) {
                   <td className="px-4 py-2.5 text-[#555]">{s.cls} {s.section}</td>
                   <td className="px-4 py-2.5">{roomOf(s.name) ? <Badge variant="blue">{roomOf(s.name)}</Badge> : <Badge variant="amber">Unplaced</Badge>}</td>
                   <td className="px-4 py-2.5 text-[#555]">{s.diet || '—'}</td>
-                  <td className="px-4 py-2.5">{s.health && s.health !== 'None' ? <Badge variant="amber">{s.health.slice(0, 24)}{s.health.length > 24 ? '…' : ''}</Badge> : <span className="text-[#AAA]">None</span>}</td>
+                  <td className="px-4 py-2.5">{s.health && s.health !== 'None' ? <Badge variant="amber">{s.health.slice(0, 24)}{s.health.length > 24 ? '…' : ''}</Badge> : <span className="text-[#666666]">None</span>}</td>
                   <td className="px-4 py-2.5 text-[#555]">{s.parentName}</td>
                   <td className="px-4 py-2.5 font-mono text-[11.5px] text-[#555]">{rec?.emergencyPhone || s.emergencyPhone || s.parentPhone}</td>
                   <td className="px-4 py-2.5 text-[#555]">{rec?.date || '—'}</td>

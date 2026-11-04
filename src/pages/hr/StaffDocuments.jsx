@@ -25,16 +25,16 @@ export default function StaffDocuments({ hr, addStaffDoc, deleteStaffDoc }) {
           <select value={ft} onChange={e => setFt(e.target.value)} className={sel}><option value="">All types</option>{DOC_TYPES.map(t => <option key={t}>{t}</option>)}</select>
           <select value={fst} onChange={e => setFst(e.target.value)} className={sel}><option value="">All statuses</option>{['Verified', 'Expiring', 'Expired'].map(t => <option key={t}>{t}</option>)}</select>
           <Button onClick={() => { setF(blank); setOpen(true); }}>+ Add Document</Button></>} />
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         <Kpi label="Total Documents" value={docs.length} note="Across all staff" /><Kpi label="Verified" value={count('Verified')} note="Up to date" color="#166534" />
-        <Kpi label="Expiring Soon" value={count('Expiring')} note="Within 30 days" color="#B45309" /><Kpi label="Expired" value={count('Expired')} note="Need renewal" color="#DC2626" />
+        <Kpi label="Expiring Soon" value={count('Expiring')} note="Within 30 days" color="#B45309" /><Kpi label="Expired" value={count('Expired')} note="Need renewal" color="#B91C1C" />
       </div>
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]"><table className="w-full border-collapse text-[13px]">
         <thead><tr><Th>Staff</Th><Th>Document</Th><Th>Number</Th><Th>Issued</Th><Th>Expiry</Th><Th>Status</Th><Th /></tr></thead>
-        <tbody>{!rows.length ? <tr><td colSpan={7} className="text-center py-10 text-[#AAA]">No documents match</td></tr> : rows.map(d => { const st = docState(d.expiry); return (
-          <tr key={d.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]"><td className="px-4 py-2.5 font-semibold text-[#111]">{name(d.staffId)}</td><td className="px-4 py-2.5 text-[#555]">{d.type}{d.notes && <div className="text-[11px] text-[#AAA]">{d.notes}</div>}</td>
+        <tbody>{!rows.length ? <tr><td colSpan={7} className="text-center py-10 text-[#666666]">No documents match</td></tr> : rows.map(d => { const st = docState(d.expiry); return (
+          <tr key={d.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]"><td className="px-4 py-2.5 font-semibold text-[#111]">{name(d.staffId)}</td><td className="px-4 py-2.5 text-[#555]">{d.type}{d.notes && <div className="text-[11px] text-[#666666]">{d.notes}</div>}</td>
             <td className="px-4 py-2.5 font-mono text-[11.5px] text-[#555]">{d.num}</td><td className="px-4 py-2.5 text-[#555]">{d.issued || '—'}</td><td className="px-4 py-2.5 text-[#555]">{d.expiry || '—'}</td>
-            <td className="px-4 py-2.5"><Badge variant={st.variant}>{st.label}</Badge></td><td className="px-4 py-2.5"><button onClick={() => deleteStaffDoc(d.id)} className="text-[11px] text-[#DC2626] font-semibold cursor-pointer bg-none border-none underline">Remove</button></td></tr>); })}</tbody></table></div>
+            <td className="px-4 py-2.5"><Badge variant={st.variant}>{st.label}</Badge></td><td className="px-4 py-2.5"><button onClick={() => deleteStaffDoc(d.id)} className="text-[11px] text-[#B91C1C] font-semibold cursor-pointer bg-none border-none underline">Remove</button></td></tr>); })}</tbody></table></div>
       <Modal open={open} onClose={() => setOpen(false)} title="Add Staff Document" footer={<><Button variant="outline" onClick={() => setOpen(false)}>Cancel</Button><Button onClick={save}>Save Document</Button></>}>
         <div className="grid grid-cols-2 gap-3">
           <Field label="Staff member *"><select value={f.staffId} onChange={e => set('staffId', e.target.value)} className={inputCls}>{staff.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}</select></Field>

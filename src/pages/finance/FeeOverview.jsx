@@ -34,32 +34,32 @@ export default function FeeOverview({ allPayments, recordPayment }) {
       />
 
       {/* KPIs */}
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         {[
           {label:'Total Collected',  value:fmtL(totalCollected), note:'All categories · AY 2026–27', color:'#166534'},
-          {label:'Outstanding',      value:fmtL(outstanding),    note:`Pending from ${db.students.length} students`, color:'#DC2626'},
+          {label:'Outstanding',      value:fmtL(outstanding),    note:`Pending from ${db.students.length} students`, color:'#B91C1C'},
           {label:'Collection %',     value:collPct+'%',          note:'Against annual due', color:'#18181B'},
           {label:'Transactions',     value:allPayments.filter(p=>p.studentId).length, note:'This academic year', color:'#1A5FB4'},
         ].map(k=>(
           <div key={k.label} className="bg-white border border-[#E4E4E4] rounded-[10px] p-4 shadow-[0_1px_4px_rgba(0,0,0,.07)]"
             style={{borderLeft:`3px solid ${k.color}`}}>
-            <div className="text-[10.5px] font-semibold text-[#AAA] uppercase tracking-wider mb-1">{k.label}</div>
+            <div className="text-[10.5px] font-semibold text-[#666666] uppercase tracking-wider mb-1">{k.label}</div>
             <div className="text-[22px] font-extrabold font-mono leading-none" style={{color:k.color}}>{k.value}</div>
-            <div className="text-[11.5px] text-[#AAA] mt-1">{k.note}</div>
+            <div className="text-[11.5px] text-[#666666] mt-1">{k.note}</div>
           </div>
         ))}
       </div>
 
       {/* Overall collection bar */}
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-4 mb-4 shadow-[0_1px_4px_rgba(0,0,0,.07)]">
-        <div className="flex justify-between text-[12.5px] font-semibold text-[#333] mb-2">
+        <div className="flex justify-between text-[12.5px] font-semibold text-[#333] mb-2 flex-wrap gap-y-2">
           <span>Collection Progress — AY 2026–27</span>
           <span>{fmtL(totalCollected)} / {fmtL(totalDue)}</span>
         </div>
         <div className="h-3 bg-[#E4E4E4] rounded-full overflow-hidden">
           <div className="h-full bg-[#18181B] rounded-full transition-all" style={{width:`${collPct}%`}}/>
         </div>
-        <div className="text-[11px] text-[#AAA] mt-1">{collPct}% collected · {fmtL(outstanding)} outstanding{otherCollected > 0 && <> · plus {fmt(otherCollected)} in admission fees, deposits and advances (not counted against annual fees)</>}</div>
+        <div className="text-[11px] text-[#666666] mt-1">{collPct}% collected · {fmtL(outstanding)} outstanding{otherCollected > 0 && <> · plus {fmt(otherCollected)} in admission fees, deposits and advances (not counted against annual fees)</>}</div>
       </div>
 
       {/* By category */}
@@ -75,27 +75,27 @@ export default function FeeOverview({ allPayments, recordPayment }) {
                 <div className="h-full bg-[#18181B] rounded-full" style={{width:`${Math.min(100,total/totalCollected*100)}%`}}/>
               </div>
               <span className="text-[12.5px] font-bold text-[#111] font-mono min-w-[80px] text-right">{fmt(total)}</span>
-              <span className="text-[11px] text-[#AAA] min-w-[60px]">{count} payments</span>
+              <span className="text-[11px] text-[#666666] min-w-[60px]">{count} payments</span>
             </div>
           ))}
           {!Object.keys(byCategory).length && (
-            <div className="text-center py-4 text-[#AAA]">No payments recorded yet</div>
+            <div className="text-center py-4 text-[#666666]">No payments recorded yet</div>
           )}
         </div>
       </div>
 
       {/* Recent payments */}
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]">
-        <div className="px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8] flex items-center justify-between">
+        <div className="px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8] flex items-center justify-between flex-wrap gap-y-2">
           <div className="text-[13.5px] font-bold text-[#111]">Recent Payments</div>
         </div>
         <table className="w-full border-collapse text-[13px]">
           <thead><tr>{['Student','Class','Category','Amount','Date','Mode','Receipt'].map(h=>
-            <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#AAA] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
+            <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#666666] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
           )}</tr></thead>
           <tbody>
             {!recent.length
-              ? <tr><td colSpan={7} className="text-center py-10 text-[#AAA]">No payments yet — click Record Payment</td></tr>
+              ? <tr><td colSpan={7} className="text-center py-10 text-[#666666]">No payments yet — click Record Payment</td></tr>
               : recent.map(p=>{
                   const stu=db.students.find(s=>s.id===p.studentId);
                   return (

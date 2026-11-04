@@ -15,15 +15,15 @@ export default function Manifest() {
         return (
           <Collapsible key={r.id} defaultOpen className="mb-3"
             header={<div className="flex-1"><div className="text-[13.5px] font-bold text-[#111]">{r.name}</div>
-              <div className="text-[11.5px] text-[#777]">Driver: {r.driver} · {r.phone} · Dept: {r.dept}</div></div>}>
+              <div className="text-[11.5px] text-[#666666]">Driver: {r.driver} · {r.phone} · Dept: {r.dept}</div></div>}>
             <table className="w-full border-collapse text-[13px] border-t border-[#E4E4E4]">
               <thead><tr><Th>#</Th><Th>Student</Th><Th>Class</Th><Th>Parent</Th><Th>Parent Phone</Th></tr></thead>
               <tbody>
                 {!students.length
-                  ? <tr><td colSpan={5} className="text-center py-6 text-[#AAA]">No students on this route</td></tr>
+                  ? <tr><td colSpan={5} className="text-center py-6 text-[#666666]">No students on this route</td></tr>
                   : students.map((s, i) => (
                     <tr key={s.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]">
-                      <td className="px-4 py-2.5 text-[#AAA]">{i + 1}</td>
+                      <td className="px-4 py-2.5 text-[#666666]">{i + 1}</td>
                       <td className="px-4 py-2.5 font-semibold text-[#111]">{s.name}</td>
                       <td className="px-4 py-2.5 text-[#555]">{s.cls} {s.section}</td>
                       <td className="px-4 py-2.5 text-[#555]">{s.parentName}</td>

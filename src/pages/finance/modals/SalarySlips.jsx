@@ -1,3 +1,4 @@
+import { attachPrint } from '../../../lib/printWindow';
 import Modal from '../../../components/ui/Modal';
 import Button from '../../../components/ui/Button';
 import { fmt } from '../constants';
@@ -13,16 +14,16 @@ export function slipsHtml(staff, month) {
 <tr><td style="padding:7px;border:1px solid #ddd">Monthly salary</td><td style="padding:7px;text-align:right;border:1px solid #ddd">${x.gross.toLocaleString('en-IN')}</td><td style="padding:7px;border:1px solid #ddd">Provident Fund (12%)</td><td style="padding:7px;text-align:right;border:1px solid #ddd">${x.pf.toLocaleString('en-IN')}</td></tr>
 <tr><td style="padding:7px;border:1px solid #ddd"></td><td style="padding:7px;border:1px solid #ddd"></td><td style="padding:7px;border:1px solid #ddd">Professional Tax</td><td style="padding:7px;text-align:right;border:1px solid #ddd">${x.pt.toLocaleString('en-IN')}</td></tr>
 <tr style="font-weight:700;background:#F6F6F7"><td style="padding:8px;border:1px solid #ddd" colspan="3">Net pay</td><td style="padding:8px;text-align:right;border:1px solid #ddd">₹${x.net.toLocaleString('en-IN')}</td></tr></table></div>`; };
-  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Salary Slips — ${month}</title><style>body{font-family:Arial,sans-serif;padding:24px;color:#111}@media print{button{display:none}}</style></head><body><p style="text-align:center"><button onclick="window.print()" style="padding:8px 22px;background:#C8202E;color:#fff;border:0;border-radius:6px;cursor:pointer">Print</button></p>${staff.map(slip).join('')}</body></html>`;
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Salary Slips — ${month}</title><style>body{font-family:Arial,sans-serif;padding:24px;color:#111}@media print{button{display:none}}</style></head><body><p style="text-align:center"><button data-print="1" style="padding:8px 22px;background:#C8202E;color:#fff;border:0;border-radius:6px;cursor:pointer">Print</button></p>${staff.map(slip).join('')}</body></html>`;
 }
 
 export default function SalarySlipsModal({ staff, title, onClose }) {
   const month = new Date().toLocaleString('en-IN', { month: 'long', year: 'numeric' });
   const html = slipsHtml(staff, month);
   return (
-    <Modal open onClose={onClose} size="lg" title={title} subtitle={`${month} · ${staff.length} slip(s)`} footer={<><Button variant="outline" onClick={onClose}>Close</Button><Button onClick={() => { const w = window.open('', '_blank', 'width=860,height=900'); if (w) { w.document.write(html); w.document.close(); } }}>🖨 Open & Print</Button></>}>
+    <Modal open onClose={onClose} size="lg" title={title} subtitle={`${month} · ${staff.length} slip(s)`} footer={<><Button variant="outline" onClick={onClose}>Close</Button><Button onClick={() => { const w = window.open('', '_blank', 'width=860,height=900'); if (w) { w.document.write(html); w.document.close(); attachPrint(w); } }}>🖨 Open & Print</Button></>}>
       <iframe title="Salary slips" srcDoc={html} className="w-full h-[420px] border border-[#E4E4E4] rounded-[8px]" />
-      <p className="text-[11.5px] text-[#AAA] mt-2">Deductions: Provident Fund 12% of salary and ₹200 professional tax (salaries above ₹15,000), as set in the original system — please confirm these with your accountant.</p>
+      <p className="text-[11.5px] text-[#666666] mt-2">Deductions: Provident Fund 12% of salary and ₹200 professional tax (salaries above ₹15,000), as set in the original system — please confirm these with your accountant.</p>
     </Modal>
   );
 }

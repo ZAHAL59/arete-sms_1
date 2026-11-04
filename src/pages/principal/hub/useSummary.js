@@ -28,7 +28,7 @@ export default function useSummary(p, nav) {
       actions: [{ label: 'Approve', run: () => { setLeaveStatus(l.id, 'Approved'); refresh(); } }, { label: 'Reject', variant: 'outline', run: () => { setLeaveStatus(l.id, 'Rejected'); refresh(); } }] })),
     ...pendingOutings.map(o => ({ id: 'o' + o.id, letter: 'O', color: '#B45309', title: `${o.stuName} — hostel outing (${o.purpose})`, sub: `${o.dep} to ${o.ret}`,
       actions: [{ label: 'Approve', run: () => { setOutingStatus(o.id, 'Approved'); refresh(); } }, { label: 'Reject', variant: 'outline', run: () => { setOutingStatus(o.id, 'Rejected'); refresh(); } }] })),
-    ...openComplaints.map(c => ({ id: 'c' + c.id, letter: 'C', color: '#DC2626', title: c.subj.slice(0, 80), sub: `Complaint · ${c.type}`, actions: [{ label: 'Open', variant: 'outline', run: () => nav.route('/campus') }] })),
+    ...openComplaints.map(c => ({ id: 'c' + c.id, letter: 'C', color: '#B91C1C', title: c.subj.slice(0, 80), sub: `Complaint · ${c.type}`, actions: [{ label: 'Open', variant: 'outline', run: () => nav.route('/campus') }] })),
     ...pendingApps.map(a => ({ id: 'a' + a.id, letter: 'H', color: '#1A5FB4', title: `${a.name} — job application`, sub: 'HR review needed', actions: [{ label: 'Open', variant: 'outline', run: () => nav.route('/hr') }] })),
   ];
 
@@ -68,7 +68,7 @@ export default function useSummary(p, nav) {
 
   const activity = [
     ...db.payments.filter(x => x.studentId).slice(0, 4).map(x => ({ at: x.date, c: '#166534', msg: `Fee payment ₹${x.amount.toLocaleString('en-IN')} · ${db.students.find(s => s.id === x.studentId)?.name || ''}` })),
-    ...complaints.slice(0, 3).map(c => ({ at: c.date, c: '#DC2626', msg: `Complaint ${c.status === 'Open' ? 'logged' : 'resolved'} — ${c.subj.slice(0, 50)}` })),
+    ...complaints.slice(0, 3).map(c => ({ at: c.date, c: '#B91C1C', msg: `Complaint ${c.status === 'Open' ? 'logged' : 'resolved'} — ${c.subj.slice(0, 50)}` })),
     ...(hr.applications || []).slice(-3).map(a => ({ at: (a.appliedAt || '').slice(0, 10), c: '#1A5FB4', msg: `Job application — ${a.name}` })),
     ...campus.visitors.slice(0, 3).map(v => ({ at: v.date, c: '#B45309', msg: `Visitor — ${v.name} (${v.purpose})` })),
     ...p.incidents.slice(0, 2).map(i => ({ at: i.date, c: '#6D28D9', msg: `Health incident — ${i.stu}: ${i.issue}` })),

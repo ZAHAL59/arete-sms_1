@@ -49,7 +49,7 @@ export default function Budget({ fin, allPayments, addBudgetLine, updateBudgetLi
     <div className="p-6">
       <PageHeader title="Budget vs Actual" subtitle="Set annual planned budget · actuals auto-fill from payments"
         actions={
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             <select value={period} onChange={e=>setPeriod(e.target.value)}
               className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]">
               <option value="ay">Full Academic Year</option>
@@ -69,25 +69,25 @@ export default function Budget({ fin, allPayments, addBudgetLine, updateBudgetLi
       </div>
 
       {/* KPIs */}
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         {[
           {l:'Total Budget',   v:fmtL(totBud),   c:'#18181B'},
-          {l:'Total Actual',   v:fmtL(totAct),   c:'#DC2626'},
+          {l:'Total Actual',   v:fmtL(totAct),   c:'#B91C1C'},
           {l:'Fee Income',     v:fmtL(totalCollected), c:'#166534'},
-          {l:'Surplus/Deficit',v:fmtL(totalCollected-totAct), c:totalCollected>=totAct?'#166534':'#DC2626'},
+          {l:'Surplus/Deficit',v:fmtL(totalCollected-totAct), c:totalCollected>=totAct?'#166534':'#B91C1C'},
         ].map(k=>(
           <div key={k.l} className="bg-white border border-[#E4E4E4] rounded-[10px] p-3.5 shadow-[0_1px_4px_rgba(0,0,0,.07)]"
             style={{borderLeft:`3px solid ${k.c}`}}>
-            <div className="text-[10.5px] font-semibold text-[#AAA] uppercase tracking-wider mb-1">{k.l}</div>
+            <div className="text-[10.5px] font-semibold text-[#666666] uppercase tracking-wider mb-1">{k.l}</div>
             <div className="text-[20px] font-extrabold font-mono" style={{color:k.c}}>{k.v}</div>
           </div>
         ))}
       </div>
 
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]">
-        <div className="px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8] flex justify-between items-center">
+        <div className="px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8] flex justify-between items-center flex-wrap gap-y-2">
           <div className="text-[13.5px] font-bold text-[#111]">Budget Line Items</div>
-          <div className="text-[12px] text-[#AAA] font-semibold">{PERIOD_LABELS[period]}</div>
+          <div className="text-[12px] text-[#666666] font-semibold">{PERIOD_LABELS[period]}</div>
         </div>
         <div className="divide-y divide-[#E4E4E4]">
           {lines.map(b=>{
@@ -98,13 +98,13 @@ export default function Budget({ fin, allPayments, addBudgetLine, updateBudgetLi
               <div key={b.id} className="flex items-center gap-3 px-4 py-3 hover:bg-[#F8F8F8]">
                 <div className="min-w-[180px]">
                   <div className="text-[13px] font-semibold text-[#333]">{b.cat}</div>
-                  <div className="text-[10.5px] text-[#AAA]">{b.dept}</div>
+                  <div className="text-[10.5px] text-[#666666]">{b.dept}</div>
                 </div>
                 <div className="flex-1 h-1.5 bg-[#E4E4E4] rounded-full overflow-hidden">
-                  <div className="h-full rounded-full transition-all" style={{width:`${Math.min(pct,100)}%`,background:over?'#DC2626':warn?'#B45309':'#18181B'}}/>
+                  <div className="h-full rounded-full transition-all" style={{width:`${Math.min(pct,100)}%`,background:over?'#B91C1C':warn?'#B45309':'#18181B'}}/>
                 </div>
                 <div className="text-right min-w-[140px]">
-                  <div className="text-[11.5px] font-mono text-[#555]">{fmtL(b.actual)} <span className="text-[#AAA]">/ {fmtL(b.budgeted)}</span></div>
+                  <div className="text-[11.5px] font-mono text-[#555]">{fmtL(b.actual)} <span className="text-[#666666]">/ {fmtL(b.budgeted)}</span></div>
                 </div>
                 <div className="min-w-[70px]">
                   <Badge variant={over?'red':warn?'amber':'green'} className="text-[10px]">{pct}% {over?'OVER':''}</Badge>
@@ -113,7 +113,7 @@ export default function Budget({ fin, allPayments, addBudgetLine, updateBudgetLi
                   <button onClick={()=>{setEditOpen(b);setForm({cat:b.cat,dept:b.dept,budgeted:String(b.budgeted)});}}
                     className="text-[11px] font-semibold text-[#111] underline cursor-pointer bg-none border-none">✎</button>
                   <button onClick={()=>deleteBudgetLine(b.id)}
-                    className="text-[11px] font-semibold text-[#DC2626] underline cursor-pointer bg-none border-none ml-1">✕</button>
+                    className="text-[11px] font-semibold text-[#B91C1C] underline cursor-pointer bg-none border-none ml-1">✕</button>
                 </div>
               </div>
             );

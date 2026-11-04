@@ -24,14 +24,14 @@ export default function Payroll({ allPayments, processPayroll, payStaff, updateS
       <PageHeader title="Staff Payroll" subtitle={`Salaries live from HR · ${monthLabel}`}
         actions={<><Button variant="outline" onClick={() => setSlips({ staff: db.staff, title: 'Salary Slips — all staff' })}>📋 Salary Slips</Button><Button onClick={processPayroll}>✓ Process All Payroll</Button></>} />
       <div className="bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] p-3 mb-5 text-[12.5px] text-[#555]">🔗 <strong className="text-[#111]">Source: HR Portal.</strong> Staff and salaries come from the HR module — hire someone there and they appear here automatically.</div>
-      <div className="grid grid-cols-4 gap-3 mb-5">
-        {[{ l: 'Monthly Payroll', v: fmtL(totalPayroll), c: '#18181B' }, { l: 'Paid This Month', v: fmtL(paidTotal), c: '#166534' }, { l: 'Pending', v: fmtL(Math.max(0, totalPayroll - paidTotal)), c: '#DC2626' }, { l: 'Staff Processed', v: `${db.staff.filter(isPaid).length}/${db.staff.length}`, c: '#1A5FB4' }].map(k => (
-          <div key={k.l} className="bg-white border border-[#E4E4E4] rounded-[10px] p-3.5 shadow-[0_1px_4px_rgba(0,0,0,.07)]" style={{ borderLeft: `3px solid ${k.c}` }}><div className="text-[10.5px] font-semibold text-[#AAA] uppercase tracking-wider mb-1">{k.l}</div><div className="text-[20px] font-extrabold font-mono" style={{ color: k.c }}>{k.v}</div></div>))}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+        {[{ l: 'Monthly Payroll', v: fmtL(totalPayroll), c: '#18181B' }, { l: 'Paid This Month', v: fmtL(paidTotal), c: '#166534' }, { l: 'Pending', v: fmtL(Math.max(0, totalPayroll - paidTotal)), c: '#B91C1C' }, { l: 'Staff Processed', v: `${db.staff.filter(isPaid).length}/${db.staff.length}`, c: '#1A5FB4' }].map(k => (
+          <div key={k.l} className="bg-white border border-[#E4E4E4] rounded-[10px] p-3.5 shadow-[0_1px_4px_rgba(0,0,0,.07)]" style={{ borderLeft: `3px solid ${k.c}` }}><div className="text-[10.5px] font-semibold text-[#666666] uppercase tracking-wider mb-1">{k.l}</div><div className="text-[20px] font-extrabold font-mono" style={{ color: k.c }}>{k.v}</div></div>))}
       </div>
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]">
         <div className="px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8]"><div className="text-[13.5px] font-bold text-[#111]">Staff Salary Register</div></div>
         <table className="w-full border-collapse text-[13px]">
-          <thead><tr>{['Name', 'Subject', 'Joined', 'Monthly Salary', 'Status', 'YTD Paid', ''].map(h => <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#AAA] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>)}</tr></thead>
+          <thead><tr>{['Name', 'Subject', 'Joined', 'Monthly Salary', 'Status', 'YTD Paid', ''].map(h => <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#666666] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>)}</tr></thead>
           <tbody>{db.staff.map(s => { const paid = isPaid(s); return (
             <tr key={s.id} className={`border-b border-[#E4E4E4] last:border-b-0 ${paid ? 'bg-[#F6FEF9]' : ''}`}>
               <td className="px-4 py-2.5 font-semibold text-[#111]">{s.name}</td><td className="px-4 py-2.5 text-[#555]">{s.subj}</td><td className="px-4 py-2.5 text-[#555]">{s.joined}</td>

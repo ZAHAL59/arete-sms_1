@@ -27,11 +27,11 @@ export default function LeaveRequests({ hr, updateLeave, addLeave }) {
     <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]">
       <table className="w-full border-collapse text-[13px]">
         <thead><tr>{['Staff','Type','From','To','Days','Reason','Status',showActions?'Actions':''].map(h=>
-          <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#AAA] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
+          <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#666666] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
         )}</tr></thead>
         <tbody>
           {!rows.length
-            ? <tr><td colSpan={8} className="text-center py-8 text-[#AAA]">No records</td></tr>
+            ? <tr><td colSpan={8} className="text-center py-8 text-[#666666]">No records</td></tr>
             : rows.map(l=>{
                 const s = db.staff.find(x=>x.id===l.staffId);
                 return (
@@ -47,7 +47,7 @@ export default function LeaveRequests({ hr, updateLeave, addLeave }) {
                       {showActions && (
                         <div className="flex gap-2">
                           <button onClick={()=>updateLeave(l.id,'Approved')} className="text-[11px] font-semibold text-[#166534] underline cursor-pointer bg-none border-none">Approve</button>
-                          <button onClick={()=>updateLeave(l.id,'Rejected')} className="text-[11px] font-semibold text-[#DC2626] underline cursor-pointer bg-none border-none">Reject</button>
+                          <button onClick={()=>updateLeave(l.id,'Rejected')} className="text-[11px] font-semibold text-[#B91C1C] underline cursor-pointer bg-none border-none">Reject</button>
                         </div>
                       )}
                     </td>
@@ -66,8 +66,8 @@ export default function LeaveRequests({ hr, updateLeave, addLeave }) {
         actions={<Button onClick={()=>setNewOpen(true)}>+ New Request</Button>}
       />
 
-      {pending.length>0&&<><div className="text-[12px] font-bold text-[#AAA] uppercase tracking-wider mb-2">⚠️ Pending Approval ({pending.length})</div>{tbl(pending,true)}<div className="mb-5"/></>}
-      <div className="text-[12px] font-bold text-[#AAA] uppercase tracking-wider mb-2">All Requests</div>
+      {pending.length>0&&<><div className="text-[12px] font-bold text-[#666666] uppercase tracking-wider mb-2">⚠️ Pending Approval ({pending.length})</div>{tbl(pending,true)}<div className="mb-5"/></>}
+      <div className="text-[12px] font-bold text-[#666666] uppercase tracking-wider mb-2">All Requests</div>
       {tbl(hr.leaveRequests, false)}
 
       <Modal open={newOpen} onClose={()=>setNewOpen(false)} title="New Leave Request"

@@ -38,22 +38,22 @@ export default function Events({ c, addEvent, allocateSeats }) {
     const d = new Date(e.date + 'T00:00:00');
     const pct = e.seats ? Math.round(e.alloc / e.seats * 100) : 0;
     return (
-      <Collapsible key={e.id} className={`mb-1.5 ${isPast ? 'opacity-75' : ''}`} open={ex.isOpen(e.id)} onToggle={() => ex.toggle(e.id)}
+      <Collapsible key={e.id} className="mb-1.5" open={ex.isOpen(e.id)} onToggle={() => ex.toggle(e.id)}
         header={
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-11 flex-shrink-0 text-center rounded-[7px] py-1" style={{ background: isPast ? '#F2F2F2' : '#F6F6F7' }}>
-              <div className="text-[16px] font-extrabold leading-none" style={{ color: isPast ? '#777' : '#18181B' }}>{d.getDate()}</div>
-              <div className="text-[9px] font-bold uppercase tracking-wider text-[#AAA] mt-0.5">{d.toLocaleString('en-IN', { month: 'short' })}</div></div>
-            <div className="flex-1 min-w-0"><div className="text-[13.5px] font-bold text-[#111] truncate">{e.title}</div><div className="text-[11.5px] text-[#777]">{e.time} · {e.venue}</div></div>
+              <div className="text-[16px] font-extrabold leading-none" style={{ color: isPast ? '#666666' : '#18181B' }}>{d.getDate()}</div>
+              <div className="text-[9px] font-bold uppercase tracking-wider text-[#666666] mt-0.5">{d.toLocaleString('en-IN', { month: 'short' })}</div></div>
+            <div className="flex-1 min-w-0"><div className="text-[13.5px] font-bold text-[#111] truncate">{e.title}</div><div className="text-[11.5px] text-[#666666]">{e.time} · {e.venue}</div></div>
             <Badge variant="grey">{e.type}</Badge>
             <Badge variant={e.alloc === 0 ? 'amber' : 'green'}>{e.alloc === 0 ? 'Seats not allocated' : `${e.alloc}/${e.seats} seats`}</Badge>
             {!isPast && <Button size="sm" variant={e.alloc === 0 ? 'primary' : 'outline'} onClick={ev => { ev.stopPropagation(); openSeats(e); }}>{e.alloc === 0 ? 'Allocate Seats' : 'Edit Seats'}</Button>}
           </div>}>
         <div className="px-4 py-3 text-[12.5px] text-[#555] space-y-2">
-          <div className="flex items-center gap-3"><span>{e.alloc === 0 ? <em className="text-[#AAA]">Seats not yet allocated</em> : <>Seats: <strong>{e.alloc}/{e.seats}</strong>{e.allocTo && <span className="text-[#AAA]"> · {e.allocTo}</span>}</>}</span>
+          <div className="flex items-center gap-3"><span>{e.alloc === 0 ? <em className="text-[#666666]">Seats not yet allocated</em> : <>Seats: <strong>{e.alloc}/{e.seats}</strong>{e.allocTo && <span className="text-[#666666]"> · {e.allocTo}</span>}</>}</span>
             {e.alloc > 0 && <div className="w-40 h-1.5 bg-[#E4E4E4] rounded-full overflow-hidden"><div className="h-full bg-[#18181B] rounded-full" style={{ width: `${pct}%` }} /></div>}</div>
-          <div className="text-[#777]">Venue: <b className="text-[#333]">{e.venue}</b> · Capacity {e.seats}</div>
-          {e.resources?.length > 0 ? <div className="text-[#777]">Resources: {e.resources.join(', ')}</div> : <div className="text-[#BBB]">No resources listed</div>}
+          <div className="text-[#666666]">Venue: <b className="text-[#333]">{e.venue}</b> · Capacity {e.seats}</div>
+          {e.resources?.length > 0 ? <div className="text-[#666666]">Resources: {e.resources.join(', ')}</div> : <div className="text-[#666666]">No resources listed</div>}
         </div>
       </Collapsible>);
   };
@@ -66,7 +66,7 @@ export default function Events({ c, addEvent, allocateSeats }) {
   return (
     <div className="p-6">
       <PageHeader title="Meetings & Events" subtitle={`${upcoming.length} upcoming · ${past.length} past`} actions={<><ExpandControls ex={ex} ids={allIds} /><Button onClick={() => setOpen(true)}>+ Schedule Event</Button></>} />
-      {!upcoming.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-8 text-center text-[#AAA] mb-3">Nothing scheduled</div>}
+      {!upcoming.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-8 text-center text-[#666666] mb-3">Nothing scheduled</div>}
       {months.map(m => group('m:' + m, monthLabel(m), upcoming.filter(e => monthOf(e.date) === m).length, upcoming.filter(e => monthOf(e.date) === m).map(e => row(e, false))))}
       {past.length > 0 && group('past', 'Past events', past.length, past.map(e => row(e, true)), 'grey')}
 

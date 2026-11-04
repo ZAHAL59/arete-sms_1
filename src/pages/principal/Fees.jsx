@@ -28,7 +28,7 @@ export default function Fees() {
           <tbody>{rows.map(r => <tr key={r.g} className="border-b border-[#E4E4E4] last:border-b-0"><td className="px-4 py-2.5 font-semibold">{r.g}</td><td className="px-4 py-2.5 font-mono text-[12px]">{fmt(r.billed)}</td><td className="px-4 py-2.5 font-mono text-[12px] text-[#166534]">{fmt(r.col)}</td>
             <td className="px-4 py-2.5"><div className="flex items-center gap-2"><div className="h-1.5 bg-[#E4E4E4] rounded-full w-28 overflow-hidden"><div className="h-full bg-[#18181B] rounded-full" style={{ width: `${Math.min(100, r.pct)}%` }} /></div><span className="text-[11px] font-bold">{r.pct}%</span></div></td></tr>)}</tbody></table>
       </Collapsible></div>
-      <div className="px-6 pt-4 flex gap-1 border-b border-[#E4E4E4] mx-6">{[['overview', 'Overview'], ['ledger', 'Student Ledger'], ['history', 'Payments']].map(([id, l]) => <button key={id} onClick={() => setTab(id)} className={`px-4 py-2 text-[13px] font-semibold border-b-2 -mb-px cursor-pointer bg-none ${tab === id ? 'border-[#71717A] text-[#111]' : 'border-transparent text-[#777]'}`}>{l}</button>)}</div>
+      <div className="px-6 pt-4 flex gap-1 border-b border-[#E4E4E4] mx-6 overflow-x-auto">{[['overview', 'Overview'], ['ledger', 'Student Ledger'], ['history', 'Payments']].map(([id, l]) => <button key={id} onClick={() => setTab(id)} className={`px-4 py-2 text-[13px] font-semibold border-b-2 -mb-px cursor-pointer bg-none ${tab === id ? 'border-[#71717A] text-[#111]' : 'border-transparent text-[#666666]'}`}>{l}</button>)}</div>
       {tab === 'overview' && <FeeOverview {...props} />}{tab === 'ledger' && <StudentLedger {...props} />}{tab === 'history' && <PaymentHistory {...props} />}
     </div>
   );

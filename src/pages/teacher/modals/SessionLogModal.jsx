@@ -63,7 +63,7 @@ export default function SessionLogModal({ student, onClose }) {
               className="text-[24px] bg-none border-none cursor-pointer p-0.5 hover:scale-110 transition-transform"
               style={{color: n <= engagement ? '#F59E0B' : '#DDD'}}>{n <= engagement ? '★' : '☆'}</button>
           ))}
-          <span className="text-[11px] text-[#AAA] ml-2">Click to rate 1–5</span>
+          <span className="text-[11px] text-[#666666] ml-2">Click to rate 1–5</span>
         </div>
       </div>
       <div>

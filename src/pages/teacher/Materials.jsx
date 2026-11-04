@@ -43,7 +43,7 @@ export default function Materials() {
       />
 
       {/* KPI strip */}
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         {[
           ['Showing', filtered.length, `of ${LMS_LIB.length} total`,'#18181B'],
           ['Your Resources', LMS_LIB.filter(m=>m.by===TEACHER.name).length, 'created by you','#1A5FB4'],
@@ -51,15 +51,15 @@ export default function Materials() {
           ['Interactive', LMS_LIB.filter(m=>m.type==='Interactive Activity'||m.type==='Simulation').length, 'hands-on','#166534'],
         ].map(([l,v,n,col]) => (
           <div key={l} className="bg-white border border-[#E4E4E4] rounded-[10px] p-3.5 shadow-[0_1px_4px_rgba(0,0,0,.07)]">
-            <div className="text-[10.5px] font-semibold text-[#AAA] uppercase tracking-wider mb-1">{l}</div>
+            <div className="text-[10.5px] font-semibold text-[#666666] uppercase tracking-wider mb-1">{l}</div>
             <div className="text-[22px] font-extrabold leading-none" style={{color:col}}>{v}</div>
-            <div className="text-[11.5px] text-[#AAA] mt-1">{n}</div>
+            <div className="text-[11.5px] text-[#666666] mt-1">{n}</div>
           </div>
         ))}
       </div>
 
       {!filtered.length
-        ? <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-12 text-center text-[#AAA]">No materials match</div>
+        ? <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-12 text-center text-[#666666]">No materials match</div>
         : <div className="space-y-2">
           {filtered.map(m => (
             <div key={m.id} className="bg-white border border-[#E4E4E4] rounded-[10px] p-4 flex items-start gap-4 hover:shadow-[0_4px_18px_rgba(0,0,0,.11)] hover:-translate-y-0.5 transition-all">
@@ -69,7 +69,7 @@ export default function Materials() {
                   <div className="text-[13.5px] font-bold text-[#111] flex-1">{m.title}</div>
                   <Badge variant={TYPE_VARIANT[m.type]||'grey'}>{m.type}</Badge>
                 </div>
-                <div className="text-[11.5px] text-[#AAA] mb-1">{m.grade} · {m.topic} · {m.dur} · By: {m.by}</div>
+                <div className="text-[11.5px] text-[#666666] mb-1">{m.grade} · {m.topic} · {m.dur} · By: {m.by}</div>
                 <div className="text-[12.5px] text-[#555] leading-relaxed">{m.desc}</div>
               </div>
               <div className="flex flex-col items-end gap-2 flex-shrink-0">

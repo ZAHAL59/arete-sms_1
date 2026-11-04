@@ -47,17 +47,17 @@ export default function PaymentHistory({ allPayments, recordPayment }) {
         }
       />
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]">
-        <div className="px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8] flex items-center justify-between">
+        <div className="px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8] flex items-center justify-between flex-wrap gap-y-2">
           <div className="text-[13.5px] font-bold text-[#111]">All Payments</div>
           <Badge variant="green">{filtered.length} records</Badge>
         </div>
         <table className="w-full border-collapse text-[13px]">
           <thead><tr>{['Student','Class','Category','Amount','Date','Mode','Receipt'].map(h=>
-            <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#AAA] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
+            <th key={h} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#666666] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
           )}</tr></thead>
           <tbody>
             {!filtered.length
-              ? <tr><td colSpan={7} className="text-center py-10 text-[#AAA]">No records match</td></tr>
+              ? <tr><td colSpan={7} className="text-center py-10 text-[#666666]">No records match</td></tr>
               : filtered.map(p=>{
                   const stu=db.students.find(s=>s.id===p.studentId);
                   return (

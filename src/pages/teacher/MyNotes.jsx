@@ -38,18 +38,18 @@ export default function MyNotes() {
       />
 
       {!myNotes.length
-        ? <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-12 text-center text-[#AAA]">No notes yet — click Add Note</div>
+        ? <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-12 text-center text-[#666666]">No notes yet — click Add Note</div>
         : <div className="space-y-2">
             {myNotes.map((n,i) => (
               <div key={n.id} className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]">
                 <div className="flex items-center gap-3 px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8]">
                   <Badge variant={CAT_VARIANT[n.cat]||'grey'}>{n.cat}</Badge>
                   <span className="font-bold text-[13px] text-[#111]">{n.stuName}</span>
-                  <span className="text-[12px] text-[#AAA]">{n.cls}</span>
+                  <span className="text-[12px] text-[#666666]">{n.cls}</span>
                   <div className="ml-auto flex items-center gap-3">
-                    <span className="text-[11.5px] text-[#AAA]">{n.date}</span>
+                    <span className="text-[11.5px] text-[#666666]">{n.date}</span>
                     <button onClick={() => deleteNote(n.id)}
-                      className="text-[11px] font-semibold bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA] px-2 py-0.5 rounded cursor-pointer hover:bg-[#FEE2E2]">
+                      className="text-[11px] font-semibold bg-[#FEF2F2] text-[#B91C1C] border border-[#FECACA] px-2 py-0.5 rounded cursor-pointer hover:bg-[#FEE2E2]">
                       Delete
                     </button>
                   </div>

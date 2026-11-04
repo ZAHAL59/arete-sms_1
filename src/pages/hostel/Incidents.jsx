@@ -40,30 +40,30 @@ export default function Incidents({ h, addIncident, resolveIncident }) {
           <Button onClick={() => setOpen(true)}>+ Log Incident</Button>
         </>} />
 
-      <div className="grid grid-cols-3 gap-3 mb-5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-5">
         <Kpi label="Total Incidents" value={h.incidents.length} note="All time" />
-        <Kpi label="Open" value={openCount} note="Needs follow-up" color={openCount ? '#DC2626' : '#166534'} />
+        <Kpi label="Open" value={openCount} note="Needs follow-up" color={openCount ? '#B91C1C' : '#166534'} />
         <Kpi label="Health" value={h.incidents.filter(i => i.type === 'Health').length} note="Medical related" color="#B45309" />
       </div>
 
       <div className="space-y-2">
-        {!rows.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-12 text-center text-[#AAA]">No incidents</div>}
+        {!rows.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-12 text-center text-[#666666]">No incidents</div>}
         {rows.map(i => (
           <Collapsible key={i.id} defaultOpen={i.status === 'Open'}
-            className={i.status === 'Open' ? '!border-l-[3px] !border-l-[#DC2626]' : '!border-l-[3px] !border-l-[#166534]'}
+            className={i.status === 'Open' ? '!border-l-[3px] !border-l-[#B91C1C]' : '!border-l-[3px] !border-l-[#166534]'}
             header={
               <div className="flex items-center gap-3 flex-1">
                 <div className="flex-1 min-w-0">
-                  <div className="text-[13.5px] font-bold text-[#111]">{i.stuName} <span className="font-normal text-[#AAA]">· {i.cls}</span></div>
-                  <div className="text-[11.5px] text-[#777] mt-0.5">{i.date} · {i.by}</div>
+                  <div className="text-[13.5px] font-bold text-[#111]">{i.stuName} <span className="font-normal text-[#666666]">· {i.cls}</span></div>
+                  <div className="text-[11.5px] text-[#666666] mt-0.5">{i.date} · {i.by}</div>
                 </div>
                 <Badge variant={TYPE_VARIANT[i.type] || 'grey'}>{i.type}</Badge>
                 <Badge variant={i.status === 'Open' ? 'red' : 'green'}>{i.status}</Badge>
               </div>
             }>
             <div className="px-4 py-3 border-t border-[#E4E4E4] space-y-3">
-              <div><div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-1">What happened</div><div className="text-[13px] text-[#333] leading-relaxed">{i.desc}</div></div>
-              <div><div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-1">Action taken</div><div className="text-[13px] text-[#333] leading-relaxed">{i.action || '—'}</div></div>
+              <div><div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">What happened</div><div className="text-[13px] text-[#333] leading-relaxed">{i.desc}</div></div>
+              <div><div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">Action taken</div><div className="text-[13px] text-[#333] leading-relaxed">{i.action || '—'}</div></div>
               {i.status === 'Open' && <Button size="sm" onClick={() => resolveIncident(i.id)}>✓ Mark Resolved</Button>}
             </div>
           </Collapsible>

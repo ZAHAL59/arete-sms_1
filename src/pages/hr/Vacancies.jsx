@@ -36,12 +36,12 @@ export default function Vacancies({ hr, addVacancy, updateVacancy, go }) {
       <div className="bg-white border border-[#E4E4E4] rounded-[10px] px-4 py-4 mb-5 flex items-center justify-around overflow-x-auto shadow-[0_1px_4px_rgba(0,0,0,.07)]">
         {strip.map(([l, n], i) => (
           <div key={l} className="flex items-center gap-4 flex-shrink-0">
-            <div className="text-center px-3"><div className="text-[26px] font-extrabold text-[#111] font-mono leading-none">{n}</div><div className="text-[11.5px] text-[#777] mt-1 whitespace-nowrap">{l}</div></div>
-            {i < strip.length - 1 && <span className="text-[20px] text-[#CCC]">›</span>}
+            <div className="text-center px-3"><div className="text-[26px] font-extrabold text-[#111] font-mono leading-none">{n}</div><div className="text-[11.5px] text-[#666666] mt-1 whitespace-nowrap">{l}</div></div>
+            {i < strip.length - 1 && <span className="text-[20px] text-[#666666]">›</span>}
           </div>))}
       </div>
 
-      {!hr.vacancies.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-12 text-center text-[#AAA]">No vacancies posted yet. Click "+ Post Vacancy" to start.</div>}
+      {!hr.vacancies.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-12 text-center text-[#666666]">No vacancies posted yet. Click "+ Post Vacancy" to start.</div>}
       {hr.vacancies.map(v => {
         const cands = hr.candidates.filter(c => c.vacId === v.id);
         const shortlisted = cands.filter(c => c.status === 'Shortlisted').length;
@@ -52,14 +52,14 @@ export default function Vacancies({ hr, addVacancy, updateVacancy, go }) {
             header={
               <div className="flex items-center gap-3 flex-1 flex-wrap">
                 <div className="min-w-0"><div className="flex items-center gap-2"><span className="text-[14px] font-bold text-[#111]">{v.subj} Teacher</span><Badge variant={v.priority === 'Urgent' ? 'red' : 'grey'}>{v.priority}</Badge><Badge variant={v.status === 'Active' ? 'green' : 'grey'}>{v.status}</Badge></div>
-                  <div className="text-[11.5px] text-[#777] mt-0.5">{v.dept} · Posted {v.posted} · Deadline {v.deadline || '—'} · {hired}/{v.count || 1} position{(v.count || 1) > 1 ? 's' : ''} filled</div></div>
+                  <div className="text-[11.5px] text-[#666666] mt-0.5">{v.dept} · Posted {v.posted} · Deadline {v.deadline || '—'} · {hired}/{v.count || 1} position{(v.count || 1) > 1 ? 's' : ''} filled</div></div>
                 <div className="ml-auto flex gap-2"><Button size="sm" variant="outline" onClick={e => { e.stopPropagation(); setVf({ ...blankVac(), ...v }); setErr(''); }}>✎ Edit</Button>
                   <Button size="sm" variant="outline" onClick={e => { e.stopPropagation(); go('applications', v.id); }}>📥 Applications →</Button></div>
               </div>}>
-            <div className="border-t border-[#E4E4E4] grid grid-cols-3 gap-5 p-4">
-              <div><div className="text-[10.5px] text-[#AAA] mb-1">Requirements</div><div className="text-[13px] leading-relaxed text-[#333]">{v.qual} · {v.exp}<div className="text-[12px] text-[#777]">{v.skills || '—'}</div></div></div>
+            <div className="border-t border-[#E4E4E4] grid grid-cols-2 sm:grid-cols-3 gap-5 p-4">
+              <div><div className="text-[10.5px] text-[#666666] mb-1">Requirements</div><div className="text-[13px] leading-relaxed text-[#333]">{v.qual} · {v.exp}<div className="text-[12px] text-[#666666]">{v.skills || '—'}</div></div></div>
               <div className="col-span-2 flex items-center gap-6">
-                {[['CVs Filed', cands.length, '#111'], ['Shortlisted', shortlisted, '#18181B'], ['Interviewed', interviewed, '#3F3F46']].map(([l, n, c]) => <div key={l} className="text-center"><div className="text-[22px] font-extrabold" style={{ color: c }}>{n}</div><div className="text-[11px] text-[#AAA]">{l}</div></div>)}
+                {[['CVs Filed', cands.length, '#111'], ['Shortlisted', shortlisted, '#18181B'], ['Interviewed', interviewed, '#3F3F46']].map(([l, n, c]) => <div key={l} className="text-center"><div className="text-[22px] font-extrabold" style={{ color: c }}>{n}</div><div className="text-[11px] text-[#666666]">{l}</div></div>)}
                 <div className="ml-auto"><Button size="sm" variant="outline" onClick={() => go('applications', v.id)}>View CVs →</Button></div>
               </div>
             </div>
@@ -69,7 +69,7 @@ export default function Vacancies({ hr, addVacancy, updateVacancy, go }) {
 
       {/* Post / Edit vacancy */}
       {vf && <Modal open onClose={() => setVf(null)} title={vf.id ? 'Edit Vacancy' : 'Post New Vacancy'} subtitle={vf.id ? vf.id : 'Candidates can apply on the Careers page once this is posted'}
-        footer={<><span className="mr-auto text-[12px] text-[#DC2626] font-semibold">{err}</span><Button variant="outline" onClick={() => setVf(null)}>Cancel</Button><Button onClick={saveVac}>{vf.id ? 'Save Changes' : 'Post Vacancy'}</Button></>}>
+        footer={<><span className="mr-auto text-[12px] text-[#B91C1C] font-semibold">{err}</span><Button variant="outline" onClick={() => setVf(null)}>Cancel</Button><Button onClick={saveVac}>{vf.id ? 'Save Changes' : 'Post Vacancy'}</Button></>}>
         <div className="grid grid-cols-2 gap-3">
           <Field label="Subject / Role *"><input value={vf.subj} onChange={e => set('subj', e.target.value)} placeholder="e.g. Mathematics" className={inputCls} /></Field>
           <Field label="Department"><select value={vf.dept} onChange={e => set('dept', e.target.value)} className={inputCls}>{[...new Set([...DEPARTMENTS, vf.dept])].map(d => <option key={d}>{d}</option>)}</select></Field>

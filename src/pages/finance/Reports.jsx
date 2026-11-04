@@ -100,7 +100,7 @@ function downloadReport(res) {
     a.download = `${res.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}${res.meta.from || res.meta.to ? `_${res.meta.from || 'start'}_to_${res.meta.to || 'today'}` : '_all-time'}.csv`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000); } catch {}
 }
 
-const Label = ({ children, note }) => <div className="flex items-baseline gap-2 mb-2"><span className="text-[10.5px] font-bold uppercase tracking-[1.4px] text-[#777]">{children}</span>{note && <span className="text-[11px] text-[#AAA]">{note}</span>}</div>;
+const Label = ({ children, note }) => <div className="flex items-baseline gap-2 mb-2"><span className="text-[10.5px] font-bold uppercase tracking-[1.4px] text-[#666666]">{children}</span>{note && <span className="text-[11px] text-[#666666]">{note}</span>}</div>;
 
 export default function Reports({ allPayments }) {
   const db = useStore(s => s.db);
@@ -129,42 +129,42 @@ export default function Reports({ allPayments }) {
 
       <div className="bg-white border border-[#E4E4E4] rounded-[12px] p-5 mb-5 shadow-[0_1px_4px_rgba(0,0,0,.07)]">
         <Label>Report</Label>
-        <div className="grid grid-cols-4 gap-2 mb-5">{REPORTS.map(r => (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-5">{REPORTS.map(r => (
           <div key={r.id} onClick={() => setType(r.id)} title={r.desc} className={`px-3 py-2.5 rounded-[8px] border-[1.5px] cursor-pointer transition-all ${type === r.id ? 'border-[#71717A] bg-[#F6F6F7]' : 'border-[#E4E4E4] hover:border-[#71717A]'}`}>
             <div className="flex items-center gap-2"><span className="text-[15px]">{r.icon}</span><span className={`text-[12.5px] font-bold ${type === r.id ? 'text-[#111]' : 'text-[#111]'}`}>{r.label}</span></div></div>))}</div>
-        <div className="text-[12px] text-[#777] -mt-3 mb-5">{rep.desc}</div>
+        <div className="text-[12px] text-[#666666] -mt-3 mb-5">{rep.desc}</div>
 
-        <div className="grid grid-cols-[1.2fr_1fr] gap-8 pt-4 border-t border-[#EEE]">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 pt-4 border-t border-[#EEE]">
           <div>
             <Label note={rep.asOfToday ? 'Not applicable' : !uses('period') ? 'Annual' : ''}>Period</Label>
             {rep.asOfToday ? <div className="text-[12.5px] text-[#555] bg-[#F8F8F8] rounded-[8px] px-3 py-2.5">As of today — {fmtDate(iso(new Date()))}</div> : !uses('period') ? <div className="text-[12.5px] text-[#555] bg-[#F8F8F8] rounded-[8px] px-3 py-2.5">Current academic year</div> : <>
               <div className="flex flex-wrap gap-1.5 mb-2">{PERIODS.map(([k, l]) => <button key={k} onClick={() => setPeriod(k)} className={`px-3 py-1.5 rounded-full text-[12px] font-semibold cursor-pointer border ${period === k ? 'bg-[#18181B] text-white border-[#71717A]' : 'bg-white text-[#555] border-[#E4E4E4] hover:border-[#71717A]'}`}>{l}</button>)}</div>
               {period === 'custom' && <div className="flex items-end gap-3 mb-2"><Field label="From"><input type="date" value={custom.from} onChange={e => setCustom(c => ({ ...c, from: e.target.value }))} className={inputCls} /></Field><Field label="To"><input type="date" value={custom.to} min={custom.from} onChange={e => setCustom(c => ({ ...c, to: e.target.value }))} className={inputCls} /></Field></div>}
-              <div className="text-[12px] text-[#777]">{range.label}{range.from && range.to && <>{period === 'custom' ? '' : ` · ${fmtDate(range.from)} to ${fmtDate(range.to)}`}{days ? ` · ${days} day${days > 1 ? 's' : ''}` : ''}</>}</div></>}
+              <div className="text-[12px] text-[#666666]">{range.label}{range.from && range.to && <>{period === 'custom' ? '' : ` · ${fmtDate(range.from)} to ${fmtDate(range.to)}`}{days ? ` · ${days} day${days > 1 ? 's' : ''}` : ''}</>}</div></>}
           </div>
           <div>
             <Label>Filters</Label>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               <Field label="Grade"><select disabled={!uses('grade')} value={uses('grade') ? grade : ''} onChange={e => setGrade(e.target.value)} className={sel + off('grade')}><option value="">All</option>{FEE_GRADES.map(g => <option key={g}>{g}</option>)}</select></Field>
               <Field label="Payment mode"><select disabled={!uses('mode')} value={uses('mode') ? mode : ''} onChange={e => setMode(e.target.value)} className={sel + off('mode')}><option value="">All</option>{PAY_MODES.map(g => <option key={g}>{g}</option>)}</select></Field>
               <Field label="Fee category"><select disabled={!uses('category')} value={uses('category') ? category : ''} onChange={e => setCategory(e.target.value)} className={sel + off('category')}><option value="">All</option>{FEE_CATEGORIES.map(g => <option key={g}>{g}</option>)}</select></Field>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3 mt-5 pt-4 border-t border-[#EEE]"><span className="text-[12px] text-[#DC2626] font-semibold">{err}</span><Button className="ml-auto" onClick={generate}>Generate</Button></div>
+        <div className="flex items-center gap-3 mt-5 pt-4 border-t border-[#EEE]"><span className="text-[12px] text-[#B91C1C] font-semibold">{err}</span><Button className="ml-auto" onClick={generate}>Generate</Button></div>
       </div>
 
-      {!res && <div className="bg-white border border-dashed border-[#E4E4E4] rounded-[10px] py-12 text-center text-[#BBB] text-[13px]">No report generated</div>}
+      {!res && <div className="bg-white border border-dashed border-[#E4E4E4] rounded-[10px] py-12 text-center text-[#666666] text-[13px]">No report generated</div>}
       {res && <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]">
         <div className="px-4 py-3 border-b border-[#E4E4E4] bg-[#F8F8F8]">
           <div className="flex items-center gap-2"><div className="flex-1"><div className="text-[15px] font-extrabold text-[#111]">{res.title}</div>
-            <div className="text-[12px] text-[#555] mt-0.5"><b>Period:</b> {res.meta.period} &nbsp;·&nbsp; <b>Filters:</b> {res.meta.filters}</div><div className="text-[11px] text-[#AAA]">Generated {res.meta.at}</div></div>
+            <div className="text-[12px] text-[#555] mt-0.5"><b>Period:</b> {res.meta.period} &nbsp;·&nbsp; <b>Filters:</b> {res.meta.filters}</div><div className="text-[11px] text-[#666666]">Generated {res.meta.at}</div></div>
             <Button size="sm" variant="outline" onClick={() => window.print()}>🖨 Print / PDF</Button><Button size="sm" onClick={() => downloadReport(res)}>⬇ Export CSV</Button></div>
           {stale && <div className="mt-2 text-[12px] text-[#B45309] bg-[#FFFBEB] border border-[#FEF08A] rounded-[6px] px-2.5 py-1.5">Options changed. Select Generate to refresh.</div>}
         </div>
-        {res.summary && <div className="px-4 py-2.5 border-b border-[#E4E4E4] flex gap-6 text-[12.5px]"><span><span className="text-[#AAA]">{res.summary.owed ? 'Total outstanding' : 'Total'}</span> <b className="font-mono text-[#111] text-[15px]">{fmt(res.summary.total)}</b></span><span><span className="text-[#AAA]">{res.id === 'grade' ? 'Grades' : res.id === 'ledger' || res.id === 'outstanding' ? 'Students' : 'Payments'}</span> <b className="text-[#111]">{res.summary.count}</b></span></div>}
-        <div className="overflow-x-auto"><table className="w-full border-collapse text-[13px]"><thead><tr>{res.columns.map(c => <th key={c} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#AAA] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8] whitespace-nowrap">{c}</th>)}</tr></thead>
-          <tbody>{res.rows.length <= 1 && res.rows[0]?.[0] === 'TOTAL' || !res.rows.length ? <tr><td colSpan={res.columns.length} className="text-center py-10 text-[#AAA]">No records for {res.meta.period}{res.meta.filters === 'None' ? '' : ' with the selected filters'}.</td></tr> :
+        {res.summary && <div className="px-4 py-2.5 border-b border-[#E4E4E4] flex gap-6 text-[12.5px]"><span><span className="text-[#666666]">{res.summary.owed ? 'Total outstanding' : 'Total'}</span> <b className="font-mono text-[#111] text-[15px]">{fmt(res.summary.total)}</b></span><span><span className="text-[#666666]">{res.id === 'grade' ? 'Grades' : res.id === 'ledger' || res.id === 'outstanding' ? 'Students' : 'Payments'}</span> <b className="text-[#111]">{res.summary.count}</b></span></div>}
+        <div className="overflow-x-auto"><table className="w-full border-collapse text-[13px]"><thead><tr>{res.columns.map(c => <th key={c} className="px-4 py-2.5 text-left text-[10px] font-bold text-[#666666] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8] whitespace-nowrap">{c}</th>)}</tr></thead>
+          <tbody>{res.rows.length <= 1 && res.rows[0]?.[0] === 'TOTAL' || !res.rows.length ? <tr><td colSpan={res.columns.length} className="text-center py-10 text-[#666666]">No records for {res.meta.period}{res.meta.filters === 'None' ? '' : ' with the selected filters'}.</td></tr> :
             res.rows.map((r, i) => <tr key={i} className={`border-b border-[#E4E4E4] last:border-b-0 ${r[0] === 'TOTAL' || r[2] === 'TOTAL' ? 'bg-[#F8F8F8] font-bold' : 'hover:bg-[#F8F8F8]'}`}>{r.map((c, j) => <td key={j} className="px-4 py-2.5 text-[#333] whitespace-nowrap">{typeof c === 'number' ? c.toLocaleString('en-IN') : c}</td>)}</tr>)}</tbody></table></div>
       </div>}
     </div>

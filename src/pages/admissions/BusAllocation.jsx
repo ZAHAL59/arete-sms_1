@@ -8,7 +8,7 @@ export default function BusAllocation() {
   return (
     <div className="p-6">
       <PageHeader title="Bus Allocation" subtitle="Students assigned per route" />
-      <div className="grid grid-cols-3 gap-3 mb-5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-5">
         {[
           {label:'Total Bus Students', value:db.students.filter(s=>s.travel==='Bus').length, color:'#18181B'},
           {label:'Active Routes',      value:db.routes.length, color:'#1A5FB4'},
@@ -16,7 +16,7 @@ export default function BusAllocation() {
         ].map(k=>(
           <div key={k.label} className="bg-white border border-[#E4E4E4] rounded-[10px] p-3.5 shadow-[0_1px_4px_rgba(0,0,0,.07)]"
             style={{borderLeft:`3px solid ${k.color}`}}>
-            <div className="text-[10.5px] font-semibold text-[#AAA] uppercase tracking-wider mb-1">{k.label}</div>
+            <div className="text-[10.5px] font-semibold text-[#666666] uppercase tracking-wider mb-1">{k.label}</div>
             <div className="text-[22px] font-extrabold" style={{color:k.color}}>{k.value}</div>
           </div>
         ))}
@@ -33,7 +33,7 @@ export default function BusAllocation() {
                   style={{background:'linear-gradient(135deg,#C8202E,#9A1822)'}}>🚌</div>
                 <div className="flex-1 min-w-0">
                   <div className="text-[13.5px] font-bold text-[#111]">{r.name}</div>
-                  <div className="text-[11.5px] text-[#777] mt-0.5">{r.driver} · Dep: {r.dept} · {classes}</div>
+                  <div className="text-[11.5px] text-[#666666] mt-0.5">{r.driver} · Dep: {r.dept} · {classes}</div>
                 </div>
                 <div className="flex gap-2 flex-shrink-0">
                   <Badge variant="grey">{students.length} student{students.length!==1?'s':''}</Badge>
@@ -43,10 +43,10 @@ export default function BusAllocation() {
             }
           >
             {!students.length
-              ? <div className="p-4 text-center text-[#AAA] border-t border-[#E4E4E4]">No students on this route</div>
+              ? <div className="p-4 text-center text-[#666666] border-t border-[#E4E4E4]">No students on this route</div>
               : <table className="w-full border-collapse text-[13px] border-t border-[#E4E4E4]">
                   <thead><tr>{['Student','Class','Parent','Phone'].map(h=>
-                    <th key={h} className="px-4 py-2 text-left text-[10px] font-bold text-[#AAA] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
+                    <th key={h} className="px-4 py-2 text-left text-[10px] font-bold text-[#666666] uppercase tracking-wider border-b border-[#E4E4E4] bg-[#F8F8F8]">{h}</th>
                   )}</tr></thead>
                   <tbody>
                     {students.map(s=>(

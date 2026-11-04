@@ -37,24 +37,24 @@ export default function GrowthTracker({ hr }) {
                 <div style={{background:COLORS[i%COLORS.length]}} className="w-9 h-9 rounded-full text-white text-[11px] font-bold flex items-center justify-center flex-shrink-0">{init}</div>
                 <div className="flex-1 min-w-0">
                   <div className="text-[13.5px] font-bold text-[#111]">{s.name}</div>
-                  <div className="text-[11.5px] text-[#777]">{s.subj} · Joined {s.joined}</div>
+                  <div className="text-[11.5px] text-[#666666]">{s.subj} · Joined {s.joined}</div>
                 </div>
                 <div className="flex gap-2 flex-shrink-0 items-center">
                   <div className="text-center">
                     <div className="text-[16px] font-extrabold text-[#111]">{attPct}%</div>
-                    <div className="text-[9px] text-[#AAA] uppercase tracking-wider">Training</div>
+                    <div className="text-[9px] text-[#666666] uppercase tracking-wider">Training</div>
                   </div>
                   <div className="w-px h-8 bg-[#E4E4E4]"/>
                   <div className="text-center">
                     <div className="text-[16px] font-extrabold text-[#1A5FB4]">{monthPct}%</div>
-                    <div className="text-[9px] text-[#AAA] uppercase tracking-wider">Attendance</div>
+                    <div className="text-[9px] text-[#666666] uppercase tracking-wider">Attendance</div>
                   </div>
                 </div>
               </div>
             }
           >
             <div className="border-t border-[#E4E4E4] p-4">
-              <div className="grid grid-cols-4 gap-3 mb-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
                 {[
                   {label:'Sessions Attended', value:`${attended}/${sessionsDone.length}`, color:'#6D28D9'},
                   {label:'Training %',         value:`${attPct}%`, color:'#18181B'},
@@ -62,35 +62,35 @@ export default function GrowthTracker({ hr }) {
                   {label:'Leave Requests',      value:leaveCount, color:'#B45309'},
                 ].map(k=>(
                   <div key={k.label} className="bg-[#F8F8F8] p-2.5 rounded-[8px]">
-                    <div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-1">{k.label}</div>
+                    <div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">{k.label}</div>
                     <div className="text-[18px] font-extrabold" style={{color:k.color}}>{k.value}</div>
                   </div>
                 ))}
               </div>
 
               {/* Training sessions breakdown */}
-              <div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-2">Training Sessions</div>
+              <div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-2">Training Sessions</div>
               <div className="space-y-1">
                 {hr.training.filter(t=>t.status==='Completed').map(t=>{
                   const att = t.attendance[s.id];
                   return (
                     <div key={t.id} className="flex items-center gap-2 text-[12.5px]">
-                      <span className={att==='present'?'text-[#166534]':'text-[#DC2626]'}>{att==='present'?'✓':'✗'}</span>
+                      <span className={att==='present'?'text-[#166534]':'text-[#B91C1C]'}>{att==='present'?'✓':'✗'}</span>
                       <span className="text-[#555] flex-1 truncate">{t.title}</span>
-                      <span className="text-[#AAA] flex-shrink-0">{t.date}</span>
+                      <span className="text-[#666666] flex-shrink-0">{t.date}</span>
                     </div>
                   );
                 })}
                 {hr.training.filter(t=>t.status==='Completed').length===0&&(
-                  <div className="text-[#AAA] text-[12.5px]">No completed sessions yet</div>
+                  <div className="text-[#666666] text-[12.5px]">No completed sessions yet</div>
                 )}
               </div>
 
               {/* Classes */}
-              <div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mt-3 mb-2">Classes Assigned</div>
+              <div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mt-3 mb-2">Classes Assigned</div>
               <div className="flex gap-1.5 flex-wrap">
                 {(s.classes||[]).map(c=><Badge key={c} variant="grey">{c}</Badge>)}
-                {!(s.classes||[]).length && <span className="text-[#AAA] text-[12px]">No classes assigned</span>}
+                {!(s.classes||[]).length && <span className="text-[#666666] text-[12px]">No classes assigned</span>}
               </div>
             </div>
           </Collapsible>

@@ -62,7 +62,7 @@ export default function AttendancePanel({ cls, date, onClose, onSaved }) {
         <div className="flex gap-2 px-5 py-2.5 border-b border-[#E4E4E4] bg-[#F8F8F8] flex-wrap items-center">
           <Button size="sm" variant="outline" onClick={() => markAll('P')}>✓ All Present</Button>
           <Button size="sm" variant="outline" onClick={() => markAll('A')}>✗ All Absent</Button>
-          <span className="text-[11.5px] text-[#AAA] ml-1">P = Present · A = Absent · L = Late</span>
+          <span className="text-[11.5px] text-[#666666] ml-1">P = Present · A = Absent · L = Late</span>
         </div>
 
         {/* Student rows */}
@@ -77,13 +77,13 @@ export default function AttendancePanel({ cls, date, onClose, onSaved }) {
               <div style={{background:COLORS[i%COLORS.length]}} className="w-9 h-9 rounded-full text-white text-[11px] font-bold flex items-center justify-center flex-shrink-0">{init}</div>
               <div className="flex-1 min-w-0">
                 <div className="text-[13px] font-semibold text-[#111] truncate">{s.name}</div>
-                <div className="text-[11px] text-[#AAA] truncate">
+                <div className="text-[11px] text-[#666666] truncate">
                   Roll {s.roll} · {s.parentPhone}
                   {note && <span className="text-[#B45309] ml-2">📝 {note.reason}</span>}
                 </div>
               </div>
               <div className="flex gap-1 flex-shrink-0">
-                {[['P','#166534','#F0FDF4','#BBF7D0'],['L','#B45309','#FFFBEB','#FEF08A'],['A','#DC2626','#FEF2F2','#FECACA']].map(([st,col,bg,bdr]) => (
+                {[['P','#166534','#F0FDF4','#BBF7D0'],['L','#B45309','#FFFBEB','#FEF08A'],['A','#B91C1C','#FEF2F2','#FECACA']].map(([st,col,bg,bdr]) => (
                   <button key={st} onClick={() => mark(s.id, s.name, st)}
                     className="w-9 h-8 rounded-[6px] text-[12px] font-bold border-[1.5px] cursor-pointer transition-all"
                     style={{

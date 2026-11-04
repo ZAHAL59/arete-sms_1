@@ -1,3 +1,4 @@
+import { attachPrint } from '../../lib/printWindow';
 import { useState } from 'react';
 import useStore from '../../store/useStore';
 import { PageHeader } from '../../components/Layout';
@@ -30,7 +31,7 @@ export function offerLetterHtml(ol, vac) {
 <p>Please confirm your acceptance by signing and returning a copy of this letter. The school's staff policies will apply to your employment.</p>
 <p>We look forward to welcoming you to the Arete team.</p>
 <p>Yours sincerely,</p><div class="sig"><div>HR Manager<br>Arete Model School</div><div>Accepted by (signature & date)</div></div>
-<p style="text-align:center;margin-top:30px"><button onclick="window.print()" style="padding:8px 22px;background:#C8202E;color:#fff;border:0;border-radius:6px;cursor:pointer">Print</button></p></body></html>`;
+<p style="text-align:center;margin-top:30px"><button data-print="1" style="padding:8px 22px;background:#C8202E;color:#fff;border:0;border-radius:6px;cursor:pointer">Print</button></p></body></html>`;
 }
 
 export default function Interviews({ hr, scheduleInterview, setChecklist, saveInterviewResult, hireCandidate }) {
@@ -58,19 +59,19 @@ export default function Interviews({ hr, scheduleInterview, setChecklist, saveIn
     <div className="p-6">
       <PageHeader title="Interviews" subtitle={`${upcoming.length} upcoming · ${done.length} completed · scored out of ${MAX}`}
         actions={<><Button variant="outline" onClick={() => setCl(hr.checklist.map(c => ({ ...c })))}>⚙ Checklist</Button><Button variant="outline" onClick={() => setPicker(true)}>▶ Start Interview</Button><Button onClick={() => openSched(null)}>+ Schedule</Button></>} />
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         <Kpi label="Upcoming" value={upcoming.length} note="Invited / scheduled" color="#1A5FB4" /><Kpi label="Completed" value={done.length} note="Scored" />
         <Kpi label="Recommended" value={done.filter(i => i.decision === 'Recommended' && !cand(i.candId)?.hired).length} note="Ready to hire" color="#166534" /><Kpi label="Hired" value={cands.filter(c => c.hired).length} note="Became staff" color="#6D28D9" />
       </div>
 
-      <div className="text-[12px] font-bold text-[#AAA] uppercase tracking-wider mb-2">Upcoming</div>
-      {!upcoming.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-8 text-center text-[#AAA] mb-4">No upcoming interviews. Shortlist an applicant and send the interview invite from <b>Applications</b> — they will appear here.</div>}
+      <div className="text-[12px] font-bold text-[#666666] uppercase tracking-wider mb-2">Upcoming</div>
+      {!upcoming.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-8 text-center text-[#666666] mb-4">No upcoming interviews. Shortlist an applicant and send the interview invite from <b>Applications</b> — they will appear here.</div>}
       {upcoming.map(({ c, iv, app }) => (
-        <div key={c.id} className="bg-white border border-[#71717A] rounded-[10px] p-4 mb-2 flex items-center gap-3 shadow-[0_1px_4px_rgba(0,0,0,.07)]">
+        <div key={c.id} className="bg-white border border-[#71717A] rounded-[10px] p-4 mb-2 flex flex-wrap items-center gap-3 shadow-[0_1px_4px_rgba(0,0,0,.07)]">
           <div className="w-10 h-10 rounded-[8px] bg-[#F6F6F7] flex items-center justify-center text-[18px] flex-shrink-0">🗓</div>
           <div className="flex-1 min-w-0">
-            <div className="text-[13.5px] font-bold text-[#111]">{c.name} <span className="font-normal text-[#AAA] text-[12px]">· CV score {c.score}</span></div>
-            <div className="text-[11.5px] text-[#777]">{vac(c.vacId)?.subj} Teacher · {iv ? <b className="text-[#111]">📅 {iv.date}{iv.time ? ' ' + iv.time : ''}{iv.venue ? ' · ' + iv.venue : ''} ({iv.mode})</b> : <span className="text-[#B45309] font-semibold">interview date not set yet</span>}</div>
+            <div className="text-[13.5px] font-bold text-[#111]">{c.name} <span className="font-normal text-[#666666] text-[12px]">· CV score {c.score}</span></div>
+            <div className="text-[11.5px] text-[#666666]">{vac(c.vacId)?.subj} Teacher · {iv ? <b className="text-[#111]">📅 {iv.date}{iv.time ? ' ' + iv.time : ''}{iv.venue ? ' · ' + iv.venue : ''} ({iv.mode})</b> : <span className="text-[#B45309] font-semibold">interview date not set yet</span>}</div>
             {app?.inviteSent && <div className="text-[11px] text-[#111] font-semibold mt-0.5">✓ Invite sent {new Date(app.inviteSentAt).toLocaleDateString('en-IN')}</div>}
           </div>
           <Badge variant="blue">{iv ? 'Scheduled' : 'Invited'}</Badge>
@@ -78,13 +79,13 @@ export default function Interviews({ hr, scheduleInterview, setChecklist, saveIn
           <Button size="sm" onClick={() => setScore({ id: iv?.id || null, cand: c })}>Score Interview →</Button>
         </div>))}
 
-      {done.length > 0 && <div className="mt-5"><div className="text-[12px] font-bold text-[#AAA] uppercase tracking-wider mb-2">Completed</div>
+      {done.length > 0 && <div className="mt-5"><div className="text-[12px] font-bold text-[#666666] uppercase tracking-wider mb-2">Completed</div>
         <div className="bg-white border border-[#E4E4E4] rounded-[10px] overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,.07)]"><table className="w-full border-collapse text-[13px]">
           <thead><tr><Th>Candidate</Th><Th>Position</Th><Th>Date</Th><Th>Score</Th><Th>Decision</Th><Th>Remarks</Th><Th /></tr></thead>
           <tbody>{done.map(i => { const c = cand(i.candId); const t = totalScore(i.scores, hr.checklist); return (
             <tr key={i.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]">
               <td className="px-4 py-2.5 font-semibold text-[#111]">{c?.name || i.candId}</td><td className="px-4 py-2.5 text-[#555]">{vac(i.vacId)?.subj} Teacher</td><td className="px-4 py-2.5 text-[#555]">{i.date}</td>
-              <td className="px-4 py-2.5 font-bold">{t}<span className="text-[#AAA] font-normal">/{MAX}</span></td>
+              <td className="px-4 py-2.5 font-bold">{t}<span className="text-[#666666] font-normal">/{MAX}</span></td>
               <td className="px-4 py-2.5"><Badge variant={i.decision === 'Recommended' ? 'green' : i.decision === 'Rejected' ? 'red' : 'amber'}>{i.decision || '—'}</Badge></td>
               <td className="px-4 py-2.5 text-[#555] max-w-[200px] truncate">{i.remarks || i.feedback}</td>
               <td className="px-4 py-2.5 whitespace-nowrap">
@@ -97,9 +98,9 @@ export default function Interviews({ hr, scheduleInterview, setChecklist, saveIn
       {cl && <ChecklistModal list={cl} setList={setCl} onClose={() => setCl(null)} onSave={() => { setChecklist(cl.filter(c => c.crit.trim()).map(c => ({ ...c, crit: c.crit.trim(), max: Math.max(1, +c.max || 1) }))); setCl(null); }} />}
       {hire && <HireModal cand={hire} vac={vac(hire.vacId)} iv={done.find(i => i.candId === hire.id)} hr={hr} onClose={() => setHire(null)} onSave={h => { hireCandidate(hire.id, h); setLetter({ ...hire, offerLetter: { name: hire.name, ...h, vacId: hire.vacId, refNo: 'AMS/HR/OL/' + new Date().getFullYear() + '/' + String(Date.now()).slice(-4), issuedDate: TODAY } }); setHire(null); }} />}
       {letter && <Modal open onClose={() => setLetter(null)} title="Offer Letter" subtitle={`${letter.name} · ${letter.offerLetter?.refNo || ''}`}
-        footer={<><Button variant="outline" onClick={() => setLetter(null)}>Close</Button><Button onClick={() => { const w = window.open('', '_blank', 'width=820,height=900'); if (w) { w.document.write(offerLetterHtml(letter.offerLetter, vac(letter.vacId))); w.document.close(); } }}>🖨 Open & Print</Button></>}>
+        footer={<><Button variant="outline" onClick={() => setLetter(null)}>Close</Button><Button onClick={() => { const w = window.open('', '_blank', 'width=820,height=900'); if (w) { w.document.write(offerLetterHtml(letter.offerLetter, vac(letter.vacId))); w.document.close(); attachPrint(w); } }}>🖨 Open & Print</Button></>}>
         <iframe title="Offer letter" srcDoc={offerLetterHtml(letter.offerLetter, vac(letter.vacId))} className="w-full h-[420px] border border-[#E4E4E4] rounded-[8px]" />
-        <p className="text-[11.5px] text-[#AAA] mt-2">The letter wording is a general template — please review it before issuing.</p></Modal>}
+        <p className="text-[11.5px] text-[#666666] mt-2">The letter wording is a general template — please review it before issuing.</p></Modal>}
 
       {sched && <Modal open onClose={() => setSched(null)} title={sched.cand ? `Interview date — ${sched.cand.name}` : 'Schedule Interview'} subtitle={sched.cand ? 'Updates the existing interview — no duplicate is created' : 'Pick a shortlisted candidate'}
         footer={<><Button variant="outline" onClick={() => setSched(null)}>Cancel</Button><Button onClick={saveSched}>Save</Button></>}>
@@ -125,16 +126,16 @@ function ScoreModal({ hr, iv, cand, onClose, onSave }) {
   function save() { if (!remarks.trim()) return setErr('Add interview observations / remarks.'); onSave(iv?.id || null, { scores, remarks: remarks.trim(), decision, panel, date }); }
   return (
     <Modal open onClose={onClose} size="lg" title={`Interview — ${cand?.name}`} subtitle={`${hr.vacancies.find(v => v.id === cand?.vacId)?.subj} Teacher`}
-      footer={<><span className="mr-auto text-[12px] text-[#DC2626] font-semibold">{err}</span><Button variant="outline" onClick={onClose}>Cancel</Button><Button onClick={save}>Save Interview</Button></>}>
+      footer={<><span className="mr-auto text-[12px] text-[#B91C1C] font-semibold">{err}</span><Button variant="outline" onClick={onClose}>Cancel</Button><Button onClick={save}>Save Interview</Button></>}>
       <div className="grid grid-cols-2 gap-3 mb-4">
         <Field label="Date"><input type="date" value={date} onChange={e => setDate(e.target.value)} className={inputCls} /></Field>
         <Field label="Panel"><input value={panel} onChange={e => setPanel(e.target.value)} placeholder="e.g. Mr. Paul T., Ms. Latha R." className={inputCls} /></Field>
       </div>
       <div className="border border-[#E4E4E4] rounded-[8px] divide-y divide-[#E4E4E4] mb-3">{hr.checklist.map(c => (
-        <div key={c.id} className="flex items-center gap-3 px-3 py-2.5"><span className="flex-1 text-[13px] font-semibold text-[#111]">{c.crit}</span><span className="text-[12px] text-[#AAA]">/ {c.max}</span>
+        <div key={c.id} className="flex items-center gap-3 px-3 py-2.5"><span className="flex-1 text-[13px] font-semibold text-[#111]">{c.crit}</span><span className="text-[12px] text-[#666666]">/ {c.max}</span>
           <input type="number" min={0} max={c.max} value={scores[c.id] ?? 0} onChange={e => setScores(s => ({ ...s, [c.id]: Math.min(c.max, Math.max(0, +e.target.value || 0)) }))} className="w-16 px-2 py-1.5 border-[1.5px] border-[#E4E4E4] rounded-[6px] text-center font-mono font-bold outline-none focus:border-[#71717A]" /></div>))}</div>
-      <div className="bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] px-3 py-2 mb-4 flex justify-between"><span className="font-bold">Total</span><span className="text-[18px] font-extrabold text-[#111]">{total}/{max}</span></div>
-      <div className="grid grid-cols-3 gap-3"><Field label="Decision"><select value={decision} onChange={e => setDecision(e.target.value)} className={inputCls}>{DECISIONS.map(d => <option key={d}>{d}</option>)}</select></Field>
+      <div className="bg-[#F6F6F7] border border-[#FECACA] rounded-[8px] px-3 py-2 mb-4 flex justify-between flex-wrap gap-y-2"><span className="font-bold">Total</span><span className="text-[18px] font-extrabold text-[#111]">{total}/{max}</span></div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3"><Field label="Decision"><select value={decision} onChange={e => setDecision(e.target.value)} className={inputCls}>{DECISIONS.map(d => <option key={d}>{d}</option>)}</select></Field>
         <Field label="Observations / remarks *" className="col-span-3"><textarea rows={3} value={remarks} onChange={e => setRemarks(e.target.value)} className={inputCls + ' resize-y'} /></Field></div>
     </Modal>
   );
@@ -145,9 +146,9 @@ function ChecklistModal({ list, setList, onClose, onSave }) {
   const set = (i, k, v) => setList(l => l.map((c, j) => j === i ? { ...c, [k]: v } : c));
   return (
     <Modal open onClose={onClose} title="Interview Checklist" subtitle="Criteria and marks used to score every interview" footer={<><Button variant="outline" onClick={onClose}>Cancel</Button><Button onClick={onSave}>Save Checklist</Button></>}>
-      <div className="space-y-2">{list.map((c, i) => <div key={c.id} className="flex gap-2"><input value={c.crit} onChange={e => set(i, 'crit', e.target.value)} className={inputCls + ' flex-1'} /><input type="number" min={1} max={100} value={c.max} onChange={e => set(i, 'max', e.target.value)} className={inputCls + ' w-20'} /><button onClick={() => setList(l => l.filter((_, j) => j !== i))} className="text-[#DC2626] px-2 cursor-pointer bg-none border-none">✕</button></div>)}</div>
+      <div className="space-y-2">{list.map((c, i) => <div key={c.id} className="flex gap-2"><input value={c.crit} onChange={e => set(i, 'crit', e.target.value)} className={inputCls + ' flex-1'} /><input type="number" min={1} max={100} value={c.max} onChange={e => set(i, 'max', e.target.value)} className={inputCls + ' w-20'} /><button onClick={() => setList(l => l.filter((_, j) => j !== i))} className="text-[#B91C1C] px-2 cursor-pointer bg-none border-none">✕</button></div>)}</div>
       <div className="flex items-center mt-3"><Button size="sm" variant="outline" onClick={() => setList(l => [...l, { id: 'CL' + Date.now().toString().slice(-5), crit: '', max: 10 }])}>+ Add criterion</Button><span className="ml-auto text-[13px] font-bold">{list.length} criteria · {total} marks</span></div>
-      <p className="text-[11.5px] text-[#AAA] mt-2">Changing marks affects how past interviews display against the new total.</p>
+      <p className="text-[11.5px] text-[#666666] mt-2">Changing marks affects how past interviews display against the new total.</p>
     </Modal>
   );
 }
@@ -158,7 +159,7 @@ function HireModal({ cand, vac, iv, hr, onClose, onSave }) {
   function save() { if (!+f.salary) return setErr('Enter the offered salary.'); if (!f.post.trim()) return setErr('Enter the post / subject.'); onSave({ ...f, name: cand.name, salary: +f.salary }); }
   return (
     <Modal open onClose={onClose} title={`Hire — ${cand.name}`} subtitle={iv ? `Interview score ${totalScore(iv.scores, hr.checklist)}/${maxScore(hr.checklist)} · ${iv.decision}` : ''}
-      footer={<><span className="mr-auto text-[12px] text-[#DC2626] font-semibold">{err}</span><Button variant="outline" onClick={onClose}>Cancel</Button><Button onClick={save}>Hire & create staff record</Button></>}>
+      footer={<><span className="mr-auto text-[12px] text-[#B91C1C] font-semibold">{err}</span><Button variant="outline" onClick={onClose}>Cancel</Button><Button onClick={save}>Hire & create staff record</Button></>}>
       <div className="grid grid-cols-2 gap-3">
         <Field label="Post / Subject *"><input value={f.post} onChange={e => set('post', e.target.value)} className={inputCls} /></Field>
         <Field label="Department"><input value={f.dept} onChange={e => set('dept', e.target.value)} className={inputCls} /></Field>

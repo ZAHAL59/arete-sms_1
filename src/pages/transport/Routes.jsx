@@ -39,20 +39,20 @@ export default function Routes({ addRoute, updateRoute }) {
                 <div className="w-9 h-9 rounded-[8px] flex items-center justify-center text-[16px] flex-shrink-0" style={{ background:'linear-gradient(135deg,#C8202E,#9A1822)' }}>🚌</div>
                 <div className="flex-1 min-w-0">
                   <div className="text-[13.5px] font-bold text-[#111]">{r.name}</div>
-                  <div className="text-[11.5px] text-[#777]">{r.vehicle} · {r.type || 'Vehicle'}</div>
+                  <div className="text-[11.5px] text-[#666666]">{r.vehicle} · {r.type || 'Vehicle'}</div>
                 </div>
                 <Badge variant="green">{r.status}</Badge>
                 <Button size="sm" variant="outline" onClick={e => { e.stopPropagation(); openEdit(r); }}>✎ Edit</Button>
               </div>
             }>
-            <div className="grid grid-cols-5 gap-4 p-4 border-t border-[#E4E4E4]">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 p-4 border-t border-[#E4E4E4]">
               {[['Driver', r.driver], ['Phone', r.phone], ['Departure', r.dept], ['Arrival', r.arr]].map(([l, v]) => (
-                <div key={l}><div className="text-[10.5px] text-[#AAA] mb-1">{l}</div><div className="text-[13px] font-bold text-[#111]">{v}</div></div>
+                <div key={l}><div className="text-[10.5px] text-[#666666] mb-1">{l}</div><div className="text-[13px] font-bold text-[#111]">{v}</div></div>
               ))}
               <div>
-                <div className="text-[10.5px] text-[#AAA] mb-1">Students</div>
-                <div className="text-[13px] font-bold text-[#111]">{students.length}{seats ? <span className="text-[#AAA] font-normal"> / {seats}</span> : ''}</div>
-                {seats > 0 && <div className="h-1.5 bg-[#E4E4E4] rounded-full mt-1.5 overflow-hidden"><div className="h-full rounded-full" style={{ width:`${Math.min(100, pct)}%`, background: pct > 90 ? '#DC2626' : '#18181B' }} /></div>}
+                <div className="text-[10.5px] text-[#666666] mb-1">Students</div>
+                <div className="text-[13px] font-bold text-[#111]">{students.length}{seats ? <span className="text-[#666666] font-normal"> / {seats}</span> : ''}</div>
+                {seats > 0 && <div className="h-1.5 bg-[#E4E4E4] rounded-full mt-1.5 overflow-hidden"><div className="h-full rounded-full" style={{ width:`${Math.min(100, pct)}%`, background: pct > 90 ? '#B91C1C' : '#18181B' }} /></div>}
               </div>
             </div>
           </Collapsible>

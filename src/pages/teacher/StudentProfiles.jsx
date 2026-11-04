@@ -39,7 +39,7 @@ export default function StudentProfiles() {
       />
 
       {!students.length
-        ? <div className="text-center py-16 text-[#AAA]">No students found</div>
+        ? <div className="text-center py-16 text-[#666666]">No students found</div>
         : students.map((s, i) => {
             const init = s.name.split(' ').map(w=>w[0]).join('').slice(0,2);
             return (
@@ -49,7 +49,7 @@ export default function StudentProfiles() {
                     <div style={{background:COLORS[i%COLORS.length]}} className="w-9 h-9 rounded-full text-white text-[11px] font-bold flex items-center justify-center flex-shrink-0">{init}</div>
                     <div className="flex-1 min-w-0">
                       <div className="text-[13.5px] font-bold text-[#111]">{s.name}</div>
-                      <div className="text-[11.5px] text-[#777] mt-0.5">{s.cls} {s.section} · {s.parentName}</div>
+                      <div className="text-[11.5px] text-[#666666] mt-0.5">{s.cls} {s.section} · {s.parentName}</div>
                     </div>
                     <div className="flex gap-1.5 flex-wrap flex-shrink-0 items-center">
                       {s.learningStyle && <Badge variant="grey">{s.learningStyle}</Badge>}
@@ -62,22 +62,22 @@ export default function StudentProfiles() {
                 }
               >
                 <div className="border-t border-[#E4E4E4]">
-                  <div className="grid grid-cols-3 gap-2 p-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 p-4">
                     {[['Hobbies',s.hobbies||'—'],['Languages',s.langs||'—'],['Health',s.health||'None'],
                       ['Behavioural',s.behav||'—'],['Parent Phone',s.parentPhone||'—'],['Diet',s.diet||'—']
                     ].map(([l,v]) => (
                       <div key={l} className="bg-[#F8F8F8] p-2.5 rounded-[6px]">
-                        <div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-1">{l}</div>
+                        <div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">{l}</div>
                         <div className="text-[12.5px] text-[#333]">{v}</div>
                       </div>
                     ))}
                   </div>
                   {(s.milestones||[]).length > 0 && (
                     <div className="px-4 pb-4 border-t border-[#E4E4E4] pt-3">
-                      <div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-2">Milestones</div>
+                      <div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-2">Milestones</div>
                       {s.milestones.map((m,j) => (
                         <div key={j} className="text-[12px] text-[#555] mb-1.5 flex gap-2">
-                          <span className="font-mono text-[#AAA] flex-shrink-0">{m.date}</span>
+                          <span className="font-mono text-[#666666] flex-shrink-0">{m.date}</span>
                           <span>{m.text}</span>
                         </div>
                       ))}

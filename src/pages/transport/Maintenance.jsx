@@ -27,7 +27,7 @@ export default function Maintenance({ t, addMaint }) {
     <div className="p-6">
       <PageHeader title="Maintenance Log" subtitle="Service, repair and inspection history"
         actions={<Button onClick={() => { setF(blank); setOpen(true); }}>+ Log Maintenance</Button>} />
-      <div className="grid grid-cols-3 gap-3 mb-5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-5">
         <Kpi label="Total Spend" value={fmt(total)} note="All logged entries" />
         <Kpi label="Entries" value={t.maintenance.length} note="Across the fleet" color="#1A5FB4" />
         <Kpi label="Next Service Due" value={upcoming?.next || '—'} note={upcoming?.vehicle || 'None scheduled'} color="#B45309" />

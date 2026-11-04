@@ -33,9 +33,9 @@ export default function Library({ c, addBook, issueBook, returnBook }) {
   return (
     <div className="p-6">
       <PageHeader title="Library Management" subtitle={`${c.books.length} books · ${c.books.filter(b => b.issuedTo).length} on loan`} />
-      <div className="flex gap-1 mb-5 border-b border-[#E4E4E4]">
+      <div className="flex gap-1 mb-5 border-b border-[#E4E4E4] overflow-x-auto">
         {[['catalogue', '📚 Catalogue'], ['analytics', '📊 Reading Analytics']].map(([id, label]) => (
-          <button key={id} onClick={() => setTab(id)} className={`px-4 py-2 text-[13px] font-semibold border-b-2 -mb-px cursor-pointer bg-none ${tab === id ? 'border-[#71717A] text-[#111]' : 'border-transparent text-[#777] hover:text-[#111]'}`}>{label}</button>
+          <button key={id} onClick={() => setTab(id)} className={`px-4 py-2 text-[13px] font-semibold border-b-2 -mb-px cursor-pointer bg-none ${tab === id ? 'border-[#71717A] text-[#111]' : 'border-transparent text-[#666666] hover:text-[#111]'}`}>{label}</button>
         ))}
       </div>
       {tab === 'catalogue' ? <Catalogue c={c} stu={stu} addBook={addBook} issueBook={issueBook} returnBook={returnBook} db={db} /> : <Analytics c={c} loans={loans} stu={stu} db={db} />}
@@ -63,11 +63,11 @@ function Catalogue({ c, stu, addBook, issueBook, returnBook, db }) {
 
   return (
     <>
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         <Kpi label="Total Books" value={c.books.length} note={`${cats.length} categories`} />
         <Kpi label="Available" value={available.length} note="On the shelf" color="#166534" />
         <Kpi label="On Loan" value={c.books.length - available.length} note="Issued to students" color="#1A5FB4" />
-        <Kpi label="Overdue" value={overdue} note="Past due date" color={overdue ? '#DC2626' : '#166534'} />
+        <Kpi label="Overdue" value={overdue} note="Past due date" color={overdue ? '#B91C1C' : '#166534'} />
       </div>
       <div className="flex gap-2 flex-wrap mb-3">
         <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search title or category..." className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A] w-56" />
@@ -75,20 +75,20 @@ function Catalogue({ c, stu, addBook, issueBook, returnBook, db }) {
         <select value={st} onChange={e => setSt(e.target.value)} className="px-2.5 py-1.5 border border-[#E4E4E4] rounded-[6px] text-[12.5px] outline-none focus:border-[#71717A]"><option value="">All statuses</option>{Object.keys(STATUS_VARIANT).map(x => <option key={x}>{x}</option>)}</select>
         <div className="ml-auto flex gap-2"><ExpandControls ex={ex} ids={shownCats.map(x => 'b:' + x)} /><Button variant="outline" onClick={() => setBookOpen(true)}>+ Add Book</Button><Button onClick={() => { setInf({ bookId:available[0]?.id || '', studentId:'', due:due14() }); setIssueOpen(true); }}>Issue Book</Button></div>
       </div>
-      {!rows.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-10 text-center text-[#AAA]">No books match</div>}
+      {!rows.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-10 text-center text-[#666666]">No books match</div>}
       {shownCats.map(cn => {
         const items = rows.filter(b => b.cat === cn), all = c.books.filter(b => b.cat === cn);
         const onLoan = all.filter(b => b.issuedTo).length, late = all.filter(b => loanStatus(b) === 'Overdue').length;
         return (
           <Collapsible key={cn} className="mb-3" open={filtering ? true : ex.isOpen('b:' + cn)} onToggle={() => ex.toggle('b:' + cn)}
-            header={<div className="flex items-center gap-2.5"><span className="text-[13.5px] font-bold text-[#111]">{cn}</span><Badge variant="grey">{filtering ? `${items.length} of ${all.length}` : all.length} book{all.length === 1 ? '' : 's'}</Badge><span className="text-[12px] text-[#777]">{all.length - onLoan} available · {onLoan} on loan</span>{late > 0 && <Badge variant="red">{late} overdue</Badge>}</div>}>
+            header={<div className="flex items-center gap-2.5"><span className="text-[13.5px] font-bold text-[#111]">{cn}</span><Badge variant="grey">{filtering ? `${items.length} of ${all.length}` : all.length} book{all.length === 1 ? '' : 's'}</Badge><span className="text-[12px] text-[#666666]">{all.length - onLoan} available · {onLoan} on loan</span>{late > 0 && <Badge variant="red">{late} overdue</Badge>}</div>}>
             <table className="w-full border-collapse text-[13px] border-t border-[#E4E4E4]">
               <thead><tr><Th>Title</Th><Th>Issued To</Th><Th>Class</Th><Th>Due</Th><Th>Status</Th><Th /></tr></thead>
               <tbody>{items.map(b => {
                 const s = stu(b.issuedTo); const status = loanStatus(b);
                 return (
                   <tr key={b.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]">
-                    <td className="px-4 py-2.5 font-semibold text-[#111]">{b.title}{b.author && <div className="text-[11px] text-[#AAA] font-normal">{b.author}</div>}</td>
+                    <td className="px-4 py-2.5 font-semibold text-[#111]">{b.title}{b.author && <div className="text-[11px] text-[#666666] font-normal">{b.author}</div>}</td>
                     <td className="px-4 py-2.5 text-[#555]">{s?.name || '—'}</td>
                     <td className="px-4 py-2.5 text-[#555]">{s ? `${s.cls} ${s.section}` : '—'}</td>
                     <td className="px-4 py-2.5 text-[#555]">{b.due ? prettyDate(b.due) : '—'}</td>
@@ -138,23 +138,23 @@ function Analytics({ c, loans, stu, db }) {
       <Collapsible defaultOpen header={<div className="flex items-center gap-3 flex-1"><span className="text-[13.5px] font-bold text-[#111]">Issues by Category</span>
         <select value={catF} onClick={e => e.stopPropagation()} onChange={e => setCatF(e.target.value)} className="ml-auto px-2 py-1 border border-[#E4E4E4] rounded-[6px] text-[12px] outline-none"><option value="all">All categories</option>{cats.map(x => <option key={x}>{x}</option>)}</select></div>}>
         <div className="p-4 border-t border-[#E4E4E4] space-y-3">
-          {byCat.map(([k, n], i) => (<div key={k}><div className="flex justify-between text-[13px] mb-1"><span className="font-semibold text-[#333]">{k}</span><span className="font-bold" style={{ color:BAR[i % BAR.length] }}>{n} issues</span></div>
+          {byCat.map(([k, n], i) => (<div key={k}><div className="flex justify-between text-[13px] mb-1 flex-wrap gap-y-2"><span className="font-semibold text-[#333]">{k}</span><span className="font-bold" style={{ color:BAR[i % BAR.length] }}>{n} issues</span></div>
             <div className="h-2.5 bg-[#E4E4E4] rounded-full overflow-hidden"><div className="h-full rounded-full" style={{ width:`${n / byCat[0][1] * 100}%`, background:BAR[i % BAR.length] }} /></div></div>))}
         </div>
       </Collapsible>
 
       <Collapsible header={<span className="text-[13.5px] font-bold text-[#111]">Currently Issued ({current.length})</span>}>
         <div className="p-4 border-t border-[#E4E4E4]">
-          {!curByCat.length ? <div className="text-[#AAA] text-[13px]">No books currently issued</div> : <>
+          {!curByCat.length ? <div className="text-[#666666] text-[13px]">No books currently issued</div> : <>
             <div className="flex gap-1 mb-3">{curByCat.map(([k, n], i) => <div key={k} title={`${k}: ${n}`} style={{ flex:n, background:BAR[i % BAR.length] }} className="h-5 rounded-[3px] min-w-[20px]" />)}</div>
-            {curByCat.map(([k, n], i) => <div key={k} className="flex items-center gap-2 text-[12.5px] py-0.5"><span className="w-2.5 h-2.5 rounded-sm" style={{ background:BAR[i % BAR.length] }} /><span className="flex-1 text-[#333]">{k}</span><b>{n}</b><span className="text-[#AAA] w-10 text-right">{Math.round(n / current.length * 100)}%</span></div>)}</>}
+            {curByCat.map(([k, n], i) => <div key={k} className="flex items-center gap-2 text-[12.5px] py-0.5"><span className="w-2.5 h-2.5 rounded-sm" style={{ background:BAR[i % BAR.length] }} /><span className="flex-1 text-[#333]">{k}</span><b>{n}</b><span className="text-[#666666] w-10 text-right">{Math.round(n / current.length * 100)}%</span></div>)}</>}
         </div>
       </Collapsible>
 
       <Collapsible defaultOpen={overdue.length > 0} header={<div className="flex items-center gap-2"><span className="text-[13.5px] font-bold text-[#111]">⚠ Overdue</span><Badge variant={overdue.length ? 'red' : 'green'}>{overdue.length}</Badge></div>}>
         <div className="border-t border-[#E4E4E4] divide-y divide-[#E4E4E4]">
-          {!overdue.length ? <div className="p-4 text-[13px] text-[#AAA]">No overdue books</div> : overdue.map((l, i) => (
-            <div key={i} className="flex items-center gap-3 px-4 py-2.5"><div className="flex-1"><div className="text-[13px] font-semibold text-[#111]">{l.title}</div><div className="text-[11.5px] text-[#777]">{stu(l.studentId)?.name} · {stu(l.studentId)?.cls}</div></div><span className="text-[12px] font-bold text-[#DC2626]">Due {prettyDate(l.due)}</span></div>))}
+          {!overdue.length ? <div className="p-4 text-[13px] text-[#666666]">No overdue books</div> : overdue.map((l, i) => (
+            <div key={i} className="flex items-center gap-3 px-4 py-2.5"><div className="flex-1"><div className="text-[13px] font-semibold text-[#111]">{l.title}</div><div className="text-[11.5px] text-[#666666]">{stu(l.studentId)?.name} · {stu(l.studentId)?.cls}</div></div><span className="text-[12px] font-bold text-[#B91C1C]">Due {prettyDate(l.due)}</span></div>))}
         </div>
       </Collapsible>
 
@@ -162,28 +162,28 @@ function Analytics({ c, loans, stu, db }) {
         <div className="border-t border-[#E4E4E4] divide-y divide-[#E4E4E4]">
           {readers.map((r, i) => <div key={r.id} className="flex items-center gap-3 px-4 py-2.5">
             <div className="w-6 h-6 rounded-full text-white text-[11px] font-extrabold flex items-center justify-center" style={{ background:['#D4A017', '#9CA3AF', '#B87333', '#166534', '#3F3F46'][i] }}>{i + 1}</div>
-            <div className="flex-1"><div className="text-[13px] font-semibold text-[#111]">{stu(r.id)?.name || r.id}</div><div className="text-[11.5px] text-[#777]">{[...r.cats].slice(0, 3).join(', ')}</div></div><span className="text-[15px] font-extrabold text-[#166534]">{r.n}</span></div>)}
+            <div className="flex-1"><div className="text-[13px] font-semibold text-[#111]">{stu(r.id)?.name || r.id}</div><div className="text-[11.5px] text-[#666666]">{[...r.cats].slice(0, 3).join(', ')}</div></div><span className="text-[15px] font-extrabold text-[#166534]">{r.n}</span></div>)}
         </div>
       </Collapsible>
 
       <Collapsible defaultOpen header={<div className="flex items-center gap-3 flex-1"><span className="text-[13.5px] font-bold text-[#111]">Student Reading Profile</span>
         <select value={sel} onClick={e => e.stopPropagation()} onChange={e => setSel(e.target.value)} className="ml-auto px-2 py-1 border border-[#E4E4E4] rounded-[6px] text-[12px] outline-none"><option value="">Select student…</option>{db.students.map(x => <option key={x.id} value={x.id}>{x.name}</option>)}</select></div>}>
         <div className="p-4 border-t border-[#E4E4E4]">
-          {!s ? <div className="text-center py-6 text-[#AAA] text-[13px]">Select a student to see their reading profile</div> : (
-            <div className="grid grid-cols-[260px_1fr] gap-5">
+          {!s ? <div className="text-center py-6 text-[#666666] text-[13px]">Select a student to see their reading profile</div> : (
+            <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-5">
               <div className="bg-[#F8F8F8] rounded-[10px] p-4">
-                <div className="flex items-center gap-3 mb-4"><div className="w-11 h-11 rounded-full text-white font-extrabold flex items-center justify-center" style={{ background:COLORS[db.students.indexOf(s) % COLORS.length] }}>{s.name.split(' ').map(w => w[0]).join('').slice(0, 2)}</div><div><div className="text-[14px] font-extrabold text-[#111]">{s.name}</div><div className="text-[12px] text-[#777]">{s.cls} {s.section}</div></div></div>
-                <div className="bg-white rounded-[8px] p-3 text-center mb-3"><div className="text-[24px] font-extrabold" style={{ color:level[1] }}>{mine.length}</div><div className="text-[11px] text-[#777]">Books read / in progress</div><div className="text-[12px] font-semibold mt-1" style={{ color:level[1] }}>{level[0]}</div></div>
-                <div className="text-[10.5px] font-bold text-[#777] uppercase tracking-wider mb-1.5">Interests</div>
-                <div className="flex flex-wrap gap-1.5 mb-3">{tags.map(t => <span key={t} className="px-2.5 py-0.5 bg-[#F6F6F7] text-[#111] border border-[#FECACA] rounded-full text-[11.5px] font-semibold">{t}</span>)}{!tags.length && <span className="text-[12px] text-[#AAA]">—</span>}</div>
-                <div className="text-[10.5px] font-bold text-[#777] uppercase tracking-wider mb-1.5">Recommended next</div>
+                <div className="flex items-center gap-3 mb-4"><div className="w-11 h-11 rounded-full text-white font-extrabold flex items-center justify-center" style={{ background:COLORS[db.students.indexOf(s) % COLORS.length] }}>{s.name.split(' ').map(w => w[0]).join('').slice(0, 2)}</div><div><div className="text-[14px] font-extrabold text-[#111]">{s.name}</div><div className="text-[12px] text-[#666666]">{s.cls} {s.section}</div></div></div>
+                <div className="bg-white rounded-[8px] p-3 text-center mb-3"><div className="text-[24px] font-extrabold" style={{ color:level[1] }}>{mine.length}</div><div className="text-[11px] text-[#666666]">Books read / in progress</div><div className="text-[12px] font-semibold mt-1" style={{ color:level[1] }}>{level[0]}</div></div>
+                <div className="text-[10.5px] font-bold text-[#666666] uppercase tracking-wider mb-1.5">Interests</div>
+                <div className="flex flex-wrap gap-1.5 mb-3">{tags.map(t => <span key={t} className="px-2.5 py-0.5 bg-[#F6F6F7] text-[#111] border border-[#FECACA] rounded-full text-[11.5px] font-semibold">{t}</span>)}{!tags.length && <span className="text-[12px] text-[#666666]">—</span>}</div>
+                <div className="text-[10.5px] font-bold text-[#666666] uppercase tracking-wider mb-1.5">Recommended next</div>
                 {(RECS[top] || RECS.Fiction).map(r => <div key={r} className="text-[12.5px] text-[#333] py-1 border-b border-[#E4E4E4] last:border-b-0">📖 {r}</div>)}
               </div>
               <div>
-                <div className="text-[10.5px] font-bold text-[#777] uppercase tracking-wider mb-2">Reading history ({mine.length})</div>
-                {!mine.length ? <div className="text-center py-8 text-[#AAA]">No reading records for this student</div> : mine.map((l, i) => (
-                  <div key={i} className="flex items-center gap-3 px-3 py-2 border-b border-[#E4E4E4] last:border-b-0"><div className="flex-1"><div className="text-[13px] text-[#111]">{l.title}</div><div className="text-[11.5px] text-[#AAA]">{l.cat}</div></div>
-                    <Badge variant={l.status === 'Returned' ? 'grey' : l.status === 'Overdue' ? 'red' : 'green'}>{l.status}</Badge><span className="text-[11px] text-[#AAA] w-14 text-right">{prettyDate(l.due)}</span></div>))}
+                <div className="text-[10.5px] font-bold text-[#666666] uppercase tracking-wider mb-2">Reading history ({mine.length})</div>
+                {!mine.length ? <div className="text-center py-8 text-[#666666]">No reading records for this student</div> : mine.map((l, i) => (
+                  <div key={i} className="flex items-center gap-3 px-3 py-2 border-b border-[#E4E4E4] last:border-b-0"><div className="flex-1"><div className="text-[13px] text-[#111]">{l.title}</div><div className="text-[11.5px] text-[#666666]">{l.cat}</div></div>
+                    <Badge variant={l.status === 'Returned' ? 'grey' : l.status === 'Overdue' ? 'red' : 'green'}>{l.status}</Badge><span className="text-[11px] text-[#666666] w-14 text-right">{prettyDate(l.due)}</span></div>))}
               </div>
             </div>)}
         </div>

@@ -41,9 +41,9 @@ export default function Mess({ h, saveStock, addStock, addOrder, receiveOrder })
           <Button onClick={() => setProcure(true)}>Generate Procurement Order</Button>
         </>} />
 
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         <Kpi label="Items in Stock" value={h.stock.length} note="Tracked kitchen items" />
-        <Kpi label="Low Stock" value={low.length} note="Items to reorder" color={low.length ? '#DC2626' : '#166534'} />
+        <Kpi label="Low Stock" value={low.length} note="Items to reorder" color={low.length ? '#B91C1C' : '#166534'} />
         <Kpi label="Stock Value" value={fmt(stockValue)} note="Quantity × unit cost" color="#1A5FB4" />
         <Kpi label="Open Orders" value={openOrders} note="Placed, not yet received" color={openOrders ? '#B45309' : '#166534'} />
       </div>
@@ -58,10 +58,10 @@ export default function Mess({ h, saveStock, addStock, addOrder, receiveOrder })
                 <tr key={s.item} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]">
                   <td className="px-4 py-2.5 font-semibold text-[#111]">{s.item}</td>
                   <td className="px-4 py-2.5"><Badge variant="grey">{s.cat}</Badge></td>
-                  <td className="px-4 py-2.5 font-bold">{s.qty} <span className="text-[#AAA] font-normal">/ {s.max} {s.unit}</span></td>
+                  <td className="px-4 py-2.5 font-bold">{s.qty} <span className="text-[#666666] font-normal">/ {s.max} {s.unit}</span></td>
                   <td className="px-4 py-2.5">
                     <div className="h-1.5 bg-[#E4E4E4] rounded-full w-20 overflow-hidden">
-                      <div className="h-full rounded-full" style={{ width:`${Math.min(100,pct)}%`, background: isLow ? '#DC2626' : '#18181B' }} />
+                      <div className="h-full rounded-full" style={{ width:`${Math.min(100,pct)}%`, background: isLow ? '#B91C1C' : '#18181B' }} />
                     </div>
                   </td>
                   <td className="px-4 py-2.5 font-mono text-[12px]">{fmt(s.cost)}</td>
@@ -76,8 +76,8 @@ export default function Mess({ h, saveStock, addStock, addOrder, receiveOrder })
 
 
       <Collapsible className="mb-3" header={<span className="text-[13.5px] font-bold text-[#111]">📦 Procurement Orders ({(h.orders || []).length})</span>}>
-        <div className="border-t border-[#E4E4E4] divide-y divide-[#E4E4E4]">{!(h.orders || []).length && <div className="p-4 text-[13px] text-[#AAA]">No orders yet — generate one from low-stock items.</div>}{(h.orders || []).map(o => (
-          <div key={o.id} className="flex items-center gap-3 px-4 py-2.5"><div className="flex-1"><div className="text-[13px] font-semibold text-[#111]">{o.supplier} · {fmt(o.total)}</div><div className="text-[11.5px] text-[#777]">{o.date}{o.delivery ? ` · expected ${o.delivery}` : ''} · {o.lines.map(l => `${l.item} ×${l.qty}`).join(', ')}</div></div>
+        <div className="border-t border-[#E4E4E4] divide-y divide-[#E4E4E4]">{!(h.orders || []).length && <div className="p-4 text-[13px] text-[#666666]">No orders yet — generate one from low-stock items.</div>}{(h.orders || []).map(o => (
+          <div key={o.id} className="flex items-center gap-3 px-4 py-2.5"><div className="flex-1"><div className="text-[13px] font-semibold text-[#111]">{o.supplier} · {fmt(o.total)}</div><div className="text-[11.5px] text-[#666666]">{o.date}{o.delivery ? ` · expected ${o.delivery}` : ''} · {o.lines.map(l => `${l.item} ×${l.qty}`).join(', ')}</div></div>
             <Badge variant={o.status === 'Received' ? 'green' : 'amber'}>{o.status}</Badge>{o.status !== 'Received' && <Button size="sm" variant="outline" onClick={() => receiveOrder(o.id)}>Mark received</Button>}</div>))}</div>
       </Collapsible>
 

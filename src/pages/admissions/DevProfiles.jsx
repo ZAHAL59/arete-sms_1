@@ -36,19 +36,19 @@ export default function DevProfiles() {
         actions={<><input value={q} onChange={e => setQ(e.target.value)} placeholder="Search…" className={sc + ' w-36'} />
           <select value={grade} onChange={e => setGrade(e.target.value)} className={sc}><option value="">All grades</option>{grades.map(g => <option key={g}>{g}</option>)}</select>
           <select value={section} onChange={e => setSection(e.target.value)} className={sc}><option value="">All sections</option>{['A', 'B', 'C'].map(s => <option key={s}>{s}</option>)}</select></>} />
-      {!students.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-12 text-center text-[#AAA]">{db.students.length ? 'No profiles match the filter.' : 'No students enrolled yet.'}</div>}
+      {!students.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-12 text-center text-[#666666]">{db.students.length ? 'No profiles match the filter.' : 'No students enrolled yet.'}</div>}
       {students.map((s, i) => (
         <Collapsible key={s.id} className="mb-2" header={
           <div className="flex items-center gap-3 flex-1 min-w-0">
             <div style={{ background: COLORS[i % COLORS.length] }} className="w-9 h-9 rounded-full text-white text-[11px] font-bold flex items-center justify-center flex-shrink-0">{s.name.split(' ').map(w => w[0]).join('').slice(0, 2)}</div>
-            <div className="flex-1 min-w-0"><div className="text-[13.5px] font-bold text-[#111]">{s.name}</div><div className="text-[11.5px] text-[#777]">{s.cls} {s.section} · Roll {s.roll || '—'} · {s.adm}</div></div>
+            <div className="flex-1 min-w-0"><div className="text-[13.5px] font-bold text-[#111]">{s.name}</div><div className="text-[11.5px] text-[#666666]">{s.cls} {s.section} · Roll {s.roll || '—'} · {s.adm}</div></div>
             <div className="flex gap-1.5 flex-wrap items-center">{s.learningStyle && <Badge variant="grey">{s.learningStyle}</Badge>}{s.diet && <Badge variant="blue">{s.diet}</Badge>}{s.boarding && <Badge variant="green">Boarding</Badge>}{s.needs && s.needs !== 'None' && <Badge variant="amber">SEN</Badge>}
               <Button size="sm" variant="ghost" onClick={e => { e.stopPropagation(); open(s); }}>✎ Edit</Button></div></div>}>
           <div className="p-4 border-t border-[#E4E4E4]">
-            <div className="grid grid-cols-3 gap-2 mb-3">{[['Hobbies', s.hobbies], ['Languages', s.langs], ['Preferred learning', s.expPref], ['Health', s.health || 'None'], ['Behavioural', s.behav], ['Parent', s.parentName], ...(s.customFields || []).map(c => [c.label, c.value])].map(([l, v]) => (
-              <div key={l} className="bg-[#F8F8F8] p-2.5 rounded-[6px]"><div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-1">{l}</div><div className="text-[12.5px] text-[#333]">{v || '—'}</div></div>))}</div>
-            <div className="text-[10px] font-bold text-[#AAA] uppercase tracking-wider mb-1.5">Progress milestones</div>
-            {(s.milestones || []).length ? s.milestones.map((m, j) => <div key={j} className="flex gap-3 text-[12px] text-[#555] mb-1"><span className="font-mono text-[#AAA] flex-shrink-0">{m.date}</span>{m.text}</div>) : <div className="text-[12px] text-[#AAA]">No milestones yet</div>}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">{[['Hobbies', s.hobbies], ['Languages', s.langs], ['Preferred learning', s.expPref], ['Health', s.health || 'None'], ['Behavioural', s.behav], ['Parent', s.parentName], ...(s.customFields || []).map(c => [c.label, c.value])].map(([l, v]) => (
+              <div key={l} className="bg-[#F8F8F8] p-2.5 rounded-[6px]"><div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1">{l}</div><div className="text-[12.5px] text-[#333]">{v || '—'}</div></div>))}</div>
+            <div className="text-[10px] font-bold text-[#666666] uppercase tracking-wider mb-1.5">Progress milestones</div>
+            {(s.milestones || []).length ? s.milestones.map((m, j) => <div key={j} className="flex gap-3 text-[12px] text-[#555] mb-1"><span className="font-mono text-[#666666] flex-shrink-0">{m.date}</span>{m.text}</div>) : <div className="text-[12px] text-[#666666]">No milestones yet</div>}
           </div>
         </Collapsible>))}
 
@@ -63,11 +63,11 @@ export default function DevProfiles() {
           <Field label="Boarding / hostel"><select value={form.boarding ? '1' : '0'} onChange={e => setForm(f => ({ ...f, boarding: e.target.value === '1' }))} className={inputCls}><option value="0">Day scholar</option><option value="1">Boarder (hostel)</option></select></Field>
         </div>
         <div className="mt-4"><div className="text-[11px] font-bold text-[#111] uppercase tracking-wider mb-2">Custom fields</div>
-          {cf.map((c, i) => <div key={i} className="flex gap-2 mb-2"><input value={c.label} onChange={e => setC(i, 'label', e.target.value)} placeholder="Field name (e.g. Sport, Instrument)" className={inputCls + ' w-48'} /><input value={c.value} onChange={e => setC(i, 'value', e.target.value)} placeholder="Value" className={inputCls + ' flex-1'} /><button onClick={() => setCf(l => l.filter((_, j) => j !== i))} className="text-[#999] px-2 cursor-pointer bg-none border-none">×</button></div>)}
+          {cf.map((c, i) => <div key={i} className="flex gap-2 mb-2"><input value={c.label} onChange={e => setC(i, 'label', e.target.value)} placeholder="Field name (e.g. Sport, Instrument)" className={inputCls + ' w-48'} /><input value={c.value} onChange={e => setC(i, 'value', e.target.value)} placeholder="Value" className={inputCls + ' flex-1'} /><button onClick={() => setCf(l => l.filter((_, j) => j !== i))} className="text-[#666666] px-2 cursor-pointer bg-none border-none">×</button></div>)}
           <Button size="sm" variant="outline" onClick={() => setCf(l => [...l, { label: '', value: '' }])}>+ Add custom field</Button></div>
         <div className="mt-4"><div className="text-[11px] font-bold text-[#111] uppercase tracking-wider mb-2">Progress milestones</div>
-          {ms.length === 0 && <div className="text-[12.5px] text-[#AAA] mb-2">No milestones yet. Add the first one below.</div>}
-          {ms.map((m, i) => <div key={i} className="flex gap-2 mb-2"><input type="date" value={m.date || ''} onChange={e => setM(i, 'date', e.target.value)} className={inputCls + ' w-36'} /><input value={m.text} onChange={e => setM(i, 'text', e.target.value)} placeholder="What happened / was achieved…" className={inputCls + ' flex-1'} /><button onClick={() => setMs(l => l.filter((_, j) => j !== i))} className="text-[#999] px-2 cursor-pointer bg-none border-none">×</button></div>)}
+          {ms.length === 0 && <div className="text-[12.5px] text-[#666666] mb-2">No milestones yet. Add the first one below.</div>}
+          {ms.map((m, i) => <div key={i} className="flex gap-2 mb-2"><input type="date" value={m.date || ''} onChange={e => setM(i, 'date', e.target.value)} className={inputCls + ' w-36'} /><input value={m.text} onChange={e => setM(i, 'text', e.target.value)} placeholder="What happened / was achieved…" className={inputCls + ' flex-1'} /><button onClick={() => setMs(l => l.filter((_, j) => j !== i))} className="text-[#666666] px-2 cursor-pointer bg-none border-none">×</button></div>)}
           <Button size="sm" variant="outline" onClick={() => setMs(l => [...l, { date: new Date().toISOString().slice(0, 10), text: '' }])}>+ Add milestone</Button></div>
         <Field label="General notes" className="mt-3"><input value={form.notes} onChange={e => setForm(f => ({ ...f, notes: e.target.value }))} className={inputCls} /></Field>
       </Modal>}

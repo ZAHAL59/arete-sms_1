@@ -45,14 +45,14 @@ export default function Complaints({ addComplaint, resolveComplaint, addComplain
       <Collapsible key={c.id} className="mb-1.5" open={ex.isOpen(c.id)} onToggle={() => ex.toggle(c.id)}
         header={
           <div className="flex items-center gap-2.5 min-w-0">
-            <span className="font-mono text-[11px] text-[#AAA] flex-shrink-0">{c.id}</span>
+            <span className="font-mono text-[11px] text-[#666666] flex-shrink-0">{c.id}</span>
             <Badge variant={TYPE_VARIANT[c.type] || 'grey'}>{c.type}</Badge>
             <span className="flex-1 truncate text-[13px] font-semibold text-[#111]">{c.subj}</span>
-            <span className={`text-[11px] font-semibold flex-shrink-0 ${days > 7 ? 'text-[#DC2626]' : 'text-[#AAA]'}`}>{days} day{days === 1 ? '' : 's'}</span>
+            <span className={`text-[11px] font-semibold flex-shrink-0 ${days > 7 ? 'text-[#B91C1C]' : 'text-[#666666]'}`}>{days} day{days === 1 ? '' : 's'}</span>
             <Button size="sm" onClick={e => { e.stopPropagation(); resolveComplaint(c.id); }}>Resolve</Button>
           </div>}>
-        <div className="p-4" style={{ borderLeft: `3px solid ${days > 7 ? '#DC2626' : '#18181B'}` }}>
-          <div className="text-[11.5px] text-[#AAA] mb-1">Logged {prettyDate(c.date)} · From: <span className="text-[#555] font-semibold">{c.who}</span> · Open {days} day{days === 1 ? '' : 's'}</div>
+        <div className="p-4" style={{ borderLeft: `3px solid ${days > 7 ? '#B91C1C' : '#18181B'}` }}>
+          <div className="text-[11.5px] text-[#666666] mb-1">Logged {prettyDate(c.date)} · From: <span className="text-[#555] font-semibold">{c.who}</span> · Open {days} day{days === 1 ? '' : 's'}</div>
           <div className="text-[13.5px] font-bold text-[#111] mb-2">{c.subj}</div>
           <div className="text-[12px] text-[#111] bg-[#F6F6F7] rounded-[6px] px-2.5 py-1.5 mb-3">⚡ {c.action}</div>
           <div className="flex gap-2">
@@ -65,15 +65,15 @@ export default function Complaints({ addComplaint, resolveComplaint, addComplain
   const group = (id, title, count, badge, rows, empty) => (
     <Collapsible className="mb-3" open={ex.isOpen(id)} onToggle={() => ex.toggle(id)}
       header={<div className="flex items-center gap-2"><span className="text-[13.5px] font-bold text-[#111]">{title}</span><Badge variant={badge}>{count}</Badge></div>}>
-      <div className="p-3 border-t border-[#E4E4E4]">{count ? rows : <div className="text-center text-[#AAA] text-[13px] py-4">{empty}</div>}</div>
+      <div className="p-3 border-t border-[#E4E4E4]">{count ? rows : <div className="text-center text-[#666666] text-[13px] py-4">{empty}</div>}</div>
     </Collapsible>);
 
   return (
     <div className="p-6">
       <PageHeader title="Complaints" subtitle="Parent, staff and student complaints — synced with the Principal's dashboard"
         actions={<><ExpandControls ex={ex} ids={allIds} /><Button onClick={() => setOpen(true)}>+ Log Complaint</Button></>} />
-      <div className="grid grid-cols-3 gap-3 mb-5">
-        <Kpi label="Open" value={openList.length} note="Awaiting resolution" color={openList.length ? '#DC2626' : '#166534'} />
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-5">
+        <Kpi label="Open" value={openList.length} note="Awaiting resolution" color={openList.length ? '#B91C1C' : '#166534'} />
         <Kpi label="Resolved" value={resolved.length} note="All time" color="#166534" />
         <Kpi label="Avg Resolution" value={`${avgDays} days`} note="From logged to resolved" color="#1A5FB4" />
       </div>
@@ -84,7 +84,7 @@ export default function Complaints({ addComplaint, resolveComplaint, addComplain
 
       {group('g:resolved', '✅ Resolved', resolved.length, 'green', resolved.map(c => (
         <Collapsible key={c.id} className="mb-1.5" open={ex.isOpen(c.id)} onToggle={() => ex.toggle(c.id)}
-          header={<div className="flex items-center gap-2.5 min-w-0"><span className="font-mono text-[11px] text-[#AAA] flex-shrink-0">{c.id}</span><Badge variant="grey">{c.type}</Badge><span className="flex-1 truncate text-[13px] text-[#333]">{c.subj}</span><span className="text-[11.5px] text-[#166534] font-semibold flex-shrink-0">{daysBetween(c.date, c.resolvedOn || c.date)} day(s)</span></div>}>
+          header={<div className="flex items-center gap-2.5 min-w-0"><span className="font-mono text-[11px] text-[#666666] flex-shrink-0">{c.id}</span><Badge variant="grey">{c.type}</Badge><span className="flex-1 truncate text-[13px] text-[#333]">{c.subj}</span><span className="text-[11.5px] text-[#166534] font-semibold flex-shrink-0">{daysBetween(c.date, c.resolvedOn || c.date)} day(s)</span></div>}>
           <div className="p-4 text-[12.5px] text-[#555] space-y-1.5">
             <div className="text-[13px] font-semibold text-[#111]">{c.subj}</div>
             <div>From: <b>{c.who}</b> · Logged {prettyDate(c.date)}{c.resolvedOn && <> · Resolved {prettyDate(c.resolvedOn)}</>}</div>

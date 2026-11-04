@@ -48,24 +48,24 @@ export default function Visitors({ c, addVisitor, checkOut }) {
           </select>
           <Button onClick={() => { setF(blank()); setOpen(true); }}>+ Log Visitor</Button>
         </>} />
-      <div className="grid grid-cols-4 gap-3 mb-5">
-        <Kpi label="Currently Inside" value={inside} note="On premises right now" color={inside ? '#DC2626' : '#166534'} />
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+        <Kpi label="Currently Inside" value={inside} note="On premises right now" color={inside ? '#B91C1C' : '#166534'} />
         <Kpi label="Visitors Today" value={c.visitors.filter(v => v.date === TODAY).length} note="Total entries today" />
         <Kpi label="This Week" value={c.visitors.filter(v => v.date >= weekAgo).length} note="Total visits" color="#1A5FB4" />
         <Kpi label="Total Records" value={c.visitors.length} note="All time" color="#6D28D9" />
       </div>
 
-      {!days.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-10 text-center text-[#AAA]">No visitors found</div>}
+      {!days.length && <div className="bg-white border border-[#E4E4E4] rounded-[10px] p-10 text-center text-[#666666]">No visitors found</div>}
       {days.map(d => {
         const rows = list.filter(v => v.date === d), here = rows.filter(v => v.status === 'In').length;
         return (
           <Collapsible key={d} className="mb-3" open={q ? true : ex.isOpen('d:' + d)} onToggle={() => ex.toggle('d:' + d)}
-            header={<div className="flex items-center gap-2.5"><span className="text-[13.5px] font-bold text-[#111]">{dayLabel(d)}</span><span className="text-[12px] text-[#777]">{dayDate(d)}</span><Badge variant="grey">{rows.length} visit{rows.length === 1 ? '' : 's'}</Badge>{here > 0 && <Badge variant="red">{here} inside</Badge>}</div>}>
+            header={<div className="flex items-center gap-2.5"><span className="text-[13.5px] font-bold text-[#111]">{dayLabel(d)}</span><span className="text-[12px] text-[#666666]">{dayDate(d)}</span><Badge variant="grey">{rows.length} visit{rows.length === 1 ? '' : 's'}</Badge>{here > 0 && <Badge variant="red">{here} inside</Badge>}</div>}>
             <table className="w-full border-collapse text-[13px] border-t border-[#E4E4E4]">
               <thead><tr><Th>Visitor</Th><Th>Purpose</Th><Th>Meeting With</Th><Th>In</Th><Th>Out</Th><Th>ID</Th><Th>Status</Th><Th /></tr></thead>
               <tbody>{rows.map(v => (
                 <tr key={v.id} className="border-b border-[#E4E4E4] last:border-b-0 hover:bg-[#F8F8F8]">
-                  <td className="px-4 py-2.5"><div className="font-semibold text-[#111]">{v.name}</div><div className="font-mono text-[11px] text-[#AAA]">{v.phone}</div></td>
+                  <td className="px-4 py-2.5"><div className="font-semibold text-[#111]">{v.name}</div><div className="font-mono text-[11px] text-[#666666]">{v.phone}</div></td>
                   <td className="px-4 py-2.5"><Badge variant="grey">{v.purpose}</Badge></td>
                   <td className="px-4 py-2.5 text-[#555]">{v.meeting}</td>
                   <td className="px-4 py-2.5 font-mono text-[12px]">{v.timeIn}</td>

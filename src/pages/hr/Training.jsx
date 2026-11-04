@@ -36,14 +36,14 @@ export default function Training({ hr, addTraining, markTrainingAtt }) {
           <Collapsible key={t.id} header={
             <div className="flex items-center gap-3 flex-1">
               <div className={`w-9 h-9 rounded-[8px] flex items-center justify-center text-[16px] flex-shrink-0 ${isPast ? 'bg-[#F0FDF4]' : 'bg-[#F6F6F7]'}`}>{isPast ? '✅' : '📅'}</div>
-              <div className="flex-1 min-w-0"><div className="text-[13.5px] font-bold text-[#111]">{t.title}</div><div className="text-[11.5px] text-[#777] mt-0.5">{t.date}{t.time ? ' · ' + t.time : ''} · {t.duration} · {t.trainer || '—'} · {t.mode && t.mode !== 'In-person' ? t.platform || t.mode : t.venue || 'In-person'}</div></div>
+              <div className="flex-1 min-w-0"><div className="text-[13.5px] font-bold text-[#111]">{t.title}</div><div className="text-[11.5px] text-[#666666] mt-0.5">{t.date}{t.time ? ' · ' + t.time : ''} · {t.duration} · {t.trainer || '—'} · {t.mode && t.mode !== 'In-person' ? t.platform || t.mode : t.venue || 'In-person'}</div></div>
               <div className="flex gap-2 items-center flex-shrink-0">{isPast && <span className="text-[11.5px] text-[#555]">{att}/{inv.length} attended</span>}<Badge variant="grey">{inv.length} invited</Badge><Badge variant={isPast ? 'green' : 'blue'}>{isPast ? 'Completed' : 'Upcoming'}</Badge>
                 <Button size="sm" variant="outline" onClick={e => { e.stopPropagation(); setAttOpen(t.id); }}>{isPast ? 'View Attendance' : 'Mark Attendance'}</Button></div>
             </div>}>
             <div className="px-4 py-3 border-t border-[#E4E4E4] space-y-3">
-              {(t.topics || []).length > 0 && <div><div className="text-[10.5px] font-bold text-[#AAA] uppercase tracking-wider mb-2">Topics</div><div className="flex gap-2 flex-wrap">{t.topics.map(tp => <Badge key={tp} variant="purple">{tp}</Badge>)}</div></div>}
+              {(t.topics || []).length > 0 && <div><div className="text-[10.5px] font-bold text-[#666666] uppercase tracking-wider mb-2">Topics</div><div className="flex gap-2 flex-wrap">{t.topics.map(tp => <Badge key={tp} variant="purple">{tp}</Badge>)}</div></div>}
               {t.resources && <div className="text-[12.5px] text-[#555]"><b>Resources:</b> {t.resources}</div>}
-              {!isPast && <div className="flex items-center gap-2"><Button size="sm" variant="outline" onClick={() => { navigator.clipboard?.writeText(inviteText(t)); setCopied(t.id); }}>📋 Copy invite message</Button><span className="text-[11.5px] text-[#AAA]">{copied === t.id ? 'Copied — paste into WhatsApp / email (automatic sending is not connected).' : ''}</span></div>}
+              {!isPast && <div className="flex items-center gap-2"><Button size="sm" variant="outline" onClick={() => { navigator.clipboard?.writeText(inviteText(t)); setCopied(t.id); }}>📋 Copy invite message</Button><span className="text-[11.5px] text-[#666666]">{copied === t.id ? 'Copied — paste into WhatsApp / email (automatic sending is not connected).' : ''}</span></div>}
             </div>
           </Collapsible>);
       })}</div>
@@ -51,11 +51,11 @@ export default function Training({ hr, addTraining, markTrainingAtt }) {
       {attOpen && (() => { const t = hr.training.find(x => x.id === attOpen); if (!t) return null; const inv = db.staff.filter(s => invitees(t).includes(s.id));
         return <Modal open onClose={() => setAttOpen(null)} size="lg" title={t.date < TODAY ? 'Training Attendance' : 'Mark Attendance'} subtitle={`${t.title} · ${t.date}`} footer={<Button variant="outline" onClick={() => setAttOpen(null)}>Close</Button>}>
           <div className="divide-y divide-[#E4E4E4] border border-[#E4E4E4] rounded-[8px] overflow-hidden">{inv.map(s => { const st = t.attendance[s.id] || ''; return (
-            <div key={s.id} className={`flex items-center gap-3 px-4 py-2.5 ${st === 'present' ? 'bg-[#F6FEF9]' : st === 'absent' ? 'bg-[#FFF5F5]' : 'bg-white'}`}><div className="flex-1"><div className="font-semibold text-[13px] text-[#111]">{s.name}</div><div className="text-[11px] text-[#AAA]">{s.subj}</div></div>
-              <div className="flex gap-1">{[['present', '#166534', '#F0FDF4', '#BBF7D0', 'P'], ['absent', '#DC2626', '#FEF2F2', '#FECACA', 'A']].map(([v, col, bg, bdr, l]) => <button key={v} onClick={() => markTrainingAtt(t.id, s.id, v)} className="w-8 h-7 rounded-[5px] text-[11px] font-bold border-[1.5px] cursor-pointer" style={{ background: st === v ? col : bg, color: st === v ? '#fff' : col, borderColor: st === v ? col : bdr }}>{l}</button>)}</div></div>); })}</div></Modal>; })()}
+            <div key={s.id} className={`flex items-center gap-3 px-4 py-2.5 ${st === 'present' ? 'bg-[#F6FEF9]' : st === 'absent' ? 'bg-[#FFF5F5]' : 'bg-white'}`}><div className="flex-1"><div className="font-semibold text-[13px] text-[#111]">{s.name}</div><div className="text-[11px] text-[#666666]">{s.subj}</div></div>
+              <div className="flex gap-1">{[['present', '#166534', '#F0FDF4', '#BBF7D0', 'P'], ['absent', '#B91C1C', '#FEF2F2', '#FECACA', 'A']].map(([v, col, bg, bdr, l]) => <button key={v} onClick={() => markTrainingAtt(t.id, s.id, v)} className="w-8 h-7 rounded-[5px] text-[11px] font-bold border-[1.5px] cursor-pointer" style={{ background: st === v ? col : bg, color: st === v ? '#fff' : col, borderColor: st === v ? col : bdr }}>{l}</button>)}</div></div>); })}</div></Modal>; })()}
 
       {newOpen && <Modal open onClose={close} size="lg" title="Schedule Training Session" subtitle={step === 1 ? 'Step 1 of 2 · Session details' : 'Step 2 of 2 · Choose who to invite'}
-        footer={<><span className="mr-auto text-[12px] text-[#DC2626] font-semibold">{err}</span><Button variant="outline" onClick={step === 1 ? close : () => { setStep(1); setErr(''); }}>{step === 1 ? 'Cancel' : '← Back'}</Button>{step === 1 ? <Button onClick={next}>Next: invite staff →</Button> : <Button onClick={save}>Schedule & invite {invited.length}</Button>}</>}>
+        footer={<><span className="mr-auto text-[12px] text-[#B91C1C] font-semibold">{err}</span><Button variant="outline" onClick={step === 1 ? close : () => { setStep(1); setErr(''); }}>{step === 1 ? 'Cancel' : '← Back'}</Button>{step === 1 ? <Button onClick={next}>Next: invite staff →</Button> : <Button onClick={save}>Schedule & invite {invited.length}</Button>}</>}>
         {step === 1 ? <div className="grid grid-cols-2 gap-3">
           <Field label="Session title *" className="col-span-2"><input value={f.title} onChange={e => set('title', e.target.value)} className={inputCls} /></Field>
           <Field label="Date *"><input type="date" value={f.date} onChange={e => set('date', e.target.value)} className={inputCls} /></Field>
@@ -71,8 +71,8 @@ export default function Training({ hr, addTraining, markTrainingAtt }) {
           <Field label="Pre-reading / resources (optional)" className="col-span-2"><input value={f.resources} onChange={e => set('resources', e.target.value)} className={inputCls} /></Field>
         </div> : <div>
           <div className="flex gap-2 mb-3"><Button size="sm" variant="outline" onClick={() => setInvited(db.staff.map(s => s.id))}>Select all</Button><Button size="sm" variant="outline" onClick={() => setInvited([])}>Clear</Button><span className="ml-auto text-[12.5px] font-bold">{invited.length} of {db.staff.length} selected</span></div>
-          <div className="border border-[#E4E4E4] rounded-[8px] divide-y divide-[#E4E4E4]">{db.staff.map(s => <label key={s.id} className="flex items-center gap-3 px-3 py-2.5 cursor-pointer hover:bg-[#F8F8F8]"><input type="checkbox" checked={invited.includes(s.id)} onChange={() => setInvited(l => l.includes(s.id) ? l.filter(x => x !== s.id) : [...l, s.id])} className="accent-[#18181B]" /><span className="flex-1 text-[13px] font-semibold">{s.name}</span><span className="text-[11.5px] text-[#AAA]">{s.subj}</span></label>)}</div>
-          <p className="text-[11.5px] text-[#AAA] mt-2">Invites are not sent automatically — after scheduling, use "Copy invite message" to share it.</p></div>}
+          <div className="border border-[#E4E4E4] rounded-[8px] divide-y divide-[#E4E4E4]">{db.staff.map(s => <label key={s.id} className="flex items-center gap-3 px-3 py-2.5 cursor-pointer hover:bg-[#F8F8F8]"><input type="checkbox" checked={invited.includes(s.id)} onChange={() => setInvited(l => l.includes(s.id) ? l.filter(x => x !== s.id) : [...l, s.id])} className="accent-[#18181B]" /><span className="flex-1 text-[13px] font-semibold">{s.name}</span><span className="text-[11.5px] text-[#666666]">{s.subj}</span></label>)}</div>
+          <p className="text-[11.5px] text-[#666666] mt-2">Invites are not sent automatically — after scheduling, use "Copy invite message" to share it.</p></div>}
       </Modal>}
     </div>
   );

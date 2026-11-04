@@ -14,6 +14,9 @@ html.dark ::-webkit-scrollbar-thumb:hover { background:#48484F; }
 html.dark input, html.dark select, html.dark textarea { color-scheme: dark; }
 html.dark input::placeholder, html.dark textarea::placeholder { color:#6C6C74; }
 html.dark kbd { color:#A0A0A8; }
+html.dark .text-accent { color:#FF7A82; }
+/* native fields without their own colour classes (e.g. filter dropdowns) */
+html.dark :where(select, textarea, input:not([type=checkbox]):not([type=radio]):not([type=range])) { background-color:#1B1B1F; color:#E8E8EC; }
 /* ink buttons & fills flip to light in dark mode (text flips with them) */
 html.dark .bg-\[\#18181B\] { background-color:#E7E7EB !important; color:#111114 !important; }
 /* …but a banner that carries white text inside it stays a raised charcoal */
@@ -26,6 +29,7 @@ html.dark img[src*="logo"] { background:#fff; border-radius:8px; }
 
 /* class colours */
 html.dark .bg-\[\#E4E4E4\]{background-color:#2E2E34}
+html.dark .bg-\[\#E9E9EC\]{background-color:#2a2a2e}
 html.dark .bg-\[\#EEE\]{background-color:#2E2E34}
 html.dark .bg-\[\#EFF5FF\]{background-color:rgba(58,120,223,0.14)}
 html.dark .bg-\[\#EFF6FF\]{background-color:rgba(58,130,223,0.14)}
@@ -58,6 +62,7 @@ html.dark .border-\[\#FECACA\]{border-color:rgba(221,60,60,0.359)}
 html.dark .border-\[\#FEE2E2\]{border-color:rgba(221,60,60,0.288)}
 html.dark .border-\[\#FEF08A\]{border-color:rgba(221,201,60,0.5)}
 html.dark .divide-\[\#E4E4E4\] > :not([hidden]) ~ :not([hidden]){border-color:#2c2c31}
+html.dark .hover\:bg-\[\#EDEDF0\]:hover{background-color:#27272b}
 html.dark .hover\:bg-\[\#F2F2F2\]:hover{background-color:#2A2A30}
 html.dark .hover\:bg-\[\#F6F6F7\]:hover{background-color:#27272C}
 html.dark .hover\:bg-\[\#F8F8F8\]:hover{background-color:#222227}
@@ -66,55 +71,51 @@ html.dark .hover\:bg-\[\#FEE2E2\]:hover{background-color:rgba(223,58,58,0.192)}
 html.dark .hover\:bg-\[\#FFF5F5\]:hover{background-color:rgba(223,58,58,0.117)}
 html.dark .hover\:text-\[\#111\]:hover{color:#f2f2f3}
 html.dark .text-\[\#111\]{color:#f2f2f3}
-html.dark .text-\[\#166534\]{color:#72e49e}
+html.dark .text-\[\#166534\]{color:#99ecb8}
 html.dark .text-\[\#18181B\]{color:#ebebec}
-html.dark .text-\[\#1A5FB4\]{color:#5b9beb}
+html.dark .text-\[\#1A5FB4\]{color:#84b4f0}
 html.dark .text-\[\#333\]{color:#d6d6d9}
 html.dark .text-\[\#444\]{color:#c9c9cd}
 html.dark .text-\[\#555\]{color:#bbbbc0}
 html.dark .text-\[\#666\]{color:#adadb3}
-html.dark .text-\[\#6D28D9\]{color:#8e56e6}
-html.dark .text-\[\#777\]{color:#9f9fa7}
-html.dark .text-\[\#888\]{color:#92929a}
-html.dark .text-\[\#999\]{color:#84848d}
-html.dark .text-\[\#AAA\]{color:#767680}
-html.dark .text-\[\#B45309\]{color:#f69a53}
-html.dark .text-\[\#BBB\]{color:#73737d}
-html.dark .text-\[\#CCC\]{color:#73737d}
-html.dark .text-\[\#DC2626\]{color:#e85454}
-html.dark .text-\[\#F59E0B\]{color:#f5b447}
+html.dark .text-\[\#666666\]{color:#adadb3}
+html.dark .text-\[\#6D28D9\]{color:#a97eec}
+html.dark .text-\[\#7F1D1D\]{color:#ea9494}
+html.dark .text-\[\#B45309\]{color:#f8b37f}
+html.dark .text-\[\#B91C1C\]{color:#ef8383}
+html.dark .text-\[\#F59E0B\]{color:#f8c672}
 
 /* inline-style colours */
 html.dark [style^="color: rgb(8, 145, 178)"],
-html.dark [style*="; color: rgb(8, 145, 178)"]{color:#54d7f6 !important}
+html.dark [style*="; color: rgb(8, 145, 178)"]{color:#80e1f8 !important}
 html.dark [style^="color: rgb(11, 90, 107)"],
-html.dark [style*="; color: rgb(11, 90, 107)"]{color:#65daf3 !important}
+html.dark [style*="; color: rgb(11, 90, 107)"]{color:#8fe4f6 !important}
 html.dark [style^="color: rgb(11, 107, 74)"],
-html.dark [style*="; color: rgb(11, 107, 74)"]{color:#65f3c2 !important}
+html.dark [style*="; color: rgb(11, 107, 74)"]{color:#8ff6d3 !important}
 html.dark [style^="color: rgb(11, 107, 107)"],
-html.dark [style*="; color: rgb(11, 107, 107)"]{color:#65f3f3 !important}
+html.dark [style*="; color: rgb(11, 107, 107)"]{color:#8ff6f6 !important}
 html.dark [style^="color: rgb(14, 164, 122)"],
-html.dark [style*="; color: rgb(14, 164, 122)"]{color:#57f5c8 !important}
+html.dark [style*="; color: rgb(14, 164, 122)"]{color:#82f7d6 !important}
 html.dark [style^="color: rgb(15, 15, 17)"],
 html.dark [style*="; color: rgb(15, 15, 17)"]{color:#f2f2f3 !important}
 html.dark [style^="color: rgb(17, 17, 17)"],
 html.dark [style*="; color: rgb(17, 17, 17)"]{color:#f2f2f3 !important}
 html.dark [style^="color: rgb(22, 101, 52)"],
-html.dark [style*="; color: rgb(22, 101, 52)"]{color:#72e49e !important}
+html.dark [style*="; color: rgb(22, 101, 52)"]{color:#99ecb8 !important}
 html.dark [style^="color: rgb(22, 163, 74)"],
-html.dark [style*="; color: rgb(22, 163, 74)"]{color:#5ded92 !important}
+html.dark [style*="; color: rgb(22, 163, 74)"]{color:#86f2ae !important}
 html.dark [style^="color: rgb(24, 24, 27)"],
 html.dark [style*="; color: rgb(24, 24, 27)"]{color:#ebebec !important}
 html.dark [style^="color: rgb(26, 95, 180)"],
-html.dark [style*="; color: rgb(26, 95, 180)"]{color:#5b9beb !important}
+html.dark [style*="; color: rgb(26, 95, 180)"]{color:#84b4f0 !important}
 html.dark [style^="color: rgb(37, 99, 235)"],
-html.dark [style*="; color: rgb(37, 99, 235)"]{color:#4a7ff3 !important}
+html.dark [style*="; color: rgb(37, 99, 235)"]{color:#759df6 !important}
 html.dark [style^="color: rgb(43, 43, 49)"],
 html.dark [style*="; color: rgb(43, 43, 49)"]{color:#dadadd !important}
 html.dark [style^="color: rgb(43, 59, 166)"],
-html.dark [style*="; color: rgb(43, 59, 166)"]{color:#6978dd !important}
+html.dark [style*="; color: rgb(43, 59, 166)"]{color:#8e99e5 !important}
 html.dark [style^="color: rgb(46, 92, 230)"],
-html.dark [style*="; color: rgb(46, 92, 230)"]{color:#4e76ee !important}
+html.dark [style*="; color: rgb(46, 92, 230)"]{color:#7896f2 !important}
 html.dark [style^="color: rgb(51, 51, 51)"],
 html.dark [style*="; color: rgb(51, 51, 51)"]{color:#d6d6d9 !important}
 html.dark [style^="color: rgb(63, 63, 70)"],
@@ -124,39 +125,39 @@ html.dark [style*="; color: rgb(68, 68, 68)"]{color:#c9c9cd !important}
 html.dark [style^="color: rgb(85, 85, 85)"],
 html.dark [style*="; color: rgb(85, 85, 85)"]{color:#bbbbc0 !important}
 html.dark [style^="color: rgb(100, 116, 139)"],
-html.dark [style*="; color: rgb(100, 116, 139)"]{color:#7097cf !important}
+html.dark [style*="; color: rgb(100, 116, 139)"]{color:#92b0db !important}
 html.dark [style^="color: rgb(102, 102, 102)"],
 html.dark [style*="; color: rgb(102, 102, 102)"]{color:#adadb3 !important}
 html.dark [style^="color: rgb(107, 43, 163)"],
-html.dark [style*="; color: rgb(107, 43, 163)"]{color:#a76adc !important}
+html.dark [style*="; color: rgb(107, 43, 163)"]{color:#bd8fe5 !important}
 html.dark [style^="color: rgb(107, 59, 11)"],
-html.dark [style*="; color: rgb(107, 59, 11)"]{color:#f3ac65 !important}
+html.dark [style*="; color: rgb(107, 59, 11)"]{color:#f6c38f !important}
 html.dark [style^="color: rgb(109, 40, 217)"],
-html.dark [style*="; color: rgb(109, 40, 217)"]{color:#8e56e6 !important}
+html.dark [style*="; color: rgb(109, 40, 217)"]{color:#a97eec !important}
 html.dark [style^="color: rgb(113, 113, 122)"],
 html.dark [style*="; color: rgb(113, 113, 122)"]{color:#a1a1a8 !important}
 html.dark [style^="color: rgb(119, 119, 119)"],
 html.dark [style*="; color: rgb(119, 119, 119)"]{color:#9f9fa7 !important}
 html.dark [style^="color: rgb(124, 58, 237)"],
-html.dark [style*="; color: rgb(124, 58, 237)"]{color:#884af3 !important}
+html.dark [style*="; color: rgb(124, 58, 237)"]{color:#a475f6 !important}
 html.dark [style*="background: rgb(126, 185, 255)"],
 html.dark [style*="background-color: rgb(126, 185, 255)"]{background-color:rgba(58,133,223,0.36) !important}
 html.dark [style*="solid rgb(126, 185, 255)"],
 html.dark [style*="border-color: rgb(126, 185, 255)"]{border-color:rgba(60,133,221,0.5) !important}
+html.dark [style^="color: rgb(127, 29, 29)"],
+html.dark [style*="; color: rgb(127, 29, 29)"]{color:#ea9494 !important}
 html.dark [style*="solid rgb(130, 201, 154)"],
 html.dark [style*="border-color: rgb(130, 201, 154)"]{border-color:rgba(60,221,114,0.5) !important}
-html.dark [style^="color: rgb(136, 136, 136)"],
-html.dark [style*="; color: rgb(136, 136, 136)"]{color:#92929a !important}
 html.dark [style^="color: rgb(137, 107, 0)"],
-html.dark [style*="; color: rgb(137, 107, 0)"]{color:#f6d55d !important}
+html.dark [style*="; color: rgb(137, 107, 0)"]{color:#f9e089 !important}
 html.dark [style^="color: rgb(146, 64, 14)"],
-html.dark [style*="; color: rgb(146, 64, 14)"]{color:#f3955c !important}
+html.dark [style*="; color: rgb(146, 64, 14)"]{color:#f6b187 !important}
 html.dark [style^="color: rgb(153, 153, 153)"],
 html.dark [style*="; color: rgb(153, 153, 153)"]{color:#84848d !important}
 html.dark [style*="solid rgb(153, 153, 153)"],
 html.dark [style*="border-color: rgb(153, 153, 153)"]{border-color:#61616b !important}
 html.dark [style^="color: rgb(154, 24, 34)"],
-html.dark [style*="; color: rgb(154, 24, 34)"]{color:#eb616c !important}
+html.dark [style*="; color: rgb(154, 24, 34)"]{color:#f08a92 !important}
 html.dark [style^="color: rgb(156, 163, 175)"],
 html.dark [style*="; color: rgb(156, 163, 175)"]{color:#7a7a84 !important}
 html.dark [style*="solid rgb(156, 163, 175)"],
@@ -166,7 +167,7 @@ html.dark [style*="; color: rgb(161, 161, 170)"]{color:#7a7a84 !important}
 html.dark [style*="solid rgb(161, 161, 170)"],
 html.dark [style*="border-color: rgb(161, 161, 170)"]{border-color:#61616b !important}
 html.dark [style^="color: rgb(163, 16, 96)"],
-html.dark [style*="; color: rgb(163, 16, 96)"]{color:#f359ad !important}
+html.dark [style*="; color: rgb(163, 16, 96)"]{color:#f684c2 !important}
 html.dark [style*="background: rgb(167, 243, 208)"],
 html.dark [style*="background-color: rgb(167, 243, 208)"]{background-color:rgba(58,223,147,0.36) !important}
 html.dark [style*="solid rgb(167, 243, 208)"],
@@ -176,9 +177,11 @@ html.dark [style*="; color: rgb(170, 170, 170)"]{color:#767680 !important}
 html.dark [style*="solid rgb(170, 170, 170)"],
 html.dark [style*="border-color: rgb(170, 170, 170)"]{border-color:#5f5f69 !important}
 html.dark [style^="color: rgb(180, 83, 9)"],
-html.dark [style*="; color: rgb(180, 83, 9)"]{color:#f69a53 !important}
+html.dark [style*="; color: rgb(180, 83, 9)"]{color:#f8b37f !important}
 html.dark [style^="color: rgb(184, 115, 51)"],
-html.dark [style*="; color: rgb(184, 115, 51)"]{color:#da9e67 !important}
+html.dark [style*="; color: rgb(184, 115, 51)"]{color:#e3b58b !important}
+html.dark [style^="color: rgb(185, 28, 28)"],
+html.dark [style*="; color: rgb(185, 28, 28)"]{color:#ef8383 !important}
 html.dark [style^="color: rgb(187, 187, 187)"],
 html.dark [style*="; color: rgb(187, 187, 187)"]{color:#73737d !important}
 html.dark [style*="background: rgb(187, 187, 187)"],
@@ -190,7 +193,7 @@ html.dark [style*="background-color: rgb(187, 247, 208)"]{background-color:rgba(
 html.dark [style*="solid rgb(187, 247, 208)"],
 html.dark [style*="border-color: rgb(187, 247, 208)"]{border-color:rgba(60,221,116,0.424) !important}
 html.dark [style^="color: rgb(200, 32, 46)"],
-html.dark [style*="; color: rgb(200, 32, 46)"]{color:#e95864 !important}
+html.dark [style*="; color: rgb(200, 32, 46)"]{color:#ee818a !important}
 html.dark [style^="color: rgb(204, 204, 204)"],
 html.dark [style*="; color: rgb(204, 204, 204)"]{color:#73737d !important}
 html.dark [style*="background: rgb(204, 204, 204)"],
@@ -202,15 +205,15 @@ html.dark [style*="background-color: rgb(204, 229, 255)"]{background-color:rgba(
 html.dark [style*="solid rgb(204, 229, 255)"],
 html.dark [style*="border-color: rgb(204, 229, 255)"]{border-color:rgba(60,139,221,0.35) !important}
 html.dark [style^="color: rgb(212, 160, 23)"],
-html.dark [style*="; color: rgb(212, 160, 23)"]{color:#f0c450 !important}
+html.dark [style*="; color: rgb(212, 160, 23)"]{color:#f4d27a !important}
 html.dark [style*="background: rgb(212, 237, 218)"],
 html.dark [style*="background-color: rgb(212, 237, 218)"]{background-color:rgba(58,223,97,0.307) !important}
 html.dark [style*="solid rgb(212, 237, 218)"],
 html.dark [style*="border-color: rgb(212, 237, 218)"]{border-color:rgba(60,221,98,0.379) !important}
 html.dark [style^="color: rgb(217, 119, 6)"],
-html.dark [style*="; color: rgb(217, 119, 6)"]{color:#f6a74d !important}
+html.dark [style*="; color: rgb(217, 119, 6)"]{color:#f8bd79 !important}
 html.dark [style^="color: rgb(220, 38, 38)"],
-html.dark [style*="; color: rgb(220, 38, 38)"]{color:#e85454 !important}
+html.dark [style*="; color: rgb(220, 38, 38)"]{color:#ed7d7d !important}
 html.dark [style*="background: rgb(221, 214, 254)"],
 html.dark [style*="background-color: rgb(221, 214, 254)"]{background-color:rgba(87,58,223,0.236) !important}
 html.dark [style*="solid rgb(221, 214, 254)"],
@@ -222,7 +225,7 @@ html.dark [style*="background-color: rgb(221, 221, 221)"]{background-color:#3535
 html.dark [style*="solid rgb(221, 221, 221)"],
 html.dark [style*="border-color: rgb(221, 221, 221)"]{border-color:#323238 !important}
 html.dark [style^="color: rgb(224, 82, 82)"],
-html.dark [style*="; color: rgb(224, 82, 82)"]{color:#e55757 !important}
+html.dark [style*="; color: rgb(224, 82, 82)"]{color:#eb7f7f !important}
 html.dark [style*="solid rgb(224, 82, 82)"],
 html.dark [style*="border-color: rgb(224, 82, 82)"]{border-color:rgba(221,60,60,0.5) !important}
 html.dark [style^="color: rgb(224, 224, 224)"],
@@ -237,6 +240,12 @@ html.dark [style*="background: rgb(228, 228, 228)"],
 html.dark [style*="background-color: rgb(228, 228, 228)"]{background-color:#2E2E34 !important}
 html.dark [style*="solid rgb(228, 228, 228)"],
 html.dark [style*="border-color: rgb(228, 228, 228)"]{border-color:#2c2c31 !important}
+html.dark [style^="color: rgb(233, 233, 236)"],
+html.dark [style*="; color: rgb(233, 233, 236)"]{color:#73737d !important}
+html.dark [style*="background: rgb(233, 233, 236)"],
+html.dark [style*="background-color: rgb(233, 233, 236)"]{background-color:#2a2a2e !important}
+html.dark [style*="solid rgb(233, 233, 236)"],
+html.dark [style*="border-color: rgb(233, 233, 236)"]{border-color:#27272b !important}
 html.dark [style^="color: rgb(235, 235, 235)"],
 html.dark [style*="; color: rgb(235, 235, 235)"]{color:#73737d !important}
 html.dark [style*="background: rgb(235, 235, 235)"],
@@ -247,6 +256,10 @@ html.dark [style*="background: rgb(236, 254, 255)"],
 html.dark [style*="background-color: rgb(236, 254, 255)"]{background-color:rgba(58,214,223,0.151) !important}
 html.dark [style*="solid rgb(236, 254, 255)"],
 html.dark [style*="border-color: rgb(236, 254, 255)"]{border-color:rgba(60,212,221,0.256) !important}
+html.dark [style*="background: rgb(237, 237, 240)"],
+html.dark [style*="background-color: rgb(237, 237, 240)"]{background-color:#27272b !important}
+html.dark [style*="solid rgb(237, 237, 240)"],
+html.dark [style*="border-color: rgb(237, 237, 240)"]{border-color:#232327 !important}
 html.dark [style*="background: rgb(238, 238, 238)"],
 html.dark [style*="background-color: rgb(238, 238, 238)"]{background-color:#2E2E34 !important}
 html.dark [style*="solid rgb(238, 238, 238)"],
@@ -266,7 +279,7 @@ html.dark [style*="border-color: rgb(239, 246, 255)"]{border-color:rgba(60,130,2
 html.dark [style*="solid rgb(240, 82, 93)"],
 html.dark [style*="border-color: rgb(240, 82, 93)"]{border-color:rgba(221,60,71,0.5) !important}
 html.dark [style^="color: rgb(240, 192, 64)"],
-html.dark [style*="; color: rgb(240, 192, 64)"]{color:#f5c547 !important}
+html.dark [style*="; color: rgb(240, 192, 64)"]{color:#f7d373 !important}
 html.dark [style*="background: rgb(240, 240, 240)"],
 html.dark [style*="background-color: rgb(240, 240, 240)"]{background-color:#26262a !important}
 html.dark [style*="solid rgb(240, 240, 240)"],
@@ -288,7 +301,7 @@ html.dark [style*="background-color: rgb(244, 244, 245)"]{background-color:#0F0F
 html.dark [style*="solid rgb(244, 244, 245)"],
 html.dark [style*="border-color: rgb(244, 244, 245)"]{border-color:#1e1e21 !important}
 html.dark [style^="color: rgb(245, 158, 11)"],
-html.dark [style*="; color: rgb(245, 158, 11)"]{color:#f5b447 !important}
+html.dark [style*="; color: rgb(245, 158, 11)"]{color:#f8c672 !important}
 html.dark [style*="background: rgb(245, 243, 255)"],
 html.dark [style*="background-color: rgb(245, 243, 255)"]{background-color:rgba(85,58,223,0.125) !important}
 html.dark [style*="solid rgb(245, 243, 255)"],

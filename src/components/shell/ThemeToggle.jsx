@@ -17,11 +17,11 @@ export function AppearancePicker() {
   const { pref, setPref } = useTheme();
   return (
     <div className="px-4 py-3 border-b border-[#EEE]">
-      <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#AAA] mb-2">Appearance</div>
+      <div className="text-[10px] font-bold uppercase tracking-[1.4px] text-[#666666] mb-2">Appearance</div>
       <div className="grid grid-cols-3 gap-1 p-1 rounded-[10px] bg-[#F4F4F5]" role="radiogroup" aria-label="Appearance">
         {[['light', '☀', 'Light'], ['dark', '☾', 'Dark'], ['system', '◐', 'System']].map(([id, icon, label]) => (
           <button key={id} role="radio" aria-checked={pref === id} onClick={() => setPref(id)}
-            className={`flex items-center justify-center gap-1.5 py-1.5 rounded-[8px] text-[11.5px] font-semibold cursor-pointer border-none ${pref === id ? 'bg-white text-[#111] shadow-[0_1px_4px_rgba(0,0,0,.12)]' : 'bg-transparent text-[#777] hover:text-[#111]'}`}><span>{icon}</span>{label}</button>))}
+            className={`flex items-center justify-center gap-1.5 py-1.5 rounded-[8px] text-[11.5px] font-semibold cursor-pointer border-none ${pref === id ? 'bg-white text-[#111] shadow-[0_1px_4px_rgba(0,0,0,.12)]' : 'bg-transparent text-[#666666] hover:text-[#111]'}`}><span>{icon}</span>{label}</button>))}
       </div>
     </div>
   );
